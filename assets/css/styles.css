@@ -63,7 +63,7 @@
 	float: left;
 	margin-top: 35%;
 	border: 200px 300px solid 2px red;
-	margin-bottom: 34.5%;
+	margin-bottom: 26.5%;
 
 }
 
@@ -152,11 +152,11 @@ text-align: left;
 	/*float: left;*/
 	/*margin-top: 50%;*/
 	/*margin-left: 2%;*/
-	width: 165px;
+	width: 140px;
 	height: 200px;
 	padding:  2%;
 	padding-top: 2%;
-	font-size: .8rem;
+	font-size: .7rem;
 	font-style: bold;
 }
 
@@ -176,11 +176,11 @@ text-align: left;
 	/*float: right;*/
 	/*margin-top: -3%;*/
 	margin-left: 5%;
-	width: 165px;
+	width: 145px;
 	height: 200px;
 	padding:  2%;
 	padding-top: 2%;
-	font-size: .8rem;
+	font-size: .7rem;
 	font-style: bold;
 }
 
@@ -190,7 +190,7 @@ text-align: left;
 	margin-left: 35%;
 	margin-top: 10%;
 	height: 40px;
-	margin-bottom: 28.9%;
+	margin-bottom: 10.5%;
 }
 
 /*ALINHA BOTÕES PAGINA INICIAL*/
@@ -199,11 +199,11 @@ text-align: left;
 	margin-bottom: -1%;
 }
 
-/*ALINHA BOTÕES PAGINA DESPESAS*/
+/*ALINHA BOTÕES PAGINA INICIAL*/
 .container-fluid > .btnAlingDesp {
 	float: left;
-	margin-top: 62%;
-	margin-bottom: 28%;
+	margin-top: 60%;
+	margin-bottom: 20%;
 }
 
 /*BOTÕES DA PAGINA INICIAL*/
