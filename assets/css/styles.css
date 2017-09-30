@@ -2,7 +2,7 @@
 	font-family: sans-serif;
 }
 
-/*DEFINIR COR DE FUNDO - 01 - Superio e Rodapé*/
+/*DEFINIR COR DE FUNDO - 01 - Superio*/
 .bg-01 {
 	background-color: #474e5d;
 	color: #ffffff;
@@ -11,7 +11,7 @@
 	width: 100%;
 }
 
-/*DEFINIR COR DE FUNDO - 02 - Titulo*/
+/*DEFINIR COR DE FUNDO - 02 - Rodapé*/
 .bg-02 {
 	background-color: #474e5d;
 	color: #ffffff;
@@ -21,7 +21,7 @@
 	width: 100%;
 }
 
-/*DEFINIR COR DE FUNDO - 03 - Mês Referencia*/
+/*DEFINIR COR DE FUNDO - 03 - Titulo*/
 .bg-03 {
 	background-color: #737d93;
 	color: #ffffff;
@@ -30,24 +30,40 @@
 	width: 100%;
 }
 
+
+/*DEFINIR COR DE FUNDO - 04 - Mês Referencia*/
+.bg-04 {
+	background-color: #c5cad5;
+	color: #ffffff;
+	margin-top: 15.7%;
+	position: fixed;
+	width: 100%;
+}
+
 /*ALINHAR TEXTO h1 - Texto Principal*/
 .container-fluid > h1 {
 	font-size: 2.7rem;
+	width: 100%;
 }
 
 /*ALINHAR TEXTO h2 - Texto Secundario*/
-.container-fluid > h2 {
-	margin-left: 25%;
-	font-size: 2rem;
-}
+/*.container-fluid > h2 {*/
+	/*margin-left: 5%;*/
+	/*font-size: 2rem;*/
+	/*width: 100%;*/
+	/*margin-top: 20;*/
+	/*padding: 0;*/
+	/*margin-left: -2%;*/
+
+/*}*/
 
 
 /*ALINHAR FORMULARIO DE DADOS*/
 .container-fluid > div > div > .alinharFormDesp {
 	float: left;
-	margin-top: 35%;
+	margin-top: 5%;
 	border: 200px 300px solid 2px red;
-	margin-bottom: 25%;
+	margin-bottom: 41.5%;
 
 }
 
@@ -186,8 +202,8 @@ text-align: left;
 /*ALINHA BOTÕES PAGINA DESPESAS*/
 .container-fluid > .btnAlingDesp {
 	float: left;
-	margin-top: 56%;
-	margin-bottom: 16%;
+	margin-top: 28%;
+	margin-bottom: 28%;
 }
 
 /*BOTÕES DA PAGINA INICIAL*/
@@ -205,19 +221,18 @@ text-align: left;
 }
 
 /*ALINHA MÊS*/
-.container-fluid > div > .alinharMes {
+.container-fluid > .alinharMes {
 	/*float: center;*/
-	margin: 0;
-	margin-left: -4.1%;
-	margin-top: 20%;
+	/*margin: 0;*/
+	/*margin-left: -4.1%;*/
+	/*margin-top: 40%;*/
 	text-align: center;
-	position: fixed;
-	padding: 2%;
-	background-color: #c5cad5; /*#7f889b;*/
-	/*color: #fff;*/
-	width: 100%;
+	/*position: fixed;*/
+	/*padding: 2%;*/
+	/*background-color: #c5cad5; #7f889b;*/
+	/*color: #fff;
+	/*width: 100%;*/
 	font-size: 2rem;
-
 }
 
 .container-fluid > .contVer {
