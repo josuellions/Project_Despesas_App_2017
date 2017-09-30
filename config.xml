@@ -20,6 +20,6 @@
 
 				<icon src="assets/img/logo_seven.jpg" />
 				<plugin name="cordova-plugin-splashscreen" />
-				<splash src="assets/img/logoSevenAlt.jpg" />
-				
+				<splash src="assets/img/novologoseven.png" />
+
 </widget>
