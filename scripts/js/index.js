@@ -111,7 +111,7 @@ $( "#valDespesa" ).click(function( ) {
 }) 
 
 // Controle de Versão
-$( "#contVer").html("Versão beta 0.0.2 - 30/09/2017");
+$( "#contVer").html("Versão beta 0.0.2 - 03/10/2017");
 
 
 //Nome Desenvolvedor
