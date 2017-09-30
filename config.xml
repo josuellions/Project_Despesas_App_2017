@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 <widget	xmlns="http://www.w3.org/ns/widgets"
 								xmlns:gap="http://phonegap.com/ns/1.0"
 								id="sevensolutions.despesas.app"
@@ -19,7 +18,8 @@
 				<preference name="orientation" value="portrait" />
 				<!-- <preference name="fullscreen" value="true" /> -->
 
-				<icon src="assets/img/logo_seven.jpg" class="iconeSeven"/>
+				<icon src="assets/img/logo_seven.jpg" />
 				<plugin name="cordova-plugin-splashscreen" />
 				<splash src="assets/img/logoSevenAlt.jpg" />
+				
 </widget>
