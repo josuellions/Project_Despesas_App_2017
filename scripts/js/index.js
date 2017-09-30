@@ -87,7 +87,7 @@ $( document ).ready(function( ) {
 		// document.getElementById( 'tbmenuDesp').style.display = 'all';
 
 		valor =  parseFloat(despesas.val_desp).toFixed( 2 );
-
+		valor = valor.replace('.',',');
 
 		$( '#tbDespesas > tbody' ).append (
 																				'<tr>' + '<td>' + despesas.dt_desp + '</td>' +
@@ -95,11 +95,12 @@ $( document ).ready(function( ) {
 																					'<td>' + "R$ " + valor + '</td>' +
 																				'</tr>'
 																				);
-		valorTotal = ( parseFloat( valorTotal ) + parseFloat( despesas.val_desp ) ) ;
-
-		// console.log(valorTotal);
 		
-		$( "#valTotal").html( "R$ " + valorTotal.toFixed( 2 ) );
+		valorTotal = ( parseFloat( valorTotal ) + parseFloat( despesas.val_desp ) ) ;
+		valorTotal = valorTotal.toFixed( 2 );
+		valorTotal = valorTotal.replace('.',',');
+		
+		$( "#valTotal").html( "R$ " + valorTotal );
 
 		$( '#dtDespesa' ).focus( );
 	});
@@ -109,6 +110,84 @@ $( document ).ready(function( ) {
 $( "#valDespesa" ).click(function( ) {
 	$( '#valDespesa').select( );
 }) 
+
+//FUNÇÃO DATA DE REFERENCIA
+function formataData (  ) {
+	dt = new Date( )
+	let dia = dt.getDate( );
+	let mes = dt.getMonth( );
+	let ano = dt.getFullYear( );
+
+	if(dia.toString( ).length == 1 ) dia = '0' + dia;
+	if(mes.toString( ).length == 1 ) mes = '0' + mes;
+
+	 return ano + "-" +  mes + "-" + dia;
+}
+
+function defineMes( ){
+	let recebeDt = new Date( );
+	let mes = recebeDt.getMonth( );
+	let ano = recebeDt.getFullYear( );
+
+	switch(mes) {
+		case 0 : 
+							mes = "JAN";
+							break;
+		case 1 :
+							mes = "FEV";
+							break;
+		case 2 :
+							mes = "MAR";
+							break;
+		case 3 :
+							mes = "ABR";
+							break;
+		case 4 :
+							mes = "MAI";
+							break;
+		case 5 :
+							mes = "JUN";
+							break;
+		case 6 :
+							mes = "JUL";
+							break;
+		case 7 :
+							mes = "AGO";
+							break;
+		case 8 :
+							mes = "SET";
+							break;
+		case 9 :
+							mes = "OUT";
+							break;
+		case 10 :
+							mes = "NOV";
+							break;
+		case 11 : 
+							mes = "DEZ";
+							break;
+	}
+
+	return mes + "/" + ano;
+
+}
+// function dtReferencia( ) {
+	$('#dtReference').html( defineMes( ) );
+// }
+
+// const data= new Date( );
+$('#dtDespesa').val(formataData( ));
+
+
+
+
+
+
+
+
+
+
+
 
 // Controle de Versão
 $( "#contVer").html("Versão beta 0.0.2 - 03/10/2017");
