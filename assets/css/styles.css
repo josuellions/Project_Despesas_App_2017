@@ -63,7 +63,7 @@
 	float: left;
 	margin-top: 35%;
 	border: 200px 300px solid 2px red;
-	margin-bottom: 27%;
+	margin-bottom: 27.5%;
 
 }
 
@@ -203,7 +203,7 @@ text-align: left;
 .container-fluid > .btnAlingDesp {
 	float: left;
 	margin-top: 60%;
-	margin-bottom: 18%;
+	margin-bottom: 15%;
 }
 
 /*BOTÕES DA PAGINA INICIAL*/
@@ -238,8 +238,8 @@ text-align: left;
 .container-fluid > .contVer {
 	padding: 0;
 	float: left;
-	margin-top: -6%;
-	margin-left: 20%; 
+	margin-top: -4%;
+	margin-left: 18%; 
 	text-align: left;
 	font-size: 1rem;
 	position: fixed;
@@ -255,7 +255,7 @@ text-align: left;
 /*BOTÃO MENU HOME*/
 .btnMenu {
 	float: right;
-	margin-top: -11.5%;
+	margin-top: -10.5%;
 	font-size: 3rem;
 	position: fixed;
 }
