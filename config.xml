@@ -15,7 +15,7 @@
 
 				<preference name="premissions" value="none" />
 				<preference name="orientation" value="portrait" />
-				<preference name="fullscreen" value="true" />
+				<!-- <preference name="fullscreen" value="true" /> -->
 
 				<icon src="assets/img/logo_seven.jpg" />
 				<plugin name="cordova-plugin-splashscreen" />
