@@ -12,7 +12,8 @@
 				<author	email="josuel_lions@hotmail.com">
 								Josuel A. Lopes
 				</author>
-
+				
+				<preference name="phonegap-version" value="cli-6.4.0" />
 				<preference name="premissions" value="none" />
 				<preference name="orientation" value="portrait" />
 				<!-- <preference name="fullscreen" value="true" /> -->
