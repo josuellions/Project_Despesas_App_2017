@@ -18,5 +18,6 @@
 				<preference name="fullscreen" value="true" />
 
 				<icon src="assets/img/logo_seven.jpg" />
-
+				<plugin name="cordova-plugin-splashscreen" />
+				<splash src="splash.png" />
 </widget>
