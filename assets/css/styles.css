@@ -47,7 +47,7 @@
 	float: left;
 	margin-top: 35%;
 	border: 200px 300px solid 2px red;
-	margin-bottom: 23%;
+	margin-bottom: 25%;
 
 }
 
@@ -62,7 +62,7 @@
 	text-align: center;
 	/*margin-top: 0%;*/
 	margin-right: 1%;
-	margin-bottom: 67.5%;
+	margin-bottom: 68%;
 }
 
 .container-fluid > div > div > div > span .dtDespesa {
@@ -186,8 +186,8 @@ text-align: left;
 /*ALINHA BOTÕES PAGINA DESPESAS*/
 .container-fluid > .btnAlingDesp {
 	float: left;
-	margin-top: 58%;
-	margin-bottom: 18%;
+	margin-top: 56%;
+	margin-bottom: 16%;
 }
 
 /*BOTÕES DA PAGINA INICIAL*/
@@ -207,6 +207,7 @@ text-align: left;
 /*ALINHA MÊS*/
 .container-fluid > div > .alinharMes {
 	/*float: center;*/
+	margin: 0;
 	margin-left: -4.1%;
 	margin-top: 20%;
 	text-align: center;
