@@ -4,7 +4,7 @@
 								id="sevensolutions.despesas.app"
 								version="1.0.0">
 				<name>
-								Controle Mensal Despesas
+								Controle Despesas
 				</name>
 				<description>
 								Controle despesas mensais.
@@ -12,4 +12,11 @@
 				<author	email="josuel_lions@hotmail.com">
 								Josuel A. Lopes
 				</author>
+
+				<preference name="premissions" value="none" />
+				<preference name="orientation" value="portrait" />
+				<preference name="fullscreen" value="true" />
+
+				<icon src="assets/img/logo_seven.jpg" />
+
 </widget>
