@@ -9,7 +9,8 @@
 				<description>
 								Controle despesas mensais.
 				</description>
-				<author	email="josuel_lions@hotmail.com">
+				<author	href="https://github.com/josuellions/Project_Despesas_App_2017.git"	
+								email="josuel_lions@hotmail.com">
 								Josuel A. Lopes
 				</author>
 				
@@ -17,9 +18,11 @@
 				<preference name="premissions" value="none" />
 				<preference name="orientation" value="portrait" />
 				<!-- <preference name="fullscreen" value="true" /> -->
+				<preference name="android-minSdkVersion" value="16" />
+    		<platform name="android" />
 
 				<icon src="assets/img/logo_seven.jpg" />
-				<plugin name="cordova-plugin-splashscreen" />
+				<plugin name="cordova-plugin-splashscreen" spec="4.0.3" />
 				<splash src="assets/img/novologoseven.png" />
 
 </widget>
