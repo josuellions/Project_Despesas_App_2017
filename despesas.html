@@ -27,9 +27,9 @@
 							<table  class="table table-striped table-responsive" class="tbmenuDesp" id="tbDespesas">
 								<thead>
 									<tr>
-										<th>Data</th>
-										<th>Despesas</th>
-										<th>Valor</th>
+										<th class="text-center" width="22%">Data</th>
+										<th class="text-center" width="48">Despesas</th>
+										<th class="text-center" width="30">Valor</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -52,14 +52,14 @@
 								</select>
 							</span>
 							<span>
-								<input type="number" name="valDespesa" class="valDespesa" id="valDespesa" min="0,00"
+								<input type="number" name="valDespesa" class="valDespesa" id="valDespesa" min="0" max="10000" 
 							value="0.00"  placeholder="R$ 0.000,00" required class="form-control" />
 							</span>
 							<span class="glyphicon glyphicon-ok btnDesp" id="btnDesp"></span>
 							<table  class="table table-striped table-responsive tbDespfoot" id="tbfoot">
 								<tfoot>
 									<tr>
-										<th width="60%" class="text-right">TOTAL</th>
+										<th width="70%" class="text-right">TOTAL</th>
 										<th id="valTotal" class="text-left" width="30%">R$ 0,00</th>
 									</tr>
 								</tfoot>

@@ -88,11 +88,17 @@ $( document ).ready(function( ) {
 
 		valor =  parseFloat(despesas.val_desp).toFixed( 2 );
 		valor = valor.replace('.',',');
+		dtDia = despesas.dt_desp.substr(8,10)
+		dtMes = despesas.dt_desp.substr(4,5);
+		dtMesAlt = dtMes.substr(1,2)
+		dtAno = despesas.dt_desp.substr(2,2)
+
+		dtFormt = dtDia + "/" + dtMesAlt + "/" + dtAno;
 
 		$( '#tbDespesas > tbody' ).append (
-																				'<tr>' + '<td>' + despesas.dt_desp + '</td>' +
-																					'<td>' + despesas.text_desp + '</td>' +
-																					'<td>' + "R$ " + valor + '</td>' +
+																				'<tr>' + '<td width="22%">' + dtFormt + '</td>' +
+																					'<td width="48%">' + despesas.text_desp + '</td>' +
+																					'<td width="30%">' + "R$ " + valor + '</td>' +
 																				'</tr>'
 																				);
 		
@@ -108,7 +114,7 @@ $( document ).ready(function( ) {
 
 //Select campo number
 $( "#valDespesa" ).click(function( ) {
-	$( '#valDespesa').select( );
+$( '#valDespesa').select( );
 }) 
 
 //FUNÇÃO DATA DE REFERENCIA
@@ -117,6 +123,8 @@ function formataData (  ) {
 	let dia = dt.getDate( );
 	let mes = dt.getMonth( );
 	let ano = dt.getFullYear( );
+
+	if(mes.toString( ).length < 10 ) mes = + parseInt( mes + 1 );
 
 	if(dia.toString( ).length == 1 ) dia = '0' + dia;
 	if(mes.toString( ).length == 1 ) mes = '0' + mes;
@@ -177,17 +185,6 @@ function defineMes( ){
 
 // const data= new Date( );
 $('#dtDespesa').val(formataData( ));
-
-
-
-
-
-
-
-
-
-
-
 
 // Controle de Versão
 $( "#contVer").html("Versão beta 0.0.2 - 03/10/2017");
