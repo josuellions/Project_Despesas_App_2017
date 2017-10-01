@@ -182,6 +182,75 @@ function defineMes( ){
 
 }
 
+//BANCO DADOS WEBSql
+
+let db = openDatabase ('ControleDespesas', '1.0', 'Despesas Web SQL Database', 2 * 1024 * 1024);
+// Simples 
+db.transaction (function (tx) {  
+   tx.executeSql ("CREATE TABLE IF NOT EXISTS Despesas (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, log)");
+ 
+   // Os 3 null represetam
+   // 1º - Um array contendo dados
+   // 2º - Função para sucesso
+   // 3º - Função para Erro
+   // Vamos explicá-los mais abaixo
+
+   	tx.executeSql ("INSERT INTO IF NOT EXISTS Despesas (log) VALUES ('Financimento') ", null, null, null);
+   	tx.executeSql ("INSERT INTO IF NOT EXISTS Despesas (log) VALUES ('Mercado') ", null, null, null);
+		tx.executeSql ("INSERT INTO IF NOT EXISTS Despesas (log) VALUES ('Sacolão') ", null, null, null);
+		tx.executeSql ("INSERT INTO IF NOT EXISTS Despesas (log) VALUES ('Açougue') ", null, null, null);
+		tx.executeSql ("INSERT INTO IF NOT EXISTS Despesas (log) VALUES ('Padaria') ", null, null, null);
+		tx.executeSql ("INSERT INTO IF NOT EXISTS Despesas (log) VALUES ('Farmacia') ", null, null, null);
+		tx.executeSql ("INSERT INTO IF NOT EXISTS Despesas (log) VALUES ('Seguro') ", null, null, null);
+		tx.executeSql ("INSERT INTO IF NOT EXISTS Despesas (log) VALUES ('Financiamento') ", null, null, null);
+		tx.executeSql ("INSERT INTO IF NOT EXISTS Despesas (log) VALUES ('add nova depesa') ", null, null, null);
+});
+
+
+db.transaction (function (tx) {
+   tx.executeSql ('SELECT * FROM Despesas', [], function (tx, results) {
+   var len = results.rows.length, i;
+   // msg = "<p> Registros encontrados:" + len + "</ p>";
+   for (i = 0; i <len; i ++) {
+								$('#textDespesa').append( "<option>" + results.rows.item(i).log + "</option>" );
+      console.log(results.rows.item(i).log);
+   }
+ }, null);
+   // $("#textDespesa").html("</select>");
+});
+
+ 
+//DEBUGANDO
+// db.transaction (function (tx) {
+//     tx.executeSql ("CREATE TABLE IF NOT EXISTS LOGS (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, log TEXT)",null,null);
+//     tx.executeSql ("INSERT INTO LOGS (log) VALUES (?)",['Resultado do Log de Teste 01'],null,null);
+//     tx.executeSql ("INSERT INTO LOGS (log) VALUES (?)",['Resultado do Log de Teste 02'],null,null);
+//    console.log('Log mensagem criada e linha inserida');
+// });
+ 
+db.transaction(function(tx){
+    tx.executeSql(       
+        "SELECT * FROM Despesas",
+        [],
+        function(tx, result){
+            console.log('Deu certo!');
+            var len = result.rows.length, i;
+            for(i=0;i<len;i++){
+                console.log( result.rows.item(i) );
+            }
+        },
+        function(tx, error){
+            console.log('Deu errado!');
+            console.log(error);
+        }
+    );
+});
+// console.log(db);
+
+
+
+
+
 // EXIBIR O MÊS DE REFENCIA
 $('#dtReference').html( defineMes( ) );
 
