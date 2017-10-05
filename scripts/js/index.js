@@ -1,21 +1,22 @@
-$( document ).ready(function( ) {
-	$( "#btnExec" ).click( function( ) {
-		// alert("OK")
-		document.getElementById( "textareaDisp" ).innerHTML = 
-		"15/09/2017 - Mercado   - R$ 200,00\n" +
-		"25/09/2017 - Mercado   - R$ 300,00\n" +
-		"10/09/2017 - Mercado   - R$ 500,00\n" +
-		"05/09/2017 - Mercado   - R$  90,00\n" 
-		;
+//ADCIONADO NA FUNÇÃO listarDespesas do BANCO DADOS
+// $( document ).ready(function( ) {
+// 	$( "#btnExec" ).click( function( ) {
+// 		// alert("OK")
+// 		document.getElementById( "textareaDisp" ).innerHTML = 
+// 		"15/09/2017 - Mercado   - R$ 200,00\n" +
+// 		"25/09/2017 - Mercado   - R$ 300,00\n" +
+// 		"10/09/2017 - Mercado   - R$ 500,00\n" +
+// 		"05/09/2017 - Mercado   - R$  90,00\n" 
+// 		;
 
-		document.getElementById( "textareaEntra" ).innerHTML = 
-		"05/09/2017 - Salario-01 - R$ 5.200,00\n" + 
-		"05/09/2017 - Seguro     - R$ 1.900,00\n" 
-		;
-		// $( "#textExibir" ).slideDown( "slow").delay( 1000 ).slideUp( "slow");
-		// $( "#textareaExibir" ).slideDown( "slow" ).delay( 5000 ).slideUp( "slow");
-	} );
-} );
+// 		document.getElementById( "textareaEntra" ).innerHTML = 
+// 		"05/09/2017 - Salario-01 - R$ 5.200,00\n" + 
+// 		"05/09/2017 - Seguro     - R$ 1.900,00\n" 
+// 		;
+// 		// $( "#textExibir" ).slideDown( "slow").delay( 1000 ).slideUp( "slow");
+// 		// $( "#textareaExibir" ).slideDown( "slow" ).delay( 5000 ).slideUp( "slow");
+// 	} );
+// } );
 
 // Atualiza, recarrega a página
 // function atualiza( ) {
@@ -189,7 +190,7 @@ $('#dtReference').html( defineMes( ) );
 $('#dtDespesa').val(formataData( ));
 
 // Controle de Versão
-$( "#contVer").html("Versão beta 0.0.2 - 03/10/2017");
+$( "#contVer").html("Versão beta 0.0.3 - 05/10/2017");
 
 //Nome Desenvolvedor
 $( "#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
