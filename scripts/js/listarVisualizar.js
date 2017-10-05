@@ -1,16 +1,18 @@
+jQuery.support.cors = true;
+
 (function( $ ) {
 
 	$( "#btnExec" ).click( function ( ) {
 
 	var settings = {
-	  // "async": true,
-	  // "crossDomain": true,
+	  "async": true,
+	  "crossDomain": true,
 	  "url": "http://21.21.21.5:3000/listarDespesas",
 	  "method": "GET",
 	  "headers": {
 	    "content-type": "application/x-www-form-urlencoded",
 	    "cache-control": "no-cache",
-	    "postman-token": "6bd2addd-31eb-2d48-861d-d2df933ed986"
+	    "postman-token": "6bd2addd-31eb-2d48-861d-d2df933ed986",
 	  }
 	}
 
@@ -85,11 +87,11 @@
 			// valorTotal = valorTotal.toFixed( 2 );
 			// valorTotal = valorTotal.replace('.',',');
 			
-			$( "#valTotal").html( "R$ " + valorTotal );
+			// $( "#valTotal").html( "R$ " + valorTotal );
 			
-			$( '#valDespesa').val( "0.00" );	
+			// $( '#valDespesa').val( "0.00" );	
 
-			$( '#dtDespesa' ).focus( );
+			// $( '#dtDespesa' ).focus( );
 
 		});
 
