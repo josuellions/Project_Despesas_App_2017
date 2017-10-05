@@ -1,57 +1,19 @@
-//ADCIONADO NA FUNÇÃO listarDespesas do BANCO DADOS
-// $( document ).ready(function( ) {
-// 	$( "#btnExec" ).click( function( ) {
-// 		// alert("OK")
-// 		document.getElementById( "textareaDisp" ).innerHTML = 
-// 		"15/09/2017 - Mercado   - R$ 200,00\n" +
-// 		"25/09/2017 - Mercado   - R$ 300,00\n" +
-// 		"10/09/2017 - Mercado   - R$ 500,00\n" +
-// 		"05/09/2017 - Mercado   - R$  90,00\n" 
-// 		;
-
-// 		document.getElementById( "textareaEntra" ).innerHTML = 
-// 		"05/09/2017 - Salario-01 - R$ 5.200,00\n" + 
-// 		"05/09/2017 - Seguro     - R$ 1.900,00\n" 
-// 		;
-// 		// $( "#textExibir" ).slideDown( "slow").delay( 1000 ).slideUp( "slow");
-// 		// $( "#textareaExibir" ).slideDown( "slow" ).delay( 5000 ).slideUp( "slow");
-// 	} );
-// } );
-
-// Atualiza, recarrega a página
-// function atualiza( ) {
-// 	window.location.reload( );
-// }
-
-
-//Abre outra página
-// window.open( 'visualiza.html',	'janela' );
-
 // Recarrega outra pagina na mesma aba
-// window.addEventListener("load", function( ) {
-	$("#btnAddDesp").click( function ( ) {
-		window.location.replace( 'despesas.html',	'janela' );
-	} );
-// } );
+$("#btnAddDesp").click( function ( ) {
+	window.location.replace( 'despesas.html',	'janela' );
+} );
 
-// window.addEventListener("load", function( ) {
-	$("#btnAddEntra").click( function ( ) {
-		window.location.replace( 'entrada.html',	'janela' );
-	} );
-// } );
+$("#btnAddEntra").click( function ( ) {
+	window.location.replace( 'entrada.html',	'janela' );
+} );
 
+$("#btnVisual").click( function ( ) {
+	window.location.replace( 'visualiza.html',	'janela' );
+} );
 
-// window.addEventListener("load", function( ) {
-	$("#btnVisual").click( function ( ) {
-		window.location.replace( 'visualiza.html',	'janela' );
-	} );
-// } );
-
-// window.addEventListener("load", function( ) {
-	$("#btnRelator").click( function ( ) {
-		alert( " Em Desenvolvimento !!!")
-	} );
-// } );
+$("#btnRelator").click( function ( ) {
+	alert( " Em Desenvolvimento !!!")
+} );
 
 $("#btnHome").click( function ( ) {
 	window.location.replace( 'index.html', 'janela' );
@@ -64,7 +26,6 @@ let valor = 0.00;
 $( document ).ready(function( ) {
 	$( "#btnDesp" ).click( function ( ) {
 		
-		// alert("Nova despesas");
 		let campos = [
 						document.getElementById( 'dtDespesa' ),
 						document.getElementById( 'textDespesa'),
@@ -112,7 +73,9 @@ $( document ).ready(function( ) {
 		$( '#valDespesa').val( "0.00" );	
 
 		$( '#dtDespesa' ).focus( );
+
 	});
+
 });
 
 //Select campo number
@@ -140,46 +103,9 @@ function defineMes( ){
 	let mes = recebeDt.getMonth( );
 	let ano = recebeDt.getFullYear( );
 
-	switch(mes) {
-		case 0 : 
-							mes = "JAN";
-							break;
-		case 1 :
-							mes = "FEV";
-							break;
-		case 2 :
-							mes = "MAR";
-							break;
-		case 3 :
-							mes = "ABR";
-							break;
-		case 4 :
-							mes = "MAI";
-							break;
-		case 5 :
-							mes = "JUN";
-							break;
-		case 6 :
-							mes = "JUL";
-							break;
-		case 7 :
-							mes = "AGO";
-							break;
-		case 8 :
-							mes = "SET";
-							break;
-		case 9 :
-							mes = "OUT";
-							break;
-		case 10 :
-							mes = "NOV";
-							break;
-		case 11 : 
-							mes = "DEZ";
-							break;
-	}
+	let mesExt = [ "JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"	];
 
-	return mes + "/" + ano;
+	return mes = mesExt[mes] + "/" + ano;;
 
 }
 

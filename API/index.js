@@ -84,5 +84,5 @@ app.get('/listarDespesas', function(req,res){
 
 
 
-//app.listen(3000); //local
-app.listen(4000);
+app.listen(3000); //local
+// app.listen(4000);
