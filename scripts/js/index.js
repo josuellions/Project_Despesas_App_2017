@@ -123,3 +123,5 @@ $( "#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
 
 //Nome Empresa Desenvolvedora
 $( "#nomeEmpresa").html("&reg Seven Solutions Tecnologic");
+
+// $( "#btnSair").window.close( );

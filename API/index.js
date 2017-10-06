@@ -54,21 +54,19 @@ app.get("/bdDespesas",function(req,res){
 //             }
 // });
 
-
 //listar
-app.get('/listarDespesas', function(req,res){
+app.get('/listarVizualizar', function(req,res){
 
     var data = req.body;
     var nome = data.nome;
 
       //if (nome != "") {
-
          var sql = 'SELECT * FROM `ent_desp`;';
          connection.query(sql ,
          function(err, rows, fields) {
 
             if(err) {
-            res.json({'erro': 'Erro ao inserir os dados na tabela de usuarios', 'sql': sql});
+            res.json({'erro': 'Erro ao listar os dados na tabela', 'sql': sql});
                   } else {
                       res.json(rows);
                     }
