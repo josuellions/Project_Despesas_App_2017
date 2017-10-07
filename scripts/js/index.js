@@ -116,7 +116,7 @@ $('#dtReference').html( defineMes( ) );
 $('#dtDespesa').val(formataData( ));
 
 // Controle de Versão
-$( "#contVer").html("Versão beta 0.0.3 - 05/10/2017");
+$( "#contVer").html("Versão beta 0.0.5 - Bd offline - 14/10/2017");
 
 //Nome Desenvolvedor
 $( "#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
@@ -125,3 +125,12 @@ $( "#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
 $( "#nomeEmpresa").html("&reg Seven Solutions Tecnologic");
 
 // $( "#btnSair").window.close( );
+
+
+
+
+
+
+
+
+

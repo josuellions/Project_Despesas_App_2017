@@ -170,6 +170,16 @@ function queryAndUpdateOverview(){
  //Realiza a leitura no banco e cria novas linhas na tabela.
     var query = "SELECT * FROM TbDespesas;";
     try {
+
+        let dtDia; 
+        let dtMes; 
+        let dtMesAlt;
+        let dtAno; 
+        let dtFormt;
+
+        $( "#itemData").html(" Data " + "  |  " + "  Despesas  " + "  |  " + "  Valor " + "\n" +
+            "======================");
+
         localDB.transaction(function(transaction){
         
             transaction.executeSql(query, [], function(transaction, results){
@@ -180,8 +190,16 @@ function queryAndUpdateOverview(){
  										li.setAttribute("id", row['id']);
                     li.setAttribute("class", "date col-xs-12");
                     li.setAttribute("onclick", "onSelect(this)");
+
+
+                    dtDia = row['data'].substr(8,10);
+                    dtMes = row['data'].substr(4,5);
+                    dtMesAlt = dtMes.substr(1,2);
+                    dtAno = row['data'].substr(2,2);
+
+                    dtFormt = ( dtDia + "/" + dtMesAlt + " | " + row['despesa'] + " | " + "R$ " + row['valor']); //+ "/" + dtAno;
                     
-                    var liText = document.createTextNode(row['data'] + " | " + row['despesa'] + " | " + "R$ " + row['valor']);
+                    var liText = document.createTextNode( dtFormt );
                     li.appendChild(liText);
                     
                     document.getElementById("itemData").appendChild(li);
