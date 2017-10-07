@@ -13,8 +13,10 @@ function onInit(){
 
             if( pathname == "visualiza.html") {
                 queryAndUpdateOverview( );
+                alert("QueryVizual")
             }else{
                 queryAndUpdateOverviewDesp( );
+                alert("QueryDesp")
             }
         }
     } 
