@@ -193,6 +193,8 @@ div .listExibEntrada {
   width: 48%;
   min-height: 240px;
   margin-left: 5%;
+	margin-bottom: 23%;
+
 }
 
 div .textExib-Entrada {
@@ -216,7 +218,7 @@ div .textExib-Entrada {
 	display: none;
 }
 
-/*TEXTo ENTRADA - Tela Visualizar*/
+/*TEXTO ENTRADA - Tela Visualizar*/
 /*.container-fluid > div > .textEntrada {*/
 	/*float: left;*/
 	/*margin-top: 40%;*/

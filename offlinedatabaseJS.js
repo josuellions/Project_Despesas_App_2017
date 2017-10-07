@@ -1,22 +1,31 @@
 var localDB = null;
- 
+
 function onInit(){
     try {
         if (!window.openDatabase) {
-            updateStatus("Erro: Seu navegador não permite banco de dados.");
+            alert("Erro: Seu navegador não permite banco de dados.");
         }
         else {
-            initDB();
-            createTables();
-            queryAndUpdateOverview();
+            initDB( );
+            createTables( );
+
+            let pathname = (window.location.pathname).substr(1); // Retorna só o path
+
+            if( pathname == "visualiza.html") {
+                queryAndUpdateOverview( );
+            }else{
+                queryAndUpdateOverviewDesp( );
+            }
         }
     } 
     catch (e) {
         if (e == 2) {
-            updateStatus("Erro: Versão de banco de dados inválida.");
+            // updateStatus("Erro: Versão de banco de dados inválida.");
+            alert("Erro: Versão de banco de dados inválida.");
         }
         else {
-            updateStatus("Erro: Erro desconhecido: " + e + ".");
+            // updateStatus("Erro: Erro desconhecido: " + e + ".");
+            alert("Erro: Erro desconhecido: " + e + ".");
         }
         return;
     }
@@ -35,7 +44,7 @@ function createTables(){
     try {
         localDB.transaction(function(transaction){
             transaction.executeSql(query, [], nullDataHandler, errorHandler);
-            updateStatus("Tabela 'TbDespesas' status: OK.");
+            // updateStatus("Tabela 'TbDespesas' status: OK.");
         });
     } 
     catch (e) {
@@ -43,9 +52,6 @@ function createTables(){
         return;
     }
 }
- 
- 
- 
  
 //2. Query e visualização de Update
 function onUpdate(){
@@ -105,11 +111,16 @@ function onDelete(){
 }
  
 function onCreate(){
-    var data = document.itemForm.data.value;
-    var despesa = document.itemForm.despesa.value;
-    let valor = document.itemForm.valor.value;
+    var data = document.getElementById("dtDespesa").value;
+    var despesa = document.getElementById("textDespesa").value;
+    let valor = document.getElementById("valDespesa").value;
+
+    // console.log( data, despesa, valor)
+
     if ( data == "" || despesa == "" || valor == "") {
-        updateStatus("Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios!");
+        // updateStatus("Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios!");
+        alert( "Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios!");
+
     }
     else {
         var query = "insert into TbDespesas (data, despesa, valor) VALUES (?, ?, ?);";
@@ -120,9 +131,11 @@ function onCreate(){
                         updateStatus("Erro: Inserção não realizada");
                     }
                     else {
-                        updateForm("", "", "", "");
-                        updateStatus("Inserção realizada, linha id: " + results.insertId);
-                        queryAndUpdateOverview();
+                        location.reload( );
+                        // updateForm("", "", "");
+                        // updateStatus("Inserção realizada, linha id: " + results.insertId);
+                        // queryAndUpdateOverview();
+                        // queryAndUpdateOverviewDesp( );
                     }
                 }, errorHandler);
             });
@@ -157,6 +170,7 @@ function onSelect(htmlLIElement){
    
 }
  
+
 function queryAndUpdateOverview(){
  
  //Remove as linhas existentes para inserção das novas
@@ -216,6 +230,74 @@ function queryAndUpdateOverview(){
         updateStatus("Error: SELECT não realizado " + e + ".");
     }
 }
+
+function queryAndUpdateOverviewDesp(){
+ 
+ //Remove as linhas existentes para inserção das novas
+    var dataRows = $("tbody > tr").length;
+
+    while (dataRows.length > 0) {
+        row = dataRows[0];
+        $("#tbDespesas > tbody > tr").removeChild(row);
+    };
+    
+ //Realiza a leitura no banco e cria novas linhas na tabela.
+    var query = "SELECT * FROM TbDespesas;";
+    try {
+
+        let dtDia; 
+        let dtMes; 
+        let dtMesAlt;
+        let dtAno; 
+        let dtFormt;
+
+        localDB.transaction(function(transaction){
+        
+            transaction.executeSql(query, [], function(transaction, results){
+                
+                for (var i = 0; i < results.rows.length; i++) {
+                
+                    var row = results.rows.item(i);
+                    // var li = document.createElement("li");
+                    //                     li.setAttribute("id", row['id']);
+                    // li.setAttribute("class", "date col-xs-12");
+                    // li.setAttribute("onclick", "onSelect(this)");
+
+
+                    dtDia = row['data'].substr(8,10);
+                    dtMes = row['data'].substr(4,5);
+                    dtMesAlt = dtMes.substr(1,2);
+                    dtAno = row['data'].substr(2,2);
+
+                    dtFormt = ( dtDia + "/" + dtMesAlt );
+                    
+                    // var liText = document.createTextNode( dtFormt );
+                    // li.appendChild(liText);
+                    
+                    // document.getElementById("itemData").appendChild(li);
+
+
+            $( '#tbDespesas > tbody' ).append (
+                                    '<tr>' + '<td width="22%">' + dtFormt + '</td>' +
+                                        '<td width="48%">' + row[ 'despesa' ] + '</td>' +
+                                        '<td width="30%">' + "R$ " + row['valor' ] + '</td>' +
+                                    '</tr>'
+                                    );
+
+    // document.getElementById( "textareaDisp").innerHTML += row['id'] + "  |  " + row['data'] + "  |  " + row['despesa'] + "\n";
+
+                }
+            }, function(transaction, error){
+                updateStatus("Erro: " + error.code + "<br>Mensagem: " + error.message);
+            });
+        });
+    } 
+    catch (e) {
+        alert("Error: SELECT não realizado " + e + ".");
+    }
+}
+
+
  
 // 3. Funções de tratamento e status.
  
@@ -231,12 +313,17 @@ nullDataHandler = function(transaction, results){
  
 // Funções de update
  
-function updateForm(id, nome, idade){
-    document.itemForm.id.value = id;
-    document.itemForm.nome.value = nome;
-    document.itemForm.idade.value = idade;
+function updateForm(dt, desp, val){
+
+    // document.itemForm.dt.value = dt;
+    // document.itemForm.desp.value = desp;
+    // document.itemForm.val.value = val;
+
+    // document.itemTbody.dt.value = dt;
+    // document.itemTbody.desp.value = desp;
+    // document.itemTbody.val.value = val;
 }
  
-function updateStatus(status){
-    document.getElementById('status').innerHTML = status;
-}
+// function updateStatus(status){
+//     document.getElementById('status').innerHTML = status;
+// }
