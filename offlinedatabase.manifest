@@ -1,0 +1,22 @@
+CACHE MANIFEST
+
+index.html
+assets/img/logo_seven.jpg
+
+assets/css/styles.css
+assets/css/libs/css/bootstrap.min.css
+assets/css/libs/css/bootstrap-theme.min.css
+
+scripts/js/libs/jquery-3.2.1.js
+scripts/js/libs/jquery-3.2.1.min.js
+assets/css/libs/bootstrap-3.3.7/dist/js/bootstrap.min.js
+scripts/js/listarVisualizar.js
+scripts/js/index.js
+
+offlinedatabaseJS.js
+
+
+
+
+
+

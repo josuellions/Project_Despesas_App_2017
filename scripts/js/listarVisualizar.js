@@ -6,7 +6,7 @@ jQuery.support.cors = true;
 
 		var settings = {
 		  // "async": true,
-		  // "crossDomain": true,
+		  "crossDomain": true,
 		  "url": "http://21.21.21.5:3000/listarVizualizar",
 		  "method": "GET",
 		  "headers": {
@@ -24,7 +24,7 @@ jQuery.support.cors = true;
 
 		$.ajax(settings).done(function (response) {
 		  //  console.log(response);
-			 // console.log("ok")
+			// console.log("ok")
 
 				 $.each(response, function( id,value){
 

@@ -130,7 +130,7 @@
 
 .container-fluid > .textExibir  {
 /*float: left;*/
-/*margin-left: -21%;*/
+margin-left: -5%;
 margin-top: 30%;
 /*margin-bottom: 2%;*/
 text-align: left;
@@ -175,7 +175,7 @@ text-align: left;
 .container-fluid > div > .entrada {
 	/*float: right;*/
 	/*margin-top: -3%;*/
-	margin-left: 5%;
+	/*margin-left: %*/
 	width: 155px;
 	height: 200px;
 	padding:  2%;
