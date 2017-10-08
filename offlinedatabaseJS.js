@@ -1,6 +1,6 @@
 var localDB = null;
 
-function onInit(){
+function onInit(comp){
     try {
         if (!window.openDatabase) {
             alert("Erro: Seu navegador não permite banco de dados.");
@@ -9,14 +9,16 @@ function onInit(){
             initDB( );
             createTables( );
 
-            let pathname = (window.location.pathname).substr(1); // Retorna só o path
+            // let pathname = (window.location.pathname).substr(1); // Retorna só o path
 
-            if( pathname == "visualiza.html") {
-                queryAndUpdateOverview( );
-                alert("QueryVizual")
-            }else{
+            let compara = comp;
+
+            if( compara == 1 ) {
                 queryAndUpdateOverviewDesp( );
                 alert("QueryDesp")
+            }else{
+                queryAndUpdateOverview( );
+                alert("QueryVizual")
             }
         }
     } 
