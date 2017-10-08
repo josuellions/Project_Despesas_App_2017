@@ -15,10 +15,10 @@ function onInit(comp){
 
             if( compara == 1 ) {
                 queryAndUpdateOverviewDesp( );
-                alert("QueryDesp")
+                // alert("QueryDesp")
             }else{
                 queryAndUpdateOverview( );
-                alert("QueryVizual")
+                // alert("QueryVizual")
             }
         }
     } 
@@ -195,7 +195,7 @@ function queryAndUpdateOverview(){
         let dtAno; 
         let dtFormt;
 
-        $( "#itemData").html(" Data " + "  |  " + "  Despesas  " + "  |  " + "  Valor " + "\n" +
+        $( "#itemData").html("<td width=\"5%\">Data</td>" + "<td width=\"10%\">Despesas</td>" + "<td width=\"5%\">Valor</td>" + "\n" +
             "======================");
 
         localDB.transaction(function(transaction){
@@ -206,8 +206,8 @@ function queryAndUpdateOverview(){
                     var row = results.rows.item(i);
                     var li = document.createElement("li");
  										li.setAttribute("id", row['id']);
-                    li.setAttribute("class", "date col-xs-12");
-                    li.setAttribute("onclick", "onSelect(this)");
+                                        li.setAttribute("class", "date col-xs-12");
+                                        li.setAttribute("onclick", "onSelect(this)");
 
 
                     dtDia = row['data'].substr(8,10);

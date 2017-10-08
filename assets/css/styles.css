@@ -163,7 +163,7 @@ ul {
 li {
 	padding-bottom: 4%;
 	margin-left: -4%;
-	font-size: .8rem;
+	font-size: 1.1rem;
 }
 
 div .listExibDesp {
@@ -182,7 +182,8 @@ div .listExibDesp {
 
 .listDesp {
 	/*padding: 0;*/
-	padding-left: -15%;
+	padding-left: 2%;
+	font-style: bold;
 }
 
 div .listExibEntrada {
@@ -193,7 +194,7 @@ div .listExibEntrada {
   width: 48%;
   min-height: 240px;
   margin-left: 5%;
-	margin-bottom: 28%;
+	margin-bottom: 29%;
 
 }
 
