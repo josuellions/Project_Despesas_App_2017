@@ -195,8 +195,7 @@ function queryAndUpdateOverview(){
         let dtAno; 
         let dtFormt;
 
-        $( "#itemData").html("<td width=\"5%\">Data</td>" + "<td width=\"10%\">Despesas</td>" + "<td width=\"5%\">Valor</td>" + "\n" +
-            "======================");
+        $( "#itemData" ).html("<td width=\"5%\">Data</td>" + "<td width=\"10%\">Despesas</td>" + "<td width=\"5%\">Valor</td>");
 
         localDB.transaction(function(transaction){
         
