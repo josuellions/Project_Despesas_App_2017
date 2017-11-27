@@ -23,61 +23,6 @@ $("#btnHome").click( function ( ) {
 let valorTotal = 0.00;
 let valor = 0.00;
 
-// $( document ).ready(function( ) {
-// 	$( "#btnDesp" ).click( function ( ) {
-		
-// 		let campos = [
-// 						document.getElementById( 'dtDespesa' ),
-// 						document.getElementById( 'textDespesa'),
-// 						document.getElementById( 'valDespesa'),
-// 						// document.getElementById( 'radioPend'),
-// 						// document.getElementById( 'radioPg')
-// 			];
-
-// 		let despesas = {
-// 			dt_desp : campos[0].value,
-// 			text_desp : campos[1].value,
-// 			val_desp : campos[2].value,
-// 			// radio_pend : campos[3].value,
-// 			// radio_pg : campos[4].value
-// 		}
-// 		// console.log( despesas);
-// 		// document.getElementById("dtDespesas").innerHTML = despesas.dt_desp;
-// 		// document.getElementById("despDespesas").innerHTML =	despesas.text_desp;
-// 		// document.getElementById("valDespesas").innerHTML ="R$ " + despesas.val_desp; 
-
-// 		// document.getElementById( 'tbmenuDesp').style.display = 'all';
-
-// 		valor =  parseFloat(despesas.val_desp).toFixed( 2 );
-// 		valor = valor.replace('.',',');
-// 		dtDia = despesas.dt_desp.substr(8,10)
-// 		dtMes = despesas.dt_desp.substr(4,5);
-// 		dtMesAlt = dtMes.substr(1,2)
-// 		dtAno = despesas.dt_desp.substr(2,2)
-
-// 		dtFormt = dtDia + "/" + dtMesAlt + "/" + dtAno;
-
-// 		$( '#tbDespesas > tbody' ).append (
-// 																				'<tr>' + '<td width="22%">' + dtFormt + '</td>' +
-// 																					'<td width="48%">' + despesas.text_desp + '</td>' +
-// 																					'<td width="30%">' + "R$ " + valor + '</td>' +
-// 																				'</tr>'
-// 																				);
-		
-// 		valorTotal = ( parseFloat( valorTotal ) + parseFloat( despesas.val_desp ) ) ;
-// 		valorTotal = valorTotal.toFixed( 2 );
-// 		valorTotal = valorTotal.replace('.',',');
-		
-// 		$( "#valTotal").html( "R$ " + valorTotal );
-		
-// 		$( '#valDespesa').val( "0.00" );	
-
-// 		$( '#dtDespesa' ).focus( );
-
-// 	});
-
-// });
-
 //Select campo number
 $( "#valDespesa" ).click(function( ) {
 $( '#valDespesa').select( );
@@ -116,7 +61,7 @@ $('#dtReference').html( defineMes( ) );
 $('#dtDespesa').val(formataData( ));
 
 // Controle de Versão
-$( "#contVer").html("Versão beta 0.0.5 - Bd offline - 14/10/2017");
+$( "#contVer").html("Versão beta 0.0.6 - Bd offline - 27/11/2017");
 
 //Nome Desenvolvedor
 $( "#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
@@ -125,12 +70,3 @@ $( "#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
 $( "#nomeEmpresa").html("&reg Seven Solutions Tecnologic");
 
 // $( "#btnSair").window.close( );
-
-
-
-
-
-
-
-
-

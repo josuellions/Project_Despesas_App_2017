@@ -9,6 +9,7 @@
 	margin-top: -8.2%;
 	position: fixed;
 	width: 100%;
+	z-index: 1;
 }
 
 /*DEFINIR COR DE FUNDO - 02 - Rodapé*/
@@ -19,6 +20,7 @@
 	margin-top: -1.5%;
 	/*position: fixed;*/
 	width: 100%;
+	z-index: 1;
 }
 
 /*DEFINIR COR DE FUNDO - 03 - Titulo*/
@@ -28,8 +30,8 @@
 	margin-top: 4.3%;
 	position: fixed;
 	width: 100%;
+	z-index: 1;
 }
-
 
 /*DEFINIR COR DE FUNDO - 04 - Mês Referencia*/
 .bg-04 {
@@ -38,6 +40,7 @@
 	margin-top: 17.7%;
 	position: fixed;
 	width: 100%;
+	z-index: 1;
 }
 
 /*ALINHAR TEXTO h1 - Texto Principal*/
@@ -45,18 +48,6 @@
 	font-size: 2.7rem;
 	width: 100%;
 }
-
-/*ALINHAR TEXTO h2 - Texto Secundario*/
-/*.container-fluid > h2 {*/
-	/*margin-left: 5%;*/
-	/*font-size: 2rem;*/
-	/*width: 100%;*/
-	/*margin-top: 20;*/
-	/*padding: 0;*/
-	/*margin-left: -2%;*/
-
-/*}*/
-
 
 /*ALINHAR FORMULARIO DE DADOS*/
 .container-fluid > div > div > .alinharFormDesp {
@@ -68,15 +59,10 @@
 }
 
 /*BOTÃO ADICIONAR LINHA TABELA*/
-/*.container-fluid > /*div > div > div > button {*/
 .btnDesp {
 	float: right;
-	/*border-radius: 50%;*/
-	/*height: 50px;*/
 	font-size: 2.5rem;
-	/*font-style: bold;*/
 	text-align: center;
-	/*margin-top: 0%;*/
 	margin-right: 1%;
 	margin-bottom: 68%;
 }
@@ -86,8 +72,8 @@
 	padding: .8%;
 }
 
-.container-fluid > div > div > div > span .textDespesa {
-	width: 40%;
+.container-fluid > div > div > div > span .listDespesa {
+	width: 35vw;
 	padding: .8%;
 }
 
@@ -121,38 +107,17 @@
 	margin-left: 18%;
 }
 
-/*.container-fluid > table {
-	float: left;
-	margin-top: 5%;
-	font-size: 5rem
-	margin-bottom: 15%;
-}*/
-
 .container-fluid > .textExibir  {
-/*float: left;*/
 margin-left: -5%;
 margin-top: 30%;
-/*margin-bottom: 2%;*/
 text-align: left;
-/*padding: 0;*/
 }
 
-
-/*TEXTO DESPESAS - Tela Visualizar*/
-/*.container-fluid > div > .textDespesa {*/
-	/*float: left;*/
-	/*margin-left: 2%;*/
-	/*margin-top: 40%;*/
-	/*margin-bottom: 5%;*/
-/*}*/
-
 /*LISTAR DESPESAS*/
-ul {
+/*ul {
 	list-style-type : none;
 	text-align: left;
 	margin-bottom: 2%;
-	/*margin-left: -2% !important;*/
-	/*margin-right: -1% !important;*/
 	cursor:pointer;   
 	padding-top: 2%;
 	padding-left: 0;
@@ -163,50 +128,99 @@ ul {
 li {
 	padding-bottom: 4%;
 	margin-left: -4%;
-	font-size: 1.3rem;
-}
+	font-size: .9rem;
+}*/
 
-div .listExibDesp {
+div.listExibDesp {
 	margin-left: 0%;
-	border: 2px solid gray;
+	border: 2px solid white;
   padding: 0; 
+  padding-top: 1%;
   margin-bottom: 5%; 
-  margin-top: -2%; 
+  margin-top: -5%; 
   width: 48%; 
   min-height: 240px;
 	margin-left: -1%;
-	font-size: 1.2rem;
-	font: bold;
+	font-size: .7rem;
 	text-align: center;
 }
 
 .listDesp {
-	/*padding: 0;*/
-	padding-left: 2%;
-	font-style: bold;
+	padding-top: 4%;
+	padding-left: 0%;
+	text-align: left;
 }
 
-div .listExibEntrada {
-	border: 2px solid gray;
+tbody.listDesp tr td {
+	padding-left: 4%;
+	margin-left: 2%;
+	padding-top: 4%;
+} 
+
+div.listExibEntrada {
+	border: 2px solid white;
   padding: 0%;
+  padding-top: 1%;
   margin-bottom: 5%;
-  margin-top: -2%;
+  margin-top: -5%;
   width: 48%;
-  min-height: 240px;
+  min-height: 20vh;
   margin-left: 5%;
 	margin-bottom: 29%;
+	font-size: .7rem;
 
 }
 
 div .textExib-Entrada {
 	margin-left: 9%;
+
 }
+
+
+div.totalEntrada{
+	border: 2px solid white;
+  padding: 2%;
+  margin-bottom: 5%;
+  margin-top: -27%;
+  width: 44vw;
+  min-height: 5vh;
+  margin-left: 5%;
+	font-size: 1rem;
+
+}
+
+div.listExibCalculos {
+	border: 2px solid white;
+  padding: 2%;
+  padding-top: 4%;
+  margin-bottom: 5%;
+  margin-top: -10%;
+  width: 44vw;
+  min-height: 13.5vh;
+  margin-left: 5%;
+	margin-bottom: 29%;
+	font-size: 1rem;
+
+}
+
+div.listExibCalculos tr th {
+	padding-bottom: 5%;
+}
+
+div.totalDespesas {
+	border: 2px solid white;
+  padding: 2%;
+  margin-bottom: 5%;
+  margin-top: -20vh;
+  width: 44vw;
+  min-height: 5vh;
+  margin-left: -1%;
+	font-size: 1rem;
+}
+
 
 /*TEXTAREA DESPESAS - Tela Visualizar*/
 .container-fluid > div > .despesa {
-	/*float: left;*/
-	/*margin-top: 50%;*/
-	/*margin-left: 2%;*/
 	width: 150px;
 	height: 200px;
 	padding:  2%;
@@ -215,22 +229,45 @@ div .textExib-Entrada {
 	font-style: bold;
 }
 
+thead.theadDesp  tr th {
+	text-align: center;
+	margin-left: 1%;
+	background-color: gray;
+	opacity: .2;
+	/*border-bottom: .1rem solid white;*/
+	color: white;
+	font-size: 1rem;
+}
+
+thead.theadEntrada tr th {
+	text-align: center;
+	margin-left: 1%;
+		background-color: gray;
+	opacity: .2;
+	/*border-bottom: .1rem solid white;*/
+	color: white;
+	font-size: 1rem;
+}
+
+.listEntrada {
+	padding-top: 4%;
+	padding-left: 0%;
+	text-align: left;
+}
+
+tbody.listEntrada tr td {
+	padding-left: 4%;
+	margin-left: 2%;
+	margin-left: 2%;
+	padding-top: 4%;
+}
+
 .container-fluid > .tbmenuDesp {
 	display: none;
 }
 
-/*TEXTO ENTRADA - Tela Visualizar*/
-/*.container-fluid > div > .textEntrada {*/
-	/*float: left;*/
-	/*margin-top: 40%;*/
-	/*margin-left: 25%;*/
-/*}*/
-
 /*TEXTAREA ENTRADA - Tela Visualizar*/
 .container-fluid > div > .entrada {
-	/*float: right;*/
-	/*margin-top: -3%;*/
-	/*margin-left: %*/
 	width: 155px;
 	height: 200px;
 	padding:  2%;
@@ -263,9 +300,6 @@ div .textExib-Entrada {
 
 /*BOTÕES DA PAGINA INICIAL*/
 .container-fluid > div > .btnDesp  {
-	/*float: left;*/
-	/*margin-left: 5%;*/
-	/*margin-top: 1%;*/
 	width: 100%;
 	height: 50px;
 	border-radius: 4%;
@@ -277,15 +311,7 @@ div .textExib-Entrada {
 
 /*ALINHA MÊS*/
 .container-fluid >  .alinharMes {
-	/*float: center;*/
-	/*margin: 0;*/
-	/*margin-left: -4.1%;*/
-	/*margin-top: 40%;*/
 	text-align: center;
-	/*position: fixed;*/
-	/*padding: 2%;*/
-	/*background-color: #c5cad5; #7f889b;*/
-	/*color: #fff;*/
 	width: 100%;
 	font-size: 2.5rem;
 }
@@ -313,13 +339,50 @@ div .textExib-Entrada {
 	margin-top: -10.5%;
 	font-size: 3rem;
 	position: fixed;
+	z-index: 2;
+
 }
 
-footer {
+/*ICONE REMOVER*/
+span.glyphicon.glyphicon-trash {
+	font-size: 1.7rem;
+	color: red;
+	opacity: .3;
+	margin-right: 1vh;
+	z-index: 0;
+}
+
+
+footer.footerIndex {
+	margin: 0;
+	margin-top: -3.3vh;
+	height: 20vh;
+	position: relative;
+}
+
+
+/*FOOTER TELA ENTRADA CAIXA*/
+footer.footerEntrada {
+	margin: 0;
+	margin-top: -5.4vh !important;
+	height: 20vh !important;
+}
+
+
+/*FOOTER TELA DESPESAS*/
+footer.footerDespesas {
+	margin: 0;
+	margin-top: -5.4vh !important;
+	height: 20vh !important;
+}
+
+/*FOOTER TELA VISUALIZAR*/
+footer.footerVisualizar {
 	margin: 0;
 	width: 100%;
-	margin-top: -9%;
-	position: relative;
+	margin-top: -9.8vh !important;
+	height: 20vh !important;
+	position: fixed;
 }
 
 img {
