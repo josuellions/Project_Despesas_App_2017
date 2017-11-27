@@ -153,7 +153,6 @@ function onDeleteEntrada( id ){
             updateStatus("Erro: Delete não realizado.");
         }
         else {
-            updateForm("", "", "");
             location.reload( );
         }
       }, errorHandler);
