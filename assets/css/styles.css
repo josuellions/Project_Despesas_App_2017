@@ -113,24 +113,6 @@ margin-top: 30%;
 text-align: left;
 }
 
-/*LISTAR DESPESAS*/
-/*ul {
-	list-style-type : none;
-	text-align: left;
-	margin-bottom: 2%;
-	cursor:pointer;   
-	padding-top: 2%;
-	padding-left: 0;
-	padding-right: 0;
- 	padding-bottom: 2%
-}
-
-li {
-	padding-bottom: 4%;
-	margin-left: -4%;
-	font-size: .9rem;
-}*/
-
 div.listExibDesp {
 	margin-left: 0%;
 	border: 2px solid white;
@@ -194,7 +176,7 @@ div.listExibCalculos {
   padding: 2%;
   padding-top: 4%;
   margin-bottom: 5%;
-  margin-top: -10%;
+  margin-top: -9%;
   width: 44vw;
   min-height: 13.5vh;
   margin-left: 5%;
@@ -211,7 +193,7 @@ div.totalDespesas {
 	border: 2px solid white;
   padding: 2%;
   margin-bottom: 5%;
-  margin-top: -20vh;
+  margin-top: -20.5vh;
   width: 44vw;
   min-height: 5vh;
   margin-left: -1%;
@@ -232,20 +214,14 @@ div.totalDespesas {
 thead.theadDesp  tr th {
 	text-align: center;
 	margin-left: 1%;
-	background-color: gray;
-	opacity: .2;
-	/*border-bottom: .1rem solid white;*/
-	color: white;
+	background-color: lightgray;
 	font-size: 1rem;
 }
 
 thead.theadEntrada tr th {
 	text-align: center;
 	margin-left: 1%;
-		background-color: gray;
-	opacity: .2;
-	/*border-bottom: .1rem solid white;*/
-	color: white;
+	background-color: lightgray;
 	font-size: 1rem;
 }
 
@@ -329,7 +305,6 @@ tbody.listEntrada tr td {
 .tbDespfoot {
 	float: left;
 	margin-top: -62%;
-	/*margin-bottom: 60%;*/
 }
 
 
@@ -356,8 +331,8 @@ span.glyphicon.glyphicon-trash {
 footer.footerIndex {
 	margin: 0;
 	margin-top: -3.3vh;
-	height: 20vh;
-	position: relative;
+	/*height: 20vh;*/
+	/*position: relative;*/
 }
 
 
@@ -367,7 +342,6 @@ footer.footerEntrada {
 	margin-top: -5.4vh !important;
 	height: 20vh !important;
 }
-
 
 /*FOOTER TELA DESPESAS*/
 footer.footerDespesas {
@@ -380,9 +354,10 @@ footer.footerDespesas {
 footer.footerVisualizar {
 	margin: 0;
 	width: 100%;
-	margin-top: -9.8vh !important;
+	margin-top: -9.5vh !important;
 	height: 20vh !important;
 	position: fixed;
+	margin-bottom: 0;
 }
 
 img {
