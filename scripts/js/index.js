@@ -19,9 +19,26 @@ $("#btnHome").click( function ( ) {
 	window.location.replace( 'index.html', 'janela' );
 });
 
+$("#btnIndex").click( function ( ) {
+	alert( " \t\tAplicativo controle despesas, diarias ou mensais \n\n" +
+					"Entrada Caixa: \n" +
+					"Aqui lançamos entra de caixa, \n" + 
+					"exemplo, salário, comisão, vale alimentação e outros.\n\n" +
+					"Despesas: \n" +
+					"Aqui lançamos os gastos com despesas, \n" + 
+					"exemplo, almoço, mercado, roupas e outros. \n\n" + 
+					"Visualizar: \n" +
+					"Aqui podemos vizualizar os laçamentos entrada e despesas lançados, \n\n" +
+					"Relatório: \n" +
+					"Em Desenvolvimento \n "
+				); 
+					
+});
+
+
 // Amarzenar soma das tabelas
-let valorTotal = 0.00;
-let valor = 0.00;
+// let valorTotal = 0.00;
+// let valor = 0.00;
 
 //Select campo number
 $( "#valDespesa" ).click(function( ) {

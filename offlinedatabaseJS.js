@@ -1,4 +1,4 @@
-var localDB = null;
+let localDB = null;
 
 function onInit(comp){
   try {
@@ -256,8 +256,8 @@ let somaDespesa = 0.0;
 
 function queryAndUpdateOverview( ){
  
-   //Realiza a leitura no banco e cria novas linhas na tabela.
-  var query = "SELECT * FROM TbDespesas;";
+  //Realiza a leitura no banco e cria novas linhas na tabela.
+  let query = "SELECT * FROM TbDespesas;";
   try {
 
     let dtDia; 

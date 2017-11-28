@@ -155,9 +155,7 @@ div.listExibEntrada {
 
 div .textExib-Entrada {
 	margin-left: 9%;
-
 }
-
 
 div.totalEntrada{
 	border: 2px solid white;
@@ -355,8 +353,8 @@ footer.footerDespesas {
 footer.footerVisualizar {
 	margin: 0;
 	width: 100%;
-	margin-top: -9.4vh !important;
-	height: 20vh !important;
+	margin-top: -9.2vh !important;
+	/*height: 20vh !important;*/
 	position: fixed;
 	margin-bottom: 0;
 }
@@ -368,7 +366,12 @@ img {
 	border-radius: 10%;
 	padding-bottom: 0.7%;
 	width: 20%;
-	/*position: fixed;*/
+}
+
+.heightVisualizar {
+	/*position: relative;*/
+	height: 610px;
+	max-height: 640px;
 }
 
 /*ICONE DO APP*/
