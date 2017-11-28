@@ -1,0 +1,45 @@
+nav.alingMenu {
+	float: right;
+	margin-right: -4.5%;
+	margin-top: -6.7vh;
+}
+
+/*DEFINE ESTILO BOTÃO MENU*/
+.btn {
+	background-color: #474e5d;
+}
+
+.dropdown-menu  {
+	background-color: #474e5d !important;
+	opacity: .9;
+}
+
+.dropdown-toggle {
+	margin-top: -2%;
+	z-index: 3;
+}
+
+/*Tamanho alinhamento Menu*/
+nav ul li span {
+	font-size: 2.5rem;
+	padding: 9.5%;
+	padding-bottom: 9.5%;
+	width: 60vw;
+	padding-left: 15%;
+
+}
+
+span a {
+	font-size: 1.5rem;
+	color: white;
+}
+
+li.liDivider {
+	color: white;
+	margin-left: 5vw !important;
+	width: 50vw;
+}
+
+ul a {
+	text-decoration: none;
+}

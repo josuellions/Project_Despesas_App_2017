@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/stylesMenu.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/libs/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/libs/css/bootstrap-theme.min.css">
 	<title>Project Despesas 09-2017</title>
@@ -16,7 +17,64 @@
 		</div>
 		<div class="container-fluid bg-03">
 			<p class="contVer" id="contVer"></p>
-				<span	class="glyphicon glyphicon-home btnMenu" id="btnHome"></span>
+			
+			<!-- MENU -->
+			<nav class="dropdown alingMenu" id="menuMobile">
+					<button class="btn dropdown-toggle buttonMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="btnMenu">
+						<span	class="glyphicon glyphicon-tasks btnMenu" id=""></span>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-right" arial-labellebdy=" dropdownMenu3 dropdownMenuDivider" id="liMenu">
+						<li>
+							<span class="glyphicon glyphicon-home" id="btnHome">
+								<a id="btnHome">Home</a>
+							</span>
+						</li>
+						
+						<li role="separator" class="divider liDivider"></li>
+
+						<li>
+							<span class="glyphicon glyphicon-usd" id="btnAddEntra">
+								<a id="btnAddEntra">Entrada Caixa</a>
+							</span>
+						</li>
+
+						<li>
+							<span class="glyphicon glyphicon-shopping-cart" id="btnAddDesp">
+								<a id="btnAddDesp">Despesa</a>
+							</span>
+						</li>
+
+						<li>
+							<span class="glyphicon glyphicon-zoom-in" id="btnVisual">
+								<a id="btnVisual">Visualizar</a>
+							</span>
+						</li>
+						
+						<li>
+							<span class="glyphicon glyphicon-list-alt" id="btnRelator">
+								<a id="btnRelator">Relatório</a>
+							</span>
+						</li>
+						
+						<li role="separator" class="divider liDivider"></li>
+
+						<li>
+							<span class="glyphicon glyphicon-info-sign" id="btnInfo">
+								<a id="btnInfo">Informações</a>
+							</span>
+						</li>
+						<li>
+							<span class="glyphicon glyphicon-user" id="btnSobre">
+								<a id="btnSobre">Sobre</a>
+							</span>
+						</li>
+						
+					</ul>
+					
+				</nav>
+			
+			<!-- END MENU -->
+
 			<h1 class="text-center">Adcionar Despesas</h1>
 		</div>
 		<div class="container-fluid bg-04">
@@ -73,7 +131,7 @@
 				</div>
 		</div>
 	</div>
-	<footer class="footerDespesas">
+	<footer class="footerDespesas" id="btnSobre">
 		<div class="container-fluid bg-02 text-center col-xs-12">
 			<p id="nomeDeveloper"></p>
 			<p id="nomeEmpresa"></p>

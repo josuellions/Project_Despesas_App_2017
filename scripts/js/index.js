@@ -19,7 +19,7 @@ $("#btnHome").click( function ( ) {
 	window.location.replace( 'index.html', 'janela' );
 });
 
-$("#btnIndex").click( function ( ) {
+$("#btnInfo").click( function ( ) {
 	alert( " APLICATIVO CONTROLE DESPESAS \n" +
 					"\t\t\t\t\t\t\tdiárias ou mensais \n\n" +
 					"Entrada Caixa: \n" +
@@ -33,6 +33,55 @@ $("#btnIndex").click( function ( ) {
 					"Relatório: \n" +
 					"Em Desenvolvimento \n "
 				); 	
+});
+
+$("#btnSobre").click( function ( ) {
+	alert( "\t\t\t\t INFORMAÇÕES DESENVOLVEDOR \n\n" +
+					"Aplicativo:\n" +
+					"Controle Despesas Mensal\n\n" +
+					
+					"Versão:\n" +
+					"Versão beta 0.0.7 - Bd offline - 27/11/2017\n\n" +
+					
+					"Desenvolvedor: \n" +
+					"Josuel A. Lopes \n\n" + 
+					
+					"Contato: \n" +
+					"Celular: 11 98273 8274 \n" + 
+					"email: josuel_lions@hotmail.com \n\n" + 
+					
+					"Desenvolvimento e Programação: \n" +
+					"Aplicativos Mobile App, Mobile Web, Web Sites e Descktops\n\n" +
+					
+					"Desenvolvimento de aplicações nas linguagens: \n" +
+					"HTML5, CSS3, JavaScript, JQuery, \n" +
+					"PHP, Laravel, Eloquent, \n " +
+					"C#, PhoneGap, SQL, MySQL, \n " +
+					"Linux e Microsoft"
+				); 	
+});
+
+
+// EFEITO MENU SUPERIOR
+$( "#btnMenu" ).click( function ( ) {
+
+	$( "#liMenu" ).slideToggle( function( ) {
+
+		$( this ).click(function( ) {
+
+			$( "#liMenu" ).animate( ).slideDown( 700 );
+
+			$( this ).ready( function ( ) { 
+
+				$( "#liMenu" ).animate( ).slideUp( 700 );
+			});
+		});
+	});
+
+	$( "body" ).mousedown( function( ) {
+		$( "#liMenu" ).animate( ).slideUp( 700 );
+	});
+
 });
 
 
@@ -78,7 +127,7 @@ $('#dtReference').html( defineMes( ) );
 $('#dtDespesa').val(formataData( ));
 
 // Controle de Versão
-$( "#contVer").html("Versão beta 0.0.6 - Bd offline - 27/11/2017");
+$( "#contVer").html("Versão beta 0.0.7 - Bd offline - 27/11/2017");
 
 //Nome Desenvolvedor
 $( "#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
