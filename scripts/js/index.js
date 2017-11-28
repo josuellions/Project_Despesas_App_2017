@@ -20,7 +20,8 @@ $("#btnHome").click( function ( ) {
 });
 
 $("#btnIndex").click( function ( ) {
-	alert( " \t\tAplicativo controle despesas, diarias ou mensais \n\n" +
+	alert( " APLICATIVO CONTROLE DESPESAS \n" +
+					"\t\t\t\t\t\t\tdiárias ou mensais \n\n" +
 					"Entrada Caixa: \n" +
 					"Aqui lançamos entra de caixa, \n" + 
 					"exemplo, salário, comisão, vale alimentação e outros.\n\n" +
@@ -31,8 +32,7 @@ $("#btnIndex").click( function ( ) {
 					"Aqui podemos vizualizar os laçamentos entrada e despesas lançados, \n\n" +
 					"Relatório: \n" +
 					"Em Desenvolvimento \n "
-				); 
-					
+				); 	
 });
 
 
