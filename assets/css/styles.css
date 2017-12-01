@@ -49,6 +49,36 @@
 	width: 100%;
 }
 
+/*BOTÃO OPÇÃO MÊS*/
+.spanOpcaoMesEsquedo {
+	font-size: 2rem;
+	float: left;
+	color: white;
+	text-align: right;
+	margin-top: 3.5vh;
+	width: 30%;
+	position: fixed;
+}
+
+.spanOpcaoMesDireito {
+	font-size: 2rem;
+	float: right;
+	color: white;
+	text-align: right;
+	margin-top: -5.5vh; 
+	margin-right: 21vw;
+	width: 25%;
+	position: fixed;
+}
+
+/*ALINHA MÊS*/
+.container-fluid >  .alinharMes {
+	float: left;
+	text-align: center;
+	width: 43%;
+	font-size: 2.5rem;
+}
+
 /*ALINHAR FORMULARIO DE DADOS*/
 .container-fluid > div > div > .alinharFormDesp {
 	float: left;
@@ -109,9 +139,15 @@
 
 .container-fluid > .textExibir  {
 margin-left: -5%;
-margin-top: 30%;
+margin-top: 42%;
 text-align: left;
 }
+
+/*.textExibir p {
+	border: 2rem solid white;
+	padding: 0;
+	height: 5vh;
+}*/
 
 div.listExibDesp {
 	margin-left: 0%;
@@ -281,13 +317,6 @@ tbody.listEntrada tr td {
 	padding: 5%;
 	margin-bottom: 5%;
 	font-size: 2rem;
-}
-
-/*ALINHA MÊS*/
-.container-fluid >  .alinharMes {
-	text-align: center;
-	width: 100%;
-	font-size: 2.5rem;
 }
 
 .container-fluid > .contVer {

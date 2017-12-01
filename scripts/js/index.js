@@ -61,78 +61,127 @@ $("#btnSobre").click( function ( ) {
 				); 	
 });
 
+$( document ).ready( function ( ){ 
 
-// EFEITO MENU SUPERIOR
-$( "#btnMenu" ).click( function ( ) {
+	// EFEITO MENU SUPERIOR
+	$( "#btnMenu" ).click( function ( ) {
 
-	$( "#liMenu" ).slideToggle( function( ) {
+		$( "#liMenu" ).slideToggle( function( ) {
 
-		$( this ).click(function( ) {
+			$( this ).click(function( ) {
 
-			$( "#liMenu" ).animate( ).slideDown( 700 );
+				$( "#liMenu" ).animate( ).slideDown( 700 );
 
-			$( this ).ready( function ( ) { 
+				$( this ).ready( function ( ) { 
 
-				$( "#liMenu" ).animate( ).slideUp( 700 );
+					$( "#liMenu" ).animate( ).slideUp( 700 );
+				});
 			});
 		});
+
+		$( "body" ).mousedown( function( ) {
+			$( "#liMenu" ).animate( ).slideUp( 700 );
+		});
+
 	});
 
-	$( "body" ).mousedown( function( ) {
-		$( "#liMenu" ).animate( ).slideUp( 700 );
-	});
+	//Select campo number
+	$( "#valDespesa" ).click(function( ) {
+	$( '#valDespesa').select( );
+	}) 
+
+	//FUNÇÃO DATA DE REFERENCIA
+	function formataData (  ) {
+		dt = new Date( )
+		let dia = dt.getDate( ), 
+				mes = dt.getMonth( ), 
+				ano = dt.getFullYear( );
+
+		mes.toString( ).length < 10 ? mes = + parseInt( mes + 1 ) : false;
+
+		dia.toString( ).length == 1 ? dia = '0' + dia : false;
+		mes.toString( ).length == 1 ? mes = '0' + mes : false;
+
+		return ano + "-" +  mes + "-" + dia;
+	}
+
+// DEFINIR DATA INICIAL CAMPO DATA
+let dtInicial = ( ) => 
+		$( "#dtEntrada" ).val( formataData( ) );
+		$( "#dtDespesa").val(formataData( ) );
+
+dtInicial( );
+
+
+// VARIÁVEIS GLOBAIS DEFINIR SELETOR MÊS
+let recebeDt,	mesGlobal = 0, anoGlobal = 0;
+
+	function defineMes( condicao ){
+
+		let trocaMes = ( ) =>  { baseMes( mesGlobal, anoGlobal, condicao); } 
+
+		let inicioMes = ( ) => {recebeDt = new Date( );
+														mesGlobal = recebeDt.getMonth( );
+														anoGlobal = recebeDt.getFullYear( );
+
+														baseMes( mesGlobal, anoGlobal );
+														
+		}
+
+		condicao ? trocaMes( ) : inicioMes(  );
+
+	}
+
+	function convertMes( recebMes, recebAno ){
+
+		let mesExt = [ "JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"	];
+
+		return mesExt[ recebMes ] + "/" + recebAno;
+
+	}
+
+	// BOTÕES PASSAR MÊS 
+	let baseMes = ( mes, ano, condicao ) =>  {
+
+	condicao === 1 && mesGlobal >= 0 ? mesGlobal-- : false
+		mesGlobal === -1 ? anoGlobal-- : false 
+			mesGlobal === -1 ? mesGlobal = 11 :  false 
+				mesGlobal--
+
+	condicao === 2 && mesGlobal >= -1 ? mesGlobal++ : false 
+	 mesGlobal === 11 ? anoGlobal++ : false
+		mesGlobal === 11 ? mesGlobal = -1 : false 
+		 mesGlobal++
+
+		$( "#dtReference" ).html( convertMes( mesGlobal, anoGlobal ) );
+
+	}
+
+
+
+
+
+
+		// AVANÇAR MÊS DE REFERÊNCIA
+	$('#OpcaoMesEsquedo').mousedown( function( ) { defineMes( 1 ) } );
+	$('#OpcaoMesDireito').mousedown( function( ) { defineMes( 2 ) } );
+
+
+	// EXIBIR O MÊS DE REFENCIA
+	$('#dtReference').html( defineMes( ) );
+
+	// DEFINIR O MÊS ATUAL NO INPUT DATA
+	$('#dtDespesa').val(formataData( ));
+
+	// Controle de Versão
+	$( "#contVer").html("Versão beta 0.0.7 - Bd offline - 27/11/2017");
+
+	//Nome Desenvolvedor
+	$( "#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
+
+	//Nome Empresa Desenvolvedora
+	$( "#nomeEmpresa").html("&reg Seven Solutions Tecnologic");
+
+	// $( "#btnSair").window.close( );
 
 });
-
-
-// Amarzenar soma das tabelas
-// let valorTotal = 0.00;
-// let valor = 0.00;
-
-//Select campo number
-$( "#valDespesa" ).click(function( ) {
-$( '#valDespesa').select( );
-}) 
-
-//FUNÇÃO DATA DE REFERENCIA
-function formataData (  ) {
-	dt = new Date( )
-	let dia = dt.getDate( );
-	let mes = dt.getMonth( );
-	let ano = dt.getFullYear( );
-
-	if(mes.toString( ).length < 10 ) mes = + parseInt( mes + 1 );
-
-	if(dia.toString( ).length == 1 ) dia = '0' + dia;
-	if(mes.toString( ).length == 1 ) mes = '0' + mes;
-
-	 return ano + "-" +  mes + "-" + dia;
-}
-
-function defineMes( ){
-	let recebeDt = new Date( );
-	let mes = recebeDt.getMonth( );
-	let ano = recebeDt.getFullYear( );
-
-	let mesExt = [ "JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"	];
-
-	return mes = mesExt[mes] + "/" + ano;;
-
-}
-
-// EXIBIR O MÊS DE REFENCIA
-$('#dtReference').html( defineMes( ) );
-
-// DEFINIR O MÊS ATUAL NO INPUT DATA
-$('#dtDespesa').val(formataData( ));
-
-// Controle de Versão
-$( "#contVer").html("Versão beta 0.0.7 - Bd offline - 27/11/2017");
-
-//Nome Desenvolvedor
-$( "#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
-
-//Nome Empresa Desenvolvedora
-$( "#nomeEmpresa").html("&reg Seven Solutions Tecnologic");
-
-// $( "#btnSair").window.close( );
