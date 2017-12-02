@@ -65,7 +65,7 @@
 	float: right;
 	color: white;
 	text-align: right;
-	margin-top: -5.5vh; 
+	margin-top: -5.2vh; 
 	margin-right: 21vw;
 	width: 25%;
 	position: fixed;
@@ -382,7 +382,7 @@ footer.footerDespesas {
 footer.footerVisualizar {
 	margin: 0;
 	width: 100%;
-	margin-top: -9.2vh !important;
+	margin-top: 91vh !important;
 	/*height: 20vh !important;*/
 	position: fixed;
 	margin-bottom: 0;
@@ -398,9 +398,9 @@ img {
 }
 
 .heightVisualizar {
-	/*position: relative;*/
-	height: 605px;
-	max-height: 620px;
+	position: fixed;
+	height: 576px;
+	max-height: 680px !important;
 }
 
 /*ICONE DO APP*/

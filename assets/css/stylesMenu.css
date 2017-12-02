@@ -1,7 +1,7 @@
 nav.alingMenu {
 	float: right;
 	margin-right: -4.5%;
-	margin-top: -6.5vh;
+	margin-top: -6.2vh;
 }
 
 /*DEFINE ESTILO BOTÃO MENU*/
@@ -29,8 +29,8 @@ nav button span {
 /*Tamanho alinhamento Menu*/
 nav ul li span {
 	font-size: 2.5rem;
-	padding: 10%;
-	padding-bottom: 10%;
+	padding: 12%;
+	padding-bottom: 12%;
 	width: 60vw;
 	padding-left: 15%;
 }
