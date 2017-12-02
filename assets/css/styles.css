@@ -65,7 +65,7 @@
 	float: right;
 	color: white;
 	text-align: right;
-	margin-top: -5.2vh; 
+	margin-top: -4.2vh; 
 	margin-right: 21vw;
 	width: 25%;
 	position: fixed;
@@ -382,7 +382,7 @@ footer.footerDespesas {
 footer.footerVisualizar {
 	margin: 0;
 	width: 100%;
-	margin-top: 91vh !important;
+	margin-top: 92vh !important;
 	/*height: 20vh !important;*/
 	position: fixed;
 	margin-bottom: 0;
