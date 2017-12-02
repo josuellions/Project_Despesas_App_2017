@@ -1,14 +1,14 @@
 // Recarrega outra pagina na mesma aba
 $("#btnAddDesp").click( function ( ) {
-	window.location.replace( 'despesas.html',	'janela' );
+	window.location.replace( 'public/despesas.html',	'janela' );
 } );
 
 $("#btnAddEntra").click( function ( ) {
-	window.location.replace( 'entrada.html',	'janela' );
+	window.location.replace( 'public/entrada.html',	'janela' );
 } );
 
 $("#btnVisual").click( function ( ) {
-	window.location.replace( 'visualiza.html',	'janela' );
+	window.location.replace( 'public/visualiza.html',	'janela' );
 } );
 
 $("#btnRelator").click( function ( ) {
@@ -16,8 +16,26 @@ $("#btnRelator").click( function ( ) {
 } );
 
 $("#btnHome").click( function ( ) {
-	window.location.replace( 'index.html', 'janela' );
+	window.location.replace( '../index.html', 'janela' );
 });
+
+// BOTÃO MENU
+$("#btnMenuEntra").click( function( ) {
+	window.location.replace( 'entrada.html', 'janela' );
+});
+
+$("#btnMenuDesp").click( function( ) {
+	window.location.replace( 'despesas.html', 'janela' );
+});
+
+$("#btnMenuVisual").click( function( ) {
+	window.location.replace( 'visualiza.html', 'janela' );
+});
+
+$("#btnMenuRelator").click( function( ) {
+	alert( "Em Desenvolvimento !!!" );
+})
+
 
 $("#btnInfo").click( function ( ) {
 	alert( " APLICATIVO CONTROLE DESPESAS \n" +
@@ -153,19 +171,13 @@ let recebeDt,	mesGlobal = 0, anoGlobal = 0;
 		mesGlobal === 11 ? mesGlobal = -1 : false 
 		 mesGlobal++
 
-		$( "#dtReference" ).html( convertMes( mesGlobal, anoGlobal ) );
+	$( "#dtReference" ).html( convertMes( mesGlobal, anoGlobal ) );
 
-	}
-
-
-
-
-
-
-		// AVANÇAR MÊS DE REFERÊNCIA
+}
+	
+	// AVANÇAR MÊS DE REFERÊNCIA
 	$('#OpcaoMesEsquedo').mousedown( function( ) { defineMes( 1 ) } );
 	$('#OpcaoMesDireito').mousedown( function( ) { defineMes( 2 ) } );
-
 
 	// EXIBIR O MÊS DE REFENCIA
 	$('#dtReference').html( defineMes( ) );

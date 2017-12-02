@@ -1,3 +1,6 @@
+// DEFINIR DATA 
+
+
 // CRIAR BANCO LOCAL WEB
 let localDB = null;
 
