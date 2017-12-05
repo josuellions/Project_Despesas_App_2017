@@ -13,17 +13,17 @@
 <body onload="onInit( 2 )">
 	<div class="heightVisualizar">
 		<section>
-		<div class="container-fluid bg-01 col-xs-12">
+		<div class="container-fluid bg-01 col-xs-12 col-lg-12">
 
-			<img src="../assets/img/logo_seven.jpg" class="col-xs-2" style="padding: 0">
+			<img src="../assets/img/logo_seven.jpg" class="col-xs-2 col-lg-2 imgLg">
 
-			<div class="container-fluid col-xs-8">
+			<div class="container-fluid col-xs-8 col-lg-8">
 
 				<p class="contVer" id="contVer"></p>
 
 			</div>
 			<!-- MENU -->
-			<nav class="dropdown alingMenu col-xs-2" id="menuMobile">
+			<nav class="dropdown alingMenu col-xs-2 col-lg-2" id="menuMobile">
 					<button class="btn dropdown-toggle buttonMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="btnMenu">
 						<span	class="glyphicon glyphicon-tasks btnMenu" id=""></span>
 					</button>
@@ -77,17 +77,17 @@
 			<!-- END MENU -->
 		</div>
 		
-		<dir class="container-fluid col-xs-12 bg-03">
-			<h1 class="col-xs-12  text-center">Adicionar Entrada</h1>
+		<dir class="container-fluid col-xs-12 col-lg-12 bg-03">
+			<h1 class="col-xs-12  col-lg-12 text-center">Adicionar Entrada</h1>
 		</dir>
 
-		<div class="container-fluid col-xs-12 bg-04">
-			<span class="glyphicon glyphicon-menu-left spanOpcaoMesEsquedo col-xs-4" title="Voltar para mês anterior " id="OpcaoMesEsquedo" onclick=""></span>
-				<h2 class="alinharMes col-xs-4" id="dtReference"></h2>
-		 	<span class="glyphicon glyphicon-menu-right spanOpcaoMesDireito col-xs-4" title="Passar para mês seguinte" id="OpcaoMesDireito" ></span>
+		<div class="container-fluid col-xs-12 col-lg-12 bg-04">
+			<span class="glyphicon glyphicon-menu-left spanOpcaoMesEsquerdo col-xs-4 col-lg-5" title="Voltar para mês anterior " id="OpcaoMesEsquerdo" onclick=""></span>
+				<h2 class="alinharMes col-xs-4 col-lg-2" id="dtReference"></h2>
+		 	<span class="glyphicon glyphicon-menu-right spanOpcaoMesDireito col-xs-4 col-lg-5" title="Passar para mês seguinte" id="OpcaoMesDireito" ></span>
 		</div>
 		</section>
-		<div class="container-fluid col-xs-12">
+		<div class="container-fluid col-xs-12 col-lg-4 col-lg-offset-4">
 			<div class="from-inline">
 				<div class="form-group">
 					<div class="alinharFormDesp">
@@ -105,10 +105,10 @@
 							</tbody>
 						</table>
 						<span>
-							<input class="col-xs-2 dtDespesa" type="date" id="dtEntrada" name="dtEntrada">
+							<input class="col-xs-2 col-lg-3 dtDespesa" type="date" id="dtEntrada" name="dtEntrada">
 						</span>
 						<span>
-							<input class="textDespesa listDespesa col-xs-5" list="selectListEntrada" name="textEntrada" class="listDespesa" id="textEntrada" placeholder="Ex. Salario">
+							<input class="textDespesa listDespesa col-xs-5 col-lg-4" list="selectListEntrada" name="textEntrada" class="listDespesa" id="textEntrada" placeholder="Ex. Salario">
 							<datalist name="textDespesa"  id="selectListEntrada">
 								<option>Salario-01</option>
 								<option>Salario-02</option>
@@ -121,10 +121,10 @@
 							</datalist>
 						</span>
 						<span>
-							<input class="col-xs-3 valDespesa" type="number" name="valEntrada" id="valEntrada"  min="0,00"	value="0.00"  step="0.00" placeholder="R$ 0.000,00" required />
+							<input class="col-xs-3 col-lg-3 valDespesa" type="number" name="valEntrada" id="valEntrada"  min="0,00"	value="0.00"  step="0.00" placeholder="R$ 0.000,00" required />
 						</span>
 
-						<span class="col-xs-1 glyphicon glyphicon-ok btnDesp" id="btnEntrada" onclick="onCreateEntrada( )"></span>
+						<span class="col-xs-1 col-lg-1 glyphicon glyphicon-ok btnDesp" id="btnEntrada" onclick="onCreateEntrada( )"></span>
 
 						<table  class="table table-striped table-responsive tbDespfoot" id="tbfoot">
 							<tfoot>
@@ -139,8 +139,8 @@
 			</div>
 		</div>
 	</div>
-	<footer class="col-xs-12 footerEntrada bg-02" id="btnSobre">
-		<div class="container-fluid  col-xs-12">
+	<footer class="col-xs-12 col-lg-12 footerEntrada bg-02" id="btnSobre">
+		<div class="container-fluid  col-xs-12 col-lg-12">
 			<p id="nomeDeveloper"></p>
 			<p id="nomeEmpresa"></p>
 		</div>

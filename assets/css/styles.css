@@ -4,455 +4,869 @@
 	margin: 0;
 }
 
-/*DEFINIR COR DE FUNDO - 01 - Superio*/
-.bg-01 {
-	background-color: #474e5d;
-	/*color: #ffffff;*/
-	/*margin-top: -8.2%;*/
-	position: fixed;
-	/*width: 100%;*/
-	height: 7%;
-	z-index: 3;
+@media ( min-width: 320px) and (max-width: 1024px) {
+	
+	/*DEFINIR COR DE FUNDO - 01 - Superio*/
+	.bg-01 {
+		background-color: #474e5d;
+		/*color: #ffffff;*/
+		/*margin-top: -8.2%;*/
+		position: fixed;
+		/*width: 100%;*/
+		height: 7%;
+		z-index: 3;
 
-}
+	}
 
-/*DEFINIR COR DE FUNDO - 02 - Rodapé*/
-.bg-02 {
-	background-color: #474e5d;
-	color: #ffffff;
-	/*padding-top: 1%;*/
-	/*margin-top: -1.5%;*/
-	position: fixed;
-	/*width: 100%;*/
-	z-index: 1;
-	height: 7%;
-}
+	/*DEFINIR COR DE FUNDO - 02 - Rodapé*/
+	.bg-02 {
+		background-color: #474e5d;
+		color: #ffffff;
+		/*padding-top: 1%;*/
+		/*margin-top: -1.5%;*/
+		position: fixed;
+		/*width: 100%;*/
+		z-index: 1;
+		height: 7%;
+	}
 
-/*DEFINIR COR DE FUNDO - 03 - Titulo*/
-.bg-03 {
-	background-color: #737d93;
-	color: #ffffff;
-	/*margin-top: 4.3%;*/
-	position: fixed;
-	/*width: 100%;*/
-	z-index: 1;
-	text-align: center;
-	/*margin: 0;*/
-}
+	/*DEFINIR COR DE FUNDO - 03 - Titulo*/
+	.bg-03 {
+		background-color: #737d93;
+		color: #ffffff;
+		/*margin-top: 4.3%;*/
+		position: fixed;
+		/*width: 100%;*/
+		z-index: 1;
+		text-align: center;
+		/*margin: 0;*/
+	}
 
-/*DEFINIR COR DE FUNDO - 04 - Mês Referencia*/
-.bg-04 {
-	background-color: #c5cad5;
-	color: #ffffff;
-	/*margin-top: 17.7%;*/
-	position: fixed;
-	width: 100%;
-	z-index: 1;
-	height: 7%;
-	padding: 2%;
-}
+	/*DEFINIR COR DE FUNDO - 04 - Mês Referencia*/
+	.bg-04 {
+		background-color: #c5cad5;
+		color: #ffffff;
+		/*margin-top: 17.7%;*/
+		position: fixed;
+		width: 100%;
+		z-index: 1;
+		height: 7%;
+		padding: 2%;
+	}
 
-/*ALINHAR TEXTO h1 - Texto Principal*/
-.container-fluid > h1 {
-	font-size: 2.7rem;
-	/*width: 100%;*/
-}
+	/*ALINHAR TEXTO h1 - Texto Principal*/
+	.container-fluid > h1 {
+		font-size: 2.7rem;
+		/*width: 100%;*/
+	}
 
-/*BOTÃO OPÇÃO MÊS*/
-.spanOpcaoMesEsquedo {
-	font-size: 2.5rem;
-	float: left;
-	color: white;
-	text-align: right;
-	/*margin-top: 3.5vh;*/
-	/*width: 30%;*/
-	position: fixed;
-	margin: 0;
+	/*BOTÃO OPÇÃO MÊS*/
+	.spanOpcaoMesEsquerdo {
+		font-size: 2.5rem;
+		float: left;
+		color: white;
+		text-align: right;
+		/*margin-top: 3.5vh;*/
+		/*width: 30%;*/
+		position: fixed;
+		margin: 0;
+		padding: 0;
+		padding-top: .7%;
+
+	}
+
+	.spanOpcaoMesDireito {
+		font-size: 2.5rem;
+		float: right;
+		color: white;
+		text-align: left;
+		/*margin-top: -4.2vh; */
+		/*margin-right: 21vw;*/
+		/*width: 25%;*/
+		position: fixed;
+		margin: 0;
+		padding: 0;
+		padding-top: 1.5%;
+	}
+
+	/*ALINHA MÊS*/
+	.container-fluid >  .alinharMes {
+		/*float: left;*/
+		text-align: center;
+		/*width: 43%;*/
+		height: 7%;
+		font-size: 2.5rem;
+		padding: 1%;
+		margin: 0;
+	}
+
+	/*ALINHAR FORMULARIO DE DADOS*/
+	.container-fluid > div > div > .alinharFormDesp {
+		/*float: left;*/
+		margin-top: 50%;
+		border: 200px 300px solid 2px white;
+		/*margin-bottom: 28%;*/
+
+	}
+
+	/*BOTÃO ADICIONAR LINHA TABELA*/
+	.btnDesp {
+		float: right;
+		font-size: 2.5rem;
+		text-align: center;
+		margin-right: 1%;
+		margin-bottom: 68%;
+	}
+
+	.container-fluid > div > div > div > span .dtDespesa {
+		/*width: 22%;*/
+		height: 31px;
+		padding: .8%;
+	}
+
+	.container-fluid > div > div > div > span .listDespesa {
+		/*width: 35vw;*/
+		margin-left: 2%;
+		height: 31px;
+		padding: .8%;
+	}
+
+	.container-fluid > div > div > div > span .valDespesa {
+		/*width: 25%;*/
+		height: 31px;
+		margin-left: 2%;
+		text-align: right;
+	}
+
+	.container-fluid > div > div > div > span .radioPend{
+		float: left;
+		margin-left: 4%;
+		margin-top: -4%;
+	}
+
+	.container-fluid > div > div > div > span .radioPg {
+		float: left;
+		margin-left: 30%;
+		margin-top: -4%;
+	}
+	.container-fluid > div > div > div > .dtLabel {
+		float: left;
+	}
+
+	.container-fluid > div > div > div > .despLabel {
+		float: left;
+		margin-left: 29%;
+	}
+
+	.container-fluid > div > div > div > .valLabel {
+		float: left;
+		margin-left: 18%;
+	}
+
+	.container-fluid > .textExibir  {
+	/*margin-left: -5%;*/
 	padding: 0;
-	padding-top: .7%;
-
-}
-
-.spanOpcaoMesDireito {
-	font-size: 2.5rem;
-	float: right;
-	color: white;
+	margin-top: 5%;
 	text-align: left;
-	/*margin-top: -4.2vh; */
-	/*margin-right: 21vw;*/
-	/*width: 25%;*/
-	position: fixed;
-	margin: 0;
+	}
+	 .container-fluid > div > p {
+		padding: 0;
+	}
+	/*.textExibir p {
+		border: 2rem solid white;
+		padding: 0;
+		height: 5vh;
+	}*/
+
+	div.listExibDesp {
+		margin-left: 0%;
+		border: 2px solid white;
+	  padding: 0; 
+	  padding-top: 0%;
+	  margin-top: -3%;
+	  /*margin-bottom: 5%; */
+	  /*margin-top: -5%; */
+	  /*width: 50%; */
+	  min-height: 240px;
+		margin-left: -1%;
+		font-size: .7rem;
+		text-align: center;
+		overflow: auto;
+
+	}
+
+	.listDesp {
+		padding-top: 4%;
+		padding-left: 0%;
+		text-align: left;
+	}
+
+	tbody.listDesp tr td {
+		padding-left: 4%;
+		margin-left: 2%;
+		padding-top: 4%;
+	} 
+
+	div.listExibEntrada {
+		border: 2px solid white;
+	  padding: 0%;
+	  padding-top: 0%;
+	  /*margin-bottom: 5%;*/
+	  margin-top: -3%;
+	  /*width: 50%;*/
+	  min-height: 20vh;
+	  /*margin-left: 5%;*/
+		/*margin-bottom: 29%;*/
+		font-size: .7rem;
+		overflow: auto;
+
+
+	}
+
+	/*div .textExib-Entrada {*/
+		/*margin-left: 9%;*/
+	/*}*/
+
+	div.totalEntrada{
+		border: 2px solid white;
+	  padding: 2%;
+	  /*margin-bottom: 5%;*/
+	  margin-top: -34%;
+	  /*width: 44vw;*/
+	  min-height: 5vh;
+	  /*margin-left: 5%;*/
+		font-size: 1rem;
+
+	}
+
+	div.listExibCalculos {
+		border: 2px solid white;
+	  padding: 2%;
+	  padding-top: 4%;
+	  /*margin-bottom: 5%;*/
+	  margin-top: -15%;
+	  /*width: 44vw;*/
+	  min-height: 13.5vh;
+	  /*margin-left: 5%;*/
+		/*margin-bottom: 29%;*/
+		font-size: 1rem;
+
+	}
+
+	div.listExibCalculos tr th {
+		padding-bottom: 5%;
+	}
+
+	div.totalDespesas {
+		border: 2px solid white;
+	  padding: 2%;
+	  /*margin-bottom: 5%;*/
+	  margin-top: -10%;
+	  /*width: 44vw;*/
+	  min-height: 5vh;
+	  margin-left: -1%;
+		font-size: 1rem;
+	}
+
+
+	/*TEXTAREA DESPESAS - Tela Visualizar*/
+	.container-fluid > div > .despesa {
+		width: 150px;
+		height: 200px;
+		padding:  2%;
+		padding-top: 2%;
+		font-size: .7rem;
+		font-style: bold;
+	}
+
+	thead.theadDesp  tr th {
+		text-align: center;
+		margin-left: 1%;
+		background-color: lightgray;
+		font-size: 1rem;
+	}
+
+	thead.theadEntrada tr th {
+		text-align: center;
+		margin-left: 1%;
+		background-color: lightgray;
+		font-size: 1rem;
+	}
+
+	.listEntrada {
+		padding-top: 4%;
+		padding-left: 0%;
+		text-align: left;
+	}
+
+	tbody.listEntrada tr td {
+		padding-left: 4%;
+		margin-left: 2%;
+		margin-left: 2%;
+		padding-top: 4%;
+	}
+
+	.container-fluid .tbmenuDesp {
+		/*display: none;*/
+		background-color: lightgray;
+		opacity: .7;
+	}
+
+	/*TEXTAREA ENTRADA - Tela Visualizar*/
+	.container-fluid > div > .entrada {
+		width: 155px;
+		height: 200px;
+		padding:  2%;
+		padding-top: 2%;
+		font-size: .7rem;
+		font-style: bold;
+	}
+
+	/*BOTÃO VISUALIZAR - Tela Visualizar Despesas*/
+	.container-fluid > button {
+		/*float: left;*/
+		/*margin-left: 35%;*/
+		margin-top: 10%;
+		height: 40px;
+		/*margin-bottom: 15.5%;*/
+	}
+
+	/*ALINHA BOTÕES PAGINA INICIAL*/
+	.container-fluid > .menuInicial {
+		/*margin-top: 45.5%;*/
+		margin-bottom: -1%;
+	}
+
+	/*ALINHA BOTÕES PAGINA INICIAL*/
+	.container-fluid > .btnAlingDesp {
+		/*float: left;*/
+		margin-top: 20%;
+		position: fixed;
+		margin-bottom: 16.5%;
+	}
+
+	/*BOTÕES DA PAGINA INICIAL*/
+	.container-fluid > div > .btnDesp  {
+		/*width: 100%;*/
+		/*height: 50px;*/
+		border-radius: 4%;
+		text-align: center;
+		padding: 5%;
+		margin-bottom: 5%;
+		font-size: 2rem;
+	}
+
+	.container-fluid > .contVer {
+		color: white;
+		padding: 0;
+		/*float: left;*/
+		margin-top: 12%;
+		/*margin-left: 18%; */
+		/*text-align: left;*/
+		font-size: 1rem;
+		/*position: fixed;*/
+		z-index: 3;
+	}
+
+	.tbDespfoot {
+		float: left;
+		margin-top: -60%;
+	}
+
+
+	/*BOTÃO MENU HOME*/
+	.btnMenu {
+		float: right;
+		margin-top: -10.5%;
+		font-size: 3rem;
+		position: fixed;
+		z-index: 2;
+
+	}
+
+	/*ICONE REMOVER*/
+	span.glyphicon.glyphicon-trash {
+		font-size: 1.7rem;
+		color: red;
+		opacity: .3;
+		margin-right: 1vh;
+		z-index: 0;
+	}
+
+	footer.footerIndex {
+		padding-top: .5%;
+		padding-bottom: .5%;
+		margin: 0;
+		margin-top: 160.7%;
+		height: 9%;
+		position: fixed;
+		text-align: center;
+	}
+
+	/*FOOTER TELA ENTRADA CAIXA*/
+	footer.footerEntrada {
+		padding-top: .5%;
+		padding-bottom: .5%;
+		margin: 0;
+		margin-top: 160.7%;
+		height: 9%;
+		position: fixed;
+		text-align: center;
+	}
+
+	/*FOOTER TELA DESPESAS*/
+	footer.footerDespesas {
+		padding-top: .5%;
+		padding-bottom: .5%;
+		margin: 0;
+		margin-top: 160.7%;
+		height: 9%;
+		position: fixed;
+		text-align: center;
+	}
+
+	/*FOOTER TELA VISUALIZAR*/
+	footer.footerVisualizar {
+		padding-top: .5%;
+		padding-bottom: .5%;
+		margin: 0;
+		margin-top: 160.7%;
+		height: 9%;
+		position: fixed;
+		text-align: center;
+	}
+
+	.container-fluid img {
+		float: left;
+		margin-top: 1%;
+		margin-left: -3.7%;
+		border-radius: 10%;
+		padding-bottom: 0.7%;
+		padding: 0;
+	}
+
+	.heightVisualizar {
+		position: fixed;
+		height: 576px;
+		max-height: 680px;
+		overflow-y: auto;
+	}
+
+	/*ICONE DO APP*/
+	.iconeSeven {
+		border-radius: 50%;
+	}
+
+	section {
+		margin-bottom: 20%;
+		position: fixed;
+		z-index: 1;
+	}
+}
+
+/*TELAS DESKTOPS*/
+@media screen and (min-width: 1024px) {
+	
+	/*DEFINIR COR DE FUNDO - 01 - Superio*/
+	.bg-01 {
+		background-color: #474e5d;
+		/*color: #ffffff;*/
+		/*margin-top: -8.2%;*/
+		position: fixed;
+		/*width: 60% !important;*/
+		height: 7%;
+		z-index: 3;
+
+	}
+
+	img.imgLg{
+		/*margin-left: 2%;*/
+		width: 7%;
+		height: 7%;
+	}
+
+	/*ICONE DO APP*/
+	.iconeSeven {
+		/*border-radius: 50%;*/
+	}
+
+
+	/*DEFINIR COR DE FUNDO - 02 - Rodapé*/
+	.bg-02 {
+		background-color: #474e5d;
+		color: #ffffff;
+		position: fixed;
+		z-index: 1;
+		height: 9%;
+	}
+
+	/*DEFINIR COR DE FUNDO - 03 - Titulo*/
+	.bg-03 {
+		background-color: #737d93;
+		color: #ffffff;
+		position: fixed;
+		z-index: 1;
+		text-align: center;
+		height: 7%;
+	}
+
+	/*DEFINIR COR DE FUNDO - 04 - Mês Referencia*/
+	.bg-04 {
+		background-color: #c5cad5;
+		color: #ffffff;
+		position: fixed;
+		width: 100%;
+		z-index: 1;
+		height: 7%;
+		/*padding: 1%;*/
+	}
+
+	/*ALINHAR TEXTO h1 - Texto Principal*/
+	.container-fluid > h1 {
+		/*font-size: 2.7rem;*/
+	}
+
+	/*BOTÃO OPÇÃO MÊS*/
+	.spanOpcaoMesEsquerdo {
+		font-size: 4rem;
+		float: left;
+		color: white;
+		text-align: right;
+		position: fixed;
+		margin: 0;
+		padding: 0;
+		padding-top: .7%;
+
+	}
+
+	.spanOpcaoMesDireito {
+		font-size: 4rem;
+		float: right;
+		color: white;
+		text-align: left;
+		position: fixed;
+		margin: 0;
+		padding: 0;
+		padding-top:.7%;
+	}
+
+	/*ALINHA MÊS*/
+	.container-fluid >  .alinharMes {
+		text-align: center;
+		font-size: 3rem;
+		padding: 1%;
+		margin: 0;
+	}
+
+	/*ALINHAR FORMULARIO DE DADOS*/
+	.container-fluid > div > div > .alinharFormDesp {
+		margin-top: 5%;
+		border: 200px 300px solid 2px white;
+
+	}
+
+	/*BOTÃO ADICIONAR LINHA TABELA*/
+	.btnDesp {
+		float: right;
+		margin-left: 3.2%; 
+		font-size: 3rem;
+		text-align: center;
+		margin-right: 1%;
+	}
+
+	.container-fluid > div > div > div > span .dtDespesa {
+		height: 31px;
+		padding: .8%;
+	}
+
+	.container-fluid > div > div > div > span .listDespesa {
+		margin-left: 2%;
+		height: 30px;
+		padding: .8%;
+		overflow: auto;
+	}
+
+	.container-fluid > div > div > div > span .valDespesa {
+		height: 30px;
+		margin-left: 2%;
+		text-align: right;
+	}
+
+	.container-fluid > div > div > div > span .radioPend{
+/*		float: left;
+		margin-left: 4%;
+		margin-top: -4%;*/
+	}
+
+	.container-fluid > div > div > div > span .radioPg {
+	/*	float: left;
+		margin-left: 30%;
+		margin-top: -4%;*/
+	}
+	.container-fluid > div > div > div > .dtLabel {
+		/*float: left;*/
+	}
+
+	.container-fluid > div > div > div > .despLabel {
+/*		float: left;
+		margin-left: 29%;*/
+	}
+
+	.container-fluid > div > div > div > .valLabel {
+/*		float: left;
+		margin-left: 18%;*/
+	}
+
+	.container-fluid > .textExibir  {
 	padding: 0;
-	padding-top: 1.5%;
-}
-
-/*ALINHA MÊS*/
-.container-fluid >  .alinharMes {
-	/*float: left;*/
-	text-align: center;
-	/*width: 43%;*/
-	height: 7%;
-	font-size: 2.5rem;
-	padding: 1%;
-	margin: 0;
-}
-
-/*ALINHAR FORMULARIO DE DADOS*/
-.container-fluid > div > div > .alinharFormDesp {
-	/*float: left;*/
-	margin-top: 50%;
-	border: 200px 300px solid 2px white;
-	/*margin-bottom: 28%;*/
-
-}
-
-/*BOTÃO ADICIONAR LINHA TABELA*/
-.btnDesp {
-	float: right;
-	font-size: 2.5rem;
-	text-align: center;
-	margin-right: 1%;
-	margin-bottom: 68%;
-}
-
-.container-fluid > div > div > div > span .dtDespesa {
-	/*width: 22%;*/
-	height: 31px;
-	padding: .8%;
-}
-
-.container-fluid > div > div > div > span .listDespesa {
-	/*width: 35vw;*/
-	margin-left: 2%;
-	height: 31px;
-	padding: .8%;
-}
-
-.container-fluid > div > div > div > span .valDespesa {
-	/*width: 25%;*/
-	height: 31px;
-	margin-left: 2%;
-	text-align: right;
-}
-
-.container-fluid > div > div > div > span .radioPend{
-	float: left;
-	margin-left: 4%;
-	margin-top: -4%;
-}
-
-.container-fluid > div > div > div > span .radioPg {
-	float: left;
-	margin-left: 30%;
-	margin-top: -4%;
-}
-.container-fluid > div > div > div > .dtLabel {
-	float: left;
-}
-
-.container-fluid > div > div > div > .despLabel {
-	float: left;
-	margin-left: 29%;
-}
-
-.container-fluid > div > div > div > .valLabel {
-	float: left;
-	margin-left: 18%;
-}
-
-.container-fluid > .textExibir  {
-/*margin-left: -5%;*/
-padding: 0;
-margin-top: 5%;
-text-align: left;
-}
- .container-fluid > div > p {
-	padding: 0;
-}
-/*.textExibir p {
-	border: 2rem solid white;
-	padding: 0;
-	height: 5vh;
-}*/
-
-div.listExibDesp {
-	margin-left: 0%;
-	border: 2px solid white;
-  padding: 0; 
-  padding-top: 0%;
-  margin-top: -3%;
-  /*margin-bottom: 5%; */
-  /*margin-top: -5%; */
-  /*width: 50%; */
-  min-height: 240px;
-	margin-left: -1%;
-	font-size: .7rem;
-	text-align: center;
-}
-
-.listDesp {
-	padding-top: 4%;
-	padding-left: 0%;
+	margin-top: 5%;
 	text-align: left;
-}
+	}
+	 .container-fluid > div > p {
+		padding: 0;
+		font-size: 2rem;
+	}
 
-tbody.listDesp tr td {
-	padding-left: 4%;
-	margin-left: 2%;
-	padding-top: 4%;
-} 
+	div.listExibDesp {
+		margin-left: 0%;
+		border: 2px solid white;
+	  padding: 0; 
+	  padding-top: 0%;
+	  margin-top: -1%;
+	  min-height: 240px;
+		margin-left: -1%;
+		font-size: 1.5rem;
+		text-align: center;
+		overflow: auto;
 
-div.listExibEntrada {
-	border: 2px solid white;
-  padding: 0%;
-  padding-top: 0%;
-  /*margin-bottom: 5%;*/
-  margin-top: -3%;
-  /*width: 50%;*/
-  min-height: 20vh;
-  /*margin-left: 5%;*/
-	/*margin-bottom: 29%;*/
-	font-size: .7rem;
+	}
 
-}
+	.listDesp {
+		padding-top: 4%;
+		padding-left: 0%;
+		text-align: left;
+	}
 
-/*div .textExib-Entrada {*/
-	/*margin-left: 9%;*/
-/*}*/
+	tbody.listDesp tr td {
+		padding-left: 4%;
+		margin-left: 2%;
+		padding-top: 4%;
+	} 
 
-div.totalEntrada{
-	border: 2px solid white;
-  padding: 2%;
-  /*margin-bottom: 5%;*/
-  margin-top: -34%;
-  /*width: 44vw;*/
-  min-height: 5vh;
-  /*margin-left: 5%;*/
-	font-size: 1rem;
+	div.listExibEntrada {
+		border: 2px solid white;
+	  padding: 0%;
+	  padding-top: 0%;
+	  margin-top: -1%;
+	  min-height: 20vh;
+		font-size: 1.5rem;
+		overflow: auto;
+	}
 
-}
+	div.totalEntrada{
+		border: 2px solid white;
+	  padding: 2%;
+	  margin-top: -4%;
+	  min-height: 5vh;
+		font-size: 1.5rem;
 
-div.listExibCalculos {
-	border: 2px solid white;
-  padding: 2%;
-  padding-top: 4%;
-  /*margin-bottom: 5%;*/
-  margin-top: -15%;
-  /*width: 44vw;*/
-  min-height: 13.5vh;
-  /*margin-left: 5%;*/
-	/*margin-bottom: 29%;*/
-	font-size: 1rem;
+	}
 
-}
+	div.listExibCalculos {
+		border: 2px solid white;
+	  padding: 2%;
+	  padding-top: 4%;
+	  margin-top: 2%;
+	  min-height: 13.5vh;
+		font-size: 1.5rem;
 
-div.listExibCalculos tr th {
-	padding-bottom: 5%;
-}
+	}
 
-div.totalDespesas {
-	border: 2px solid white;
-  padding: 2%;
-  /*margin-bottom: 5%;*/
-  margin-top: -10%;
-  /*width: 44vw;*/
-  min-height: 5vh;
-  margin-left: -1%;
-	font-size: 1rem;
-}
+	div.listExibCalculos tr th {
+		padding-bottom: 5%;
+	}
 
-
-/*TEXTAREA DESPESAS - Tela Visualizar*/
-.container-fluid > div > .despesa {
-	width: 150px;
-	height: 200px;
-	padding:  2%;
-	padding-top: 2%;
-	font-size: .7rem;
-	font-style: bold;
-}
-
-thead.theadDesp  tr th {
-	text-align: center;
-	margin-left: 1%;
-	background-color: lightgray;
-	font-size: 1rem;
-}
-
-thead.theadEntrada tr th {
-	text-align: center;
-	margin-left: 1%;
-	background-color: lightgray;
-	font-size: 1rem;
-}
-
-.listEntrada {
-	padding-top: 4%;
-	padding-left: 0%;
-	text-align: left;
-}
-
-tbody.listEntrada tr td {
-	padding-left: 4%;
-	margin-left: 2%;
-	margin-left: 2%;
-	padding-top: 4%;
-}
-
-.container-fluid .tbmenuDesp {
-	/*display: none;*/
-	background-color: lightgray;
-	opacity: .7;
-}
-
-/*TEXTAREA ENTRADA - Tela Visualizar*/
-.container-fluid > div > .entrada {
-	width: 155px;
-	height: 200px;
-	padding:  2%;
-	padding-top: 2%;
-	font-size: .7rem;
-	font-style: bold;
-}
-
-/*BOTÃO VISUALIZAR - Tela Visualizar Despesas*/
-.container-fluid > button {
-	/*float: left;*/
-	/*margin-left: 35%;*/
-	margin-top: 10%;
-	height: 40px;
-	/*margin-bottom: 15.5%;*/
-}
-
-/*ALINHA BOTÕES PAGINA INICIAL*/
-.container-fluid > .menuInicial {
-	/*margin-top: 45.5%;*/
-	margin-bottom: -1%;
-}
-
-/*ALINHA BOTÕES PAGINA INICIAL*/
-.container-fluid > .btnAlingDesp {
-	/*float: left;*/
-	margin-top: 20%;
-	position: fixed;
-	margin-bottom: 16.5%;
-}
-
-/*BOTÕES DA PAGINA INICIAL*/
-.container-fluid > div > .btnDesp  {
-	/*width: 100%;*/
-	/*height: 50px;*/
-	border-radius: 4%;
-	text-align: center;
-	padding: 5%;
-	margin-bottom: 5%;
-	font-size: 2rem;
-}
-
-.container-fluid > .contVer {
-	color: white;
-	padding: 0;
-	/*float: left;*/
-	margin-top: 12%;
-	/*margin-left: 18%; */
-	/*text-align: left;*/
-	font-size: 1rem;
-	/*position: fixed;*/
-	z-index: 3;
-}
-
-.tbDespfoot {
-	float: left;
-	margin-top: -62%;
-}
+	div.totalDespesas {
+		border: 2px solid white;
+	  padding: 2%;
+	  margin-top: -10%;
+	  min-height: 5vh;
+	  margin-left: -1%;
+		font-size: 1.5rem;
+	}
 
 
-/*BOTÃO MENU HOME*/
-.btnMenu {
-	float: right;
-	margin-top: -10.5%;
-	font-size: 3rem;
-	position: fixed;
-	z-index: 2;
+	/*TEXTAREA DESPESAS - Tela Visualizar*/
+	.container-fluid > div > .despesa {
+/*		width: 150px;
+		height: 200px;
+		padding:  2%;
+		padding-top: 2%;
+		font-size: .7rem;
+		font-style: bold;*/
+	}
 
-}
+	thead.theadDesp  tr th {
+		text-align: center;
+		margin-left: 1%;
+		background-color: lightgray;
+		font-size: 1.5rem;
+		overflow-y: auto;
+	}
 
-/*ICONE REMOVER*/
-span.glyphicon.glyphicon-trash {
-	font-size: 1.7rem;
-	color: red;
-	opacity: .3;
-	margin-right: 1vh;
-	z-index: 0;
-}
+	thead.theadEntrada tr th {
+		text-align: center;
+		margin-left: 1%;
+		background-color: lightgray;
+		font-size: 1.5rem;
+		overflow: auto;
+	}
 
-footer.footerIndex {
-	padding-top: .5%;
-	padding-bottom: .5%;
-	margin: 0;
-	margin-top: 160.7%;
-	height: 9%;
-	position: fixed;
-	text-align: center;
-}
+	.listEntrada {
+		/*padding-top: 4%;*/
+		padding-left: 0%;
+		text-align: left;
+	}
 
-/*FOOTER TELA ENTRADA CAIXA*/
-footer.footerEntrada {
-	padding-top: .5%;
-	padding-bottom: .5%;
-	margin: 0;
-	margin-top: 160.7%;
-	height: 9%;
-	position: fixed;
-	text-align: center;
-}
+	tbody.listEntrada tr td {
+		padding-left: 4%;
+		margin-left: 2%;
+		margin-left: 2%;
+		padding-top: 4%;
+	}
 
-/*FOOTER TELA DESPESAS*/
-footer.footerDespesas {
-	padding-top: .5%;
-	padding-bottom: .5%;
-	margin: 0;
-	margin-top: 160.7%;
-	height: 9%;
-	position: fixed;
-	text-align: center;
-}
+	.container-fluid .tbmenuDesp {
+		background-color: lightgray;
+		opacity: .7;
+	}
 
-/*FOOTER TELA VISUALIZAR*/
-footer.footerVisualizar {
-	padding-top: .5%;
-	padding-bottom: .5%;
-	margin: 0;
-	margin-top: 160.7%;
-	height: 9%;
-	position: fixed;
-	text-align: center;
-}
+	/*TEXTAREA ENTRADA - Tela Visualizar*/
+	.container-fluid > div > .entrada {
+	/*	width: 155px;
+		height: 200px;
+		padding:  2%;
+		padding-top: 2%;
+		font-size: .7rem;
+		font-style: bold;*/
+	}
 
-.container-fluid img {
-	float: left;
-	margin-top: 1%;
-	margin-left: -3.7%;
-	border-radius: 10%;
-	padding-bottom: 0.7%;
-	padding: 0;
-}
+	/*BOTÃO VISUALIZAR - Tela Visualizar Despesas*/
+	.container-fluid > button {
+	/*	margin-top: 10%;
+		height: 40px;*/
+	}
 
-.heightVisualizar {
-	position: fixed;
-	height: 576px;
-	max-height: 680px;
-	overflow-y: auto;
-}
+	/*ALINHA BOTÕES PAGINA INICIAL*/
+	.container-fluid > .menuInicial {
+		/*margin-bottom: -1%;*/
+	}
 
-/*ICONE DO APP*/
-.iconeSeven {
-	border-radius: 50%;
-}
+	/*ALINHA BOTÕES PAGINA INICIAL*/
+	.container-fluid > .btnAlingDesp {
+		margin-top: 6.5%;
+		position: fixed;
+		margin-bottom: 16.5%;
+	}
 
-section {
-	margin-bottom: 20%;
-	position: fixed;
-	z-index: 1;
+	/*BOTÕES DA PAGINA INICIAL*/
+	.container-fluid > div > .btnDesp  {
+		border-radius: 4%;
+		text-align: center;
+		padding: 5%;
+		margin-bottom: 5%;
+		font-size: 2rem;
+	}
+
+	/*CONTROLE DE VESÃO*/
+	.container-fluid > .contVer {
+		color: white;
+		padding: 0;
+		margin-top: 3.5%;
+		font-size: 1.2rem;
+		z-index: 3;
+	}
+
+	.tbDespfoot {
+		float: left;
+		margin-top: 2.5%;
+	}
+
+
+	/*BOTÃO MENU HOME*/
+	.btnMenu {
+		float: right;
+		margin-right: -10%;
+		margin-top: 1.5%;
+		font-size: 5rem;
+		position: fixed;
+		z-index: 2;
+
+	}
+
+	/*ICONE REMOVER*/
+	span.glyphicon.glyphicon-trash {
+	/*	font-size: 1.7rem;
+		color: red;
+		opacity: .3;
+		margin-right: 1vh;
+		z-index: 0;*/
+	}
+
+	footer.footerIndex {
+		padding-top: 1%;
+		padding-bottom: .5%;
+		margin: 0;
+		margin-top: 45.8%;
+		/*height: 9%;*/
+		position: fixed;
+		text-align: center;
+	}
+
+	/*FOOTER TELA ENTRADA CAIXA*/
+	footer.footerEntrada {
+		padding-top: .5%;
+		padding-bottom: .5%;
+		margin: 0;
+		margin-top: 45.8%;
+		position: fixed;
+		text-align: center;
+	}
+
+	/*FOOTER TELA DESPESAS*/
+	footer.footerDespesas {
+		padding-top: .5%;
+		padding-bottom: .5%;
+		margin: 0;
+		margin-top: 45.8%;
+		position: fixed;
+		text-align: center;
+	}
+
+	/*FOOTER TELA VISUALIZAR*/
+	footer.footerVisualizar {
+		padding-top: .5%;
+		padding-bottom: .5%;
+		margin: 0;
+		margin-top: 45.8%;
+		height: 9%;
+		position: fixed;
+		text-align: center;
+	}
+
+	.container-fluid img {
+		/*float: left;
+		margin-top: 1%;
+		margin-left: -3.7%;
+		border-radius: 10%;
+		padding-bottom: 0.7%;
+		padding: 0;*/
+	}
+
+
+
+	section {
+	/*	margin-bottom: 20%;
+		position: fixed;
+		z-index: 1;*/
+	}
 }

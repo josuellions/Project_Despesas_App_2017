@@ -186,7 +186,7 @@ let recebeDt,	mesGlobal = 0, anoGlobal = 0;
 }
 	
 	// AVANÇAR MÊS DE REFERÊNCIA
-	$('#OpcaoMesEsquedo').mousedown( function( ) { defineMes( 1 ) } );
+	$('#OpcaoMesEsquerdo').mousedown( function( ) { defineMes( 1 ) } );
 	$('#OpcaoMesDireito').mousedown( function( ) { defineMes( 2 ) } );
 
 	// EXIBIR O MÊS DE REFENCIA
