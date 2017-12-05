@@ -101,7 +101,7 @@
 /*ALINHAR FORMULARIO DE DADOS*/
 .container-fluid > div > div > .alinharFormDesp {
 	/*float: left;*/
-	margin-top: 5%;
+	margin-top: 50%;
 	border: 200px 300px solid 2px white;
 	/*margin-bottom: 28%;*/
 
@@ -300,8 +300,10 @@ tbody.listEntrada tr td {
 	padding-top: 4%;
 }
 
-.container-fluid > .tbmenuDesp {
-	display: none;
+.container-fluid .tbmenuDesp {
+	/*display: none;*/
+	background-color: lightgray;
+	opacity: .7;
 }
 
 /*TEXTAREA ENTRADA - Tela Visualizar*/
@@ -352,11 +354,12 @@ tbody.listEntrada tr td {
 	color: white;
 	padding: 0;
 	/*float: left;*/
-	margin-top: 7%;
+	margin-top: 12%;
 	/*margin-left: 18%; */
 	/*text-align: left;*/
 	font-size: 1rem;
-	position: fixed;
+	/*position: fixed;*/
+	z-index: 3;
 }
 
 .tbDespfoot {
@@ -440,9 +443,16 @@ footer.footerVisualizar {
 	position: fixed;
 	height: 576px;
 	max-height: 680px;
+	overflow-y: auto;
 }
 
 /*ICONE DO APP*/
 .iconeSeven {
 	border-radius: 50%;
+}
+
+section {
+	margin-bottom: 20%;
+	position: fixed;
+	z-index: 1;
 }

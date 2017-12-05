@@ -12,84 +12,86 @@
 </head>
 <body onload="onInit( 2 )">
 	<div class="heightVisualizar">
-	<div class="container-fluid bg-01 col-xs-12">
+		<section>
+		<div class="container-fluid bg-01 col-xs-12">
 
-		<img src="../assets/img/logo_seven.jpg" class="col-xs-2" style="padding: 0">
+			<img src="../assets/img/logo_seven.jpg" class="col-xs-2" style="padding: 0">
 
-		<div class="container-fluid col-xs-8">
+			<div class="container-fluid col-xs-8">
 
-			<p class="contVer" id="contVer"></p>
+				<p class="contVer" id="contVer"></p>
 
+			</div>
+			<!-- MENU -->
+			<nav class="dropdown alingMenu col-xs-2" id="menuMobile">
+					<button class="btn dropdown-toggle buttonMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="btnMenu">
+						<span	class="glyphicon glyphicon-tasks btnMenu" id=""></span>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-right" arial-labellebdy=" dropdownMenu3 dropdownMenuDivider" id="liMenu">
+						<li>
+							<span class="glyphicon glyphicon-home" id="btnHome">
+								<a id="btnHome">Home</a>
+							</span>
+						</li>
+						
+						<li role="separator" class="divider liDivider"></li>
+
+						<li>
+							<span class="glyphicon glyphicon-usd" id="btnMenuEntra">
+								<a id="btnMenuEntra">Entrada Caixa</a>
+							</span>
+						</li>
+
+						<li>
+							<span class="glyphicon glyphicon-shopping-cart" id="btnMenuDesp">
+								<a id="btnMenuDesp">Despesa</a>
+							</span>
+						</li>
+
+						<li>
+							<span class="glyphicon glyphicon-zoom-in" id="btnMenuVisual">
+								<a id="btnMenuVisual">Visualizar</a>
+							</span>
+						</li>
+						
+						<li>
+							<span class="glyphicon glyphicon-list-alt" id="btnMenuRelator">
+								<a id="btnMenuRelator">Relatório</a>
+							</span>
+						</li>
+						
+						<li role="separator" class="divider liDivider"></li>
+
+						<li>
+							<span class="glyphicon glyphicon-info-sign" id="btnInfo">
+								<a id="btnInfo">Informações</a>
+							</span>
+						</li>
+						<li>
+							<span class="glyphicon glyphicon-user" id="btnSobre">
+								<a id="btnSobre">Sobre</a>
+							</span>
+						</li>
+					</ul>
+			</nav>
+			<!-- END MENU -->
 		</div>
-		<!-- MENU -->
-		<nav class="dropdown alingMenu col-xs-2" id="menuMobile">
-				<button class="btn dropdown-toggle buttonMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="btnMenu">
-					<span	class="glyphicon glyphicon-tasks btnMenu" id=""></span>
-				</button>
-				<ul class="dropdown-menu dropdown-menu-right" arial-labellebdy=" dropdownMenu3 dropdownMenuDivider" id="liMenu">
-					<li>
-						<span class="glyphicon glyphicon-home" id="btnHome">
-							<a id="btnHome">Home</a>
-						</span>
-					</li>
-					
-					<li role="separator" class="divider liDivider"></li>
+		
+		<dir class="container-fluid col-xs-12 bg-03">
+			<h1 class="col-xs-12  text-center">Adicionar Entrada</h1>
+		</dir>
 
-					<li>
-						<span class="glyphicon glyphicon-usd" id="btnMenuEntra">
-							<a id="btnMenuEntra">Entrada Caixa</a>
-						</span>
-					</li>
-
-					<li>
-						<span class="glyphicon glyphicon-shopping-cart" id="btnMenuDesp">
-							<a id="btnMenuDesp">Despesa</a>
-						</span>
-					</li>
-
-					<li>
-						<span class="glyphicon glyphicon-zoom-in" id="btnMenuVisual">
-							<a id="btnMenuVisual">Visualizar</a>
-						</span>
-					</li>
-					
-					<li>
-						<span class="glyphicon glyphicon-list-alt" id="btnMenuRelator">
-							<a id="btnMenuRelator">Relatório</a>
-						</span>
-					</li>
-					
-					<li role="separator" class="divider liDivider"></li>
-
-					<li>
-						<span class="glyphicon glyphicon-info-sign" id="btnInfo">
-							<a id="btnInfo">Informações</a>
-						</span>
-					</li>
-					<li>
-						<span class="glyphicon glyphicon-user" id="btnSobre">
-							<a id="btnSobre">Sobre</a>
-						</span>
-					</li>
-				</ul>
-		</nav>
-		<!-- END MENU -->
-	</div>
-	
-	<dir class="container-fluid col-xs-12 bg-03">
-		<h1 class="col-xs-12  text-center">Adicionar Entrada</h1>
-	</dir>
-
-	<div class="container-fluid col-xs-12 bg-04">
-		<span class="glyphicon glyphicon-menu-left spanOpcaoMesEsquedo col-xs-4" title="Voltar para mês anterior " id="OpcaoMesEsquedo" onclick=""></span>
-			<h2 class="alinharMes col-xs-4" id="dtReference"></h2>
-	 	<span class="glyphicon glyphicon-menu-right spanOpcaoMesDireito col-xs-4" title="Passar para mês seguinte" id="OpcaoMesDireito" ></span>
-	</div>
-	<div class="container-fluid col-xs-12">
+		<div class="container-fluid col-xs-12 bg-04">
+			<span class="glyphicon glyphicon-menu-left spanOpcaoMesEsquedo col-xs-4" title="Voltar para mês anterior " id="OpcaoMesEsquedo" onclick=""></span>
+				<h2 class="alinharMes col-xs-4" id="dtReference"></h2>
+		 	<span class="glyphicon glyphicon-menu-right spanOpcaoMesDireito col-xs-4" title="Passar para mês seguinte" id="OpcaoMesDireito" ></span>
+		</div>
+		</section>
+		<div class="container-fluid col-xs-12">
 			<div class="from-inline">
 				<div class="form-group">
 					<div class="alinharFormDesp">
-						<table  class="table table-striped table-responsive" class="tbmenuDesp" id="tbEntrada">
+						<table  class="table table-striped table-responsive tbmenuDesp" id="tbEntrada">
 							<thead>
 								<tr>
 									<th class="text-center" width="22%" >Data</th>

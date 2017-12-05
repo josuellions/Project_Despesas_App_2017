@@ -105,7 +105,11 @@ $( document ).ready( function ( ){
 
 	//Select campo number
 	$( "#valDespesa" ).click(function( ) {
-	$( '#valDespesa').select( );
+		$( '#valDespesa').select( );
+	}) 
+
+	$( "#valEntrada" ).click(function( ) {
+		$( '#valEntrada').select( );
 	}) 
 
 	//FUNÇÃO DATA DE REFERENCIA
@@ -127,6 +131,12 @@ $( document ).ready( function ( ){
 let dtInicial = ( ) => 
 		$( "#dtEntrada" ).val( formataData( ) );
 		$( "#dtDespesa").val(formataData( ) );
+
+		// $( "#valEntrada").click( function( ){
+		// 	$( "heightVisualizar").css({"overflow":"170px"});
+		// })
+
+
 
 dtInicial( );
 
