@@ -1,109 +1,90 @@
 * {
 	font-family: sans-serif;
-	padding: 0;
-	margin: 0;
 }
 
 /*DEFINIR COR DE FUNDO - 01 - Superio*/
 .bg-01 {
 	background-color: #474e5d;
-	/*color: #ffffff;*/
-	/*margin-top: -8.2%;*/
+	color: #ffffff;
+	margin-top: -8.2%;
 	position: fixed;
-	/*width: 100%;*/
-	height: 7%;
-	z-index: 3;
-
+	width: 100%;
+	z-index: 1;
 }
 
 /*DEFINIR COR DE FUNDO - 02 - Rodapé*/
 .bg-02 {
 	background-color: #474e5d;
 	color: #ffffff;
-	/*padding-top: 1%;*/
-	/*margin-top: -1.5%;*/
-	position: fixed;
-	/*width: 100%;*/
+	padding-top: 1%;
+	margin-top: -1.5%;
+	/*position: fixed;*/
+	width: 100%;
 	z-index: 1;
-	height: 7%;
 }
 
 /*DEFINIR COR DE FUNDO - 03 - Titulo*/
 .bg-03 {
 	background-color: #737d93;
 	color: #ffffff;
-	/*margin-top: 4.3%;*/
+	margin-top: 4.3%;
 	position: fixed;
-	/*width: 100%;*/
-	z-index: 1;
-	text-align: center;
-	/*margin: 0;*/
+	width: 100%;
+	z-index: 2;
 }
 
 /*DEFINIR COR DE FUNDO - 04 - Mês Referencia*/
 .bg-04 {
 	background-color: #c5cad5;
 	color: #ffffff;
-	/*margin-top: 17.7%;*/
+	margin-top: 17.7%;
 	position: fixed;
 	width: 100%;
 	z-index: 1;
-	height: 7%;
-	padding: 2%;
 }
 
 /*ALINHAR TEXTO h1 - Texto Principal*/
 .container-fluid > h1 {
 	font-size: 2.7rem;
-	/*width: 100%;*/
+	width: 100%;
 }
 
 /*BOTÃO OPÇÃO MÊS*/
 .spanOpcaoMesEsquedo {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	float: left;
 	color: white;
 	text-align: right;
-	/*margin-top: 3.5vh;*/
-	/*width: 30%;*/
+	margin-top: 3.5vh;
+	width: 30%;
 	position: fixed;
-	margin: 0;
-	padding: 0;
-	padding-top: .7%;
-
 }
 
 .spanOpcaoMesDireito {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	float: right;
 	color: white;
-	text-align: left;
-	/*margin-top: -4.2vh; */
-	/*margin-right: 21vw;*/
-	/*width: 25%;*/
+	text-align: right;
+	margin-top: -4.2vh; 
+	margin-right: 21vw;
+	width: 25%;
 	position: fixed;
-	margin: 0;
-	padding: 0;
-	padding-top: 1.5%;
 }
 
 /*ALINHA MÊS*/
 .container-fluid >  .alinharMes {
-	/*float: left;*/
+	float: left;
 	text-align: center;
-	/*width: 43%;*/
-	height: 7%;
+	width: 43%;
 	font-size: 2.5rem;
-	padding: 1%;
-	margin: 0;
 }
 
 /*ALINHAR FORMULARIO DE DADOS*/
 .container-fluid > div > div > .alinharFormDesp {
-	/*float: left;*/
-	margin-top: 5%;
-	border: 200px 300px solid 2px white;
-	/*margin-bottom: 28%;*/
+	float: left;
+	margin-top: 35%;
+	border: 200px 300px solid 2px red;
+	margin-bottom: 28%;
 
 }
 
@@ -117,22 +98,17 @@
 }
 
 .container-fluid > div > div > div > span .dtDespesa {
-	/*width: 22%;*/
-	height: 31px;
+	width: 22%;
 	padding: .8%;
 }
 
 .container-fluid > div > div > div > span .listDespesa {
-	/*width: 35vw;*/
-	margin-left: 2%;
-	height: 31px;
+	width: 35vw;
 	padding: .8%;
 }
 
 .container-fluid > div > div > div > span .valDespesa {
-	/*width: 25%;*/
-	height: 31px;
-	margin-left: 2%;
+	width: 25%;
 	text-align: right;
 }
 
@@ -162,14 +138,11 @@
 }
 
 .container-fluid > .textExibir  {
-/*margin-left: -5%;*/
-padding: 0;
-margin-top: 5%;
+margin-left: -5%;
+margin-top: 42%;
 text-align: left;
 }
- .container-fluid > div > p {
-	padding: 0;
-}
+
 /*.textExibir p {
 	border: 2rem solid white;
 	padding: 0;
@@ -180,11 +153,10 @@ div.listExibDesp {
 	margin-left: 0%;
 	border: 2px solid white;
   padding: 0; 
-  padding-top: 0%;
-  margin-top: -3%;
-  /*margin-bottom: 5%; */
-  /*margin-top: -5%; */
-  /*width: 50%; */
+  padding-top: 1%;
+  margin-bottom: 5%; 
+  margin-top: -5%; 
+  width: 48%; 
   min-height: 240px;
 	margin-left: -1%;
 	font-size: .7rem;
@@ -206,29 +178,29 @@ tbody.listDesp tr td {
 div.listExibEntrada {
 	border: 2px solid white;
   padding: 0%;
-  padding-top: 0%;
-  /*margin-bottom: 5%;*/
-  margin-top: -3%;
-  /*width: 50%;*/
+  padding-top: 1%;
+  margin-bottom: 5%;
+  margin-top: -5%;
+  width: 48%;
   min-height: 20vh;
-  /*margin-left: 5%;*/
-	/*margin-bottom: 29%;*/
+  margin-left: 5%;
+	margin-bottom: 29%;
 	font-size: .7rem;
 
 }
 
-/*div .textExib-Entrada {*/
-	/*margin-left: 9%;*/
-/*}*/
+div .textExib-Entrada {
+	margin-left: 9%;
+}
 
 div.totalEntrada{
 	border: 2px solid white;
   padding: 2%;
-  /*margin-bottom: 5%;*/
-  margin-top: -34%;
-  /*width: 44vw;*/
+  margin-bottom: 5%;
+  margin-top: -27%;
+  width: 44vw;
   min-height: 5vh;
-  /*margin-left: 5%;*/
+  margin-left: 5%;
 	font-size: 1rem;
 
 }
@@ -237,12 +209,12 @@ div.listExibCalculos {
 	border: 2px solid white;
   padding: 2%;
   padding-top: 4%;
-  /*margin-bottom: 5%;*/
-  margin-top: -15%;
-  /*width: 44vw;*/
+  margin-bottom: 5%;
+  margin-top: -7%;
+  width: 44vw;
   min-height: 13.5vh;
-  /*margin-left: 5%;*/
-	/*margin-bottom: 29%;*/
+  margin-left: 5%;
+	margin-bottom: 29%;
 	font-size: 1rem;
 
 }
@@ -254,9 +226,9 @@ div.listExibCalculos tr th {
 div.totalDespesas {
 	border: 2px solid white;
   padding: 2%;
-  /*margin-bottom: 5%;*/
-  margin-top: -10%;
-  /*width: 44vw;*/
+  margin-bottom: 5%;
+  margin-top: -20vh;
+  width: 44vw;
   min-height: 5vh;
   margin-left: -1%;
 	font-size: 1rem;
@@ -317,30 +289,29 @@ tbody.listEntrada tr td {
 /*BOTÃO VISUALIZAR - Tela Visualizar Despesas*/
 .container-fluid > button {
 	/*float: left;*/
-	/*margin-left: 35%;*/
+	margin-left: 35%;
 	margin-top: 10%;
 	height: 40px;
-	/*margin-bottom: 15.5%;*/
+	margin-bottom: 15.5%;
 }
 
 /*ALINHA BOTÕES PAGINA INICIAL*/
 .container-fluid > .menuInicial {
-	/*margin-top: 45.5%;*/
+	margin-top: 45.5%;
 	margin-bottom: -1%;
 }
 
 /*ALINHA BOTÕES PAGINA INICIAL*/
 .container-fluid > .btnAlingDesp {
-	/*float: left;*/
-	margin-top: 20%;
-	position: fixed;
+	float: left;
+	margin-top: 60%;
 	margin-bottom: 16.5%;
 }
 
 /*BOTÕES DA PAGINA INICIAL*/
 .container-fluid > div > .btnDesp  {
-	/*width: 100%;*/
-	/*height: 50px;*/
+	width: 100%;
+	height: 50px;
 	border-radius: 4%;
 	text-align: center;
 	padding: 5%;
@@ -349,12 +320,11 @@ tbody.listEntrada tr td {
 }
 
 .container-fluid > .contVer {
-	color: white;
 	padding: 0;
-	/*float: left;*/
-	margin-top: 7%;
-	/*margin-left: 18%; */
-	/*text-align: left;*/
+	float: left;
+	margin-top: -4%;
+	margin-left: 18%; 
+	text-align: left;
 	font-size: 1rem;
 	position: fixed;
 }
@@ -384,62 +354,53 @@ span.glyphicon.glyphicon-trash {
 	z-index: 0;
 }
 
+
 footer.footerIndex {
-	padding-top: .5%;
-	padding-bottom: .5%;
+	width: 100%;
 	margin: 0;
-	margin-top: 161.7%;
-	height: 9%;
+	margin-top: -4vh;
+	/*height: 20vh;*/
 	position: fixed;
-	text-align: center;
 }
+
 
 /*FOOTER TELA ENTRADA CAIXA*/
 footer.footerEntrada {
-	padding-top: .5%;
-	padding-bottom: .5%;
 	margin: 0;
-	margin-top: 161.7%;
-	height: 9%;
-	position: fixed;
-	text-align: center;
+	margin-top: -5.4vh !important;
+	height: 20vh !important;
 }
 
 /*FOOTER TELA DESPESAS*/
 footer.footerDespesas {
-	padding-top: .5%;
-	padding-bottom: .5%;
 	margin: 0;
-	margin-top: 161.7%;
-	height: 9%;
-	position: fixed;
-	text-align: center;
+	margin-top: -5.4vh !important;
+	height: 20vh !important;
 }
 
 /*FOOTER TELA VISUALIZAR*/
 footer.footerVisualizar {
-	padding-top: .5%;
-	padding-bottom: .5%;
 	margin: 0;
-	margin-top: 161.7%;
-	height: 9%;
+	width: 100%;
+	margin-top: 93vh !important;
+	/*height: 20vh !important;*/
 	position: fixed;
-	text-align: center;
+	margin-bottom: 0;
 }
 
-.container-fluid img {
+img {
 	float: left;
-	margin-top: 1%;
+	margin-top: 0.7%;
 	margin-left: -3.7%;
 	border-radius: 10%;
 	padding-bottom: 0.7%;
-	padding: 0;
+	width: 20%;
 }
 
 .heightVisualizar {
 	position: fixed;
 	height: 576px;
-	max-height: 680px;
+	max-height: 680px !important;
 }
 
 /*ICONE DO APP*/
