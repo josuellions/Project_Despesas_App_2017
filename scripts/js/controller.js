@@ -36,7 +36,6 @@ $("#btnMenuRelator").click( function( ) {
 	alert( "Em Desenvolvimento !!!" );
 })
 
-
 $("#btnInfo").click( function ( ) {
 	alert( " APLICATIVO CONTROLE DESPESAS \n" +
 					"\t\t\t\t\t\t\tdiárias ou mensais \n\n" +
@@ -114,32 +113,29 @@ $( document ).ready( function ( ){
 
 	//FUNÇÃO DATA DE REFERENCIA
 	function formataData (  ) {
-		dt = new Date( )
-		let dia = dt.getDate( ), 
-				mes = dt.getMonth( ), 
-				ano = dt.getFullYear( );
+		dt = new Date( );
+		let dtdia = dt.getDate( ), 
+				dtmes = dt.getMonth( ), 
+				dtano = dt.getFullYear( );
 
-		mes.toString( ).length < 10 ? mes = + parseInt( mes + 1 ) : false;
-
-		dia.toString( ).length == 1 ? dia = '0' + dia : false;
-		mes.toString( ).length == 1 ? mes = '0' + mes : false;
-
-		return ano + "-" +  mes + "-" + dia;
+		dtmes.toString( ).length < 10 ? dtmes = + parseInt( dtmes + 1 ) : false;
+	
+		dtdia.toString( ).length == 1 ? dtdia = '0' + dtdia : false;
+		dtmes.toString( ).length == 1 ? dtmes = '0' + dtmes : false;
+		return dtano + "-" +  dtmes + "-" + dtdia;
 	}
 
 // DEFINIR DATA INICIAL CAMPO DATA
-let dtInicial = ( ) => 
+let dtInicial = ( ) => {
 		$( "#dtEntrada" ).val( formataData( ) );
 		$( "#dtDespesa").val(formataData( ) );
 
 		// $( "#valEntrada").click( function( ){
 		// 	$( "heightVisualizar").css({"overflow":"170px"});
 		// })
-
-
+}
 
 dtInicial( );
-
 
 // VARIÁVEIS GLOBAIS DEFINIR SELETOR MÊS
 let recebeDt,	mesGlobal = 0, anoGlobal = 0;
@@ -164,6 +160,7 @@ let recebeDt,	mesGlobal = 0, anoGlobal = 0;
 
 		let mesExt = [ "JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"	];
 
+		onInit(3);
 		return mesExt[ recebMes ] + "/" + recebAno;
 
 	}
@@ -184,10 +181,20 @@ let recebeDt,	mesGlobal = 0, anoGlobal = 0;
 	$( "#dtReference" ).html( convertMes( mesGlobal, anoGlobal ) );
 
 }
-	
+
 	// AVANÇAR MÊS DE REFERÊNCIA
-	$('#OpcaoMesEsquerdo').mousedown( function( ) { defineMes( 1 ) } );
-	$('#OpcaoMesDireito').mousedown( function( ) { defineMes( 2 ) } );
+let verificaMesRef = ( ) => {
+	mesRef = document.getElementById("dtReference").innerText;
+
+	return mesRef;
+}
+
+	if ( verificaMesRef( ) != "Menu" ) {
+		 	$('#OpcaoMesEsquerdo').mousedown(() => { defineMes(1), convertMes( ) } );
+			$('#OpcaoMesDireito').mousedown(() => { defineMes(2), convertMes ( ) } );
+	} else {
+		return false;
+	}
 
 	// EXIBIR O MÊS DE REFENCIA
 	$('#dtReference').html( defineMes( ) );
@@ -195,15 +202,33 @@ let recebeDt,	mesGlobal = 0, anoGlobal = 0;
 	// DEFINIR O MÊS ATUAL NO INPUT DATA
 	$('#dtDespesa').val(formataData( ));
 
-	// Controle de Versão
-	$( "#contVer").html("Versão beta 0.0.7 - Bd offline - 27/11/2017");
-
-	//Nome Desenvolvedor
-	$( "#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
-
-	//Nome Empresa Desenvolvedora
-	$( "#nomeEmpresa").html("&reg Seven Solutions Tecnologic");
-
-	// $( "#btnSair").window.close( );
-
 });
+
+// Controle de Versão
+$( "#contVer").html("Versão beta 0.0.7 - Bd offline - 27/11/2017");
+
+//Nome Desenvolvedor
+$( "#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
+
+//Nome Empresa Desenvolvedora
+$( "#nomeEmpresa").html("&reg Seven Solutions Tecnologic");
+
+// $( "#btnSair").window.close( );
+
+// ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA
+let formatValor = ( e, obj ) => {
+
+	if( e.keycode != 8 || e.keycode != 46 ) {
+
+		obj.value.length == 1 ? obj.value = ("0,0" + obj.value) : false;
+		obj.value.length == 5 && obj.value.substr(0,3) == "0,0" ? obj.value = "0," + obj.value.substr(3) : false;
+		obj.value.length == 5 && obj.value.substr(0,2) == "0," ? obj.value = obj.value[2] + "," + obj.value.substr(3) : false
+		obj.value.length == 5 && obj.value.substr(0,2) != "0," ? obj.value = obj.value[0] + obj.value[2] + "," + obj.value.substr(3) : false
+		obj.value.length == 6 ? obj.value = obj.value.substr(0,2) + obj.value[3]  + "," + obj.value.substr(4) : false
+		obj.value.length == 7 ? obj.value = obj.value[0] + "." + obj.value[1] + obj.value[2] + obj.value[4] + "," + obj.value.substr(5) : false
+		obj.value.length == 9 ? obj.value = obj.value[0] + obj.value[2] + "." + obj.value[3] +  obj.value[4] + obj.value[6] +  "," + obj.value.substr(7)  : false	
+		obj.value.length == 10 ? obj.value = obj.value[0] + obj.value[1] + obj.value[3] + "." +  obj.value[4] + obj.value[5] + obj.value[7] + "," + obj.value.substr(8)  : false
+
+	}
+	 
+}

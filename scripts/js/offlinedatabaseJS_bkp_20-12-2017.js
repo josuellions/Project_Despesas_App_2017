@@ -42,11 +42,54 @@ let convertMes = ( ) => {
     dtBasepg == campo ? ( retonardt = dtBaseAno + "-" + id + "-01" )  : false
      
   })
-
   
   document.getElementById("comparaDt"). innerHTML = retonardt;
 
 }
+
+// $(document).ready( ( ) => {
+//   console.log(convertMes( ) )
+  
+//   // convertMes();
+// })
+
+// function convertMes(recebMes, recebAno) {
+
+//   let retonardt;
+//   // let dtBasepg = document.getElementById("dtReference").innerHTML.substr(0, 3);
+//   // let dtBaseAno = document.getElementById("dtReference").innerHTML.substr(4);
+
+//   let mesExt = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
+
+//   mesExt.forEach(function (campo, id) {
+
+//     id <= 9 ? (id = "0" + ++id) : ++id;
+
+//     recebMes == id ? (retonardt = campo + "/" + recebAno ) : false
+
+//   })
+
+//   return retonardt;
+// }
+
+// recebMesbase = () => {
+
+//   dtbaseBd()
+
+//   dtbaseBD = document.getElementById("comparaDt").innerText;
+//   dtbase = document.getElementById("dtReference").innerText;
+
+//   console.log("baseBD = " + dtbaseBD + " basepg = " + dtbase);
+
+
+//   return   dtbase == dtbaseBd ? true : false ;
+
+// }
+
+// $(document).ready(() => {
+//    recebMesbase();
+// })
+
 
 // CRIAR BANCO LOCAL WEB
 let localDB = null;
@@ -54,14 +97,18 @@ let localDB = null;
 function onInit(comp){
 
 const alertErroNavegador = "Erro: Seu navegador não permite banco de dados.";
-
+  let compara;
   try {
     !window.openDatabase ? alert( alertErroNavegador ) : ( initDB( ), createTables( ) );
     
-    comp === 1 ? queryAndUpdateOverviewLancaDespesas( ): false
-      comp === 2 ? queryAndUpdateOverviewLancaEntrada( ) : false
-        comp === 3 ? $(document).ready( ( ) => { queryAndUpdateOverviewVizualizarDespesas( ) }) : false
-
+  //   $(document).ready(() => {
+  //     compara = recebMesbase();
+  // })
+  //   if ( compara ) {
+      comp === 1 ? queryAndUpdateOverviewDesp( ) : false
+        comp === 2 ? queryAndUpdateOverviewLancaEntrada( ) : false
+          comp === 3 ? ( queryAndUpdateOverview( ), queryAndUpdateOverviewEntrada( ) ) : false
+    // }
   } catch (e) {
     const alertErroVersaoBd = "Erro: Versão de banco de dados inválida.";
     const alertErroDesconhecido = "Erro: Erro desconhecido: ";
@@ -117,7 +164,7 @@ let dtbaseBd = ( ) => {
   try {
     
     localDB.transaction(function (transaction) {
-      0.00
+
       transaction.executeSql(query, [], function (transaction, results) {
 
         for (let i = 0; i < results.rows.length; i++) {
@@ -139,11 +186,27 @@ let dtbaseBd = ( ) => {
 }
 // dtbaseBd( );
 
+//console.log( dtbaseBd( ) ); //para teste
+
+//==================================
+// $(document).ready(() => {
+//   console.log("Mes base = " + recebMesbase() + "  Mes BD = " + dtbaseBd( ) );
+// })
+
+
+
+
+// let retComp;
+
 // CHECK POSSUI DADOS NO BANCO
+// function checkBd ( comp ) {
 onInit( this.comp );
   let query = "SELECT * FROM TbEntradas;";
+  // let dtbase; 
+  // let dtbaseAno; 
   
   try {
+    // function comparar( retComp ) {
 
     localDB.transaction(function(transaction){
     
@@ -153,17 +216,44 @@ onInit( this.comp );
 
           let row = results.rows.item(i);
 
+          // this.dtbase = row['dtLanc'].substr(0,7);
+          // this.dtbaseAno = convertMes( ).substr(0,7);
+                  
+          // this.dtbaseAno = 0;  
+          // comp_01 == comp_02 ? onInit( this.comp ) : false;
+          // console.log(  dtbase == dtbaseAno ? onInit( this.comp ) : false);
+          // console.log(this.dtbase, this.dtbaseAno)
+        //  retComp =  comparaMes( this.dtbase, this.dtbaseAno)
+        //  console.log(retComp)
+          
         }
+        // this.retComp = comparaMes( this.dtbase, this.dtbaseAno)
 
       }, function(transaction, error){  
           alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
         });
     });
-
+// console.log( this.retComp )
+//     return this.retComp;
+//   }
   } catch (e) {
     alert("Error: SELECT não realizado " + e + ".");
   }
-// REMOVE DADOS BANCO, TELA ADD DESPESAS
+  // console.log( comparar( ) )
+// return comparar( );
+// }
+
+// function comparaMes ( comp_01, comp_02 ) {
+// console.log(comp_01 == comp_02 ? true : false)
+  // return comp_01 == comp_02 ? true  : false;
+// }
+
+// $("#OpcaoMesEsquedo").click( function( ) {
+//   checkBd( 3 )  ;
+// })
+
+// if ( checkBd( ) ) {
+  // REMOVE DADOS BANCO, TELA ADD DESPESAS
   function onDelete( id ){
 
     let query = "delete from TbDespesas where id=?;";
@@ -172,15 +262,15 @@ onInit( this.comp );
       localDB.transaction(function(transaction){
       
         transaction.executeSql(query, [id], function(transaction, results){
-          !results.rowsAffected ? alert("E0.00rro: Delete não realizado.") : location.reload( );
+          !results.rowsAffected ? updateStatus("Erro: Delete não realizado.") : location.reload( );
         }, errorHandler);
       });
     }catch (e) {
-      alert("Erro: DELETE não realizado " + e + ".");
+      updateStatus("Erro: DELETE não realizado " + e + ".");
     }
   }
 
-// REMOVER DADOS DO BANCO TELA ENTRADA DE CAIXA
+  // REMOVER DADOS DO BANCO TELA ENTRADA DE CAIXA
   function onDeleteEntrada( id ){
 
     let query = "delete from TbEntradas where id=?;";
@@ -189,22 +279,22 @@ onInit( this.comp );
       localDB.transaction(function(transaction){
       
         transaction.executeSql(query, [id], function(transaction, results){
-          !results.rowsAffected ? alert("Erro: Delete não realizado.") : location.reload( );
+          !results.rowsAffected ? updateStatus("Erro: Delete não realizado.") : location.reload( );
         }, errorHandler);
       });
     } catch (e) {
-        alert("Erro: DELETE não realizado " + e + ".");
+        updateStatus("Erro: DELETE não realizado " + e + ".");
     }
   }
    
-// CRIAR DADOS NO BANCO, TELA ADD DESPESAS 
+  // CRIAR DADOS NO BANCO, TELA ADD DESPESAS 
   function onCreate( ){
 
     let dtLancamento = formataData( );
 
     let data = document.getElementById("dtDespesa").value;
     let despesa = document.getElementById("selectDespesas").value;
-    let valor = document.getElementById("valDespesa").value;
+    let valor = document.getElementById("valDespesa").value.replace(',','.');
 
     valor.length >= 7 ? valor = valor.substr(0,1) + valor.substr(2) : false 
 
@@ -215,23 +305,23 @@ onInit( this.comp );
       try {
           localDB.transaction(function(transaction){
               transaction.executeSql(query, [dtLancamento, data, despesa, valor], function(transaction, results){
-                !results.rowsAffected ? alert("Erro: Inserção não realizada") : location.reload( );
+                !results.rowsAffected ? updateStatus("Erro: Inserção não realizada") : location.reload( );
               }, errorHandler);
           });
       }catch (e) {
-        alert("Erro: INSERT não realizado " + e + ".");
+        updateStatus("Erro: INSERT não realizado " + e + ".");
       }
     }
   }
 
-// INSERIR DADOS NO BANCO TELA ENTRADA CAIXA
+  // INSERIR DADOS NO BANCO TELA ENTRADA CAIXA
   function onCreateEntrada( ){
 
     let dtLancamento = formataData( );
    
     let data = document.getElementById("dtEntrada").value;
     let entrada = document.getElementById("textEntrada").value;
-    let valor = document.getElementById("valEntrada").value; 
+    let valor = document.getElementById("valEntrada").value.replace(',','.');
 
     valor.length >= 7 ? valor = valor.substr(0,1) + valor.substr(2) : false 
 
@@ -243,33 +333,25 @@ onInit( this.comp );
           try {
               localDB.transaction(function(transaction){
                   transaction.executeSql(query, [dtLancamento, data, entrada, valor], function(transaction, results){
-                      !results.rowsAffected ? alert("Erro: Inserção não realizada") :
+                      !results.rowsAffected ? updateStatus("Erro: Inserção não realizada") :
                         location.reload( );
                   }, errorHandler);
               });
           } catch (e) {
-            alert("Erro: INSERT não realizado " + e + ".");
+            updateStatus("Erro: INSERT não realizado " + e + ".");
           }
       }
   }
    
-// VARIÁVEL GLOBAL PARA EFETUAR CALCULO TELA VISUALIZAR
-  // let somaDespesaVisuzaliza = 0.0;
-  // let somaDespesa = 0.0;
-    let somaDespesaVisualizar = 0.0;
-    let cont = 0;
+  // VARIÁVEL GLOBAL PARA EFETUAR CALCULO TELA VISUALIZAR
+  let somaDespesaVisuzaliza = 0.0;
+  let somaDespesa = 0.0;
 
-  
 
-// CONSULTA BANCO DADOS DESPESAS TELA VISUALIZAR
-function queryAndUpdateOverviewVizualizarDespesas( ){
-      
-    convertMes();
-
-    let basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
-
-    let queryDesp = "SELECT * FROM TbDespesas;";
-
+  // CONSULTA BANCO DADOS DESPESAS
+  function queryAndUpdateOverview( ){
+   
+    let query = "SELECT * FROM TbDespesas;";
     try {
       let dtDia; 
       let dtMes;
@@ -277,77 +359,68 @@ function queryAndUpdateOverviewVizualizarDespesas( ){
       let dtAno; 
       let dtFormt;
       let valorFormat;
-     
-      // $(document).ready(() => {
-        
-        localDB.transaction(function (transaction) {
 
-          transaction.executeSql(queryDesp, [], function (transaction, results) {
+      localDB.transaction(function(transaction){
+      
+        transaction.executeSql(query, [], function(transaction, results){
 
-            for (let i = 0; i < results.rows.length; i++) {
+          for (let i = 0; i < results.rows.length; i++) {
 
-              let row = results.rows.item(i);
-            
-              verif = row['data'].slice(0, 7) == basemesPag ? true : false;
+            let row = results.rows.item(i);
+            let td = document.createElement( "td" );
 
-              if (verif == true && cont == 1) {
-              
-                let td = document.createElement( "td" );
+  					td.setAttribute("id", row['id']);
+            td.setAttribute("class", "date col-xs-12");
+            td.setAttribute("onclick", "onSelect(this)");
 
-                td.setAttribute("id", row['id']);
-                td.setAttribute("class", "date col-xs-12");
-                td.setAttribute("onclick", "onSelect(this)");
+            dtDia = row['data'].substr(8,10);
+            dtMes = row['data'].substr(4,5);
+            dtMesAlt = dtMes.substr(1,2);
+            dtAno = row['data'].substr(2,2);            
 
-                dtDia = row['data'].substr(8,10);
-                dtMes = row['data'].substr(4,5);
-                dtMesAlt = dtMes.substr(1,2);
-                dtAno = row['data'].substr(2,2);            
+            dtFormt = ( dtDia + "/" + dtMesAlt );
 
-                dtFormt = ( dtDia + "/" + dtMesAlt );
+            somaDespesa += row[ 'valor' ];
+            valorFormat = formataValor( row['valor'].toFixed(2).replace('.',',') );          
 
-                $("#visualizaDesp").append( 
-                  "<tr>" +
-                    "<td>" + dtFormt  + "</td>" +
-                    "<td>" + row[ 'despesa' ]  + "</td>" +
-                    "<td>" + "R$ " + row['valor'] + "</td>" +
-                  "</tr>"
-                );
-                somaDespesaVisualizar += parseFloat(row['valor'].replace(",", "."))
-
-                valorFormatDespVisualiza = formataValor((somaDespesaVisualizar).toFixed(2).replace('.', ','));
-              
-                $("#totalDespesas").html(valorFormatDespVisualiza).css( "text-align", "right" );
-                $("#calculototalDespesas").html(valorFormatDespVisualiza ).css( "text-align", "right" );
-                cont = 1;
-              
-            } else {
-                if (window.location.pathname === "/public/visualiza.html") {
-
-                  document.getElementById("totalDespesas").innerText = "0,00";
-
-                  document.getElementById("calculototalDespesas").innerText = "0,00";
-
-                  document.getElementById("visualizaDesp").innerText = "";
-
-                }
-            } 
+            $("#visualizaDesp").append( 
+              "<tr>" +
+                "<td>" + dtFormt  + "</td>" +
+                "<td>" + row[ 'despesa' ]  + "</td>" +
+                "<td>" + "R$ " + valorFormat + "</td>" +
+              "</tr>"
+            );
           }
+
+          somaDespesaVisuzaliza = somaDespesa;
+
+          somaDespesa = formataValor(somaDespesa) //.toFixed( 2 ).replace('.',',') )
+
+          $( "#totalDespesas").append( somaDespesa ).css( "text-align", "right" );
+          $( "#calculototalDespesas" ).append( somaDespesa ).css( "text-align", "right" );
+
         }, function(transaction, error){
-            alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
+            updateStatus("Erro: " + error.code + "<br>Mensagem: " + error.message);
        });
       });
-      // }) //ready
     } catch (e) {
-      alert("Error: SELECT não realizado " + e + ".");
+      updateStatus("Error: SELECT não realizado " + e$(document).ready(() => {
+        recebMesbase();
+      }) + ".");
     }
-//   }
+  }
 
-// // CONSULTA BANCO DADOS ENTRADA TELA VISUALIZAR
-//   function queryAndUpdateOverviewVizualizarEntrada( ){
+  // CONSULTA BANCO DADOS DESPESAS
+  function queryAndUpdateOverviewEntrada( ){
  
-    queryEntrad = "SELECT * FROM TbEntradas;";
-    // let basemesPag;
+    let query = "SELECT * FROM TbEntradas;";
+    let basemesPag;
 
+    
+
+
+    // let basemesPag = $("#comparaDt").innerText;
+    
     try {
 
       let dtDia; 
@@ -360,95 +433,93 @@ function queryAndUpdateOverviewVizualizarDespesas( ){
       let valorFormat;
       let valorFormatResult;
 
-      // $(document).ready(() => {
+      $(document).ready(() => {
 
-      // convertMes();
-
-      // let basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
-
-        localDB.transaction(function( transaction ){
+        convertMes( );
+        basemesPag = document.getElementById("comparaDt").innerText.slice(0,7);
+        //console.log(basemesPag)
         
-          transaction.executeSql(queryEntrad, [], function( transaction, results ){
+      localDB.transaction(function( transaction ){
+      
+        transaction.executeSql(query, [], function( transaction, results ){
+           
+          for (let i = 0; i < results.rows.length; i++) {
+                      
+            let row = results.rows.item(i);
+
+            verif = row['data'].slice(0, 7) == basemesPag ? true : false;
+
+            if ( verif == true ) {
+
+              let td = document.createElement( "td" );
+
+            td.setAttribute("id", row['id']);
+            td.setAttribute("class", "date col-xs-12");
+            td.setAttribute("onclick", "onSelect(this)");
+
+            dtDia = row['data'].substr(8,10);
+            dtMes = row['data'].substr(4,5);
+            dtMesAlt = dtMes.substr(1,2);
+            dtAno = row['data'].substr(2,2);
+
+            // verificaBd = convertMes( dtAno, dtMes );
+            // verificaPg = checkBd()
+            // console.log("Bd => " + verificaBd, "Pg => " + verificaPg)
             
-            for (let i = 0; i < results.rows.length; i++) {
-                        
-              let row = results.rows.item(i);
+            dtFormt = ( dtDia + "/" + dtMesAlt );
 
-              verif = row['data'].slice(0,7) == basemesPag ? true : false;
+            somaEntrada += row[ 'valor' ];
 
-              if ( verif == true ) {
+            valorFormat = formataValor( row['valor']); // .toFixed(2).replace('.',',') );
 
-                let td = document.createElement( "td" );
-
-                td.setAttribute("id", row['id']);
-                td.setAttribute("class", "date col-xs-12");
-                td.setAttribute("onclick", "onSelect(this)");
-
-                dtDia = row['data'].substr(8,10);
-                dtMes = row['data'].substr(4,5);
-                dtMesAlt = dtMes.substr(1,2);
-                dtAno = row['data'].substr(2,2);
-
-                dtFormt = ( dtDia + "/" + dtMesAlt );
-
-                somaEntrada += parseFloat( row['valor'].replace(',', '.'));
-
-                // valorFormat = (row['valor']);
-
-                $("#visualizaEntrada").append( 
-                  "<tr>" +
-                    "<td>" + dtFormt  + "</td>" +
-                    "<td>" + row[ 'entrada' ]  + "</td>" +
-                    "<td>" + "R$ " + row['valor'] + "</td>" +
-                  "</tr>"
-                );
-
-                result = somaEntrada - somaDespesaVisualizar;
-                result = formataValor( result.toFixed(2 ).replace( '.',',' ) );
-
-                valorFormatResult = formataValor( parseFloat(somaEntrada)).toFixed(2).replace('.', ',' );
+            $("#visualizaEntrada").append( 
+              "<tr>" +
+                "<td>" + dtFormt  + "</td>" +
+                "<td>" + row[ 'entrada' ]  + "</td>" +
+                "<td>" + "R$ " + valorFormat + "</td>" +
+              "</tr>"
+            );
           
-                $( "#totalEntrada").html( valorFormatResult ).css( "text-align", "right" );
-                $( "#calculototalEntrada" ).html( valorFormatResult ).css( "text-align", "right" );
+          result = somaEntrada - somaDespesaVisuzaliza;
+          result = formataValor( result.toFixed(2 ).replace( '.',',' ) );
 
-                let comp =( 0 ).toFixed(2).replace('.',',');
+          console.log(somaEntrada)
 
-                if( result <= comp  ) {
-                  $("#saldoGeral").css({ "color": "rgb(233, 71, 71)", "text-shadow": "0px 0px 2px #337ab7" } );
-                  $("#simboloMoeda").css({ "color": "rgb(233, 71, 71)", "text-shadow": "0px 0px 3px #337ab7" });
-                  $("#calculosomaGeral").html(result).css({ "text-align": "right", "color": "rgb(233, 71, 71)", "text-shadow": "0px 0px 3px #337ab7" });
-                } else {
-                  $( "#calculosomaGeral" ).html( result ).css( "text-align", "right" );
-                }
+          somaEntrada =formataValor( somaEntrada) //.toFixed( 2 ).replace('.',',') );
 
-                cont = 1;
-                somaDespesaVisualizar = 0.0;
+          $( "#totalEntrada").append( somaEntrada ).css( "text-align", "right" );
+          $( "#calculototalEntrada" ).append( somaEntrada ).css( "text-align", "right" );
 
-              } else {
-                if (window.location.pathname == "/public/visualiza.html") {
+          let comp =( 0 ).toFixed(2).replace('.',',');
 
-                  document.getElementById("totalEntrada").innerText = "0,00";
+          if( result <= comp  ) {
+            $( "#calculosomaGeral" ).append( result ).css( {"text-align": "right", "color": "red" } );
+          } else {
+            $( "#calculosomaGeral" ).append( result ).css( "text-align", "right" );
+          }
+            
+            } else {
+              document.getElementById("visualizaEntrada").innerText = ""; 
+              document.getElementById("visualizaDesp").innerText = "";
+              document.getElementById("totalEntrada").innerText = "0,00";
+              document.getElementById("calculototalEntrada").innerText = "0,00";
+              document.getElementById("calculosomaGeral").innerText = "0,00";
+          } 
+        
+        }
+        }, function(transaction, error){
+              updateStatus("Erro: " + error.code + "<br>Mensagem: " + error.message);
+          });
+      });
 
-                  document.getElementById("calculototalEntrada").innerText = "0,00";
-
-                  document.getElementById("calculosomaGeral").innerText = "0,00";
-
-                  document.getElementById("visualizaEntrada").innerText = "";
-
-                }
-              } 
-            }
-          }, function(transaction, error){
-                alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
-            });
-        });
-      // }) //ready
+      }) //ready
     } catch (e) {
-      alert("Error: SELECT não realizado " + e + ".");
+      updateStatus("Error: SELECT não realizado " + e + ".");
     }
-}
-// CONSULTA BANCO DADOS, CRIA NOVAS LINHAS NA TABELA, TELA ADD DESPESAS.
-  function queryAndUpdateOverviewLancaDespesas( ){
+  }
+
+  // CONSULTA BANCO DADOS, CRIA NOVAS LINHAS NA TABELA, TELA ADD DESPESAS.
+  function queryAndUpdateOverviewDesp( ){
 
     let query = "SELECT * FROM TbDespesas;";
     
@@ -476,29 +547,28 @@ function queryAndUpdateOverviewVizualizarDespesas( ){
 
             dtFormt = ( dtDia + "/" + dtMesAlt );
 
-             let valorFormatDespesa = row['valor' ]; 
+             let valorFormat = formataValor( row['valor' ].toFixed(2).replace('.',',') );
             
             $( '#tbDespesas > tbody' ).append (
               '<tr>' + 
                   '<td width="22%">' + dtFormt + '</td>' +
                   '<td width="48%">' + row[ 'despesa' ] + '</td>' +
-                  '<td width="30%">' + "R$ " + valorFormatDespesa + '</td>' +
+                  '<td width="30%">' + "R$ " + valorFormat + '</td>' +
                   '<td width="5%><a href="" id="' + row[ 'id' ] + '" onclick="onDelete( ' +
                   row[ 'id' ] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +
               '</tr>'
               );
-
-              somaDespesa += parseFloat( row['valor'].replace(",", "."));
+          
+            somaDespesa += row[ 'valor' ];
           
             }
 
-          valorFormatDespesa = formataValor( (somaDespesa).toFixed(2).replace('.',',') );
-
+          valorFormat = formataValor( somaDespesa.toFixed(2).replace('.',',') );
           
-          $( "#somaDespesas" ).html( valorFormatDespesa );
+          $( "#somaDespesas" ).html( valorFormat );
 
         }, function(transaction, error){
-            alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
+            updateStatus("Erro: " + error.code + "<br>Mensagem: " + error.message);
         });
       });
     } catch (e) {
@@ -506,7 +576,7 @@ function queryAndUpdateOverviewVizualizarDespesas( ){
     }
   }
 
-// CONSULTA BANCO DADOS, CRIAR LINHA, EXIBIR TELA ENTRADA CAIXA.
+  // CONSULTA BANCO DADOS, CRIAR LINHA, EXIBIR TELA ENTRADA CAIXA.
   function queryAndUpdateOverviewLancaEntrada( ){
 
   let query = "SELECT * FROM TbEntradas;";
@@ -518,8 +588,7 @@ function queryAndUpdateOverviewVizualizarDespesas( ){
       let dtMesAlt;
       let dtAno; 
       let dtFormt;
-      let somaEntrada = 0.00;
-      let formatasomaEntrada;
+      let somaEntrada = 0.0;
 
       localDB.transaction(function(transaction){
       
@@ -536,7 +605,7 @@ function queryAndUpdateOverviewVizualizarDespesas( ){
 
             dtFormt = ( dtDia + "/" + dtMesAlt );
 
-            let valorFormat = row['valor'];
+            let valorFormat = formataValor( row['valor' ].toFixed(2).replace('.',',') );
 
             $( '#tbEntrada > tbody' ).append (
               '<tr>' + 
@@ -546,35 +615,38 @@ function queryAndUpdateOverviewVizualizarDespesas( ){
                   '<td width="5%><a href="" id="' + row[ 'id' ] + '" onclick="onDeleteEntrada( ' + 
                   row[ 'id' ] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +
               '</tr>'
-            );
-                        
-            somaEntrada += parseFloat(row['valor'].replace(",", "."));
-            
+            ); 
+          somaEntrada += row['valor' ];
           }
 
-          valorFormat = formataValor((somaEntrada).toFixed(2).replace(".", ",") );
+          valorFormat = formataValor( somaEntrada.toFixed( 2 ).replace('.',',') );
 
           $( "#valTotal").html( valorFormat );
 
         }, function(transaction, error){
-              alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
+              updateStatus("Erro: " + error.code + "<br>Mensagem: " + error.message);
           });
       });
     } catch (e) {
         alert("Error: SELECT não realizado " + e + ".");
     }
  }
+//   } 
+// });
 
 // // 3. FUNÇAO DE TRATAMENTO E STATUS.
  
 // Tratando erros
 errorHandler = function(transaction, error){
-    alert("Erro: " + error.message);
+    updateStatus("Erro: " + error.message);
     return true;
+
 }
  
 nullDataHandler = function(transaction, results){
 }
 
 // TOTAL DE LINHA SEM REFATORAR 01/12/2017=  514
-// TOTAL DE LINHA REFATARADO  01/12/2014 = 380
+// TOTAL DE LINHA REFAROTARADO  01/12/2014 = 380
+
+

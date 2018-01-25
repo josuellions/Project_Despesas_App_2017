@@ -5,7 +5,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<!-- <link rel="stylesheet" type="text/css" href="../assets/css/reset.css"> -->
 	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
 	<link rel="stylesheet" type="text/css" href="../assets/css/stylesMenu.css">
 	<link rel="stylesheet" type="text/css" href="../assets/css/libs/css/bootstrap.min.css">
@@ -15,19 +16,21 @@
 </head>
 <body onload="onInit( 3 )">
 	<div class="heightVisualizar">
-		<div class="container-fluid bg-01 col-xs-12 col-lg-12">
-
-			<img src="../assets/img/logo_seven.jpg" class="col-xs-2 col-lg-2 imgLg">
-
-			<div class="container-fluid col-xs-8 col-lg-8">
-
-				<p class="contVer" id="contVer"></p>
-
-			</div>
-			<!-- MENU -->
-			<nav class="dropdown alingMenu col-xs-2 col-lg-2" id="menuMobile">
-					<button class="btn dropdown-toggle buttonMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="btnMenu">
-						<span	class="glyphicon glyphicon-tasks btnMenu" id=""></span>
+		<section>
+			<div class="container-fluid bg-01 col-xs-12 col-lg-12">
+	
+				<img src="../assets/img/logo_seven.jpg" class="col-xs-2 col-lg-2 imgLg">
+	
+				<div class="container-fluid col-xs-8 col-lg-8">
+	
+					<p class="contVer" id="contVer"></p>
+	
+				</div>
+				<!-- MENU -->
+				<nav class="dropdown alingMenu col-xs-2 col-lg-2" id="menuMobile">
+					<button class="btn dropdown-toggle buttonMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+					 id="btnMenu">
+						<span class="glyphicon glyphicon-tasks btnMenu" id=""></span>
 					</button>
 					<ul class="dropdown-menu dropdown-menu-right" arial-labellebdy=" dropdownMenu3 dropdownMenuDivider" id="liMenu">
 						<li>
@@ -35,35 +38,35 @@
 								<a id="btnHome">Home</a>
 							</span>
 						</li>
-						
+	
 						<li role="separator" class="divider liDivider"></li>
-
+	
 						<li>
 							<span class="glyphicon glyphicon-usd" id="btnMenuEntra">
 								<a id="btnMenuEntra">Entrada Caixa</a>
 							</span>
 						</li>
-
+	
 						<li>
 							<span class="glyphicon glyphicon-shopping-cart" id="btnMenuDesp">
 								<a id="btnMenuDesp">Despesa</a>
 							</span>
 						</li>
-
+	
 						<li>
 							<span class="glyphicon glyphicon-zoom-in" id="btnMenuVisual">
 								<a id="btnMenuVisual">Visualizar</a>
 							</span>
 						</li>
-						
+	
 						<li>
 							<span class="glyphicon glyphicon-list-alt" id="btnMenuRelator">
 								<a id="btnMenuRelator">Relatório</a>
 							</span>
 						</li>
-						
+	
 						<li role="separator" class="divider liDivider"></li>
-
+	
 						<li>
 							<span class="glyphicon glyphicon-info-sign" id="btnInfo">
 								<a id="btnInfo">Informações</a>
@@ -75,9 +78,9 @@
 							</span>
 						</li>
 					</ul>
-			</nav>
-			<!-- END MENU -->
-		</div>
+				</nav>
+				<!-- END MENU -->
+			</div>
 		
 		<dir class="container-fluid col-xs-12 bg-03">
 			<h1 class="col-xs-12  text-center">Visualizar Despesas</h1>
@@ -153,8 +156,8 @@
 		      		<th width="30vw" id="calculototalEntrada"></th>
 		      	</tr>
 		      	<tr>
-		      		<th width="65vw">Saldo Geral </th>
-		      		<th width="2vw">R$</th>
+		      		<th width="65vw" id="saldoGeral" >Saldo Geral </th>
+		      		<th width="2vw" id="simboloMoeda">R$</th>
 		      		<th width="30vw" id="calculosomaGeral"></th>
 		      	</tr>
 						
@@ -176,20 +179,19 @@
 					</thead>
 				</table>
 			</div>
-
-			
-
 		</div>
 	</div>
-
+	<div hidden id="divCompara">
+		<p hidden id="comparaDt"></p>
+	</div>
 	<footer class="col-xs-12 col-lg-12 footerVisualizar bg-02" id="btnSobre">
-		<div class="container-fluid  text-center" >
+		<div class="container-fluid col-xs-12 col-lg-12" >
 			<p id="nomeDeveloper"></p>
 			<p id="nomeEmpresa"></p>
 		</div>
 	</footer>
 </body>
-<script type="text/javascript" src="../scripts/js/libs/jquery-3.2.1.js"></script>
+<!-- <script type="text/javascript" src="../scripts/js/libs/jquery-3.2.1.js"></script> -->
 <script type="text/javascript" src="../scripts/js/libs/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../assets/css/libs/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../scripts/js/controller.js"></script>

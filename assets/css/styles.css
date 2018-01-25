@@ -5,39 +5,48 @@
 	margin: 0;
 }
 
-@media ( min-width: 320px) and (max-width: 1020px) {
+@media screen and ( min-width: 320px) and (max-width: 1020px) {
 	
 	/*DEFINIR COR DE FUNDO - 01 - Superio*/
 	.bg-01 {
 		background-color: #474e5d;
-		position: fixed;
-		height: 7%;
+		position: absolute;
+		height: 40px;
 		z-index: 3;
+		box-shadow:  0px 0px 10px  #c5cad5;
+		/* border-bottom: 1px solid #c5cad5; */
 	}
 
 	/*DEFINIR COR DE FUNDO - 02 - Rodapé*/
 	.bg-02 {
 		background-color: #474e5d;
 		color: #ffffff;
-		position: fixed;
+		position: absolute;
 		z-index: 1;
-		height: 7%;
+		height: 45px !important;
+		box-shadow:  0px 0px 10px  #c5cad5;
+		border-bottom: 1px solid #c5cad5;
 	}
 
 	/*DEFINIR COR DE FUNDO - 03 - Titulo*/
 	.bg-03 {
 		background-color: #737d93;
 		color: #ffffff;
-		position: fixed;
+		position: absolute;
 		z-index: 1;
 		text-align: center;
+
+		box-shadow:  0px 0px 10px  #c5cad5;
+		border-bottom: 1px solid #c5cad5;
 	}
 
 	/*DEFINIR COR DE FUNDO - 04 - Mês Referencia*/
 	.bg-04 {
 		background-color: #c5cad5;
+		box-shadow:  0px 0px 10px  #c5cad5;
+		border-bottom: 1px solid #c5cad5;
 		color: #ffffff;
-		position: fixed;
+		position: absolute;
 		width: 100%;
 		z-index: 1;
 		height: 7%;
@@ -46,11 +55,13 @@
 
 	/*ALINHAR TEXTO h1 - Texto Principal*/
 	.container-fluid > h1 {
+		text-shadow: 2px 0px 5px #337ab7;
 		font-size: 2.7rem;
 	}
 
 	/*BOTÃO OPÇÃO MÊS*/
 	.spanOpcaoMesEsquerdo {
+		text-shadow: 1px 0px 3px #337ab7;
 		font-size: 2.5rem;
 		float: left;
 		color: white;
@@ -59,10 +70,15 @@
 		margin: 0;
 		padding: 0;
 		padding-top: .7%;
+	}
 
+	/* Cor ao passar mouse */
+	.spanOpcaoMesEsquerdo:hover {
+		color: #337ab7;
 	}
 
 	.spanOpcaoMesDireito {
+		text-shadow: 1px 0px 3px #337ab7;
 		font-size: 2.5rem;
 		float: right;
 		color: white;
@@ -73,8 +89,13 @@
 		padding-top: 1.5%;
 	}
 
+	.spanOpcaoMesDireito:hover{
+		color: #337ab7;
+	}
+
 	/*ALINHA MÊS*/
 	.container-fluid >  .alinharMes {
+		text-shadow: 1px 0px 3px #337ab7;
 		text-align: center;
 		height: 7%;
 		font-size: 2.5rem;
@@ -144,9 +165,10 @@
 	padding: 0;
 	margin-top: 5%;
 	text-align: left;
+	text-shadow: 0px 0px 3px lightslategrey;	
 	}
 	 .container-fluid > div > p {
-		padding: 0;
+		padding: 0;		
 	}
 
 	div.listExibDesp {
@@ -160,7 +182,6 @@
 		font-size: .7rem;
 		text-align: center;
 		overflow: auto;
-
 	}
 
 	.listDesp {
@@ -172,7 +193,7 @@
 	tbody.listDesp tr td {
 		padding-left: 4%;
 		margin-left: 2%;
-		padding-top: 4%;
+		padding-top: 4%;		
 	} 
 
 	div.listExibEntrada {
@@ -183,7 +204,7 @@
 	  margin-top: -3%;
 	  min-height: 20vh;
 		font-size: .7rem;
-		overflow: auto;
+		overflow: auto;		
 	}
 
 /*	div .textExib-Entrada {
@@ -196,8 +217,7 @@
 	  padding: 2%;
 	  margin-top: 2%;
 	  min-height: 5vh;
-		font-size: 1rem;
-
+		font-size: 1rem;		
 	}
 
 	div.listExibCalculos {
@@ -207,11 +227,11 @@
 	  margin-left: 1%;
 	  margin-top: 7%;
 	  min-height: 13.5vh;
-		font-size: 1rem;
+		font-size: 1rem;		
 	}
 
 	div.listExibCalculos tr th {
-		padding-bottom: 5%;
+		padding-bottom: 5%;		
 	}
 
 	div.totalDespesas {
@@ -220,7 +240,7 @@
 	  margin-top: -10%;
 	  min-height: 5vh;
 	  margin-left: -1%;
-		font-size: 1rem;
+		font-size: 1rem;		
 	}
 
 	/*TEXTAREA DESPESAS - Tela Visualizar*/
@@ -230,7 +250,7 @@
 		padding:  2%;
 		padding-top: 2%;
 		font-size: .7rem;
-		font-style: bold;
+		font-style: bold;		
 	}
 
 	thead.theadDesp  tr th {
@@ -272,7 +292,7 @@
 		padding:  2%;
 		padding-top: 2%;
 		font-size: .7rem;
-		font-style: bold;
+		font-style: bold;	
 	}
 
 	/*BOTÃO VISUALIZAR - Tela Visualizar Despesas*/
@@ -335,46 +355,49 @@
 	}
 
 	footer.footerIndex {
-		padding-top: .5%;
-		padding-bottom: .5%;
+		/* padding-top: .5%; */
+		/* padding-bottom: .5%; */
+		padding: 0;
 		margin: 0;
 		margin-top: 160.7%;
-		height: 9%;
-		position: fixed;
+		position: absolute;
 		text-align: center;
+		font-size: 1.1rem;
+		padding-top: .2rem;
 	}
 
 	/*FOOTER TELA ENTRADA CAIXA*/
 	footer.footerEntrada {
-		padding-top: .5%;
-		padding-bottom: .5%;
+		padding: 0;
 		margin: 0;
 		margin-top: 160.7%;
-		height: 9%;
-		position: fixed;
+		position: absolute;
 		text-align: center;
+		font-size: 1.1rem;
+		padding-top: .2rem;
 	}
 
 	/*FOOTER TELA DESPESAS*/
 	footer.footerDespesas {
-		padding-top: .5%;
-		padding-bottom: .5%;
+		padding: 0;
 		margin: 0;
 		margin-top: 160.7%;
-		height: 9%;
-		position: fixed;
+		position: absolute;
 		text-align: center;
+		font-size: 1.1rem;
+		padding-top: .2rem;
 	}
 
 	/*FOOTER TELA VISUALIZAR*/
 	footer.footerVisualizar {
-		padding-top: .5%;
-		padding-bottom: .5%;
+		padding: 0;
 		margin: 0;
 		margin-top: 160.7%;
-		height: 9%;
-		position: fixed;
+		position: absolute;
 		text-align: center;
+		font-size: 1.1rem;
+		padding-top: .2rem;
+		/* width: 90%; */
 	}
 
 	.container-fluid img {
@@ -387,10 +410,12 @@
 	}
 
 	.heightVisualizar {
-		position: fixed;
+		position: absolute;
 		height: 576px;
 		max-height: 680px;
 		overflow-y: auto;
+		/* width: 95%;
+		background-color: red; */
 	}
 
 	/*ICONE DO APP*/
@@ -403,8 +428,17 @@
 		position: fixed;
 		z-index: 1;
 	}
-}
 
+	#divCompara {
+		float:left;
+		margin-top: 140%;
+		font-size:14; 
+		color: white;
+		display: inline-flex;
+		background-color: red;
+		overflow: hidden;		
+	}
+}
 
 /*TELAS DESKTOPS*/
 @media screen and (min-width: 1024px) {
