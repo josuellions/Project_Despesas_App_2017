@@ -171,7 +171,7 @@ function onDelete(id) {
     localDB.transaction(function (transaction) {
 
       transaction.executeSql(query, [id], function (transaction, results) {
-        !results.rowsAffected ? alert("E0.00rro: Delete não realizado.") : location.reload();
+        !results.rowsAffected ? alert("E0.00rro: Delete não realizado.") : queryAndUpdateOverviewLancaDespesas(); //location.reload();
       }, errorHandler);
     });
   } catch (e) {
@@ -188,7 +188,7 @@ function onDeleteEntrada(id) {
     localDB.transaction(function (transaction) {
 
       transaction.executeSql(query, [id], function (transaction, results) {
-        !results.rowsAffected ? alert("Erro: Delete não realizado.") : location.reload();
+        !results.rowsAffected ? alert("Erro: Delete não realizado.") : queryAndUpdateOverviewLancaEntrada(); //location.reload();
       }, errorHandler);
     });
   } catch (e) {
@@ -214,9 +214,14 @@ function onCreate() {
     try {
       localDB.transaction(function (transaction) {
         transaction.executeSql(query, [dtLancamento, data, despesa, valor], function (transaction, results) {
-          !results.rowsAffected ? alert("Erro: Inserção não realizada") : location.reload();
+          !results.rowsAffected ? alert("Erro: Inserção não realizada") : queryAndUpdateOverviewLancaDespesas(); //location.reload();
         }, errorHandler);
       });
+      
+      
+    
+      
+
     } catch (e) {
       alert("Erro: INSERT não realizado " + e + ".");
     }
@@ -242,8 +247,7 @@ function onCreateEntrada() {
     try {
       localDB.transaction(function (transaction) {
         transaction.executeSql(query, [dtLancamento, data, entrada, valor], function (transaction, results) {
-          !results.rowsAffected ? alert("Erro: Inserção não realizada") :
-            location.reload();
+          !results.rowsAffected ? alert("Erro: Inserção não realizada") : queryAndUpdateOverviewLancaEntrada(); //location.reload();
         }, errorHandler);
       });
     } catch (e) {
