@@ -267,21 +267,6 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
   let queryDesp = "SELECT * FROM TbDespesas;";
 
-  function limparVisualizaDespesas() {
-    if (window.location.pathname === "/public/visualiza.html") {
-
-      document.getElementById("totalDespesas").innerText = "0,00";
-
-      document.getElementById("calculototalDespesas").innerText = "0,00";
-
-      document.getElementById("visualizaDesp").innerText = "";
-
-      document.getElementById('totalDespesas'.innerHTML = "");
-
-      somaDespesaVisualizar = 0.0;
-    }
-  }
-
   try {
     let dtDia;
     let dtMes;
@@ -297,7 +282,20 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
       transaction.executeSql(queryDesp, [], function (transaction, results) {
 
-        limparVisualizaDespesas()
+        if (window.location.pathname === "/public/visualiza.html") {
+
+          document.getElementById("totalDespesas").innerText = "0,00";
+
+          document.getElementById("calculototalDespesas").innerText = "0,00";
+
+          //$("#visualizaDesp").empty() //innerText = "";
+          $("#visualizaDesp tr").remove();
+
+          document.getElementById('totalDespesas'.innerHTML = "");
+
+          somaDespesaVisualizar = 0.0;
+        }
+        
 
         for (let i = 0; i < results.rows.length; i++) {
 
@@ -305,7 +303,7 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
           verif = row['data'].slice(0, 7) == basemesPag ? true : false;
 
-          if (verif == true) {
+          if (verif === true) {
 
             conf = true;
 
@@ -337,9 +335,18 @@ function queryAndUpdateOverviewVizualizarDespesas() {
             $("#calculototalDespesas").html(valorFormatDespVisualiza).css("text-align", "right");
             cont = 1;
 
-          } else if (!conf) {
+          } else if ((window.location.pathname === "/public/visualiza.html") && (conf === false) ){
 
-            limparVisualizaDespesas();
+            document.getElementById("totalDespesas").innerText = "0,00";
+
+            document.getElementById("calculototalDespesas").innerText = "0,00";
+
+            //$("#visualizaDesp").empty() //innerText = "";
+            $("#visualizaDesp tr").remove();
+
+            document.getElementById('totalDespesas'.innerHTML = "");
+
+            somaDespesaVisualizar = 0.0;
           }
         }
       }, function (transaction, error) {
@@ -354,20 +361,6 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
   // // CONSULTA BANCO DADOS ENTRADA TELA VISUALIZAR
   //   function queryAndUpdateOverviewVizualizarEntrada( ){
-
-  function limparVisualizaEntrada() {
-    if (window.location.pathname === "/public/visualiza.html") {
-      document.getElementById("totalEntrada").innerText = "0,00";
-
-      document.getElementById("calculototalEntrada").innerText = "0,00";
-
-      document.getElementById("calculosomaGeral").innerText = "0,00";
-
-      document.getElementById("visualizaEntrada").innerText = "";
-
-      somaEntrada = 0.0;
-    }
-  }
 
   queryEntrad = "SELECT * FROM TbEntradas;";
   // let basemesPag;
@@ -395,8 +388,19 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
       transaction.executeSql(queryEntrad, [], function (transaction, results) {
 
-        limparVisualizaEntrada();
+        if (window.location.pathname === "/public/visualiza.html") {
+          document.getElementById("totalEntrada").innerText = "0,00";
 
+          document.getElementById("calculototalEntrada").innerText = "0,00";
+
+          document.getElementById("calculosomaGeral").innerText = "0,00";
+
+          //document.getElementById("visualizaEntrada").innerText = "";
+          $("#visualizaEntrada tr").remove();
+
+          somaEntrada = 0.0;
+        }
+        alert(window.location.pathname);
         for (let i = 0; i < results.rows.length; i++) {
 
           let row = results.rows.item(i);
@@ -407,11 +411,11 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
             conf = true;
 
-            let td = document.createElement("td");
+           // let td = document.createElement("td");
 
-            td.setAttribute("id", row['id']);
-            td.setAttribute("class", "date col-xs-12");
-            td.setAttribute("onclick", "onSelect(this)");
+           // td.setAttribute("id", row['id']);
+           // td.setAttribute("class", "date col-xs-12 money");
+           // td.setAttribute("onclick", "onSelect(this)");
 
             dtDia = row['data'].substr(8, 10);
             dtMes = row['data'].substr(4, 5);
@@ -453,9 +457,18 @@ function queryAndUpdateOverviewVizualizarDespesas() {
             //cont = 2;
             //somaDespesaVisualizar = 0.0;
 
-          } else if (!conf) {
+          } else if ( (window.location.pathname === "/public/visualiza.html") && (conf === false) ) {
+            
+              document.getElementById("totalEntrada").innerText = "0,00";
 
-            limparVisualizaEntrada();
+              document.getElementById("calculototalEntrada").innerText = "0,00";
+
+              document.getElementById("calculosomaGeral").innerText = "0,00";
+
+              //document.getElementById("visualizaEntrada").innerText = "";
+              $("#visualizaEntrada tr").remove();
+
+              somaEntrada = 0.0;
           }
         }
       }, function (transaction, error) {
@@ -470,8 +483,6 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 cont = 0;
 // CONSULTA BANCO DADOS, CRIA NOVAS LINHAS NA TABELA, TELA ADD DESPESAS.
 function queryAndUpdateOverviewLancaDespesas() {
-
-
 
   $(document).ready(function () {
 
@@ -528,7 +539,7 @@ function queryAndUpdateOverviewLancaDespesas() {
 
               somaDespesa += parseFloat(row['valor'].replace(",", "."));
               cont++;
-            } else if ((window.location.pathname === "/public/despesas.html") && (conf == false)) {
+            } else if ((window.location.pathname === "/public/despesas.html") && (conf === false)) {
               document.getElementById("somaDespesas").innerText = "";
 
               $("#tbDespesas tbody tr").remove();
@@ -558,8 +569,6 @@ function queryAndUpdateOverviewLancaEntrada() {
   let basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
 
   let query = 'SELECT * FROM TbEntradas;';
-
-
 
   try {
 

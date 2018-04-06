@@ -354,9 +354,18 @@
 		z-index: 0;
 	}
 
+	footer.footerIndex, footer.footerEntrada,  
+	footer.footerDespesas, footer.footerVisualizar {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+		text-align: center;
+	}
+
+/*
 	footer.footerIndex {
-		/* padding-top: .5%; */
-		/* padding-bottom: .5%; */
+
 		padding: 0;
 		margin: 0;
 		margin-top: 160.7%;
@@ -364,9 +373,12 @@
 		text-align: center;
 		font-size: 1.1rem;
 		padding-top: .2rem;
-	}
 
+
+	}
+*/
 	/*FOOTER TELA ENTRADA CAIXA*/
+	/*
 	footer.footerEntrada {
 		padding: 0;
 		margin: 0;
@@ -376,9 +388,10 @@
 		font-size: 1.1rem;
 		padding-top: .2rem;
 	}
+*/
 
 	/*FOOTER TELA DESPESAS*/
-	footer.footerDespesas {
+/*	footer.footerDespesas {
 		padding: 0;
 		margin: 0;
 		margin-top: 160.7%;
@@ -387,8 +400,10 @@
 		font-size: 1.1rem;
 		padding-top: .2rem;
 	}
+*/
 
 	/*FOOTER TELA VISUALIZAR*/
+/*
 	footer.footerVisualizar {
 		padding: 0;
 		margin: 0;
@@ -397,9 +412,8 @@
 		text-align: center;
 		font-size: 1.1rem;
 		padding-top: .2rem;
-		/* width: 90%; */
 	}
-
+*/
 	.container-fluid img {
 		float: left;
 		margin-top: 1%;
@@ -784,37 +798,64 @@
 		z-index: 0;
 	}
 
+	footer.footerIndex, footer.footerEntrada,  
+	footer.footerDespesas, footer.footerVisualizar {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+		text-align: center;
+	}
+
+	/*
 	footer.footerIndex {
-		padding-top: 1%;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding-top: 1%;*/
+/*		padding-bottom: .5%;*/
+/*		margin: 0;*/
+/*		margin-top: 45.8%;*/
+/*		position: absolute;
+		text-align: center;
+	}*/
+
+	/*FOOTER TELA ENTRADA CAIXA*/
+/*	footer.footerEntrada {
+		/*padding-top: .5%;
 		padding-bottom: .5%;
 		margin: 0;
 		margin-top: 45.8%;
 		position: fixed;
 		text-align: center;
-	}
-
-	/*FOOTER TELA ENTRADA CAIXA*/
-	footer.footerEntrada {
-		padding-top: .5%;
-		padding-bottom: .5%;
-		margin: 0;
-		margin-top: 45.8%;
-		position: fixed;
+*/
+/*		left: 0;
+		right: 0;
+		bottom: 0;
+		padding-top: 1%;
+		position: absolute;
 		text-align: center;
 	}
 
 	/*FOOTER TELA DESPESAS*/
-	footer.footerDespesas {
-		padding-top: .5%;
+/*	footer.footerDespesas {
+		/*padding-top: .5%;
 		padding-bottom: .5%;
 		margin: 0;
 		margin-top: 45.8%;
 		position: fixed;
 		text-align: center;
+*/
+/*		left: 0;
+		right: 0;
+		bottom: 0;
+		padding-top: 1%;
+		position: absolute;
+		text-align: center;
 	}
 
 	/*FOOTER TELA VISUALIZAR*/
-	footer.footerVisualizar {
+/*	footer.footerVisualizar {
 		padding-top: .5%;
 		padding-bottom: .5%;
 		margin: 0;
