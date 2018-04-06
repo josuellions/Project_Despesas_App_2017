@@ -282,7 +282,7 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
       transaction.executeSql(queryDesp, [], function (transaction, results) {
 
-        if (window.location.pathname === "/public/visualiza.html") {
+       // if (window.location.pathname === "/public/visualiza.html") {
 
           document.getElementById("totalDespesas").innerText = "0,00";
 
@@ -294,9 +294,8 @@ function queryAndUpdateOverviewVizualizarDespesas() {
           document.getElementById('totalDespesas'.innerHTML = "");
 
           somaDespesaVisualizar = 0.0;
-        }
+       // }
         
-
         for (let i = 0; i < results.rows.length; i++) {
 
           let row = results.rows.item(i);
@@ -388,7 +387,7 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
       transaction.executeSql(queryEntrad, [], function (transaction, results) {
 
-        if (window.location.pathname === "/public/visualiza.html") {
+        //if (window.location.pathname == "/public/visualiza.html") {
           document.getElementById("totalEntrada").innerText = "0,00";
 
           document.getElementById("calculototalEntrada").innerText = "0,00";
@@ -399,8 +398,9 @@ function queryAndUpdateOverviewVizualizarDespesas() {
           $("#visualizaEntrada tr").remove();
 
           somaEntrada = 0.0;
-        }
-        alert(window.location.pathname);
+         // alert(window.location.pathname);
+       // }
+       
         for (let i = 0; i < results.rows.length; i++) {
 
           let row = results.rows.item(i);
