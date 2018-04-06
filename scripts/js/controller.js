@@ -164,11 +164,11 @@ $(document).ready(function () {
 			if (compURl !== '/android_asset/www/public/index.html' || '/index') {
 
 				let verifURLdesp = compURl === '/android_asset/www/public/despesas.html' ? true : false;
-						verifURLdesp = compURl === '/public/despesas.html' ? true : false;
+						//verifURLdesp = compURl === '/public/despesas.html' ? true : false;
 				let verifURLentrada = compURl === '/android_asset/www/public/entrada.html' ? true : false;
-						verifURLentrada = compURl === '/public/entrada.html' ? true : false;
+						//verifURLentrada = compURl === '/public/entrada.html' ? true : false;
 				let verifURLvisualiza = compURl === '/android_asset/www/public/visualiza.html' ? true : false;
-						verifURLvisualiza = compURl === '/public/visualiza.html' ? true : false;
+						//verifURLvisualiza = compURl === '/public/visualiza.html' ? true : false;
 
 				verifURLdesp ? onInit(1) : false;
 				verifURLentrada ? onInit(2) : false;
