@@ -163,12 +163,14 @@ $(document).ready(function () {
 
 			if (compURl !== '/android_asset/www/public/index.html' || '/index') {
 
-				//let verifURLdesp = compURl === '/android_asset/www/public/despesas.html' ? true : false;
-					let verifURLdesp = compURl === '/public/despesas.html' ? true : false;
-				//let verifURLentrada = compURl === '/android_asset/www/public/entrada.html' ? true : false;
-					let verifURLentrada = compURl === '/public/entrada.html' ? true : false;
-				//let verifURLvisualiza = compURl === '/android_asset/www/public/visualiza.html' ? true : false;
-					let verifURLvisualiza = compURl === '/public/visualiza.html' ? true : false;
+				let verifURLdesp = compURl === '/android_asset/www/public/despesas.html' ? true : false;
+				//	let verifURLdesp = compURl === '/public/despesas.html' ? true : false;
+				let verifURLentrada = compURl === '/android_asset/www/public/entrada.html' ? true : false;
+				//	let verifURLentrada = compURl === '/public/entrada.html' ? true : false;
+				let verifURLvisualiza = compURl === '/android_asset/www/public/visualiza.html' ? true : false;
+				//	let verifURLvisualiza = compURl === '/public/visualiza.html' ? true : false;
+
+				alert(compURl);
 
 				verifURLdesp ? onInit(1) : false;
 				verifURLentrada ? onInit(2) : false;
