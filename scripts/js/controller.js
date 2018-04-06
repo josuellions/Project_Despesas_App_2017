@@ -163,7 +163,7 @@ $(document).ready(function () {
 			let verifURLentrada = false;
 			let verifURLvisualiza = false;
 			let compURl = (window.location.pathname).toString();
-			let verfDispositivo = compURl === '/android_asset/www/public/index.html' ? true : false;
+			let verfDispositivo = compURl.slice(0, 19) === '/android_asset/www/' ? true : false;
 
 			if (compURl !== '/android_asset/www/public/index.html' || '/public/index') {
 
