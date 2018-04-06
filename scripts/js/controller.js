@@ -157,14 +157,27 @@ $(document).ready(function () {
 
 		let mesExt = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
 
-		let compURl = window.location.pathname;
-		
-		alert( compURl );
-		
-		if (compURl == 'android_asset/www/public/despesas.html') 		{ onInit(1); alert("01"); }
-		if (compURl == 'android_asset/www/public/entrada.html') 		{ onInit(2); alert("02"); }
-		if (compURl == 'android_asset/www/public/visualiza.html') 	{ onInit(3); alert("03"); }
+		$(document).ready(function () {
 
+			let compURl = (window.location.pathname).toString();
+
+			if (compURl !== '/android_asset/www/public/index.html' || '/index') {
+
+				let verifURLdesp = compURl === '/android_asset/www/public/despesas.html' ? true : false;
+						verifURLdesp = compURl === '/public/despesas.html' ? true : false;
+				let verifURLentrada = compURl === '/android_asset/www/public/entrada.html' ? true : false;
+						verifURLentrada = compURl === '/public/entrada.html' ? true : false;
+				let verifURLvisualiza = compURl === '/android_asset/www/public/visualiza.html' ? true : false;
+						verifURLvisualiza = compURl === '/public/visualiza.html' ? true : false;
+
+				verifURLdesp ? onInit(1) : false;
+				verifURLentrada ? onInit(2) : false;
+				verifURLvisualiza ? onInit(3) : false;
+
+			} else {
+				alert("Informações não pode ser encontrada!");
+			}
+		});
 		return mesExt[recebMes] + "/" + recebAno;
 
 	}
@@ -219,9 +232,9 @@ $("#nomeEmpresa").html("&reg Seven Solutions Tecnologic");
 // $( "#btnSair").window.close( );
 
 // ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA
-let verfPag = ((window.location.pathname) === "/index.html" || (window.location.pathname) === "/" ) ? true : false
+let verfPag = ((window.location.pathname) === "/index.html" || (window.location.pathname) === "/") ? true : false
 
-if (!verfPag){
+if (!verfPag) {
 	$(document).ready(function () {
 		$('.money').mask('000.000.000.000,00', { reverse: true });
 
