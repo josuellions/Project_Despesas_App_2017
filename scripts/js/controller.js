@@ -158,12 +158,9 @@ $(document).ready(function () {
 		let mesExt = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
 
 		let compURl = (window.location.pathname)
-
-alert(compURl);
-
-		if (compURl === "/public/despesas.html") 	{ onInit(1); }
-		if (compURl === "/public/entrada.html") 	{ onInit(2); }
-		if (compURl === "/public/visualiza.html") { onInit(3); }
+		if (compURl == 'android_asset/www/public/despesas.html') 		{ onInit(1); alert("01"); }
+		if (compURl == 'android_asset/www/public/entrada.html') 		{ onInit(2); alert("02") }
+		if (compURl == 'android_asset/www/public/visualiza.html') 	{ onInit(3); alert("03") }
 
 		return mesExt[recebMes] + "/" + recebAno;
 
