@@ -105,7 +105,7 @@ function createTables() {
   });
 }
 
-//===============================21/12/2017
+
 let dtbaseBd = () => {
 
   onInit(this.comp);
@@ -135,7 +135,7 @@ let dtbaseBd = () => {
     alert("Error: SELECT não realizado " + e + ".");
   }
 }
-// dtbaseBd( );
+
 
 // CHECK POSSUI DADOS NO BANCO
 onInit(this.comp);
@@ -253,8 +253,6 @@ function onCreateEntrada() {
 }
 
 // VARIÁVEL GLOBAL PARA EFETUAR CALCULO TELA VISUALIZAR
-// let somaDespesaVisuzaliza = 0.0;
-// let somaDespesa = 0.0;
 let somaDespesaVisualizar = 0.0;
 let cont = 0;
 
@@ -276,26 +274,20 @@ function queryAndUpdateOverviewVizualizarDespesas() {
     let valorFormat;
     let conf = false;
 
-    // $(document).ready(() => {
-
     localDB.transaction(function (transaction) {
 
       transaction.executeSql(queryDesp, [], function (transaction, results) {
 
-       // if (window.location.pathname === "/public/visualiza.html") {
+        document.getElementById("totalDespesas").innerText = "0,00";
 
-          document.getElementById("totalDespesas").innerText = "0,00";
+        document.getElementById("calculototalDespesas").innerText = "0,00";
 
-          document.getElementById("calculototalDespesas").innerText = "0,00";
+        document.getElementById('totalDespesas'.innerHTML = "");
 
-          //$("#visualizaDesp").empty() //innerText = "";
-          $("#visualizaDesp tr").remove();
+        $("#visualizaDesp tr").remove();
 
-          document.getElementById('totalDespesas'.innerHTML = "");
+        somaDespesaVisualizar = 0.0;
 
-          somaDespesaVisualizar = 0.0;
-       // }
-        
         for (let i = 0; i < results.rows.length; i++) {
 
           let row = results.rows.item(i);
@@ -306,12 +298,12 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
             conf = true;
 
-            let td = document.createElement("td");
+           /* let td = document.createElement("td");
 
             td.setAttribute("id", row['id']);
             td.setAttribute("class", "date col-xs-12");
             td.setAttribute("onclick", "onSelect(this)");
-
+*/
             dtDia = row['data'].substr(8, 10);
             dtMes = row['data'].substr(4, 5);
             dtMesAlt = dtMes.substr(1, 2);
@@ -334,35 +326,25 @@ function queryAndUpdateOverviewVizualizarDespesas() {
             $("#calculototalDespesas").html(valorFormatDespVisualiza).css("text-align", "right");
             cont = 1;
 
-          } else if ((window.location.pathname === "/public/visualiza.html") && (conf === false) ){
-
-            document.getElementById("totalDespesas").innerText = "0,00";
-
-            document.getElementById("calculototalDespesas").innerText = "0,00";
-
-            //$("#visualizaDesp").empty() //innerText = "";
-            $("#visualizaDesp tr").remove();
-
-            document.getElementById('totalDespesas'.innerHTML = "");
-
-            somaDespesaVisualizar = 0.0;
+          } else if ((window.location.pathname === "/public/visualiza.html") && (conf === false)) {
+              document.getElementById("totalDespesas").innerText = "0,00";
+              document.getElementById("calculototalDespesas").innerText = "0,00";
+              document.getElementById('totalDespesas'.innerHTML = "");
+              $("#visualizaDesp tr").remove();
+              somaDespesaVisualizar = 0.0;
           }
         }
       }, function (transaction, error) {
         alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
       });
     });
-    // }) //ready
   } catch (e) {
     alert("Error: SELECT não realizado " + e + ".");
   }
-  //   }
 
   // // CONSULTA BANCO DADOS ENTRADA TELA VISUALIZAR
   //   function queryAndUpdateOverviewVizualizarEntrada( ){
-
   queryEntrad = "SELECT * FROM TbEntradas;";
-  // let basemesPag;
 
   try {
 
@@ -377,30 +359,16 @@ function queryAndUpdateOverviewVizualizarDespesas() {
     let valorFormatResult;
     let conf = false;
 
-    // $(document).ready(() => {
-
-    // convertMes();
-
-    // let basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
-
     localDB.transaction(function (transaction) {
 
       transaction.executeSql(queryEntrad, [], function (transaction, results) {
 
-        //if (window.location.pathname == "/public/visualiza.html") {
-          document.getElementById("totalEntrada").innerText = "0,00";
+        document.getElementById("totalEntrada").innerText = "0,00";
+        document.getElementById("calculototalEntrada").innerText = "0,00";
+        document.getElementById("calculosomaGeral").innerText = "0,00";
+        $("#visualizaEntrada tr").remove();
+        somaEntrada = 0.0;
 
-          document.getElementById("calculototalEntrada").innerText = "0,00";
-
-          document.getElementById("calculosomaGeral").innerText = "0,00";
-
-          //document.getElementById("visualizaEntrada").innerText = "";
-          $("#visualizaEntrada tr").remove();
-
-          somaEntrada = 0.0;
-         // alert(window.location.pathname);
-       // }
-       
         for (let i = 0; i < results.rows.length; i++) {
 
           let row = results.rows.item(i);
@@ -411,12 +379,6 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
             conf = true;
 
-           // let td = document.createElement("td");
-
-           // td.setAttribute("id", row['id']);
-           // td.setAttribute("class", "date col-xs-12 money");
-           // td.setAttribute("onclick", "onSelect(this)");
-
             dtDia = row['data'].substr(8, 10);
             dtMes = row['data'].substr(4, 5);
             dtMesAlt = dtMes.substr(1, 2);
@@ -425,8 +387,6 @@ function queryAndUpdateOverviewVizualizarDespesas() {
             dtFormt = (dtDia + "/" + dtMesAlt);
 
             somaEntrada += parseFloat(row['valor']); //.replace(',', '.'));
-
-            // valorFormat = (row['valor']);
 
             $("#visualizaEntrada").append(
               "<tr>" +
@@ -454,20 +414,11 @@ function queryAndUpdateOverviewVizualizarDespesas() {
               $("#calculosomaGeral").html(result).css("text-align", "right");
             }
 
-            //cont = 2;
-            //somaDespesaVisualizar = 0.0;
-
-          } else if ( (window.location.pathname === "/public/visualiza.html") && (conf === false) ) {
-            
+          } else if ((window.location.pathname === "/public/visualiza.html") && (conf === false)) {
               document.getElementById("totalEntrada").innerText = "0,00";
-
               document.getElementById("calculototalEntrada").innerText = "0,00";
-
               document.getElementById("calculosomaGeral").innerText = "0,00";
-
-              //document.getElementById("visualizaEntrada").innerText = "";
               $("#visualizaEntrada tr").remove();
-
               somaEntrada = 0.0;
           }
         }
@@ -475,7 +426,6 @@ function queryAndUpdateOverviewVizualizarDespesas() {
         alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
       });
     });
-    // }) //ready
   } catch (e) {
     alert("Error: SELECT não realizado " + e + ".");
   }

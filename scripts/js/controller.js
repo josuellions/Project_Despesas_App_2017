@@ -129,10 +129,6 @@ $(document).ready(function () {
 	let dtInicial = () => {
 		$("#dtEntrada").val(formataData());
 		$("#dtDespesa").val(formataData());
-
-		// $( "#valEntrada").click( function( ){
-		// 	$( "heightVisualizar").css({"overflow":"170px"});
-		// })
 	}
 
 	dtInicial();
@@ -161,10 +157,13 @@ $(document).ready(function () {
 
 		let mesExt = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
 
-		
-		onInit(1);
-		onInit(2);
-		onInit(3);
+		let compURl = (window.location.pathname)
+
+alert(compURl);
+
+		if (compURl === "/public/despesas.html") 	{ onInit(1); }
+		if (compURl === "/public/entrada.html") 	{ onInit(2); }
+		if (compURl === "/public/visualiza.html") { onInit(3); }
 
 		return mesExt[recebMes] + "/" + recebAno;
 
@@ -209,7 +208,7 @@ $(document).ready(function () {
 });
 
 // Controle de Versão
-$("#contVer").html("Versão beta 0.0.8 - Bd offline - 16/03/2018");
+$("#contVer").html("Versão beta 0.0.8 - Bd offline - 07/04/2018");
 
 //Nome Desenvolvedor
 $("#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
@@ -231,105 +230,3 @@ if (!verfPag){
 		})
 	});
 }
-///TESTE COM FALHA
-// let formatValor = ( e, obj ) => {
-
-// 	if( e.keycode != 8 || e.keycode != 46 ) {
-
-// 		obj.value.length == 1 ? obj.value = ("0,0" + obj.value) : false;
-// 		obj.value.length == 5 && obj.value.substr(0,3) == "0,0" ? obj.value = "0," + obj.value.substr(3) : false;
-// 		obj.value.length == 5 && obj.value.substr(0,2) == "0," ? obj.value = obj.value[2] + "," + obj.value.substr(3) : false
-// 		obj.value.length == 5 && obj.value.substr(0,2) != "0," ? obj.value = obj.value[0] + obj.value[2] + "," + obj.value.substr(3) : false
-// 		obj.value.length == 6 ? obj.value = obj.value.substr(0,2) + obj.value[3]  + "," + obj.value.substr(4) : false
-// 		obj.value.length == 7 ? obj.value = obj.value[0] + "." + obj.value[1] + obj.value[2] + obj.value[4] + "," + obj.value.substr(5) : false
-// 		obj.value.length == 9 ? obj.value = obj.value[0] + obj.value[2] + "." + obj.value[3] +  obj.value[4] + obj.value[6] +  "," + obj.value.substr(7)  : false	
-// 		obj.value.length == 10 ? obj.value = obj.value[0] + obj.value[1] + obj.value[3] + "." +  obj.value[4] + obj.value[5] + obj.value[7] + "," + obj.value.substr(8)  : false
-
-// 	}
-
-/*$(document).ready(function () {
-	$('#valDespesa').mask('000.000.000.000,00');
-})
-
-$(document).ready(function () {
-	$('#valDespesa').priceFormat({
-		prefix: 'R$ ',
-		centsSeparator: ',',
-		thousandsSeparator: '.'
-	});
-});
-
-$(document).ready( function () {
-	$("#valDespesa").maskMoney({
-		symbol: 'R$ ',
-		showSymbol: true, thousands: '.', decimal: ',', symbolStay: true
-	});
-})
-*/
-
-	/*
-$(document).ready(function () {
-	$("#valDespesa").change(function () {
-		var banco = $(this).val();
-			$(".money").val('');
-		$(".money").mask('000.000.000.000,00', { reverse: true });
-	})
-})
-
-//TESTADOS - ERRO
-//$(document).ready(function (event) {
-//	$('#valDespesa').mask('000,00');
-//});
-
-// }
-//$(document).ready( () => {
-//	$("#valDespesa").maskMoney({thousands:'', decimal:'.'});
-//}); 
-
-//$("#valDespesa").mask({symbol: 'US$ ', thousands:'.', decimal:',', symbolStay: true});
-//$("#").mask({symbol: 'R$ ', thousands:'.', decimal:',', symbolStay: true});
-
-/*
-$("#valDespesa").maskMoney({
- 
-  // The symbol to be displayed before the value entered by the user
-  prefix: 'US$ ',
- 
-  // The suffix to be displayed after the value entered by the user(example: "1234.23 €").
-  suffix: "",
- 
-  // Delay formatting of text field until focus leaves the field
-  formatOnBlur: false,
- 
-  // Prevent users from inputing zero
-  allowZero: false,
- 
-  // Prevent users from inputing negative values
-  allowNegative: true,
- 
-  // Allow empty input values, so that when you delete the number it doesn't reset to 0.00.
-  allowEmpty: false,
- 
-  // Select text in the input on double click
-  doubleClickSelection: true,
-
-	// Select all text in the input when the element fires the focus event.
-  selectAllOnFocus: false,
- 
-  // The thousands separator
-  thousands: '.',
- 
-  // The decimal separator
-  decimal: '.' ,
- 
-  // How many decimal places are allowed
-  precision: 2,
- 
-  // Set if the symbol will stay in the field after the user exits the field.
-  affixesStay : false,
- 
-  // Place caret at the end of the input on focus
-  bringCaretAtEndOnFocus: true
-
-});
-*/
