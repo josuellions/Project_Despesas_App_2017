@@ -159,18 +159,24 @@ $(document).ready(function () {
 
 		$(document).ready(function () {
 
+			let verifURLdesp = false;
+			let verifURLentrada = false;
+			let verifURLvisualiza = false;
 			let compURl = (window.location.pathname).toString();
+			let verfDispositivo = compURl === '/android_asset/www/public/index.html' ? true : false;
 
-			if (compURl !== '/android_asset/www/public/index.html' || '/index') {
+			if (compURl !== '/android_asset/www/public/index.html' || '/public/index') {
 
-				let verifURLdesp = compURl === '/android_asset/www/public/despesas.html' ? true : false;
-				//	let verifURLdesp = compURl === '/public/despesas.html' ? true : false;
-				let verifURLentrada = compURl === '/android_asset/www/public/entrada.html' ? true : false;
-				//	let verifURLentrada = compURl === '/public/entrada.html' ? true : false;
-				let verifURLvisualiza = compURl === '/android_asset/www/public/visualiza.html' ? true : false;
-				//	let verifURLvisualiza = compURl === '/public/visualiza.html' ? true : false;
+				if(verfDispositivo){
+					verifURLdesp = compURl === '/android_asset/www/public/despesas.html' ? true : false;
+					verifURLentrada = compURl === '/android_asset/www/public/entrada.html' ? true : false;
+					verifURLvisualiza = compURl === '/android_asset/www/public/visualiza.html' ? true : false;
+				}else{
+					verifURLdesp = compURl === '/public/despesas.html' ? true : false;
+					verifURLentrada = compURl === '/public/entrada.html' ? true : false;
+					verifURLvisualiza = compURl === '/public/visualiza.html' ? true : false;
 
-				alert(compURl);
+				}
 
 				verifURLdesp ? onInit(1) : false;
 				verifURLentrada ? onInit(2) : false;
