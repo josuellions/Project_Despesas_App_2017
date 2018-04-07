@@ -257,7 +257,7 @@
 	}
 
 	/*TEXTAREA ENTRADA - Tela Visualizar*/
-	.container-fluid > div > .entrada {
+/*	.container-fluid > div > .entrada {
 		width: 155px;
 		height: 200px;
 		padding:  2%;
@@ -265,7 +265,7 @@
 		font-size: .7rem;
 		font-style: bold;	
 	}
-
+*/
 	/*BOTÃO VISUALIZAR - Tela Visualizar Despesas*/
 	.container-fluid > button {
 		margin-top: 10%;

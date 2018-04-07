@@ -1,64 +1,46 @@
 // Recarrega outra pagina na mesma aba
-$("#btnAddDesp").click(function () {
-	window.location.replace('public/despesas.html', 'janela');
-});
+$("#btnAddDesp").click( () => {	window.location.replace('public/despesas.html', 'janela'); });
 
-$("#btnAddEntra").click(function () {
-	window.location.replace('public/entrada.html', 'janela');
-});
+$("#btnAddEntra").click( () => { window.location.replace('public/entrada.html', 'janela'); });
 
-$("#btnVisual").click(function () {
-	window.location.replace('public/visualiza.html', 'janela');
-});
+$("#btnVisual").click( () => {	window.location.replace('public/visualiza.html', 'janela'); });
 
-$("#btnRelator").click(function () {
-	alert(" Em Desenvolvimento !!!")
-});
+$("#btnRelator").click( () => { alert(" Em Desenvolvimento !!!") });
 
-$("#btnHome").click(function () {
-	window.location.replace('../index.html', 'janela');
-});
+$("#btnHome").click( () => { window.location.replace('../index.html', 'janela'); });
 
 // BOTÃO MENU
-$("#btnMenuEntra").click(function () {
-	window.location.replace('entrada.html', 'janela');
-});
+$("#btnMenuEntra").click( () => { window.location.replace('entrada.html', 'janela'); });
 
-$("#btnMenuDesp").click(function () {
-	window.location.replace('despesas.html', 'janela');
-});
+$("#btnMenuDesp").click( () => { window.location.replace('despesas.html', 'janela'); });
 
-$("#btnMenuVisual").click(function () {
-	window.location.replace('visualiza.html', 'janela');
-});
+$("#btnMenuVisual").click( () => { window.location.replace('visualiza.html', 'janela'); });
 
-$("#btnMenuRelator").click(function () {
-	alert("Em Desenvolvimento !!!");
-})
+$("#btnMenuRelator").click(function () { alert("Em Desenvolvimento !!!"); });
 
-$("#btnInfo").click(function () {
+$("#btnInfo").click( () => {
 	alert(" APLICATIVO CONTROLE DESPESAS \n" +
 		"\t\t\t\t\t\t\tdiárias ou mensais \n\n" +
 		"Entrada Caixa: \n" +
-		"Aqui lançamos entra de caixa, \n" +
+		"lançamentos de entra de caixa, \n" +
 		"exemplo, salário, comisão, vale alimentação e outros.\n\n" +
 		"Despesas: \n" +
-		"Aqui lançamos os gastos com despesas, \n" +
+		"lançamentos dos gastos com despesas, \n" +
 		"exemplo, almoço, mercado, roupas e outros. \n\n" +
 		"Visualizar: \n" +
-		"Aqui podemos vizualizar os laçamentos entrada e despesas lançados, \n\n" +
+		"vizualização dos laçamentos entrada e despesas lançados, \n\n" +
 		"Relatório: \n" +
 		"Em Desenvolvimento \n "
 	);
 });
 
-$("#btnSobre").click(function () {
+$("#btnSobre").click( () => {
 	alert("\t\t\t\t INFORMAÇÕES DESENVOLVEDOR \n\n" +
 		"Aplicativo:\n" +
 		"Controle Despesas Mensal\n\n" +
 
 		"Versão:\n" +
-		"Versão beta 0.0.7 - Bd offline - 27/11/2017\n\n" +
+		"Versão beta 0.0.8 - Bd offline - 07/04/2018\n\n" +
 
 		"Desenvolvedor: \n" +
 		"Josuel A. Lopes \n\n" +
@@ -78,45 +60,34 @@ $("#btnSobre").click(function () {
 	);
 });
 
-$(document).ready(function () {
+$(document).ready( () => {
 
 	// EFEITO MENU SUPERIOR
-	$("#btnMenu").click(function () {
-
-		$("#liMenu").slideToggle(function () {
-
-			$(this).click(function () {
-
+	$("#btnMenu").click( () => {
+		$("#liMenu").slideToggle( () => {
+			$(this).click( () => {
 				$("#liMenu").animate().slideDown(700);
-
-				$(this).ready(function () {
-
+				$(this).ready( () => {
 					$("#liMenu").animate().slideUp(700);
 				});
 			});
 		});
-
-		$("body").mousedown(function () {
+		$("body").mousedown( () => {
 			$("#liMenu").animate().slideUp(700);
 		});
-
 	});
 
 	//Select campo number
-	$("#valDespesa").click(function () {
-		$('#valDespesa').select();
-	})
+	$("#valDespesa").click( () => {	$('#valDespesa').select(); });
 
-	$("#valEntrada").click(function () {
-		$('#valEntrada').select();
-	})
+	$("#valEntrada").click( () => {	$('#valEntrada').select(); });
 
 	//FUNÇÃO DATA DE REFERENCIA
-	function formataData() {
+	 let formataData = () => {
 		dt = new Date();
 		let dtdia = dt.getDate(),
-			dtmes = dt.getMonth(),
-			dtano = dt.getFullYear();
+				dtmes = dt.getMonth(),
+				dtano = dt.getFullYear();
 
 		dtmes.toString().length < 10 ? dtmes = + parseInt(dtmes + 1) : false;
 
@@ -136,29 +107,22 @@ $(document).ready(function () {
 	// VARIÁVEIS GLOBAIS DEFINIR SELETOR MÊS
 	let recebeDt, mesGlobal = 0, anoGlobal = 0;
 
-	function defineMes(condicao) {
-
+	let defineMes = (condicao) => {
 		let trocaMes = () => { baseMes(mesGlobal, anoGlobal, condicao); }
 
 		let inicioMes = () => {
 			recebeDt = new Date();
 			mesGlobal = recebeDt.getMonth();
 			anoGlobal = recebeDt.getFullYear();
-
 			baseMes(mesGlobal, anoGlobal);
-
 		}
-
 		condicao ? trocaMes() : inicioMes();
-
 	}
 
-	function convertMes(recebMes, recebAno) {
-
+	let convertMes = (recebMes, recebAno) => {
 		let mesExt = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
 
-		$(document).ready(function () {
-
+		$(document).ready( () => {
 			let verifURLdesp = false;
 			let verifURLentrada = false;
 			let verifURLvisualiza = false;
@@ -214,8 +178,8 @@ $(document).ready(function () {
 	}
 
 	if (verificaMesRef() != "Menu") {
-		$('#OpcaoMesEsquerdo').mousedown(() => { defineMes(1), convertMes() });
-		$('#OpcaoMesDireito').mousedown(() => { defineMes(2), convertMes() });
+		$('#OpcaoMesEsquerdo').mousedown( () => { defineMes(1), convertMes() });
+		$('#OpcaoMesDireito').mousedown( () => { defineMes(2), convertMes() });
 	} else {
 		return false;
 	}

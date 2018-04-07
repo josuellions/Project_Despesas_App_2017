@@ -165,7 +165,7 @@ try {
 // REMOVE DADOS BANCO, TELA ADD DESPESAS
 function onDelete(id) {
 
-  let query = "delete from TbDespesas where id=?;";
+  let query = "DELETE FROM TbDespesas WHERE id=?;";
 
   try {
     localDB.transaction(function (transaction) {
@@ -182,7 +182,7 @@ function onDelete(id) {
 // REMOVER DADOS DO BANCO TELA ENTRADA DE CAIXA
 function onDeleteEntrada(id) {
 
-  let query = "delete from TbEntradas where id=?;";
+  let query = "DELETE FROM TbEntradas WHERE id=?;";
 
   try {
     localDB.transaction(function (transaction) {
@@ -210,18 +210,13 @@ function onCreate() {
   if (data == "" || despesa == "" || valor == "" || valor < 0) {
     valor < 0 ? $("#valDespesa").select() : alert("Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios!");
   } else {
-    var query = "insert into TbDespesas (dtLanc, data, despesa, valor) VALUES (?, ?, ?, ?);";
+    var query = "INSERT INTO TbDespesas (dtLanc, data, despesa, valor) VALUES (?, ?, ?, ?);";
     try {
       localDB.transaction(function (transaction) {
         transaction.executeSql(query, [dtLancamento, data, despesa, valor], function (transaction, results) {
           !results.rowsAffected ? alert("Erro: Inserção não realizada") : queryAndUpdateOverviewLancaDespesas(); //location.reload();
         }, errorHandler);
       });
-      
-      
-    
-      
-
     } catch (e) {
       alert("Erro: INSERT não realizado " + e + ".");
     }
@@ -243,7 +238,7 @@ function onCreateEntrada() {
     valor < 0 ? $("#valEntrada").select() : alert("Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios!");
   }
   else {
-    let query = "insert into TbEntradas (dtLanc, data, entrada, valor) VALUES (?, ?, ?, ?);";
+    let query = "INSERT INTO TbEntradas (dtLanc, data, entrada, valor) VALUES (?, ?, ?, ?);";
     try {
       localDB.transaction(function (transaction) {
         transaction.executeSql(query, [dtLancamento, data, entrada, valor], function (transaction, results) {
@@ -319,7 +314,8 @@ function queryAndUpdateOverviewVizualizarDespesas() {
               "<tr>" +
               "<td>" + dtFormt + "</td>" +
               "<td>" + row['despesa'] + "</td>" +
-              "<td>" + "R$ " + row['valor'] + "</td>" +
+              "<td> R$ </td>" +
+              '<td style="text-align: right; padding-right: 4%;">' + formataValor( row['valor'] ) + '</td>' +
               "</tr>"
             );
             somaDespesaVisualizar += parseFloat(row['valor']); // .replace(",", "."))
@@ -396,7 +392,8 @@ function queryAndUpdateOverviewVizualizarDespesas() {
               "<tr>" +
               "<td>" + dtFormt + "</td>" +
               "<td>" + row['entrada'] + "</td>" +
-              "<td>" + "R$ " + row['valor'] + "</td>" +
+              "<td> R$ </td>" +
+              '<td style="text-align: right; padding-right: 4%;">' + formataValor(row['valor']) + "</td>" +
               "</tr>"
             );
 
@@ -408,9 +405,8 @@ function queryAndUpdateOverviewVizualizarDespesas() {
             $("#totalEntrada").html(valorFormatResult).css("text-align", "right");
             $("#calculototalEntrada").html(valorFormatResult).css("text-align", "right");
 
-            let comp = (0).toFixed(2).replace('.', ',');
-
-            if (result <= comp) {
+            //let comp = formataValor(0,00); // .toFixed(2).replace('.', ',');
+            if (result <= 0) {
               $("#saldoGeral").css({ "color": "rgb(233, 71, 71)", "text-shadow": "0px 0px 2px #337ab7" });
               $("#simboloMoeda").css({ "color": "rgb(233, 71, 71)", "text-shadow": "0px 0px 3px #337ab7" });
               $("#calculosomaGeral").html(result).css({ "text-align": "right", "color": "rgb(233, 71, 71)", "text-shadow": "0px 0px 3px #337ab7" });
@@ -429,7 +425,8 @@ function queryAndUpdateOverviewVizualizarDespesas() {
       }, function (transaction, error) {
         alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
       });
-    });
+    }); "<td> R$ </td>" +
+      '<td style="text-align: right; padding-right: 4%;">'
   } catch (e) {
     alert("Error: SELECT não realizado " + e + ".");
   }
@@ -479,13 +476,14 @@ function queryAndUpdateOverviewLancaDespesas() {
 
               dtFormt = (dtDia + "/" + dtMesAlt);
 
-              let valorFormatDespesa = row['valor'];
+              let valorFormatDespesa = formataValor( row['valor'] );
 
               $('#tbDespesas > tbody').append(
                 '<tr>' +
                 '<td width="22%">' + dtFormt + '</td>' +
                 '<td width="48%">' + row['despesa'] + '</td>' +
-                '<td width="30%">' + "R$ " + valorFormatDespesa + '</td>' +
+                '<td> R$ </td>' +
+                '<td style="text-align: right; padding-right: 4%;">' + valorFormatDespesa + '</td>' +
                 '<td width="5%><a href="" id="' + row['id'] + '" onclick="onDelete( ' +
                 row['id'] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +
                 '</tr>'
@@ -558,13 +556,14 @@ function queryAndUpdateOverviewLancaEntrada() {
 
             dtFormt = (dtDia + "/" + dtMesAlt);
 
-            let valorFormat = row['valor'];
+            let valorFormat = formataValor( row['valor']);
 
             $('#tbEntrada > tbody').append(
               '<tr>' +
-              '<td width="22%">' + dtFormt + '</td>' +
-              '<td width="48%">' + row['entrada'] + '</td>' +
-              '<td width="30%">' + "R$ " + valorFormat + '</td>' +
+              '<td>' + dtFormt + '</td>' +
+              '<td>' + row['entrada'] + '</td>' +
+              '<td> R$ </td>' +
+              '<td style="text-align: right; padding-right: 4%;">' + valorFormat + '</td>' +
               '<td width="5%><a href="" id="' + row['id'] + '" onclick="onDeleteEntrada( ' +
               row['id'] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +
               '</tr>'
