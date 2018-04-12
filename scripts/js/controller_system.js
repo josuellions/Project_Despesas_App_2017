@@ -32,7 +32,7 @@ $(document).ready(() => {
 			"Controle Despesas Mensal\n\n" +
 
 			"Versão:\n" +
-			"Versão beta 0.0.8 - Bd offline - 07/04/2018\n\n" +
+			"Versão beta 0.0.9 - AngularJS - 11/04/2018\n\n" +
 
 			"Desenvolvedor: \n" +
 			"Josuel A. Lopes \n\n" +

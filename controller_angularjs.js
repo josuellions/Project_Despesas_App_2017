@@ -18,13 +18,11 @@ app.config(function ($routeProvider) {
       redirectTo: '/'
     });
 });
-
+ 
 app.controller('navegarApp', function ($scope, $location) {
   $scope.submit = function ($page) {
     if ($page == 'entrada') {
-      //window.location.hash = '#/teste';
       $location.path('/entrada');
-
       document.location.reload(true);
     } else if ($page == 'despesas') {
       $location.path('/despesas');
