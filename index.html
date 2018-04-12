@@ -1,61 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">  <!-- manifest="offlinedatabase.manifest"> -->
+<html lang="en"> 
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
-	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/stylesMenu.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/libs/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/libs/css/bootstrap-theme.min.css">
-	<title>Project Despesas 09-2017</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/stylesMenu.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/libs/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/libs/css/bootstrap-theme.min.css">
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
+  <script type="text/javascript" src="scripts/js/libs/angularjs/angular.min.js"></script>
+  <script type="text/javascript" src="scripts/js/libs/angularjs/angular.min.js.map"></script>
+  <script type="text/javascript" src="scripts/js/libs/angularjs/angular-route.min.js"></script>
+  <script type="text/javascript" src="scripts/js/libs/angularjs/angular-route.min.js.map"></script>
+  <script type="text/javascript" src="controller_angularjs.js"></script>
+
+  <title>Controle Despesas</title>
 </head>
-<body>
-	<div class="heightVisualizar">
-		<div class="container-fluid bg-01 col-xs-12 col-lg-12 col-sm-12 col-md-12">
 
-			<img src="assets/img/logo_seven.jpg" class="col-xs-2 col-lg-2 imgLg">
+<body ng-app="todoApp">
+  <div class="heightVisualizar" id="heightDespesas">
+    <section>
+      <div class="container-fluid bg-01 col-xs-12 col-lg-12">
+        <img src="assets/img/logo_seven.jpg" class="col-xs-2 col-lg-2 imgLg">
+        <div class="container-fluid col-xs-8 col-lg-8">
+          <p class="contVer" id="contVer"></p>
+        </div>
+        <!--MENU-->
+        <nav class="dropdown alingMenu col-xs-2 col-lg-2" id="menuMobile" ng-controller="navegarApp">
+          <button class="btn dropdown-toggle buttonMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+            id="btnMenu">
+            <span class="glyphicon glyphicon-tasks btnMenu" id=""></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" arial-labellebdy=" dropdownMenu3 dropdownMenuDivider" id="liMenu">
+            <li>
+              <span class="glyphicon glyphicon-home" id="btnHome">
+                <a id="btnHome" ng-click="submit('/')">Home</a>
+              </span>
+            </li>
 
-			<div class="container-fluid col-xs-8 col-lg-8">
+            <li role="separator" class="divider liDivider"></li>
 
-				<p class="contVer" id="contVer"></p>
+            <li>
+              <span class="glyphicon glyphicon-usd" id="btnMenuEntra">
+                <a id="btnMenuEntra" ng-click="submit('entrada')">Entrada Caixa</a>
+              </span>
+            </li>
 
-			</div>
-			<!-- MENU -->
-			<nav class="dropdown alingMenu alingMenuIndex  col-xs-2 col-lg-2" id="btnInfo">
-					<span	class="glyphicon glyphicon-question-sign btnMenu" id="btnInfo"></span>
-			</nav>
-			<!-- END MENU -->
-		</div>
-		
-		<dir class="container-fluid col-xs-12 col-lg-12 bg-03">
-			<h1 class="col-xs-12  col-lg-12 text-center">Controle Despesas</h1>
-		</dir>
+            <li>
+              <span class="glyphicon glyphicon-shopping-cart" id="btnMenuDesp">
+                <a id="btnMenuDesp" ng-click="submit('despesas')">Despesa</a>
+              </span>
+            </li>
 
-		<div class="container-fluid col-xs-12 col-lg-12 bg-04">
-				<h2 class="alinharMes col-xs-12" id="dtReference">Menu</h2>
-		</div>
+            <li>
+              <span class="glyphicon glyphicon-zoom-in" id="btnMenuVisual">
+                <a id="btnMenuVisual" ng-click="submit('visualizar')">Visualizar</a>
+              </span>
+            </li>
 
-		<div class="container-fluid col-xs-12 col-lg-12">
-			<div class="btnAlingDesp col-xs-12 col-lg-4 col-lg-offset-4">
-				<span class="col-xs-11 col-sm-11 col-lg-12  btn-primary btnDesp" id="btnAddEntra">Entrada Caixa</span>
-				<span class="col-xs-11 col-sm-11 col-lg-12  btn-primary btnDesp" id="btnAddDesp" >Despesas</span>
-				<span class="col-xs-11 col-sm-11 col-lg-12  btn-primary btnDesp" id="btnVisual">Visualizar</span>
-				<span class="col-xs-11 col-sm-11 col-lg-12  btn-primary btnDesp" id="btnRelator">Relatórios</span>
-			</div>	
-		</div>
-	</div>
-	
-	<footer class="col-xs-12 col-lg-12 footerIndex bg-02" id="btnSobre">
-		<div class="container-fluid col-xs-12">
-			<p id="nomeDeveloper"></p>
-			<p id="nomeEmpresa"></p>
-		</div>
-	</footer>
+            <li>
+              <span class="glyphicon glyphicon-list-alt" id="btnMenuRelator">
+                <a id="btnMenuRelator" ng-click="submit('relatorio')">Relatório</a>
+              </span>
+            </li>
+
+            <li role="separator" class="divider liDivider"></li>
+
+            <li>
+              <span class="glyphicon glyphicon-info-sign" id="btnInfo">
+                <a id="btnInfo">Informações</a>
+              </span>
+            </li>
+            <li>
+              <span class="glyphicon glyphicon-user" id="btnSobre">
+                <a id="btnSobre">Sobre</a>
+              </span>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div ng-view></div>
+  </div>
+  
 </body>
-<!-- <script type="text/javascript" src="scripts/js/libs/jquery-3.2.1.js"></script> -->
-<script type="text/javascript" src="scripts/js/libs/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="assets/css/libs/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="scripts/js/controller.js"></script>
+<footer class="col-xs-12 col-lg-12 footerDespesas bg-02" id="btnSobre">
+  <div class="container-fluid col-xs-12 col-lg-12">
+    <p id="nomeDeveloper"></p>
+    <p id="nomeEmpresa"></p>
+  </div>
+</footer>
+
 </html>
+<script type="text/javascript" src="scripts/js/libs/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="scripts/js/libs/jquery.mask.js"></script>
+<script type="text/javascript" src="scripts/js/libs/jquery.mask.min.js"></script>
+<script type="text/javascript" src="assets/css/libs/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/js/controller_system.js"></script>
+<script type="text/javascript" src="scripts/js/offlinedatabaseJS.js"></script>

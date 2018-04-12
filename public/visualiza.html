@@ -1,204 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<!-- manifest="offlinedatabase.manifest"> -->
-<!-- <html lang="en"> -->
+<dir class="container-fluid col-xs-12 bg-03">
+	<h1 class="col-xs-12  text-center">Visualizar Despesas</h1>
+</dir>
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
-	<link rel="stylesheet" type="text/css" href="../assets/css/stylesMenu.css">
-	<link rel="stylesheet" type="text/css" href="../assets/css/libs/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../assets/css/libs/css/bootstrap-theme.min.css">
+<div class="container-fluid col-xs-12 bg-04">
+	<span class="glyphicon glyphicon-menu-left spanOpcaoMesEsquerdo col-xs-4 col-lg-5" title="Voltar para mês anterior " id="OpcaoMesEsquerdo"
+	 onclick=""></span>
+	<h2 class="alinharMes col-xs-4 col-lg-2" id="dtReference"></h2>
+	<span class="glyphicon glyphicon-menu-right spanOpcaoMesDireito col-xs-4 col-lg-5" title="Passar para mês seguinte" id="OpcaoMesDireito"></span>
+</div>
+</section>
 
-	<title>Project Despesas 09-2017</title>
-</head>
-
-<body>
-	<div class="heightVisualizar">
-		<section>
-			<div class="container-fluid bg-01 col-xs-12 col-lg-12">
-
-				<img src="../assets/img/logo_seven.jpg" class="col-xs-2 col-lg-2 imgLg">
-
-				<div class="container-fluid col-xs-8 col-lg-8">
-
-					<p class="contVer" id="contVer"></p>
-
-				</div>
-				<!-- MENU -->
-				<nav class="dropdown alingMenu col-xs-2 col-lg-2" id="menuMobile">
-					<button class="btn dropdown-toggle buttonMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-					 id="btnMenu">
-						<span class="glyphicon glyphicon-tasks btnMenu" id=""></span>
-					</button>
-					<ul class="dropdown-menu dropdown-menu-right" arial-labellebdy=" dropdownMenu3 dropdownMenuDivider" id="liMenu">
-						<li>
-							<span class="glyphicon glyphicon-home" id="btnHome">
-								<a id="btnHome">Home</a>
-							</span>
-						</li>
-
-						<li role="separator" class="divider liDivider"></li>
-
-						<li>
-							<span class="glyphicon glyphicon-usd" id="btnMenuEntra">
-								<a id="btnMenuEntra">Entrada Caixa</a>
-							</span>
-						</li>
-
-						<li>
-							<span class="glyphicon glyphicon-shopping-cart" id="btnMenuDesp">
-								<a id="btnMenuDesp">Despesa</a>
-							</span>
-						</li>
-
-						<li>
-							<span class="glyphicon glyphicon-zoom-in" id="btnMenuVisual">
-								<a id="btnMenuVisual">Visualizar</a>
-							</span>
-						</li>
-
-						<li>
-							<span class="glyphicon glyphicon-list-alt" id="btnMenuRelator">
-								<a id="btnMenuRelator">Relatório</a>
-							</span>
-						</li>
-
-						<li role="separator" class="divider liDivider"></li>
-
-						<li>
-							<span class="glyphicon glyphicon-info-sign" id="btnInfo">
-								<a id="btnInfo">Informações</a>
-							</span>
-						</li>
-						<li>
-							<span class="glyphicon glyphicon-user" id="btnSobre">
-								<a id="btnSobre">Sobre</a>
-							</span>
-						</li>
-					</ul>
-				</nav>
-				<!-- END MENU -->
-			</div>
-
-			<dir class="container-fluid col-xs-12 bg-03">
-				<h1 class="col-xs-12  text-center">Visualizar Despesas</h1>
-			</dir>
-
-			<div class="container-fluid col-xs-12 bg-04">
-				<span class="glyphicon glyphicon-menu-left spanOpcaoMesEsquerdo col-xs-4 col-lg-5" title="Voltar para mês anterior " id="OpcaoMesEsquerdo"
-				 onclick=""></span>
-				<h2 class="alinharMes col-xs-4 col-lg-2" id="dtReference"></h2>
-				<span class="glyphicon glyphicon-menu-right spanOpcaoMesDireito col-xs-4 col-lg-5" title="Passar para mês seguinte" id="OpcaoMesDireito"></span>
-			</div>
-
-			<div class="container-fluid col-xs-12 col-lg-4 col-lg-offset-4">
-				<div class="col-xs-12 col-lg-12 textExibir" id="textExibir">
-					<p class="col-xs-6 col-lg-6 col-sm-6">Despesa</p>
-					<p class="col-xs-6 col-lg-6 col-sm-6">Entrada</p>
-				</div>
-
-				<div class="col-xs-6  col-lg-6 listExibDesp">
-					<table class="col-xs-12 col-lg-12">
-						<thead class="theadDesp">
-							<tr>
-								<th width="5vw">Data</th>
-								<th width="90vw">Tipo</th>
-								<th width="1vw"></th>
-								<th width="4vw">Valor</th>
-							</tr>
-
-						</thead>
-						<tbody id="visualizaDesp" class="listDesp">
-
-						</tbody>
-					</table>
-				</div>
-
-				<div class="col-xs-6 col-lg-6 listExibEntrada">
-					<table class="col-xs-12 col-lg-12">
-						<thead class="theadEntrada">
-							<tr>
-								<th width="5vw">Data</th>
-								<th width="75vw">Tipo</th>
-									<th width="1vw"></th>
-								<th width="2vw">Valor</th>
-							</tr>
-
-						</thead>
-						<tbody id="visualizaEntrada" class="listEntrada">
-
-						</tbody>
-					</table>
-				</div>
-
-				<div class="col-xs-6 col-xs-offset-6 col-lg-6 col-lg-offset-6 totalEntrada">
-					<table class="col-xs-12">
-						<thead class="theadCalculos">
-							<tr>
-								<th width="90vw">Total Entrada </th>
-								<th width="5vw">R$</th>
-								<th width="2vw" id="totalEntrada"></th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-
-				<div class="col-xs-6 col-xs-offset-6 col-lg-6 col-lg-offset-6 listExibCalculos">
-					<table class="col-xs-12">
-						<thead class="theadCalculos">
-							<tr>
-								<th width="80vw">Total Despesas </th>
-								<th width="2vw">R$</th>
-								<th width="18vw" id="calculototalDespesas"></th>
-							</tr>
-							<tr>
-								<th width="80vw">Total Entrada </th>
-								<th width="2vw">R$</th>
-								<th width="18vw" id="calculototalEntrada"></th>
-							</tr>
-							<tr>
-								<th width="80vw" id="saldoGeral">Saldo Geral </th>
-								<th width="2vw" id="simboloMoeda">R$</th>
-								<th width="18vw" id="calculosomaGeral"></th>
-							</tr>
-
-						</thead>
-						<tbody id="visualizaEntrada" class="listEntrada money">
-
-						</tbody>
-					</table>
-				</div>
-
-				<div class="col-xs-6 col-lg-6 totalDespesas">
-					<table class="col-xs-12 col-lg-12">
-						<thead class="theadCalculos">
-							<tr>
-								<th width="80vw">Total Despesas </th>
-								<th width="2vw">R$</th>
-								<th width="18vw" id="totalDespesas"></th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-			</div>
+<div class="container-fluid col-xs-12 col-lg-4 col-lg-offset-4">
+	<div class="col-xs-12 col-lg-12 textExibir" id="textExibir">
+		<p class="col-xs-6 col-lg-6 col-sm-6">Despesa</p>
+		<p class="col-xs-6 col-lg-6 col-sm-6">Entrada</p>
 	</div>
-	<div hidden id="divCompara">
-		<p hidden id="comparaDt"></p>
-	</div>
-	<footer class="col-xs-12 col-lg-12 footerVisualizar bg-02" id="btnSobre">
-		<div class="container-fluid col-xs-12 col-lg-12">
-			<p id="nomeDeveloper"></p>
-			<p id="nomeEmpresa"></p>
-		</div>
-	</footer>
-</body>
-<script type="text/javascript" src="../scripts/js/libs/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="../scripts/js/libs/jquery.mask.min.js"></script>
-<script type="text/javascript" src="../assets/css/libs/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../scripts/js/controller.js"></script>
-<script type="text/javascript" src="../scripts/js/offlinedatabaseJS.js"></script>
 
-</html>
+	<div class="col-xs-6  col-lg-6 listExibDesp">
+		<table class="col-xs-12 col-lg-12">
+			<thead class="theadDesp">
+				<tr>
+					<th width="5vw">Data</th>
+					<th width="90vw">Tipo</th>
+					<th width="1vw"></th>
+					<th width="4vw">Valor</th>
+				</tr>
+
+			</thead>
+			<tbody id="visualizaDesp" class="listDesp">
+
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-xs-6 col-lg-6 listExibEntrada">
+		<table class="col-xs-12 col-lg-12">
+			<thead class="theadEntrada">
+				<tr>
+					<th width="5vw">Data</th>
+					<th width="75vw">Tipo</th>
+					<th width="1vw"></th>
+					<th width="2vw">Valor</th>
+				</tr>
+
+			</thead>
+			<tbody id="visualizaEntrada" class="listEntrada">
+
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-xs-6 col-xs-offset-6 col-lg-6 col-lg-offset-6 totalEntrada">
+		<table class="col-xs-12">
+			<thead class="theadCalculos">
+				<tr>
+					<th width="90vw">Total Entrada </th>
+					<th width="5vw">R$</th>
+					<th width="2vw" id="totalEntrada"></th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+	<div class="col-xs-6 col-xs-offset-6 col-lg-6 col-lg-offset-6 listExibCalculos">
+		<table class="col-xs-12">
+			<thead class="theadCalculos">
+				<tr>
+					<th width="80vw">Total Despesas </th>
+					<th width="2vw">R$</th>
+					<th width="18vw" id="calculototalDespesas"></th>
+				</tr>
+				<tr>
+					<th width="80vw">Total Entrada </th>
+					<th width="2vw">R$</th>
+					<th width="18vw" id="calculototalEntrada"></th>
+				</tr>
+				<tr>
+					<th width="80vw" id="saldoGeral">Saldo Geral </th>
+					<th width="2vw" id="simboloMoeda">R$</th>
+					<th width="18vw" id="calculosomaGeral"></th>
+				</tr>
+
+			</thead>
+			<tbody id="visualizaEntrada" class="listEntrada money">
+
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-xs-6 col-lg-6 totalDespesas">
+		<table class="col-xs-12 col-lg-12">
+			<thead class="theadCalculos">
+				<tr>
+					<th width="80vw">Total Despesas </th>
+					<th width="2vw">R$</th>
+					<th width="18vw" id="totalDespesas"></th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+</div>
+<div hidden id="divCompara">
+	<p hidden id="comparaDt"></p>
+</div>
