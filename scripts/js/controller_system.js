@@ -18,12 +18,6 @@ $(document).ready(() => {
 				"Em Desenvolvimento \n "
 			);
 		});
-
-		//$('#menuMobile').css('display', 'inline');
-		$("#btnInfo").css('display', 'none');
-	} else {
-		//	$('#menuMobile').css('display', 'inline');
-		$("#btnInfo").css('display', 'none');
 	}
 
 	$("#btnSobre").click(() => {
@@ -114,41 +108,7 @@ $(document).ready(() => {
 
 		let convertMes = (recebMes, recebAno) => {
 			let mesExt = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
-			$(document).ready(() => {
-				/*
-				
-								let verifURLdesp = false;
-								let verifURLentrada = false;
-								let verifURLvisualiza = false;
-								let compURl = (window.location.pathname).toString();
-								let verfDispositivo = compURl.slice(0, 19) === '/android_asset/www/' ? true : false;
-				
-								if (compURl !== '/android_asset/www/public/index.html' || '/') {
-				
-									if (verfDispositivo) {
-										verifURLdesp = compURl === '/android_asset/www/public/despesas.html' ? true : false;
-										verifURLentrada = compURl === '/android_asset/www/public/entrada.html' ? true : false;
-										verifURLvisualiza = compURl === '/android_asset/www/public/visualiza.html' ? true : false;
-									} else {
-										verifURLdesp = compURl === '/public/despesas.html' ? true : false;
-										verifURLentrada = compURl === '/public/entrada.html' ? true : false;
-										verifURLvisualiza = compURl === '/public/visualiza.html' ? true : false;
-				
-									}
-									verifURLdesp ? onInit(1) : false;
-									verifURLentrada ? onInit(2) : false;
-									verifURLvisualiza ? onInit(3) : false;
-				
-									//if(!verifURLdesp) {
-									//alert("Informações não pode ser encontrada!");
-								}
-								*/
-				onInit(1);
-				onInit(2);
-				onInit(3);
-
-			});
-
+		
 			return mesExt[recebMes] + "/" + recebAno;
 
 		}
@@ -166,6 +126,16 @@ $(document).ready(() => {
 			mesGlobal === 11 ? mesGlobal = -1 : false
 			mesGlobal++
 
+			let verifCampo = $('h1').text(); //  false;
+
+			if (verifCampo == "Adicionar Despesas") {
+				onInit(1);
+			} else if (verifCampo == "Adicionar Entrada") {
+				onInit(2);
+			} else if (verifCampo == "Visualizar Despesas") {
+				onInit(3);
+			}
+
 			$("#dtReference").html(convertMes(mesGlobal, anoGlobal));
 
 		}
@@ -180,6 +150,10 @@ $(document).ready(() => {
 			$('#OpcaoMesEsquerdo').mousedown(() => { defineMes(1), convertMes() });
 			$('#OpcaoMesDireito').mousedown(() => { defineMes(2), convertMes() });
 
+			$('#menuMobile').css('display', 'inline');
+			$("#btnInfo").css('display', 'none');
+		
+
 			// ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA
 			$(document).ready(function () {
 				$('.money').mask('000.000.000.000,00', { reverse: true });
@@ -189,6 +163,8 @@ $(document).ready(() => {
 				})
 			});
 		} else {
+			$('#menuMobile').css('display', 'none');
+			$("#btnInfo").css('display', 'inline');
 			return false;
 		}
 

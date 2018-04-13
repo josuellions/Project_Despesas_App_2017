@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"> <!--</html> manifest="offlinedatabase.manifest"> -->
+<html lang="en">
+<!--</html> manifest="offlinedatabase.manifest"> -->
 
 <head>
   <meta charset="utf-8">
@@ -27,7 +28,12 @@
         <div class="container-fluid col-xs-8 col-lg-8">
           <p class="contVer" id="contVer"></p>
         </div>
-        <!--MENU-->
+        <!-- MENU INFO-->
+        <nav class="dropdown alingMenu alingMenuIndex  col-xs-2 col-lg-2" id="btnInfo">
+          <span class="glyphicon glyphicon-question-sign btnMenu" id="btnInfo"></span>
+        </nav>
+        <!-- END MENU -->
+        <!--MENU MOBILE-->
         <nav class="dropdown alingMenu col-xs-2 col-lg-2" id="menuMobile" ng-controller="navegarApp">
           <button class="btn dropdown-toggle buttonMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
             id="btnMenu">
@@ -84,7 +90,7 @@
 
       <div ng-view></div>
   </div>
-  
+
 </body>
 <footer class="col-xs-12 col-lg-12 footerDespesas bg-02" id="btnSobre">
   <div class="container-fluid col-xs-12 col-lg-12">
