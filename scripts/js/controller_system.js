@@ -1,8 +1,8 @@
 $(document).ready(() => {
 
 	$('#dtEntrada').click( () => {
-		window.scrollbars('#dtEntrada');
-	})
+		$('#dtEntrada').scrollTop;
+	});
 
 //	var Page = window.location.pathname;
 
@@ -63,6 +63,21 @@ $(document).ready(() => {
 			});
 			$("body").mousedown(() => {
 				$("#liMenu").animate().slideUp(700);
+			});
+		});
+
+		$(document).ready( function () {
+			$('input[id="#"]').on('click', function (e) {
+				e.preventDefault();
+
+				var target = this.hast;
+				var $target = $(target);
+
+				$('html, body').animate({
+					'scrollTop': $target.offset().top
+				}, 1000, 'swing', function () {
+					window.location.hash = target;
+				});
 			});
 		});
 

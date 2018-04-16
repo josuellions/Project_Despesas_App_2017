@@ -3,22 +3,22 @@ app.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
       //template: 'Hello World - Welcom user!',
-      //templateUrl: '/public/home.html'
-      templateUrl: '/android_asset/www/public/home.html'
+      templateUrl: '/public/home.html'
+      //templateUrl: '/android_asset/www/public/home.html'
     })
     .when('/despesas', {
-      //templateUrl: '/public/despesas.html',
-      templateUrl: '/android_asset/www/public/despesas.html',
+      templateUrl: '/public/despesas.html',
+      //templateUrl: '/android_asset/www/public/despesas.html',
       //templeteUrl: '/public/menuMobile.html'
     })
     .when('/entrada', {
-      //templateUrl: '/public/entrada.html',
-      templateUrl: '/android_asset/www/public/entrada.html',
+      templateUrl: '/public/entrada.html',
+      //templateUrl: '/android_asset/www/public/entrada.html',
       //templeteView: '/public/menuMobile.html'
     })
     .when('/visualizar', {
-      //templateUrl: '/public/visualiza.html'
-      templateUrl: '/android_asset/www/public/visualiza.html'
+      templateUrl: '/public/visualiza.html'
+      //templateUrl: '/android_asset/www/public/visualiza.html'
     })
     .when('/relatorio', {
       //templateUrl: '/public/relariorio.html',
