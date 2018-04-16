@@ -572,9 +572,9 @@ let onUpdateDesp = (id) => {
                 //$(this).css('background','red');
                 //$(this).attr('disabled','true')
                 //$('tr td').css('background', 'red');
-                $('#dtDespesa').val(row['data']).css({'background':'#337ab7', 'color': 'white'});
-                $('#selectDespesas').val(row['despesa']).css({ 'background': '#337ab7', 'color': 'white'});
-                $('#valDespesa').val(row['valor']).css({'background':'#337ab7', 'color': 'white'});
+                $('#dtDespesa').val(row['data']).css({'border-color':'#337ab7', 'color': '#337ab7'});
+                $('#selectDespesas').val(row['despesa']).css({ 'border-color': '#337ab7', 'color': '#337ab7'});
+                $('#valDespesa').val( formataValor(row['valor']) ).css({'border-color':'#337ab7', 'color': '#337ab7'});
                 $('#btnDesp').css('display', 'none');
                 $('#btnDespEdit').css({'display': 'inline-block', 'color':'#337ab7'});
               }
@@ -756,9 +756,9 @@ let onUpdateEnt = (id) => {
                 //$(this).css('background','red');
                 //$(this).attr('disabled','true')
                 //$('tr td').css('background', 'red');
-                $('#dtEntrada').val(row['data']).css({ 'background': '#337ab7', 'color': 'white' });
-                $('#textEntrada').val(row['entrada']).css({ 'background': '#337ab7', 'color': 'white' });
-                $('#valEntrada').val(row['valor']).css({ 'background': '#337ab7', 'color': 'white' });
+                $('#dtEntrada').val(row['data']).css({ 'border-color': '#337ab7', 'color': '#337ab7' });
+                $('#textEntrada').val(row['entrada']).css({ 'border-color': '#337ab7', 'color': '#337ab7' });
+                $('#valEntrada').val(formataValor(row['valor'])).css({ 'border-color': '#337ab7', 'color': '#337ab7' });
                 $('#btnEntrada').css('display', 'none');
                 $('#btnEntEdit').css({ 'display': 'inline-block', 'color': '#337ab7' });
               }
