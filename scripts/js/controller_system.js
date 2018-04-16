@@ -1,10 +1,10 @@
 $(document).ready(() => {
 
-	var Page = window.location.pathname;
+//	var Page = window.location.pathname;
 
-	if (Page == '/index.html' || '/') {
+//	if (Page == '/index.html' || '/') {
 		$("#btnInfo").click(() => {
-			alert(" APLICATIVO CONTROLE DESPESAS \n" +
+			alert("APLICATIVO CONTROLE DESPESAS \n" +
 				"\t\t\t\t\t\t\tdiárias ou mensais \n\n" +
 				"Entrada Caixa: \n" +
 				"lançamentos de entra de caixa, \n" +
@@ -18,7 +18,7 @@ $(document).ready(() => {
 				"Em Desenvolvimento \n "
 			);
 		});
-	}
+//	}
 
 	$("#btnSobre").click(() => {
 		alert("\t\t\t\t INFORMAÇÕES DESENVOLVEDOR \n\n" +
@@ -126,15 +126,11 @@ $(document).ready(() => {
 			mesGlobal === 11 ? mesGlobal = -1 : false
 			mesGlobal++
 
-			let verifCampo = $('h1').text(); //  false;
+			let verifCampo = $('h1').text(); 
 
-			if (verifCampo == "Adicionar Despesas") {
-				onInit(1);
-			} else if (verifCampo == "Adicionar Entrada") {
-				onInit(2);
-			} else if (verifCampo == "Visualizar Despesas") {
-				onInit(3);
-			}
+			if (verifCampo == "Adicionar Despesas") {	onInit(1); }
+			else if (verifCampo == "Adicionar Entrada") {	onInit(2); }
+			else if (verifCampo == "Visualizar Despesas") {	onInit(3); }
 
 			$("#dtReference").html(convertMes(mesGlobal, anoGlobal));
 

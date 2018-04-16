@@ -171,7 +171,7 @@ function onDelete(id) {
     localDB.transaction(function (transaction) {
 
       transaction.executeSql(query, [id], function (transaction, results) {
-        !results.rowsAffected ? alert("E0.00rro: Delete não realizado.") : queryAndUpdateOverviewLancaDespesas(); //location.reload();
+        !results.rowsAffected ? alert("Erro: Delete não realizado.") : queryAndUpdateOverviewLancaDespesas(); //location.reload();
       }, errorHandler);
     });
   } catch (e) {
@@ -220,6 +220,9 @@ function onCreate() {
     } catch (e) {
       alert("Erro: INSERT não realizado " + e + ".");
     }
+    $('#dtDespesa').val(formataData()).focus();
+    $('#selectDespesas').val("");
+    $('#valDespesa').val("");
   }
 }
 
@@ -248,6 +251,9 @@ function onCreateEntrada() {
     } catch (e) {
       alert("Erro: INSERT não realizado " + e + ".");
     }
+    $('#dtEntrada').val(formataData()).focus();
+    $('#textEntrada').val("");
+    $('#valEntrada').val("");
   }
 }
 
@@ -297,12 +303,12 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
             conf = true;
 
-           /* let td = document.createElement("td");
-
-            td.setAttribute("id", row['id']);
-            td.setAttribute("class", "date col-xs-12");
-            td.setAttribute("onclick", "onSelect(this)");
-*/
+            /* let td = document.createElement("td");
+ 
+             td.setAttribute("id", row['id']);
+             td.setAttribute("class", "date col-xs-12");
+             td.setAttribute("onclick", "onSelect(this)");
+ */
             dtDia = row['data'].substr(8, 10);
             dtMes = row['data'].substr(4, 5);
             dtMesAlt = dtMes.substr(1, 2);
@@ -315,7 +321,7 @@ function queryAndUpdateOverviewVizualizarDespesas() {
               "<td>" + dtFormt + "</td>" +
               "<td>" + row['despesa'] + "</td>" +
               "<td> R$ </td>" +
-              '<td style="text-align: right; padding-right: 4%;">' + formataValor( row['valor'] ) + '</td>' +
+              '<td style="text-align: right; padding-right: 4%;">' + formataValor(row['valor']) + '</td>' +
               "</tr>"
             );
             somaDespesaVisualizar += parseFloat(row['valor']); // .replace(",", "."))
@@ -327,11 +333,11 @@ function queryAndUpdateOverviewVizualizarDespesas() {
             cont = 1;
 
           } else if ((window.location.pathname === "/public/visualiza.html") && (conf === false)) {
-              document.getElementById("totalDespesas").innerText = "0,00";
-              document.getElementById("calculototalDespesas").innerText = "0,00";
-              document.getElementById('totalDespesas'.innerHTML = "");
-              $("#visualizaDesp tr").remove();
-              somaDespesaVisualizar = 0.0;
+            document.getElementById("totalDespesas").innerText = "0,00";
+            document.getElementById("calculototalDespesas").innerText = "0,00";
+            document.getElementById('totalDespesas'.innerHTML = "");
+            $("#visualizaDesp tr").remove();
+            somaDespesaVisualizar = 0.0;
           }
         }
       }, function (transaction, error) {
@@ -415,11 +421,11 @@ function queryAndUpdateOverviewVizualizarDespesas() {
             }
 
           } else if ((window.location.pathname === "/public/visualiza.html") && (conf === false)) {
-              document.getElementById("totalEntrada").innerText = "0,00";
-              document.getElementById("calculototalEntrada").innerText = "0,00";
-              document.getElementById("calculosomaGeral").innerText = "0,00";
-              $("#visualizaEntrada tr").remove();
-              somaEntrada = 0.0;
+            document.getElementById("totalEntrada").innerText = "0,00";
+            document.getElementById("calculototalEntrada").innerText = "0,00";
+            document.getElementById("calculosomaGeral").innerText = "0,00";
+            $("#visualizaEntrada tr").remove();
+            somaEntrada = 0.0;
           }
         }
       }, function (transaction, error) {
@@ -476,14 +482,14 @@ function queryAndUpdateOverviewLancaDespesas() {
 
               dtFormt = (dtDia + "/" + dtMesAlt);
 
-              let valorFormatDespesa = formataValor( row['valor'] );
+              let valorFormatDespesa = formataValor(row['valor']);
 
               $('#tbDespesas > tbody').append(
-                '<tr>' +
-                '<td width="22%">' + dtFormt + '</td>' +
-                '<td width="48%">' + row['despesa'] + '</td>' +
+                '<tr id=" ' + row['id'] + ' ">' +
+                '<td width="22%" onclick="onUpdateDesp( ' + row['id'] + ' )">' + dtFormt + '</td>' +
+                '<td width="48%" onclick="onUpdateDesp( ' + row['id'] + ' )">' + row['despesa'] + '</td>' +
                 '<td> R$ </td>' +
-                '<td style="text-align: right; padding-right: 4%;">' + valorFormatDespesa + '</td>' +
+                '<td style="text-align: right; padding-right: 4%;" onclick="onUpdateDesp( ' + row['id'] + ' )">' + valorFormatDespesa + '</td>' +
                 '<td width="5%><a href="" id="' + row['id'] + '" onclick="onDelete( ' +
                 row['id'] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +
                 '</tr>'
@@ -512,6 +518,114 @@ function queryAndUpdateOverviewLancaDespesas() {
     }
   })
 }
+
+// UPDATE DADOS BANCO, TELA ADD DESPESAS
+var transfId = null;
+
+let onUpdateDesp = (id) => {
+
+  $(document).ready(function () {
+
+    convertMes();
+
+    let basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
+
+    let queryDesp = "SELECT * FROM TbDespesas;";
+
+    try {
+
+      let dtDia;
+      let dtMes;
+      let dtMesAlt;
+      let dtAno;
+      let dtFormt;
+      let somaDespesa = 0.0;
+      let conf = false;
+
+      localDB.transaction(function (transaction) {
+
+        transaction.executeSql(queryDesp, [], function (transaction, results) {
+
+          $("#tbDespesas tbody tr").remove();
+
+          for (let i = 0; i < results.rows.length; i++) {
+
+            let row = results.rows.item(i);
+
+            verif = row['data'].slice(0, 7) == basemesPag ? true : false;
+
+            if (verif == true) {
+
+              conf = true;
+
+              dtDia = row['data'].substr(8, 10);
+              dtMes = row['data'].substr(4, 5);
+              dtMesAlt = dtMes.substr(1, 2);
+              dtAno = row['data'].substr(2, 2);
+
+              dtFormt = (dtDia + "/" + dtMesAlt);
+
+              if (id == row['id']) {
+                console.log(row['id']);
+                transfId = row['id'];
+
+                //$(this).css('background','red');
+                //$(this).attr('disabled','true')
+                //$('tr td').css('background', 'red');
+                $('#dtDespesa').val(row['data']).css({'background':'#337ab7', 'color': 'white'});
+                $('#selectDespesas').val(row['despesa']).css({ 'background': '#337ab7', 'color': 'white'});
+                $('#valDespesa').val(row['valor']).css({'background':'#337ab7', 'color': 'white'});
+                $('#btnDesp').css('display', 'none');
+                $('#btnDespEdit').css({'display': 'inline-block', 'color':'#337ab7'});
+              }
+            }
+          }
+          queryAndUpdateOverviewLancaDespesas();
+        }, function (transaction, error) {
+          alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
+        });
+      });
+      //}
+    } catch (e) {
+      alert("Erro" + e)
+    }
+  });
+}
+
+// UPDATE SALVAR NO DADOS BANCO, TELA ADD DESPESAS
+let onUpdateDespBd = (() => {
+
+  confirma = confirm("Salvar as alterações realizadas ");
+
+  let dtLancamento = formataData();
+
+  let data = document.getElementById("dtDespesa").value;
+  let despesa = document.getElementById("selectDespesas").value;
+  let valor = document.getElementById("valDespesa").value;
+
+  if (data == "" || despesa == "" || valor == "" || valor < 0) {
+    valor < 0 ? $("#valDespesa").select() : alert("Erro: 'Data', 'Entrada' e 'Valor' são campos obrigatórios!");
+  }
+   else if (confirma  == true ) { 
+    let query = "UPDATE TbDespesas SET dtLanc = ?, data = ?, despesa = ?, valor = ? WHERE id=?;";
+
+    valor.length >= 7 ? valor = valor.substr(0, 1) + valor.substr(2) : false
+
+    try {
+        localDB.transaction(function (transaction) {
+          transaction.executeSql(query, [dtLancamento, data, despesa, valor, transfId], function (transaction, results) {
+             !results.rowsAffected ? alert("Erro: UPDATE não realizado.") : queryAndUpdateOverviewLancaDespesas();
+        }, errorHandler);
+      });
+    } catch (e) {
+      alert("Erro: UPDATE não realizado " + e + ".");
+    }
+    window.location.reload();
+  } else {
+    window.location.reload();
+  }
+});
+
 let contar = 0;
 // CONSULTA BANCO DADOS, CRIAR LINHA, EXIBIR TELA ENTRADA CAIXA.
 function queryAndUpdateOverviewLancaEntrada() {
@@ -556,14 +670,14 @@ function queryAndUpdateOverviewLancaEntrada() {
 
             dtFormt = (dtDia + "/" + dtMesAlt);
 
-            let valorFormat = formataValor( row['valor']);
+            let valorFormat = formataValor(row['valor']);
 
             $('#tbEntrada > tbody').append(
-              '<tr>' +
-              '<td>' + dtFormt + '</td>' +
-              '<td>' + row['entrada'] + '</td>' +
+              '<tr id="' + row['id'] + ' ">' +
+              '<td onclick="onUpdateEnt( ' + row['id'] + ' )">' + dtFormt + '</td>' +
+              '<td onclick="onUpdateEnt( ' + row['id'] + ' )">' + row['entrada'] + '</td>' +
               '<td> R$ </td>' +
-              '<td style="text-align: right; padding-right: 4%;">' + valorFormat + '</td>' +
+              '<td style="text-align: right; padding-right: 4%;" onclick="onUpdateEnt( ' + row['id'] + ' )">' + valorFormat + '</td>' +
               '<td width="5%><a href="" id="' + row['id'] + '" onclick="onDeleteEntrada( ' +
               row['id'] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +
               '</tr>'
@@ -592,6 +706,110 @@ function queryAndUpdateOverviewLancaEntrada() {
   }
 }
 
+// UPDATE DADOS BANCO, TELA ENTRADA RECEITA CAIXA
+let onUpdateEnt = (id) => {
+
+  $(document).ready(function () {
+
+    convertMes();
+
+    let basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
+
+    let queryDesp = "SELECT * FROM TbEntradas;";
+
+    try {
+
+      let dtDia;
+      let dtMes;
+      let dtMesAlt;
+      let dtAno;
+      let dtFormt;
+      let somaEntrada = 0.0;
+      let conf = false;
+
+      localDB.transaction(function (transaction) {
+
+        transaction.executeSql(queryDesp, [], function (transaction, results) {
+
+          $("#tbEntrada tbody tr").remove();
+
+          for (let i = 0; i < results.rows.length; i++) {
+
+            let row = results.rows.item(i);
+
+            verif = row['data'].slice(0, 7) == basemesPag ? true : false;
+
+            if (verif == true) {
+
+              conf = true;
+
+              dtDia = row['data'].substr(8, 10);
+              dtMes = row['data'].substr(4, 5);
+              dtMesAlt = dtMes.substr(1, 2);
+              dtAno = row['data'].substr(2, 2);
+
+              dtFormt = (dtDia + "/" + dtMesAlt);
+
+              if (id == row['id']) {
+                transfId = row['id'];
+
+                //$(this).css('background','red');
+                //$(this).attr('disabled','true')
+                //$('tr td').css('background', 'red');
+                $('#dtEntrada').val(row['data']).css({ 'background': '#337ab7', 'color': 'white' });
+                $('#textEntrada').val(row['entrada']).css({ 'background': '#337ab7', 'color': 'white' });
+                $('#valEntrada').val(row['valor']).css({ 'background': '#337ab7', 'color': 'white' });
+                $('#btnEntrada').css('display', 'none');
+                $('#btnEntEdit').css({ 'display': 'inline-block', 'color': '#337ab7' });
+              }
+            }
+          }
+          queryAndUpdateOverviewLancaEntrada();
+        }, function (transaction, error) {
+          alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
+        });
+      });
+      //}
+    } catch (e) {
+      alert("Erro" + e)
+    }
+  });
+}
+
+// UPDATE SALVAR NO DADOS BANCO, TELA ENTRADA RECEITA CAIXA
+let onUpdateEntBd = (() => {
+
+  confirma = confirm("Salvar as alterações realizadas ");
+
+  let dtLancamento = formataData();
+
+  let data = document.getElementById("dtEntrada").value;
+  let entrada = document.getElementById("textEntrada").value;
+  let valor = document.getElementById("valEntrada").value;
+
+  if (data == "" || entrada == "" || valor == "" || valor < 0) {
+    valor < 0 ? $("#valEntrada").select() : alert("Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios!");
+  }
+  else if (confirma == true) {
+    let query = "UPDATE TbEntradas SET dtLanc = ?, data = ?, entrada = ?, valor = ? WHERE id=?;";
+
+    valor.length >= 7 ? valor = valor.substr(0, 1) + valor.substr(2) : false
+
+    try {
+      localDB.transaction(function (transaction) {
+        transaction.executeSql(query, [dtLancamento, data, entrada, valor, transfId], function (transaction, results) {
+          !results.rowsAffected ? alert("Erro: UPDATE não realizado.") : queryAndUpdateOverviewLancaDespesas();
+        }, errorHandler);
+      });
+    } catch (e) {
+      alert("Erro: UPDATE não realizado " + e + ".");
+    }
+    window.location.reload();
+  } else {
+    window.location.reload();
+  }
+});
+
 // // 3. FUNÇAO DE TRATAMENTO E STATUS.
 
 // Tratando erros
@@ -602,6 +820,3 @@ errorHandler = function (transaction, error) {
 
 nullDataHandler = function (transaction, results) {
 }
-
-// TOTAL DE LINHA SEM REFATORAR 01/12/2017=  514
-// TOTAL DE LINHA REFATARADO  01/12/2014 = 380
