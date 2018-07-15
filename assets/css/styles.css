@@ -322,14 +322,14 @@
 		margin-top: 20%;
 		position: fixed;
 		margin-bottom: 16.5%;
+		padding: 5%;
 	}
 	/*BOTÕES DA PAGINA INICIAL*/
-	.container-fluid>div>.btnDesp {
+	.container-fluid>div>.btn {
 		border-radius: 4%;
 		text-align: center;
 		padding: 5%;
 		margin-bottom: 5%;
-		font-size: 2rem;
 	}
 	.container-fluid>.contVer {
 		color: white;
