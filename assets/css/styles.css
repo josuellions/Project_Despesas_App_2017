@@ -112,13 +112,16 @@
 	}
 	.btnDesp {
 		float: right;
-		font-size: 2.2rem !important;
+		padding: 0;
+		font-size: 2.7rem !important;
 		text-align: center;
+		margin-top: -.5vh !important;
 		margin-right: 0%;
-		margin-left: 3.5vw;
+		margin-left: -.5vw !important;
 		border: none !important;
 		border-radius: none !important;
 		background: #337ab7 !important;
+		border-radius: 50% !important;
 	}
 	.btnDespSalve {
 		float: right;
@@ -128,20 +131,20 @@
 	}
 	span .col-xs-2 {
 		padding: 0;
-		margin: 0;
-		width: 60px;
+		margin: 1vw;
+		width: 15vw;
 	}
 	span .col-xs-3 {
 		padding: 0;
-		margin: 0;
-		width: 80px;
+		margin: 1vw;
+		width: 18vw;
 	}
 	span .col-xs-4 {
 		padding: 0;
 		margin: 0;
-		width: 125px;
+		width: 35vw;
+		margin-top: .4vh;
 	}
-	
 	.container-fluid>div>div>div>span .dtDespesa {
 		height: 31px;
 		padding: .8%;

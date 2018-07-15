@@ -7,8 +7,8 @@ app.config(function ($routeProvider) {
     .when('/', {
       //template: 'Hello World - Welcom user!',
       //templateUrl: '/public/home.html'
-      templateUrl: '/android_asset/www/public/home.html'
       //templateUrl: url + 'public/home.html'
+      templateUrl: '/android_asset/www/public/home.html'
     })
     .when('/despesas', {
       //templateUrl: url + 'public/despesas.html',

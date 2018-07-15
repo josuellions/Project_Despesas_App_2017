@@ -140,6 +140,7 @@ let dtbaseBd = () => {
 
 // CHECK POSSUI DADOS NO BANCO
 onInit(this.comp);
+
 let query = "SELECT * FROM TbEntradas;";
 
 try {
@@ -200,40 +201,41 @@ let verifStatus = (idDesp, statusDesp) => {
   let queryStatusDesp = 'SELECT * FROM TbStatusDesp;'
 
   try{
+    let verif = false;
     localDB.transaction(function (transaction) {
       transaction.executeSql(queryDesp, [], function (transaction, results) {
-        for (let i = 0; i < results.rows.length; i++) {
-          if (results.rows.length >= 0) {
             
-            let row = results.rows.item(i);
-
             localDB.transaction(function(transaction){
-              transaction.executeSql(queryStatusDesp, [], function(transaction, results){
+              transaction.executeSql(queryStatusDesp, [], function(transaction, result){
 
-                for (let j = 0; j < results.rows.length ; j++){
-                  
-                  let rowStatus = results.rows.item(j);
-                  
-                  let verifDesp = idDesp == row.id ? true : false;
-                  let verifStatus = idDesp == rowStatus.despID ? true : false;
-                  
-                  if ( verifStatus && verifDesp ){
+                if(results.rows.length > 0) {
+         
+                verif = result.rows.length == 0 ? true : false;
 
-                    onUpdateStatusDesp(idDesp, statusDesp)
+                if (verif) {
+                  for (let i = 0; i < results.rows.length; i++) {
+                    if (results.rows.length >= 0) {
+
+                      let row = results.rows.item(i);
+                      //results.rows.length == 0 ? insertStatus(row.id, 0) : false;
+                      insertStatus(row.id, 0)
+                    }
                   }
+                } else if (!verif && results.rows.length != result.rows.length) {
+                  insertStatus(results.rows.length, 0);
                 }
-                
-                results.rows.length == 0 ? insertStatus(row.id, 0) : false;
-              });
+              }
             });
-          }
-        }
+          });
       });
     });
   }catch(e){
     alert('Error: Error tabela despesa, ' + e + '.');
   }
 }
+
+verifStatus();
+
 
 // REMOVE DADOS BANCO, TELA ADD DESPESAS
 function onDeleteStatus(id) {
@@ -564,18 +566,8 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
               for (let i = 0; i < results.rows.length; i++) {
 
-                let rowStatus = null;
+                let rowStatus = 0;
                 let row = results.rows.item(i);
-
-                if (result.rows.length <= 1) {
-                  verifStatus();
-                } else if (result.rows.length > 1){
-                  console.log(i)
-                    rowStatus = result.rows.item(i);
-                    rowStatus = rowStatus.statusDesp;
-                  //verifStatus(i)
-                }
-                
 
                 verif = row['data'].slice(0, 7) == basemesPag ? true : false;
 
@@ -604,6 +596,13 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
                     row['id'] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +*/
                     '</td></tr>'
                   );
+
+                  if (result.rows.length <= 1) {
+                    verifStatus();
+                  } else if (result.rows.length == results.rows.length) {
+                    rowStatus = result.rows.item(i);
+                    rowStatus = rowStatus.statusDesp;
+                  }
                  
                   rowStatus == 1 ? $('#' + row['id']).val('checked')[0].checked = true : $('#' + row['id']).val('checked')[0].checked = false;
 
@@ -619,6 +618,8 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
                 }
               
               }
+
+              verifStatus()
               
               valorFormatDespesa = formataValor((somaDespesa).toFixed(2).replace('.', ','));
 
@@ -627,7 +628,7 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
                 $('.despPG').html('Del');
                 $('#tbDespesas tbody tr td a').removeAttr('hidden');
               } else {
-                $('.despPG').html('PG');
+                $('.despPG').html('Pago');
                 $('.toggle').css({ 'display': 'block' });
                 $('#tbDespesas tbody tr td a').attr('hidden');
               }
@@ -759,7 +760,8 @@ let onStatusDesp = ( id ) => {
   let verif = $('#' + id).val('checked');
 
   //verif[0].checked == true ? insertStatus(id, 1) : insertStatus(id, 0);
-  verif[0].checked == true ? verifStatus(id, 1) : verifStatus(id, 0)
+  //verif[0].checked == true ? verifStatus(id, 1) : verifStatus(id, 0)
+  verif[0].checked == true ? onUpdateStatusDesp(id, 1) : onUpdateStatusDesp(id, 0) 
 };
 
 let contar = 0;
