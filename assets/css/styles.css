@@ -112,21 +112,36 @@
 	}
 	.btnDesp {
 		float: right;
-		font-size: 1.8rem !important;
+		font-size: 2.2rem !important;
 		text-align: center;
 		margin-right: 0%;
-		margin-bottom: 68%;
-		margin-left: 1.5vw;
-		border-top-right-radius: 2rem !important;
-		border-bottom-right-radius: 2rem !important;
+		margin-left: 3.5vw;
+		border: none !important;
+		border-radius: none !important;
+		background: #337ab7 !important;
 	}
 	.btnDespSalve {
 		float: right;
 		font-size: 2.8rem !important;
 		text-align: center;
 		margin-right: 0%;
-		margin-bottom: 68%;
 	}
+	span .col-xs-2 {
+		padding: 0;
+		margin: 0;
+		width: 60px;
+	}
+	span .col-xs-3 {
+		padding: 0;
+		margin: 0;
+		width: 80px;
+	}
+	span .col-xs-4 {
+		padding: 0;
+		margin: 0;
+		width: 125px;
+	}
+	
 	.container-fluid>div>div>div>span .dtDespesa {
 		height: 31px;
 		padding: .8%;
@@ -319,17 +334,25 @@
 	}
 	/*ALINHA BOTÕES PAGINA INICIAL*/
 	.container-fluid>.btnAlingDesp {
-		margin-top: 20%;
+		margin-top: 35%;
 		position: fixed;
 		margin-bottom: 16.5%;
 		padding: 5%;
 	}
 	/*BOTÕES DA PAGINA INICIAL*/
 	.container-fluid>div>.btn {
-		border-radius: 4%;
 		text-align: center;
 		padding: 5%;
 		margin-bottom: 5%;
+		font-size: 2.2rem !important;
+		text-align: center;
+		border: none !important;
+		border-radius: none !important;
+		background: #337ab7 !important;
+	}
+	.form-control {
+		margin: 0;
+		padding: 0;
 	}
 	.container-fluid>.contVer {
 		color: white;

@@ -560,7 +560,6 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
             transaction.executeSql(queryStatusDesp, [], function (transaction, result) {
 
-
               $("#tbDespesas tbody tr").remove();
 
               for (let i = 0; i < results.rows.length; i++) {
@@ -568,12 +567,13 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
                 let rowStatus = null;
                 let row = results.rows.item(i);
 
-                if (result.rows.length == 0) {
-                  console.log('aqui - 1')
+                if (result.rows.length <= 1) {
                   verifStatus();
-                } else if (result.rows.length > 0){
-                  rowStatus = result.rows.item(i);
-                  rowStatus = rowStatus.statusDesp
+                } else if (result.rows.length > 1){
+                  console.log(i)
+                    rowStatus = result.rows.item(i);
+                    rowStatus = rowStatus.statusDesp;
+                  //verifStatus(i)
                 }
                 
 
