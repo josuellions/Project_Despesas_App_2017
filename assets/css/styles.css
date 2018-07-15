@@ -6,20 +6,21 @@
 }
 
 @media screen and ( min-width: 320px) and (max-width: 1020px) {
+	/*
 	body{
 		height: 640px;
 		width: 360px;
+		
 	}
-
+*/
 	/*DEFINIR COR DE FUNDO - 01 - Superio*/
 	.bg-01 {
 		background-color: #474e5d;
 		position: absolute;
 		height: 40px;
 		z-index: 3;
-		box-shadow:  0px 0px 10px #337ab7;
+		box-shadow: 0px 0px 10px #337ab7;
 	}
-
 	/*DEFINIR COR DE FUNDO - 02 - Rodapé*/
 	.bg-02 {
 		background-color: #474e5d;
@@ -27,10 +28,9 @@
 		position: absolute;
 		z-index: 1;
 		height: 45px !important;
-		box-shadow:  0px 0px 10px  #c5cad5;
+		box-shadow: 0px 0px 10px #c5cad5;
 		border-bottom: 1px solid #c5cad5;
 	}
-
 	/*DEFINIR COR DE FUNDO - 03 - Titulo*/
 	.bg-03 {
 		background-color: #737d93;
@@ -38,14 +38,13 @@
 		position: absolute;
 		z-index: 1;
 		text-align: center;
-		box-shadow:  0px 0px 10px  #c5cad5;
+		box-shadow: 0px 0px 10px #c5cad5;
 		border-bottom: 1px solid #c5cad5;
 	}
-
 	/*DEFINIR COR DE FUNDO - 04 - Mês Referencia*/
 	.bg-04 {
 		background-color: #c5cad5;
-		box-shadow:  0px 0px 10px  #c5cad5;
+		box-shadow: 0px 0px 10px #c5cad5;
 		border-bottom: 1px solid #c5cad5;
 		color: #ffffff;
 		position: absolute;
@@ -54,13 +53,11 @@
 		height: 7%;
 		padding: 2%;
 	}
-
 	/*ALINHAR TEXTO h1 - Texto Principal*/
-	.container-fluid > h1 {
+	.container-fluid>h1 {
 		text-shadow: 2px 0px 5px #337ab7;
 		font-size: 2.7rem;
 	}
-
 	/*BOTÃO OPÇÃO MÊS*/
 	.spanOpcaoMesEsquerdo {
 		text-shadow: 1px 0px 3px #337ab7;
@@ -73,12 +70,10 @@
 		padding: 0;
 		padding-top: .7%;
 	}
-
 	/* Cor ao passar mouse */
 	.spanOpcaoMesEsquerdo:hover {
 		color: #337ab7;
 	}
-
 	.spanOpcaoMesDireito {
 		text-shadow: 1px 0px 3px #337ab7;
 		font-size: 2.5rem;
@@ -90,13 +85,11 @@
 		padding: 0;
 		padding-top: 1.5%;
 	}
-
-	.spanOpcaoMesDireito:hover{
+	.spanOpcaoMesDireito:hover {
 		color: #337ab7;
 	}
-
 	/*ALINHA MÊS*/
-	.container-fluid >  .alinharMes {
+	.container-fluid>.alinharMes {
 		text-shadow: 1px 0px 3px #337ab7;
 		text-align: center;
 		height: 7%;
@@ -104,167 +97,209 @@
 		padding: 1%;
 		margin: 0;
 	}
-
 	/*ALINHAR FORMULARIO DE DADOS*/
-	.container-fluid > div > div > .alinharFormDesp {
+	.container-fluid>div>div>.alinharFormDesp {
 		margin-top: 10%;
 		border: 200px 300px solid 2px white;
 		overflow: auto;
 		height: 60vh;
-		max-height: 60vh;	
+		max-height: 60vh;
 	}
-
 	/*BOTÃO ADICIONAR LINHA TABELA*/
+	section {
+		padding: 0;
+		margin: 0;
+	}
 	.btnDesp {
 		float: right;
-		font-size: 2.5rem;
+		font-size: 1.8rem !important;
 		text-align: center;
-		margin-right: 1%;
+		margin-right: 0%;
+		margin-bottom: 68%;
+		margin-left: 1.5vw;
+		border-top-right-radius: 2rem !important;
+		border-bottom-right-radius: 2rem !important;
+	}
+	.btnDespSalve {
+		float: right;
+		font-size: 2.8rem !important;
+		text-align: center;
+		margin-right: 0%;
 		margin-bottom: 68%;
 	}
-
-	.container-fluid > div > div > div > span .dtDespesa {
+	.container-fluid>div>div>div>span .dtDespesa {
 		height: 31px;
 		padding: .8%;
 	}
-
-	.container-fluid > div > div > div > span .listDespesa {
+	.container-fluid>div>div>div>span .listDespesa {
 		margin-left: 2%;
 		height: 31px;
 		padding: .8%;
 	}
-
-	.container-fluid > div > div > div > span .valDespesa {
+	.container-fluid>div>div>div>span .valDespesa {
 		height: 31px;
 		margin-left: 2%;
 		text-align: right;
 	}
-
-	.container-fluid > .textExibir  {
-	padding: 0;
-	margin-top: 10%;
-	text-align: left;
-	text-shadow: 0px 0px 3px lightslategrey;	
+	.container-fluid>.textExibir {
+		padding: 0;
+		margin-top: 10%;
+		text-align: left;
+		text-shadow: 0px 0px 3px lightslategrey;
 	}
-
-	.container-fluid > div > p {
-		padding: 0;		
+	.container-fluid>div>p {
+		padding: 0;
 	}
-
 	div.listExibDesp {
 		margin-left: 0%;
 		border: 2px solid lightgray;
-	  padding: 0; 
-	  padding-top: 0%;
-	  margin-top: -3%;
+		padding: 0;
+		padding-top: 0%;
+		margin-top: -3%;
 		margin-left: -1%;
 		font-size: .7rem;
 		text-align: center;
 		overflow: auto;
 		height: 37vh;
-		max-height: 37vh;	
+		max-height: 37vh;
 	}
-
 	.listDesp {
 		padding-top: 4%;
 		padding-left: 0%;
 		text-align: left;
 	}
-
 	tbody.listDesp tr td {
 		padding-left: 4%;
 		margin-left: 2%;
-		padding-top: 4%;		
-	} 
-
+		padding-top: 4%;
+	}
 	div.listExibEntrada {
 		border: 2px solid lightgray;
-	  padding: 0%;
-	  padding-top: 0%;
-	  margin-left: 1%;
-	  margin-top: -3%;
+		padding: 0%;
+		padding-top: 0%;
+		margin-left: 1%;
+		margin-top: -3%;
 		font-size: .7rem;
-		overflow: auto;	
+		overflow: auto;
 		height: 20vh;
 		max-height: 20vh;
 	}
-
-	div.totalEntrada{
+	div.totalEntrada {
 		border: 2px solid lightgray;
 		margin-left: 1%;
-	  padding: 2%;
-	  margin-top: 2%;
-	  min-height: 5vh;
-		font-size: 1rem;	
+		padding: 2%;
+		margin-top: 2%;
+		min-height: 5vh;
+		font-size: 1rem;
 	}
-
 	div.listExibCalculos {
 		border: 2px solid lightgray;
-	  padding: 2%;
-	  padding-top: 4%;
-	  margin-left: 1%;
-	  margin-top: 7%;
-	  min-height: 13.5vh;
-		font-size: 1rem;		
+		padding: 2%;
+		padding-top: 4%;
+		margin-left: 1%;
+		margin-top: 7%;
+		min-height: 13.5vh;
+		font-size: 1rem;
 	}
-
 	div.listExibCalculos tr th {
-		padding-bottom: 5%;		
+		padding-bottom: 5%;
 	}
-
 	div.totalDespesas {
 		border: 2px solid lightgray;
-	  padding: 2%;
-	  margin-top: -10%;
-	  min-height: 5vh;
-	  margin-left: -1%;
-		font-size: 1rem;		
+		padding: 2%;
+		margin-top: -10%;
+		min-height: 5vh;
+		margin-left: -1%;
+		font-size: 1rem;
 	}
-
+	/*CHECKBOX PAGO*/
+	body {
+		background: #eee;
+	}
+	.toggle {
+		margin-bottom: 5px;
+	}
+	.toggle>input {
+		display: none;
+	}
+	.toggle>label {
+		position: relative;
+		display: block;
+		height: 20px;
+		width: 44px;
+		background: #898989;
+		border-radius: 100px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+	}
+	.toggle>label:after {
+		position: absolute;
+		left: -2px;
+		top: -4px;
+		display: block;
+		width: 26px;
+		height: 26px;
+		border-radius: 100px;
+		background: #fff;
+		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
+		content: '';
+		transition: all 0.3s ease;
+	}
+	.toggle>label:active:after {
+		transform: scale(1.15, 0.85);
+	}
+	.toggle>input:checked~label {
+		background: #5486ac;
+	}
+	.toggle>input:checked~label:after {
+		left: 20px;
+		background: #337ab7;
+	}
+	.toggle>input:disabled~label {
+		background: #ca5050;
+		pointer-events: none;
+	}
+	.toggle>input:disabled~label:after {
+		background: #ca5050;
+	}
 	/*TEXTAREA DESPESAS - Tela Visualizar*/
-	.container-fluid > div > .despesa {
+	.container-fluid>div>.despesa {
 		width: 150px;
 		height: 200px;
-		padding:  2%;
+		padding: 2%;
 		padding-top: 2%;
 		font-size: .7rem;
-		font-style: bold;		
+		font-style: bold;
 	}
-
-	thead.theadDesp  tr th {
+	thead.theadDesp tr th {
 		text-align: center;
 		margin-left: 1%;
 		background-color: lightgray;
 		font-size: 1rem;
 	}
-
 	thead.theadEntrada tr th {
 		text-align: center;
 		margin-left: 1%;
 		background-color: lightgray;
 		font-size: 1rem;
 	}
-
 	.listEntrada {
 		padding-top: 4%;
 		padding-left: 0%;
 		text-align: left;
 	}
-
 	tbody.listEntrada tr td {
 		padding-left: 4%;
 		margin-left: 2%;
 		margin-left: 2%;
 		padding-top: 4%;
 	}
-
 	.container-fluid .tbmenuDesp {
 		background-color: lightgray;
 		opacity: .7;
 	}
-
 	/*TEXTAREA ENTRADA - Tela Visualizar*/
-/*	.container-fluid > div > .entrada {
+	/*	.container-fluid > div > .entrada {
 		width: 155px;
 		height: 200px;
 		padding:  2%;
@@ -274,45 +309,39 @@
 	}
 */
 	/*BOTÃO VISUALIZAR - Tela Visualizar Despesas*/
-	.container-fluid > button {
+	.container-fluid>button {
 		margin-top: 10%;
 		height: 40px;
 	}
-
 	/*ALINHA BOTÕES PAGINA INICIAL*/
-	.container-fluid > .menuInicial {
+	.container-fluid>.menuInicial {
 		margin-bottom: -1%;
 	}
-
 	/*ALINHA BOTÕES PAGINA INICIAL*/
-	.container-fluid > .btnAlingDesp {
+	.container-fluid>.btnAlingDesp {
 		margin-top: 20%;
 		position: fixed;
 		margin-bottom: 16.5%;
 	}
-
 	/*BOTÕES DA PAGINA INICIAL*/
-	.container-fluid > div > .btnDesp  {
+	.container-fluid>div>.btnDesp {
 		border-radius: 4%;
 		text-align: center;
 		padding: 5%;
 		margin-bottom: 5%;
 		font-size: 2rem;
 	}
-
-	.container-fluid > .contVer {
+	.container-fluid>.contVer {
 		color: white;
 		padding: 0;
 		margin-top: 12%;
 		font-size: 1rem;
 		z-index: 3;
 	}
-
 	.tbDespfoot {
 		float: left;
-		margin-top: -60%;
+		margin-top: 5%;
 	}
-
 	/*BOTÃO MENU HOME*/
 	.btnMenu {
 		float: right;
@@ -320,9 +349,7 @@
 		font-size: 3rem;
 		position: fixed;
 		z-index: 2;
-
 	}
-
 	/*ICONE REMOVER*/
 	span.glyphicon.glyphicon-trash {
 		font-size: 1.7rem;
@@ -331,17 +358,14 @@
 		margin-right: 1vh;
 		z-index: 0;
 	}
-
-	footer.footerIndex, footer.footerEntrada,  
-	footer.footerDespesas, footer.footerVisualizar {
+	footer.footerIndex, footer.footerEntrada, footer.footerDespesas, footer.footerVisualizar {
 		left: 0;
 		right: 0;
 		bottom: 0;
 		position: fixed;
 		text-align: center;
-		box-shadow:  0px 0px 15px #337ab7;
+		box-shadow: 0px 0px 15px #337ab7;
 	}
-
 	.container-fluid img {
 		float: left;
 		margin-top: 1%;
@@ -350,53 +374,46 @@
 		padding-bottom: 0.7%;
 		padding: 0;
 	}
-
 	.heightVisualizar {
 		position: absolute;
 		height: 576px;
 		max-height: 680px;
 		overflow-y: auto;
 	}
-
 	/*ICONE DO APP*/
 	.iconeSeven {
 		border-radius: 50%;
 	}
-
 	section {
 		margin-bottom: 20%;
 		position: fixed;
 		z-index: 1;
 	}
-
 	#divCompara {
-		float:left;
+		float: left;
 		margin-top: 140%;
-		font-size:14; 
+		font-size: 14;
 		color: white;
 		display: inline-flex;
 		background-color: red;
-		overflow: hidden;		
+		overflow: hidden;
 	}
 }
 
 /*TELAS DESKTOPS*/
+
 @media screen and (min-width: 1024px) {
-	
 	/*DEFINIR COR DE FUNDO - 01 - Superio*/
 	.bg-01 {
 		background-color: #474e5d;
 		position: fixed;
 		height: 7%;
 		z-index: 3;
-
 	}
-
-	img.imgLg{
+	img.imgLg {
 		width: 7%;
 		height: 7%;
 	}
-
 	/*DEFINIR COR DE FUNDO - 02 - Rodapé*/
 	.bg-02 {
 		background-color: #474e5d;
@@ -405,7 +422,6 @@
 		z-index: 1;
 		height: 9%;
 	}
-
 	/*DEFINIR COR DE FUNDO - 03 - Titulo*/
 	.bg-03 {
 		background-color: #737d93;
@@ -415,7 +431,6 @@
 		text-align: center;
 		height: 7%;
 	}
-
 	/*DEFINIR COR DE FUNDO - 04 - Mês Referencia*/
 	.bg-04 {
 		background-color: #c5cad5;
@@ -425,7 +440,6 @@
 		z-index: 1;
 		height: 7%;
 	}
-
 	/*BOTÃO OPÇÃO MÊS*/
 	.spanOpcaoMesEsquerdo {
 		font-size: 4rem;
@@ -436,9 +450,7 @@
 		margin: 0;
 		padding: 0;
 		padding-top: .7%;
-
 	}
-
 	.spanOpcaoMesDireito {
 		font-size: 4rem;
 		float: right;
@@ -447,139 +459,120 @@
 		position: fixed;
 		margin: 0;
 		padding: 0;
-		padding-top:.7%;
+		padding-top: .7%;
 	}
-
 	/*ALINHA MÊS*/
-	.container-fluid >  .alinharMes {
+	.container-fluid>.alinharMes {
 		text-align: center;
 		font-size: 3rem;
 		padding: 1%;
 		margin: 0;
 	}
-
 	/*ALINHAR FORMULARIO DE DADOS*/
-	.container-fluid > div > div > .alinharFormDesp {
+	.container-fluid>div>div>.alinharFormDesp {
 		margin-top: 5%;
 		border: 200px 300px solid 2px white;
 	}
-
 	/*BOTÃO ADICIONAR LINHA TABELA*/
 	.btnDesp {
 		float: right;
-		margin-left: 3.2%; 
+		margin-left: 3.2%;
 		font-size: 3rem;
 		text-align: center;
 		margin-right: 1%;
 	}
-
-	.container-fluid > div > div > div > span .dtDespesa {
+	.container-fluid>div>div>div>span .dtDespesa {
 		height: 31px;
 		padding: .8%;
 	}
-
-	.container-fluid > div > div > div > span .listDespesa {
+	.container-fluid>div>div>div>span .listDespesa {
 		margin-left: 2%;
 		height: 30px;
 		padding: .8%;
 		overflow: auto;
 	}
-
-	.container-fluid > div > div > div > span .valDespesa {
+	.container-fluid>div>div>div>span .valDespesa {
 		height: 30px;
 		margin-left: 2%;
 		text-align: right;
 	}
-
-	.container-fluid > .textExibir  {
+	.container-fluid>.textExibir {
 		padding: 0;
 		margin-top: 5%;
 		text-align: left;
 	}
-	 
-	.container-fluid > div > p {
+	.container-fluid>div>p {
 		padding: 0;
 		font-size: 2rem;
 	}
-
 	div.listExibDesp {
 		margin-left: 0%;
 		border: 2px solid lightgray;
-	  padding: 0; 
-	  padding-top: 0%;
-	  margin-top: -1%;
-	  height: 470px;
-	  min-height: 470px;
+		padding: 0;
+		padding-top: 0%;
+		margin-top: -1%;
+		height: 470px;
+		min-height: 470px;
 		margin-left: -1%;
 		font-size: 1.5rem;
 		text-align: center;
 		overflow: auto;
 	}
-
 	.listDesp {
 		padding-top: 4%;
 		padding-left: 0%;
 		text-align: left;
 	}
-
 	tbody.listDesp tr td {
 		padding-left: 4%;
 		margin-left: 2%;
 		padding-top: 4%;
-	} 
-
+	}
 	div.listExibEntrada {
 		border: 2px solid lightgray;
-	  padding: 0%;
-	  padding-top: 0%;
-	  margin-top: -1%;
-	  margin-left: 1%;
-	  min-height: 20vh;
+		padding: 0%;
+		padding-top: 0%;
+		margin-top: -1%;
+		margin-left: 1%;
+		min-height: 20vh;
 		font-size: 1.5rem;
 		overflow: auto;
 	}
-
-	div.totalEntrada{
+	div.totalEntrada {
 		border: 2px solid lightgray;
-	  padding: 2%;
-	  margin-top: 2%;
-	  margin-left: 1%;
-	  min-height: 5vh;
+		padding: 2%;
+		margin-top: 2%;
+		margin-left: 1%;
+		min-height: 5vh;
 		font-size: 1.5rem;
 	}
-
 	div.listExibCalculos {
 		border: 2px solid lightgray;
-	  padding: 2%;
-	  padding-top: 4%;
-	  margin-top: -14%;
-	  min-height: 13.5vh;
+		padding: 2%;
+		padding-top: 4%;
+		margin-top: -14%;
+		min-height: 13.5vh;
 		font-size: 1.5rem;
 	}
-
 	div.listExibCalculos tr th {
 		padding-bottom: 5%;
 	}
-
 	div.totalDespesas {
 		border: 2px solid lightgray;
-	  padding: 2%;
-	  margin-top: -8%;
-	  min-height: 5vh;
-	  margin-left: -1%;
+		padding: 2%;
+		margin-top: -8%;
+		min-height: 5vh;
+		margin-left: -1%;
 		font-size: 1.5rem;
 	}
-
-
 	/*TEXTAREA DESPESAS - Tela Visualizar*/
-	thead.theadDesp  tr th {
+	thead.theadDesp tr th {
 		text-align: center;
 		margin-left: 1%;
 		background-color: lightgray;
 		font-size: 1.5rem;
 		overflow-y: auto;
 	}
-
 	thead.theadEntrada tr th {
 		text-align: center;
 		margin-left: 1%;
@@ -587,61 +580,51 @@
 		font-size: 1.5rem;
 		overflow: auto;
 	}
-
 	.listEntrada {
 		padding-left: 0%;
 		text-align: left;
 	}
-
 	tbody.listEntrada tr td {
 		padding-left: 4%;
 		margin-left: 2%;
 		margin-left: 2%;
 		padding-top: 4%;
 	}
-
 	.container-fluid .tbmenuDesp {
 		background-color: lightgray;
 		opacity: .7;
 	}
-
 	/*TEXTAREA ENTRADA - Tela Visualizar*/
-
 	/*ALINHA BOTÕES PAGINA INICIAL*/
-	.container-fluid > .menuInicial {
+	.container-fluid>.menuInicial {
 		margin-bottom: -1%;
 	}
-
 	/*ALINHA BOTÕES PAGINA INICIAL*/
-	.container-fluid > .btnAlingDesp {
+	.container-fluid>.btnAlingDesp {
 		margin-top: 6.5%;
 		position: fixed;
 		margin-bottom: 16.5%;
 	}
-
 	/*BOTÕES DA PAGINA INICIAL*/
-	.container-fluid > div > .btnDesp  {
+	.container-fluid>div>.btnDesp {
 		border-radius: 4%;
 		text-align: center;
 		padding: 5%;
 		margin-bottom: 5%;
 		font-size: 2rem;
 	}
-
 	/*CONTROLE DE VESÃO*/
-	.container-fluid > .contVer {
+	.container-fluid>.contVer {
 		color: white;
 		padding: 0;
 		margin-top: 3.5%;
 		font-size: 1.2rem;
 		z-index: 3;
 	}
-
 	.tbDespfoot {
 		float: left;
 		margin-top: 2.5%;
 	}
-
 	/*BOTÃO MENU HOME*/
 	.btnMenu {
 		float: right;
@@ -650,9 +633,7 @@
 		font-size: 5rem;
 		position: fixed;
 		z-index: 2;
-
 	}
-
 	/*ICONE REMOVER*/
 	span.glyphicon.glyphicon-trash {
 		font-size: 2rem;
@@ -661,16 +642,13 @@
 		margin-right: 1vh;
 		z-index: 0;
 	}
-
-	footer.footerIndex, footer.footerEntrada,  
-	footer.footerDespesas, footer.footerVisualizar {
+	footer.footerIndex, footer.footerEntrada, footer.footerDespesas, footer.footerVisualizar {
 		left: 0;
 		right: 0;
 		bottom: 0;
 		position: absolute;
 		text-align: center;
 	}
-
 	/*DEFINIR TAMANHO LOGO SUPERIOR*/
 	.container-fluid img {
 		float: left;

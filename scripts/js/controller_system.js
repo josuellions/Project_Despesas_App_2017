@@ -1,13 +1,21 @@
+/*
+let dimTela = () => {
+	alert('As dimessões da tela são: \nHorizontal = ' + screen.width + 'pixels\n' +
+				'Vertical = ' + screen.height + 'pixels');
+				$('body').css( {'width': screen.width, 'height': screen.height} );
+
+}
+
+dimTela();
+*/
 $(document).ready(() => {
 
-	$('#dtEntrada').click( () => {
-		$('#dtEntrada').scrollTop;
-	});
+	//	var Page = window.location.pathname;
 
-//	var Page = window.location.pathname;
-
-//	if (Page == '/index.html' || '/') {
-		$("#btnInfo").click(() => {
+	//	if (Page == '/index.html' || '/') {
+	let alertInfo = (item) => {
+		
+		if (item === 'btnInfo' || item === 'btnInfoMenu') {
 			alert("APLICATIVO CONTROLE DESPESAS \n" +
 				"\t\t\t\t\t\t\tdiárias ou mensais \n\n" +
 				"Entrada Caixa: \n" +
@@ -20,34 +28,45 @@ $(document).ready(() => {
 				"vizualização dos laçamentos entrada e despesas lançados, \n\n" +
 				"Relatório: \n" +
 				"Em Desenvolvimento \n "
+			);			
+		} else {
+			alert("\t\t\t\t INFORMAÇÕES DESENVOLVEDOR \n\n" +
+				"Aplicativo:\n" +
+				"Controle Despesas Mensal\n\n" +
+
+				"Versão:\n" +
+				"Versão beta 0.0.9 - AngularJS - 14/07/2018\n\n" +
+
+				"Desenvolvedor: \n" +
+				"Josuel A. Lopes \n\n" +
+
+				"Contato: \n" +
+				"Celular: 11 98273 8274 \n" +
+				"email: josuel_lions@hotmail.com \n\n" +
+
+				"Desenvolvimento e Programação: \n" +
+				"Aplicativos Mobile App, Mobile Web, Web Sites e Desktop\n\n" +
+
+				"Desenvolvimento de aplicações nas linguagens: \n" +
+				"HTML5, CSS3, JavaScript, JQuery, \n" +
+				"PHP, Laravel, Eloquent, Blade, \n " +
+				"C#, ASP.NET, ADO.NET, MVC, \n" +
+				"NodeJS, Angular, AngularJS \n" +
+				"PhoneGap, SQL, MySQL, \n " +
+				"Linux e Microsoft"
 			);
-		});
-//	}
+		}
+	};
+	//	}
+	$('#btnInfo').click(() => {
+		alertInfo('btnInfo');
+	});
+	$('#btnInfoMenu').click(() => {
+		alertInfo('btnInfoMenu');
+	});
 
 	$("#btnSobre").click(() => {
-		alert("\t\t\t\t INFORMAÇÕES DESENVOLVEDOR \n\n" +
-			"Aplicativo:\n" +
-			"Controle Despesas Mensal\n\n" +
-
-			"Versão:\n" +
-			"Versão beta 0.0.9 - AngularJS - 16/04/2018\n\n" +
-
-			"Desenvolvedor: \n" +
-			"Josuel A. Lopes \n\n" +
-
-			"Contato: \n" +
-			"Celular: 11 98273 8274 \n" +
-			"email: josuel_lions@hotmail.com \n\n" +
-
-			"Desenvolvimento e Programação: \n" +
-			"Aplicativos Mobile App, Mobile Web, Web Sites e Descktops\n\n" +
-
-			"Desenvolvimento de aplicações nas linguagens: \n" +
-			"HTML5, CSS3, JavaScript, JQuery, \n" +
-			"PHP, Laravel, Eloquent, \n " +
-			"C#, PhoneGap, SQL, MySQL, \n " +
-			"Linux e Microsoft"
-		);
+		alertInfo(this);
 	});
 
 	$(document).ready(() => {
@@ -63,21 +82,6 @@ $(document).ready(() => {
 			});
 			$("body").mousedown(() => {
 				$("#liMenu").animate().slideUp(700);
-			});
-		});
-
-		$(document).ready( function () {
-			$('input[id="#"]').on('click', function (e) {
-				e.preventDefault();
-
-				var target = this.hast;
-				var $target = $(target);
-
-				$('html, body').animate({
-					'scrollTop': $target.offset().top
-				}, 1000, 'swing', function () {
-					window.location.hash = target;
-				});
 			});
 		});
 
@@ -127,7 +131,7 @@ $(document).ready(() => {
 
 		let convertMes = (recebMes, recebAno) => {
 			let mesExt = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
-		
+
 			return mesExt[recebMes] + "/" + recebAno;
 
 		}
@@ -145,11 +149,11 @@ $(document).ready(() => {
 			mesGlobal === 11 ? mesGlobal = -1 : false
 			mesGlobal++
 
-			let verifCampo = $('h1').text(); 
+			let verifCampo = $('h1').text();
 
-			if (verifCampo == "Adicionar Despesas") {	onInit(1); }
-			else if (verifCampo == "Adicionar Entrada") {	onInit(2); }
-			else if (verifCampo == "Visualizar Despesas") {	onInit(3); }
+			if (verifCampo == "Adicionar Despesas") { onInit(1); }
+			else if (verifCampo == "Adicionar Entrada") { onInit(2); }
+			else if (verifCampo == "Visualizar Despesas") { onInit(3); }
 
 			$("#dtReference").html(convertMes(mesGlobal, anoGlobal));
 
@@ -157,8 +161,8 @@ $(document).ready(() => {
 
 		// AVANÇAR MÊS DE REFERÊNCIA
 		var verificaMesRef = () => {
-			mesRef = document.getElementById("dtReference").innerText;
-			return mesRef;
+				mesRef = $("#dtReference").html();
+				return mesRef;
 		}
 
 		if (verificaMesRef() != "Menu") {
@@ -167,7 +171,7 @@ $(document).ready(() => {
 
 			$('#menuMobile').css('display', 'inline');
 			$("#btnInfo").css('display', 'none');
-		
+
 
 			// ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA
 			$(document).ready(function () {
@@ -192,7 +196,7 @@ $(document).ready(() => {
 	});
 
 	// Controle de Versão
-	$("#contVer").html("Versão beta 0.0.9-AngularJS - 16/04/2018");
+	$("#contVer").html("Versão beta 0.0.9-AngularJS - 14/07/2018");
 
 	//Nome Desenvolvedor
 	$("#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");

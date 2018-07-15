@@ -29,11 +29,9 @@
 				</table>
 				<span>
 					<input class="col-xs-2 col-lg-3 dtDespesa" type="date" id="dtEntrada" name="dtEntrada" />
-				</span>
-				<span>
-					<input class="textDespesa listDespesa col-xs-5 col-lg-4" list="selectListEntrada" name="textEntrada" class="listDespesa"
-					 id="textEntrada" placeholder="Ex. Salario">
-					<datalist name="textDespesa" id="selectListEntrada">
+				
+					<input class="textDespesa listDespesa col-xs-4 col-lg-4 listDespesa" list="selectListEntrada" name="textEntrada" id="textEntrada" placeholder="Ex. Salario">
+					<datalist name="textDespesa" id="selectListEntrada" class="dataListEntrada">
 						<option>Salario-01</option>
 						<option>Salario-02</option>
 						<option>Salario-03</option>
@@ -43,16 +41,14 @@
 						<option>Outros recursos</option>
 						<option id="novaEntrada">add nova entrada</option>
 					</datalist>
-				</span>
-				<span>
+				
 					<input class="col-xs-3 col-lg-3 valDespesa money" type="text" name="valEntrada" id="valEntrada" min="0" placeholder="R$ 0,00"
 					 value="" />
+				
+
+					<span class="col-xs-2 col-lg-1 btn btn-primary btn-xs glyphicon glyphicon-play btnDesp" id="btnEntrada" onclick="onCreateEntrada( )" ></span>
+					<span class="col-xs-1 col-lg-1  glyphicon glyphicon-floppy-saved btnDespSalve" name="create" value="Create" onclick="onUpdateEntBd()" id="btnEntEdit" style="display: none;"></span>
 				</span>
-
-				<span class="col-xs-1 col-lg-1 glyphicon glyphicon-ok btnDesp" id="btnEntrada" onclick="onCreateEntrada( )"></span>
-				<span class="col-xs-1 col-lg-1  glyphicon glyphicon-floppy-saved btnDesp" name="create" value="Create" onclick="onUpdateEntBd()"
-				 id="btnEntEdit" style="display: none;"></span>
-
 				<table class="table table-striped table-responsive tbDespfoot" id="tbfoot">
 					<tfoot>
 						<tr>
