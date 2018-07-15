@@ -7,22 +7,22 @@ app.config(function ($routeProvider) {
     .when('/', {
       //template: 'Hello World - Welcom user!',
       //templateUrl: '/public/home.html'
-      //templateUrl: '/android_asset/www/public/home.html'
-      templateUrl: url + 'public/home.html'
+      templateUrl: '/android_asset/www/public/home.html'
+      //templateUrl: url + 'public/home.html'
     })
     .when('/despesas', {
-      templateUrl: url + 'public/despesas.html',
-      //templateUrl: '/android_asset/www/public/despesas.html',
+      //templateUrl: url + 'public/despesas.html',
+      templateUrl: '/android_asset/www/public/despesas.html',
       //templeteUrl: '/public/menuMobile.html'
     })
     .when('/entrada', {
-      templateUrl: url + 'public/entrada.html',
-      //templateUrl: '/android_asset/www/public/entrada.html',
+      //templateUrl: url + 'public/entrada.html',
+      templateUrl: '/android_asset/www/public/entrada.html',
       //templeteView: '/public/menuMobile.html'
     })
     .when('/visualizar', {
-      templateUrl: url + 'public/visualiza.html'
-      //templateUrl: '/android_asset/www/public/visualiza.html'
+      //templateUrl: url + 'public/visualiza.html'
+      templateUrl: '/android_asset/www/public/visualiza.html'
     })
     .when('/relatorio', {
       //templateUrl: '/public/relariorio.html',
