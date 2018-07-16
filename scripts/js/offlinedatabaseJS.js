@@ -631,7 +631,7 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
                   somaDespesa += parseFloat(row['valor'].replace(",", "."));
                 
-                cont++;
+               // cont++;
               
                 } else if ((window.location.pathname === "/public/despesas.html") && (conf === false)) {
                   document.getElementById("somaDespesas").innerText = "";
