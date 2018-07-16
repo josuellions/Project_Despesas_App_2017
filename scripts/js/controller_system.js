@@ -165,8 +165,8 @@ $(document).ready(() => {
 				return mesRef;
 		}
 
-		if (verificaMesRef() != "Menu") {
-			//if (window.location.hash != '/') {
+		//if (verificaMesRef() != "Menu") {
+			if (window.location.hash != '#!/') {
 			$('#OpcaoMesEsquerdo').mousedown(() => { defineMes(1), convertMes() });
 			$('#OpcaoMesDireito').mousedown(() => { defineMes(2), convertMes() });
 

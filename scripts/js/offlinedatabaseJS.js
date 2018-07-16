@@ -204,7 +204,7 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
   let queryDesp = 'SELECT * FROM TbDespesas'; 
   let queryStatusDesp = 'SELECT * FROM TbStatusDesp;'
   let queryDespID = 'SELECT FROM TbStatusDesp  WHERE id = ? ;'
-console.log(upStatus)
+
   try{
     localDB.transaction(function (transaction) {
       transaction.executeSql(queryDesp, [], function (transaction, results) {
@@ -568,7 +568,7 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
       let dtFormt;
       let somaDespesa = 0.0;
       let conf = false;
-      let verStatus = true;
+      let verStatus = false;
 
       localDB.transaction(function (transaction) {
 
@@ -614,12 +614,12 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
                     '</td></tr>'
                   );
 
-                  if (results.rows.length > 0 && result.rows.length > 0 && (result.rows.length == results.rows.length - 1) && verStatus ) {
+                  if (results.rows.length > 0 && result.rows.length > 0 && (result.rows.length == results.rows.length - 1) && !verStatus ) {
                     insertStatus(results.rows.length, 0)
-                    verStatus = false;
+                    verStatus = true;
                   }
 
-                  if (result.rows.length > 0 && verStatus) {
+                  if (result.rows.length > 0) {
                     rowStatus = result.rows.item(i);
                     rowStatus = rowStatus.statusDesp;
                   }
@@ -628,7 +628,7 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
                   somaDespesa += parseFloat(row['valor'].replace(",", "."));
                 
-                //cont++;
+                cont++;
               
                 } else if ((window.location.pathname === "/public/despesas.html") && (conf === false)) {
                   document.getElementById("somaDespesas").innerText = "";
@@ -929,7 +929,7 @@ let onUpdateEnt = (id) => {
       alert("Erro" + e)
     }
   });
-}false
+}
 
 // UPDATE SALVAR NO DADOS BANCO, TELA ENTRADA RECEITA CAIXA
 let onUpdateEntBd = () => {
