@@ -13,6 +13,11 @@
 		
 	}
 */
+	img.imgLg {
+		width: 16vw;
+		height: 4vh;
+	}
+
 	/*DEFINIR COR DE FUNDO - 01 - Superio*/
 	.bg-01 {
 		background-color: #474e5d;
@@ -113,15 +118,20 @@
 	.btnDesp {
 		float: right;
 		padding: 0;
-		font-size: 2.7rem !important;
-		text-align: center;
-		margin-top: -.5vh !important;
+		padding-top: 1.4rem !important;
+		padding-bottom: 1.4rem !important;
+		font-size: 1.5rem !important;
+		text-align: center !important;
+		margin-top: -1.5vh !important;
 		margin-right: 0%;
-		margin-left: -.5vw !important;
-		border: none !important;
-		border-radius: none !important;
-		background: #337ab7 !important;
-		border-radius: 50% !important;
+		margin-left: .5vw !important;
+		color: #337ab7 !important;
+		background: transparent !important;
+		border: none;
+		box-shadow: 0px 0px 15px #337ab7 !important;
+		text-shadow: 0px 0px 15px #337ab7 !important;
+		/*border-color: 1px solid #c5cad5 !important;*/
+		border-radius: 50%!important;
 	}
 	.btnDespSalve {
 		float: right;
@@ -337,9 +347,9 @@
 	}
 	/*ALINHA BOTÕES PAGINA INICIAL*/
 	.container-fluid>.btnAlingDesp {
-		margin-top: 35%;
+		margin-top: 7vh;
 		position: fixed;
-		margin-bottom: 16.5%;
+		margin-bottom: 5%;
 		padding: 5%;
 	}
 	/*BOTÕES DA PAGINA INICIAL*/
@@ -347,11 +357,17 @@
 		text-align: center;
 		padding: 5%;
 		margin-bottom: 5%;
-		font-size: 2.2rem !important;
+		font-size: 2.5rem !important;
 		text-align: center;
 		border: none !important;
 		border-radius: none !important;
 		background: #337ab7 !important;
+		color: whitesmoke !important;
+		opacity: .4rem !important;
+		box-shadow: 0px 0px 15px whitesmoke !important;
+		text-shadow: 0px 0px 15px white !important;
+		padding-top: 10% !important;
+		padding-bottom: 10% !important;
 	}
 	.form-control {
 		margin: 0;
@@ -366,7 +382,7 @@
 	}
 	.tbDespfoot {
 		float: left;
-		margin-top: 5%;
+		margin-top: 0%;
 	}
 	/*BOTÃO MENU HOME*/
 	.btnMenu {
@@ -384,13 +400,17 @@
 		margin-right: 1vh;
 		z-index: 0;
 	}
-	footer.footerIndex, footer.footerEntrada, footer.footerDespesas, footer.footerVisualizar {
-		left: 0;
-		right: 0;
-		bottom: 0;
-		position: fixed;
-		text-align: center;
+	footer {
+		left: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
+		position: fixed !important;
+		text-align: center !important;
 		box-shadow: 0px 0px 15px #337ab7;
+	}
+	footer p {
+		padding: 0 !important;
+		margin: 0 !important;
 	}
 	.container-fluid img {
 		float: left;

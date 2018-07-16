@@ -35,7 +35,7 @@ $(document).ready(() => {
 				"Controle Despesas Mensal\n\n" +
 
 				"Versão:\n" +
-				"Versão beta 0.0.9 - AngularJS - 14/07/2018\n\n" +
+				"Versão beta 0.0.9 - AngularJS - 18/07/2018\n\n" +
 
 				"Desenvolvedor: \n" +
 				"Josuel A. Lopes \n\n" +
@@ -196,7 +196,7 @@ $(document).ready(() => {
 	});
 
 	// Controle de Versão
-	$("#contVer").html("Versão beta 0.0.9-AngularJS - 14/07/2018");
+	$("#contVer").html("Versão beta 0.0.9-AngularJS - 18/07/2018");
 
 	//Nome Desenvolvedor
 	$("#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
