@@ -1,23 +1,18 @@
 var app = angular.module('todoApp', ['ngRoute']);
 app.config(function ($routeProvider) {
 
-  var producao = true; 
-  var urlApp;
-
-  producao ? urlApp = '/android_asset/www/' : urlApp = window.location.pathname;
-
   $routeProvider
     .when('/', {
-      templateUrl: urlApp + 'public/home.html'
+      templateUrl: '/android_asset/www/public/home.html',
     })
     .when('/despesas', {
-      templateUrl: urlApp + 'public/despesas.html',
+      templateUrl: '/android_asset/www/public/despesas.html',
     })
     .when('/entrada', {
-         templateUrl: urlApp + 'public/entrada.html',
+      templateUrl: '/android_asset/www/public/entrada.html',
     })
     .when('/visualizar', {
-      templateUrl: urlApp + 'public/visualiza.html'
+      templateUrl: '/android_asset/www/public/visualiza.html'
     })
     .when('/relatorio', {
       //templateUrl: '/public/relariorio.html',
