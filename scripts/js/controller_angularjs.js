@@ -11,7 +11,7 @@ app.config(function ($routeProvider) {
       templateUrl: '/android_asset/www/public/home.html'
     })
     .when('/despesas', {
-      templateUrl: url + 'public/despesas.html',
+      //templateUrl: url + 'public/despesas.html',
       templateUrl: '/android_asset/www/public/despesas.html',
       //templeteUrl: '/public/menuMobile.html'
     })
