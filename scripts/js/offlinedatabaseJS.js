@@ -237,9 +237,6 @@ console.log(upStatus)
         });
       });
     });
-    //console.log(idDesp);
-    //!idDesp ? $('#' + idDesp + ':checked').attr('checked', 'checked') : false;
-
   }catch(e){
     alert('Error: Error tabela despesa, ' + e + '.');
   }
@@ -631,7 +628,7 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
                   somaDespesa += parseFloat(row['valor'].replace(",", "."));
                 
-                cont++;
+                //cont++;
               
                 } else if ((window.location.pathname === "/public/despesas.html") && (conf === false)) {
                   document.getElementById("somaDespesas").innerText = "";
