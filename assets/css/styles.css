@@ -300,7 +300,8 @@
 		display: block;
 		height: 20px;
 		width: 44px;
-		background: #f44336de;		/*#898989;*/
+		background: lightsalmon;
+		/* #f44336de;		#898989;*/
 		border-radius: 100px;
 		cursor: pointer;
 		transition: all 0.3s ease;
@@ -313,7 +314,7 @@
 		width: 26px;
 		height: 26px;
 		border-radius: 100px;
-		background:  #ff0000e6; /* #fff;*/
+		background: orangered ;/* #ff0000e6; #fff;*/
 		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
 		content: '';
 		transition: all 0.3s ease;
@@ -329,7 +330,8 @@
 		background: #337ab7;
 	}
 	.toggle>input:disabled~label {
-		background:  orangered; /*#ca5050;*/
+		background: orangered;
+		/*#ca5050;*/
 		pointer-events: none;
 	}
 	.toggle>input:disabled~label:after {
