@@ -161,11 +161,12 @@ $(document).ready(() => {
 
 		// AVANÇAR MÊS DE REFERÊNCIA
 		var verificaMesRef = () => {
-				mesRef = $("#dtReference").html();
+				mesRef =  $("#dtReference").html();
 				return mesRef;
 		}
 
-		if (verificaMesRef() != "Menu") {
+		//if (verificaMesRef() != "Menu") {
+			if (window.location.hash != '#!/') {
 			$('#OpcaoMesEsquerdo').mousedown(() => { defineMes(1), convertMes() });
 			$('#OpcaoMesDireito').mousedown(() => { defineMes(2), convertMes() });
 

@@ -1,5 +1,4 @@
-@media screen and ( min-width: 320px) and (max-width: 1020px ) {
-	
+@media screen and ( min-width: 320px) and (max-width: 1020px) {
 	nav.alingMenu {
 		/* float: right; */
 		/* margin-right: -3.5%; */
@@ -11,38 +10,41 @@
 		margin-top: 1.7%;
 		/* height: 7px; */
 	}
-
-	nav.alingMenu.alingMenuIndex{
+	nav.alingMenu.alingMenuIndex {
 		/* margin-top: 3%; */
 		position: absolute;
 		margin-left: 78%;
 		margin-top: 3.2%;
 		text-shadow: 0px 0px 15px #337ab7;
 	}
+	
+	/*EXIBIR ICONE MENU HOME E OUTRAS VIEWS*/
+	.menuMobile {
+		display: none;
+	}
+	.btnInfo {
+		display: none;
+	}
 
 	/*DEFINE ESTILO BOTÃO MENU*/
 	.btn {
 		background-color: #474e5d;
 	}
-
-	.dropdown-menu  {
-		background-color:  #474e5d !important;
+	.dropdown-menu {
+		background-color: #474e5d !important;
 		opacity: .9;
 	}
-
 	.dropdown-toggle {
 		margin-top: -2%;
 		margin-top: -5%;
 		z-index: 2 !important;
 		margin-top: -5%;
 	}
-
 	/*Tamanho do icone do botão menu*/
 	nav button span {
 		font-size: 2.5rem !important;
 		text-shadow: 0px 0px 15px #337ab7;
 	}
-
 	/*Tamanho alinhamento Menu*/
 	nav ul li span {
 		font-size: 2.5rem;
@@ -51,18 +53,15 @@
 		width: 60vw;
 		padding-left: 15%;
 	}
-
 	span a {
 		font-size: 1.5rem;
 		color: white;
 	}
-
 	li.liDivider {
 		color: white;
 		margin-left: 5vw !important;
 		width: 50vw;
 	}
-
 	ul a {
 		text-decoration: none;
 	}
@@ -70,42 +69,34 @@
 
 /*TELA DESKTOPS*/
 @media screen and (min-width: 1024px) {
-	
 	nav.alingMenu {
-	float: right;
-	margin-right: -.8%;
-	margin-top: 1%;
-	padding: 0;
-	color: white;
+		float: right;
+		margin-right: -.8%;
+		margin-top: 1%;
+		padding: 0;
+		color: white;
 	}
-
-	nav.alingMenu.alingMenuIndex{
+	nav.alingMenu.alingMenuIndex {
 		margin-top: .2%;
 		margin-right: 3.5%;
 	}
-
 	/*DEFINE ESTILO BOTÃO MENU*/
 	.btn {
 		background-color: #474e5d;
 	}
-
 	/*COR FUNDO MENU*/
-	.dropdown-menu  {
-		background-color:  #474e5d !important;
+	.dropdown-menu {
+		background-color: #474e5d !important;
 		opacity: .9;
 	}
-
 	.dropdown-toggle {
 		margin-top: -5%;
 		z-index: 2 !important;
 	}
-
 	/*Tamanho do icone do botão menu*/
 	nav button span {
 		font-size: 5rem !important;
-
 	}
-
 	/*Tamanho alinhamento Menu*/
 	nav ul li span {
 		font-size: 2.5rem;
@@ -113,18 +104,15 @@
 		padding-bottom: 12.5%;
 		padding-left: 15%;
 	}
-
 	span a {
 		font-size: 1.5rem;
 		color: white;
 	}
-
 	li.liDivider {
 		color: white;
 		/*margin-left: 5vw !important;*/
 		width: 10vw;
 	}
-
 	ul a {
 		text-decoration: none;
 	}

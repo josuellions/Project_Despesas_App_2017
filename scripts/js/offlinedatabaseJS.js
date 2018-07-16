@@ -204,7 +204,7 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
   let queryDesp = 'SELECT * FROM TbDespesas'; 
   let queryStatusDesp = 'SELECT * FROM TbStatusDesp;'
   let queryDespID = 'SELECT FROM TbStatusDesp  WHERE id = ? ;'
-
+console.log(upStatus)
   try{
     localDB.transaction(function (transaction) {
       transaction.executeSql(queryDesp, [], function (transaction, results) {
@@ -226,7 +226,7 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
                  let rowElse = result.rows.item(j);
 
                  if(rowElse.id == idDesp) {
-                   onUpdateStatusDesp(idDesp, statusDesp);
+                   onUpdateStatusDesp(idDesp, statusDesp);                   
                    verif =  false;
                    }
                }
@@ -237,6 +237,9 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
         });
       });
     });
+    //console.log(idDesp);
+    //!idDesp ? $('#' + idDesp + ':checked').attr('checked', 'checked') : false;
+
   }catch(e){
     alert('Error: Error tabela despesa, ' + e + '.');
   }
@@ -568,6 +571,7 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
       let dtFormt;
       let somaDespesa = 0.0;
       let conf = false;
+      let verStatus = true;
 
       localDB.transaction(function (transaction) {
 
@@ -612,15 +616,13 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
                     row['id'] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +*/
                     '</td></tr>'
                   );
-/*
-                  if (result.rows.length <= 1) {
-                    verifStatus();
-                  } else if (result.rows.length == results.rows.length) {
-                    rowStatus = result.rows.item(i);
-                    rowStatus = rowStatus.statusDesp;
+
+                  if (results.rows.length > 0 && result.rows.length > 0 && (result.rows.length == results.rows.length - 1) && verStatus ) {
+                    insertStatus(results.rows.length, 0)
+                    verStatus = false;
                   }
-                 */
-                  if (result.rows.length > 0) {
+
+                  if (result.rows.length > 0 && verStatus) {
                     rowStatus = result.rows.item(i);
                     rowStatus = rowStatus.statusDesp;
                   }
@@ -629,7 +631,7 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
                   somaDespesa += parseFloat(row['valor'].replace(",", "."));
                 
-                //cont++;
+                cont++;
               
                 } else if ((window.location.pathname === "/public/despesas.html") && (conf === false)) {
                   document.getElementById("somaDespesas").innerText = "";
@@ -930,7 +932,7 @@ let onUpdateEnt = (id) => {
       alert("Erro" + e)
     }
   });
-}
+}false
 
 // UPDATE SALVAR NO DADOS BANCO, TELA ENTRADA RECEITA CAIXA
 let onUpdateEntBd = () => {

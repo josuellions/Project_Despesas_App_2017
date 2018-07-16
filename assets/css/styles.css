@@ -5,6 +5,32 @@
 	margin: 0;
 }
 
+@media screen and (max-width:400px) {
+	.container-fluid>.btnAlingDesp {
+		margin-top: 2.5vh !important;
+	}
+	.container-fluid>div>.btn {
+		height: 15vh !important;
+	}
+	span.btnDesp {
+		padding-top: 1.2rem !important;
+		padding-bottom: 1.2rem !important;
+		font-size: 1.2rem !important;
+		margin-top: -1vh !important;
+		/*margin-right: 1.8% ;*/
+		margin-left: -.5vw !important;
+	}
+	span.btnDespSalve {
+		padding: 0 !important;
+		padding-top: 1.2rem !important;
+		padding-bottom: 1.2rem !important;
+		font-size: 1.2rem !important;
+		margin-top: -1vh !important;
+		/*margin-right: 1.8% ;*/
+		margin-left: -.5vw !important;
+	}
+}
+
 @media screen and ( min-width: 320px) and (max-width: 1020px) {
 	/*
 	body{
@@ -12,12 +38,12 @@
 		width: 360px;
 		
 	}
-*/
-	img.imgLg {
-	/*	width: 16vw;*/
-	/*	height: 4vh;*/
-	}
 
+	img.imgLg {
+			width: 16vw;
+			height: 4vh;
+	}
+	*/
 	/*DEFINIR COR DE FUNDO - 01 - Superio*/
 	.bg-01 {
 		background-color: #474e5d;
@@ -117,27 +143,45 @@
 	}
 	.btnDesp {
 		float: right;
-		padding: 0;
-		padding-top: 1.4rem !important;
-		padding-bottom: 1.4rem !important;
-		font-size: 1.5rem !important;
-		text-align: center !important;
+		padding: 0 !important;
+		padding-top: 1.5rem !important;
+		padding-bottom: 1.5rem !important;
+		font-size: 2.7rem;
+		text-align: center;
 		margin-top: -1.5vh !important;
-		margin-right: 0%;
-		margin-left: .5vw !important;
-		color: #337ab7 !important;
-		background: transparent !important;
-		border: none;
-		box-shadow: 0px 0px 15px #337ab7 !important;
-		text-shadow: 0px 0px 15px #337ab7 !important;
-		/*border-color: 1px solid #c5cad5 !important;*/
-		border-radius: 50%!important;
+		/*margin-right: 1.8% ;*/
+		margin-left: -.2vw !important;
+		color: #337ab7;
+		background: transparent;
+		border: .1rem solid #337ab7;
+		box-shadow: 0px 0px 10px #337ab7;
+		text-shadow: 0px 0px 7rem #337ab7;
+		/*border-color: 1px solid #c5cad5 ;*/
+		border-radius: 50%;
 	}
 	.btnDespSalve {
+		float: right;
+		padding: 0 !important;
+		padding-top: 1.5rem !important;
+		padding-bottom: 1.5rem !important;
+		font-size: 2.7rem;
+		text-align: center;
+		margin-top: -1.5vh !important;
+		/*margin-right: 1.8% ;*/
+		margin-left: -.2vw !important;
+		color: #337ab7;
+		background: transparent;
+		border: .1rem solid #337ab7;
+		box-shadow: 0px 0px 10px #337ab7;
+		text-shadow: 0px 0px 7rem #337ab7;
+		/*border-color: 1px solid #c5cad5 ;*/
+		border-radius: 50%;
+		/*
 		float: right;
 		font-size: 2.8rem !important;
 		text-align: center;
 		margin-right: 0%;
+		*/
 	}
 	span .col-xs-2 {
 		padding: 0;
@@ -242,7 +286,8 @@
 	}
 	/*CHECKBOX PAGO*/
 	body {
-		background: #eee;
+		background: #f44336de;
+		/*#eee;*/
 	}
 	.toggle {
 		margin-bottom: 5px;
@@ -255,7 +300,8 @@
 		display: block;
 		height: 20px;
 		width: 44px;
-		background: #898989;
+		background: #f44336de;
+		/*#898989;*/
 		border-radius: 100px;
 		cursor: pointer;
 		transition: all 0.3s ease;
@@ -268,7 +314,8 @@
 		width: 26px;
 		height: 26px;
 		border-radius: 100px;
-		background: #fff;
+		background: #ff0000e6;
+		/* #fff;*/
 		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
 		content: '';
 		transition: all 0.3s ease;
@@ -347,10 +394,11 @@
 	}
 	/*ALINHA BOTÕES PAGINA INICIAL*/
 	.container-fluid>.btnAlingDesp {
-		margin-top: 7vh;
+		margin-top: 7.5vh;
 		position: fixed;
-		margin-bottom: 5%;
-		padding: 5%;
+		/*margin-bottom: 5%;*/
+		padding: 0;
+		padding-bottom: 5%;
 	}
 	/*BOTÕES DA PAGINA INICIAL*/
 	.container-fluid>div>.btn {
@@ -358,7 +406,6 @@
 		padding: 5%;
 		margin-bottom: 5%;
 		font-size: 2.5rem !important;
-		text-align: center;
 		border: none !important;
 		border-radius: none !important;
 		background: #337ab7 !important;
@@ -401,16 +448,18 @@
 		z-index: 0;
 	}
 	footer {
-		left: 0 !important;
+		border-top-color: #337ab7 !important;
+		border-bottom-color: #474e5d !important;
 		right: 0 !important;
 		bottom: 0 !important;
 		position: fixed !important;
 		text-align: center !important;
-		box-shadow: 0px 0px 15px #337ab7;
+		box-shadow: 0px 0px 15px #337ab7 !important;
 	}
 	footer p {
 		padding: 0 !important;
 		margin: 0 !important;
+		margin-top: .2rem !important;
 	}
 	.container-fluid img {
 		float: left;

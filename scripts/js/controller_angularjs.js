@@ -1,28 +1,33 @@
 var app = angular.module('todoApp', ['ngRoute']);
 app.config(function ($routeProvider) {
-  
- var url = window.location.pathname;
+
+  var producao = true;
+  var urlApp;
+
+  producao ? urlApp = '/android_asset/www/' : urlApp = window.location.pathname;
+ 
+//var url = window.location.pathname;
 //alert(window.location.pathname);
   $routeProvider
     .when('/', {
       //template: 'Hello World - Welcom user!',
       //templateUrl: '/public/home.html'
       //templateUrl: url + 'public/home.html'
-      templateUrl: '/android_asset/www/public/home.html'
+      templateUrl: urlApp + 'public/home.html'
     })
     .when('/despesas', {
       //templateUrl: url + 'public/despesas.html',
-      templateUrl: '/android_asset/www/public/despesas.html',
+      templateUrl: urlApp + 'public/despesas.html',
       //templeteUrl: '/public/menuMobile.html'
     })
     .when('/entrada', {
-      //templateUrl: url + 'public/entrada.html',
-      templateUrl: '/android_asset/www/public/entrada.html',
-      //templeteView: '/public/menuMobile.html'
+         templateUrl: urlApp + 'public/entrada.html',
+         //templateUrl: url + 'public/entrada.html',
+         //templeteView: '/public/menuMobile.html'
     })
     .when('/visualizar', {
-      //templateUrl: url + 'public/visualiza.html'
-      templateUrl: '/android_asset/www/public/visualiza.html'
+      templateUrl: urlApp + 'public/visualiza.html'
+      //templateUrl: '/android_asset/www/public/visualiza.html'
     })
     .when('/relatorio', {
       //templateUrl: '/public/relariorio.html',
