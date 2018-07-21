@@ -2,7 +2,7 @@
 <widget	xmlns="http://www.w3.org/ns/widgets"
 								xmlns:gap="http://phonegap.com/ns/1.2"
 								id="sevensolutions.despesas.app"
-								version="1.0.1">
+								version="1.0.2">
 				<name>
 								Controle Despesas
 				</name>
@@ -23,6 +23,6 @@
 
 				<icon src="assets/img/icon_02.png" />
 				<plugin name="cordova-plugin-splashscreen" spec="4.0.3" />
-				<splash src="assets/img/novologoseven.png" />
+				<splash src="assets/img/logoHomeSize.png" />
 
 </widget>

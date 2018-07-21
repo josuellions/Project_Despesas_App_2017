@@ -8,11 +8,12 @@ let dimTela = () => {
 
 dimTela();
 */
-$(document).ready(() => {
+//$(document).ready(() => {
 
 	//	var Page = window.location.pathname;
 
 	//	if (Page == '/index.html' || '/') {
+		/*
 	let alertInfo = (item) => {
 		
 		if (item === 'btnInfo' || item === 'btnInfoMenu') {
@@ -69,7 +70,7 @@ $(document).ready(() => {
 		alertInfo(this);
 	});
 
-	$(document).ready(() => {
+	//$(document).ready(() => {
 		// EFEITO MENU SUPERIOR
 		$("#btnMenu").click(() => {
 			$("#liMenu").slideToggle(() => {
@@ -155,24 +156,69 @@ $(document).ready(() => {
 			else if (verifCampo == "Adicionar Entrada") { onInit(2); }
 			else if (verifCampo == "Visualizar Despesas") { onInit(3); }
 
-			$("#dtReference").html(convertMes(mesGlobal, anoGlobal));
+			//$("#dtReference").html(convertMes(mesGlobal, anoGlobal));
 
 		}
 
 		// AVANÇAR MÊS DE REFERÊNCIA
 		var verificaMesRef = () => {
-				mesRef =  $("#dtReference").html();
-				return mesRef;
+			$(document).ready(function(){
+				//mesRef =  $("#dtReference").text();
+				//console.log(mesRef)
+				//return mesRef;
+			})
 		}
+	
+*/
+// EXIBIR O MÊS DE REFENCIA
+let exibTitleCabecalho = (titleCab, titleRef) => {
+	$('#titleCabecalho').text(titleCab)
+	$('#dtReference').text(titleRef) // defineMes());
+}
+		// DEFINIR O MÊS ATUAL NO INPUT DATA
+		//$('#dtDespesa').val(formataData());
+
 
 		//if (verificaMesRef() != "Menu") {
-			if (window.location.hash != '#!/') {
+			if (window.location.hash == '#!/') {
+				
+				exibTitleCabecalho('Controle Despesas', 'Menu');
+
+				$('#dtReference').css({ 'margin-left': '30.5vw', })
+				$('#menuMobile').attr('hidden','hidden');
+			//	$('#btnInfo').removeClass('hidden','hidden');
+			//	$('#btnInfo').css({'display': 'inline'});
+		//	return false;
+
+			} //else {
+			
+		let viewNavegacao = (postPage) => {
+
+		switch (postPage) {
+			case 1:
+							exibTitleCabecalho('Adicionar Entrada', 'JUL/2018');
+							break;
+			case 2:
+							exibTitleCabecalho('Adicionar Despesas', 'JUL/2018');
+							break;
+			case 3: 
+							exibTitleCabecalho('Vizualizar Despesas', 'JUL/2018');
+							break;
+			default:
+						break;
+			}
+			
+			/*Retira icone Home, Add icone MenuMobile*/
+			$('#menuMobile').removeAttr('hidden', 'hidden');
+			$('.alingMenu').attr('hidden', 'hidden');
+			$("#btnInfo").css('display', 'inline');
+
+				//if ($("#dtReference").text() != 'Menu') {
 			$('#OpcaoMesEsquerdo').mousedown(() => { defineMes(1), convertMes() });
 			$('#OpcaoMesDireito').mousedown(() => { defineMes(2), convertMes() });
 
-			$('#menuMobile').css('display', 'inline');
-			$("#btnInfo").css('display', 'none');
-
+			//$('#menuMobile').css('display', 'inline');
+			//$("#btnInfo").css('display', 'none');
 
 			// ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA
 			$(document).ready(function () {
@@ -182,19 +228,14 @@ $(document).ready(() => {
 					$(".valDespesa").html($(this).val().replace(/\D/g, ''))
 				})
 			});
-		} else {
-			$('#menuMobile').css('display', 'none');
-			$("#btnInfo").css('display', 'inline');
-			return false;
+		
+		//window.location.reload();
 		}
+		
+	
+		
 
-		// EXIBIR O MÊS DE REFENCIA
-		$('#dtReference').html(defineMes());
-
-		// DEFINIR O MÊS ATUAL NO INPUT DATA
-		$('#dtDespesa').val(formataData());
-
-	});
+	//});
 
 	// Controle de Versão
 	$("#contVer").html("Versão beta 0.0.9-AngularJS - 20/07/2018");
@@ -207,4 +248,4 @@ $(document).ready(() => {
 
 	// $( "#btnSair").window.close( );
 
-});
+//});

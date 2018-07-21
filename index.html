@@ -13,7 +13,7 @@
 
 
   <script type="text/javascript" src="scripts/js/libs/angularjs/angular.min.js"></script>
- <!-- <script type="text/javascript" src="scripts/js/libs/angularjs/angular.min.js.map"></script>-->
+  <!-- <script type="text/javascript" src="scripts/js/libs/angularjs/angular.min.js.map"></script>-->
   <script type="text/javascript" src="scripts/js/libs/angularjs/angular-route.min.js"></script>
   <!--<script type="text/javascript" src="scripts/js/libs/angularjs/angular-route.min.js.map"></script>-->
   <script type="text/javascript" src="scripts/js/controller_angularjs.js"></script>
@@ -22,15 +22,16 @@
 </head>
 
 <body ng-app="todoApp">
-  <div class="heightVisualizar" id="heightDespesas">
+  <div>
+    <!-- class="heightVisualizar" id="heightDespesas">-->
     <section>
       <div class="container-fluid bg-01 col-xs-12 col-lg-12">
-        <img src="assets/img/logo_seven.jpg" class="col-xs-2 col-lg-2 imgLg">
+        <img src="assets/img/logo_seven.png" class="col-xs-2 col-lg-2 imgLg">
         <div class="container-fluid col-xs-8 col-lg-8">
           <p class="contVer" id="contVer"></p>
         </div>
         <!-- MENU INFO-->
-        <nav class="dropdown alingMenu alingMenuIndex  col-xs-2 col-lg-2" id="btnInfo">
+        <nav class="dropdown alingMenu alingMenuIndex  col-xs-2 col-lg-2">
           <span class="glyphicon glyphicon-question-sign btnMenu" id="btnInfo"></span>
         </nav>
         <!-- END MENU -->
@@ -88,8 +89,18 @@
           </ul>
         </nav>
       </div>
+      <dir class="container-fluid col-xs-12 col-lg-12 bg-03">
+        <h1 class="col-xs-12 col-lg-12" id="titleCabecalho"></h1>
+      </dir>
 
-      <div ng-view></div>
+      <div class="container-fluid col-xs-12 bg-04">
+        <span class="glyphicon glyphicon-menu-left spanOpcaoMesEsquerdo hidden col-xs-4 col-lg-5" title="Voltar para mês anterior " id="OpcaoMesEsquerdo"></span>
+          <h2 class="alinharMes col-xs-4 col-lg-2" id="dtReference"></h2>
+        <span class="glyphicon glyphicon-menu-right spanOpcaoMesDireito hidden col-xs-4 col-lg-5" title="Passar para mês seguinte" id="OpcaoMesDireito"></span>
+      </div>
+    </section>
+
+    <div class="heightVisualizar" ng-view></div>
   </div>
 
 </body>
@@ -99,6 +110,9 @@
     <p id="nomeEmpresa"></p>
   </div>
 </footer>
+<style>
+  html {}
+</style>
 
 </html>
 <script type="text/javascript" src="scripts/js/libs/jquery-3.2.1.min.js"></script>

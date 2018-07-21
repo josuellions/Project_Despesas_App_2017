@@ -128,13 +128,20 @@
 		padding: 1%;
 		margin: 0;
 	}
+	.container-fluid>.alinharMes h2 {
+		text-align: center !important;
+	}
 	/*ALINHAR FORMULARIO DE DADOS*/
 	.container-fluid>div>div>.alinharFormDesp {
-		margin-top: 10%;
-		border: 200px 300px solid 2px white;
+		margin-top: 20vh;
+		border: 200px 300px solid 2px #337ab7;
 		overflow: auto;
-		height: 60vh;
-		max-height: 60vh;
+		height: 72.5vh;
+		max-height: 72.5vh;
+	}
+	table thead, tfoot {
+		background-color: #474e5d;
+		color: #c5cad5;
 	}
 	/*BOTÃO ADICIONAR LINHA TABELA*/
 	section {
@@ -285,10 +292,10 @@
 		font-size: 1rem;
 	}
 	/*CHECKBOX PAGO*/
-	body {
-		background: #f44336de;
-		/*#eee;*/
-	}
+	/*body {
+		background: #f44336de;*/
+	/*#eee;*/
+	/*}*/
 	.toggle {
 		margin-bottom: 5px;
 	}
@@ -314,7 +321,8 @@
 		width: 26px;
 		height: 26px;
 		border-radius: 100px;
-		background: orangered ;/* #ff0000e6; #fff;*/
+		background: orangered;
+		/* #ff0000e6; #fff;*/
 		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
 		content: '';
 		transition: all 0.3s ease;
@@ -394,27 +402,33 @@
 	}
 	/*ALINHA BOTÕES PAGINA INICIAL*/
 	.container-fluid>.btnAlingDesp {
-		margin-top: 7.5vh;
+		margin-top: 25vh;
 		position: fixed;
 		/*margin-bottom: 5%;*/
 		padding: 0;
-		padding-bottom: 5%;
+		padding-bottom: .5% !important;
+	}
+	.container-fluid>.btnAlingDesp i {
+		font-size: 3.5rem;
+		color: #337ab7;
 	}
 	/*BOTÕES DA PAGINA INICIAL*/
 	.container-fluid>div>.btn {
+		/*font-weight: bolder;*/
 		text-align: center;
-		padding: 5%;
+		/*padding: 5%;*/
 		margin-bottom: 5%;
-		font-size: 2.5rem !important;
+		color: #5486ac;
+		font-size: 1.5rem !important;
 		border: none !important;
-		border-radius: none !important;
+		border-radius: 2rem !important;
 		background: #337ab7 !important;
-		color: whitesmoke !important;
+		color: orange !important;
 		opacity: .4rem !important;
 		box-shadow: 0px 0px 15px whitesmoke !important;
 		text-shadow: 0px 0px 15px white !important;
-		padding-top: 10% !important;
-		padding-bottom: 10% !important;
+		padding-top: 7% !important;
+		padding-bottom: 7% !important;
 	}
 	.form-control {
 		margin: 0;
@@ -437,7 +451,7 @@
 		margin-top: -10.5%;
 		font-size: 3rem;
 		position: fixed;
-		z-index: 2;
+		z-index: 1;
 	}
 	/*ICONE REMOVER*/
 	span.glyphicon.glyphicon-trash {
@@ -461,29 +475,52 @@
 		margin: 0 !important;
 		margin-top: .2rem !important;
 	}
+
+	/*IMG LOGO SUPERIOR*/
 	.container-fluid img {
 		float: left;
-		margin-top: 1%;
+		margin-top: .2%;
 		margin-left: -3.7%;
 		border-radius: 10%;
 		padding-bottom: 0.7%;
 		padding: 0;
 	}
+
+	/*IMG DE FUNDO BODY GERAL*/
+	body {
+		background-color: snow !important;
+		/* gainsboro !important;*/
+	}
+	body {
+		background-image: url("../img/logoHomeSize.png");
+		background-size: 410px 640px;
+		background-repeat: no-repeat;
+		background-position: right top;
+		background-attachment: fixed;
+		background-position-y: 18.5vh;
+	}
+	/*
 	.heightVisualizar {
 		position: absolute;
 		height: 576px;
 		max-height: 680px;
 		overflow-y: auto;
+		background-image: url("assets/img/logoHomeSize.png");
+		background-repeat: no-repeat;
+		background-position: right top;
+		background-attachment: fixed;
 	}
+*/
 	/*ICONE DO APP*/
 	.iconeSeven {
 		border-radius: 50%;
 	}
 	section {
-		margin-bottom: 20%;
+		/*	margin-bottom: 20%;*/
 		position: fixed;
 		z-index: 1;
 	}
+	/*
 	#divCompara {
 		float: left;
 		margin-top: 140%;
@@ -493,6 +530,7 @@
 		background-color: red;
 		overflow: hidden;
 	}
+	*/
 }
 
 /*TELAS DESKTOPS*/
@@ -595,6 +633,7 @@
 		padding: 0;
 		margin-top: 5%;
 		text-align: left;
+		
 	}
 	.container-fluid>div>p {
 		padding: 0;
@@ -695,19 +734,22 @@
 		margin-bottom: -1%;
 	}
 	/*ALINHA BOTÕES PAGINA INICIAL*/
+	/*
 	.container-fluid>.btnAlingDesp {
 		margin-top: 6.5%;
 		position: fixed;
 		margin-bottom: 16.5%;
 	}
+	*/
 	/*BOTÕES DA PAGINA INICIAL*/
+	/*
 	.container-fluid>div>.btnDesp {
 		border-radius: 4%;
 		text-align: center;
 		padding: 5%;
 		margin-bottom: 5%;
 		font-size: 2rem;
-	}
+	}*/
 	/*CONTROLE DE VESÃO*/
 	.container-fluid>.contVer {
 		color: white;
