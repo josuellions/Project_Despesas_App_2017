@@ -13,22 +13,22 @@ angular.module('todoApp', ['ngRoute', 'depesasDirectives'])
       //template: 'Hello World - Welcom user!',
       //templateUrl: '/public/home.html'
       //templateUrl: url + 'public/home.html'
-      templateUrl: '/android_asset/www/home.html',
+      templateUrl: '/android_asset/www/public/home.html',
      // controller: 'DespesasController'
     })
     .when('/despesas', {
       //templateUrl: url + 'public/despesas.html',
-      templateUrl: '/android_asset/www/despesas.html'
+      templateUrl: '/android_asset/www/public/despesas.html'
 
       //templeteUrl: '/public/menuMobile.html'
     })
     .when('/entrada', {
-      templateUrl: '/android_asset/www/entrada.html'
+      templateUrl: '/android_asset/www/public/entrada.html'
          //templateUrl: url + 'public/entrada.html',
          //templeteView: '/public/menuMobile.html'
     })
     .when('/visualizar', {
-      templateUrl: '/android_asset/www/visualiza.html'
+      templateUrl: '/android_asset/www/public/visualiza.html'
       //templateUrl: '/android_asset/www/public/visualiza.html'
     })
     .when('/relatorio', {
