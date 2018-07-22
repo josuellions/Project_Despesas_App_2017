@@ -1,34 +1,34 @@
 angular.module('todoApp', ['ngRoute', 'depesasDirectives'])
 .config(function ($routeProvider) {
 
-  var producao = true;
+ /* var producao = false;
   var urlApp;
 
-  producao ? urlApp = '/android_asset/www/' : urlApp =  window.location.pathname;
+  producao ? urlApp = '/android_asset/www/' : urlApp =  window.location.pathname;*/
  
 //var url = window.location.pathname;
-alert(window.location.pathname);
+/*alert(window.location.pathname);*/
   $routeProvider
     .when('/', {
       //template: 'Hello World - Welcom user!',
       //templateUrl: '/public/home.html'
       //templateUrl: url + 'public/home.html'
-      templateUrl: urlApp + '/public/home.html',
+      templateUrl: '/public/home.html',
      // controller: 'DespesasController'
     })
     .when('/despesas', {
       //templateUrl: url + 'public/despesas.html',
-      templateUrl: urlApp + 'public/despesas.html'
+      templateUrl: 'public/despesas.html'
 
       //templeteUrl: '/public/menuMobile.html'
     })
     .when('/entrada', {
-         templateUrl: urlApp + 'public/entrada.html'
+         templateUrl: 'public/entrada.html'
          //templateUrl: url + 'public/entrada.html',
          //templeteView: '/public/menuMobile.html'
     })
     .when('/visualizar', {
-      templateUrl: urlApp + 'public/visualiza.html'
+      templateUrl: 'public/visualiza.html'
       //templateUrl: '/android_asset/www/public/visualiza.html'
     })
     .when('/relatorio', {
