@@ -230,11 +230,14 @@
 		padding: 0;
 	}
 	div.listExibDesp {
-		margin-left: 0%;
+		float: right;
+		;
+		margin-left: 0;
+		margin-right: 0;
 		border: 2px solid lightgray;
 		padding: 0;
 		padding-top: 0%;
-		margin-top: -3%;
+		/*margin-top: -3%;*/
 		margin-left: -1%;
 		font-size: .7rem;
 		text-align: center;
@@ -246,6 +249,8 @@
 		padding-top: 4%;
 		padding-left: 0%;
 		text-align: left;
+		height: 37vh;
+		max-height: 37vh;
 	}
 	tbody.listDesp tr td {
 		padding-left: 4%;
@@ -253,11 +258,13 @@
 		padding-top: 4%;
 	}
 	div.listExibEntrada {
+		background-color: #474e5d;
+		float: left;
 		border: 2px solid lightgray;
 		padding: 0%;
 		padding-top: 0%;
-		margin-left: 1%;
-		margin-top: -3%;
+		/*	margin-left: 1%;*/
+		/*margin-top: -3%;*/
 		font-size: .7rem;
 		overflow: auto;
 		height: 20vh;
@@ -475,7 +482,6 @@
 		margin: 0 !important;
 		margin-top: .2rem !important;
 	}
-
 	/*IMG LOGO SUPERIOR*/
 	.container-fluid img {
 		float: left;
@@ -485,7 +491,6 @@
 		padding-bottom: 0.7%;
 		padding: 0;
 	}
-
 	/*IMG DE FUNDO BODY GERAL*/
 	body {
 		background-color: snow !important;
@@ -633,7 +638,6 @@
 		padding: 0;
 		margin-top: 5%;
 		text-align: left;
-		
 	}
 	.container-fluid>div>p {
 		padding: 0;
@@ -701,16 +705,18 @@
 	}
 	/*TEXTAREA DESPESAS - Tela Visualizar*/
 	thead.theadDesp tr th {
+		background-color: #474e5d !important;
 		text-align: center;
 		margin-left: 1%;
-		background-color: lightgray;
+		/*background-color: lightgray;*/
 		font-size: 1.5rem;
 		overflow-y: auto;
 	}
 	thead.theadEntrada tr th {
+		background-color: #474e5d !important;
 		text-align: center;
 		margin-left: 1%;
-		background-color: lightgray;
+		/*background-color: lightgray;*/
 		font-size: 1.5rem;
 		overflow: auto;
 	}

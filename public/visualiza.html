@@ -1,98 +1,97 @@
-<div class="container-fluid col-xs-12 col-lg-4 col-lg-offset-4">
-	<div class="from-inline">
-		<div class="form-group">
-			<div class="alinharFormDesp">
-				<div class="col-xs-12 col-lg-12 textExibir" id="textExibir">
-					<p class="col-xs-6 col-lg-6 col-sm-6">Despesa</p>
-					<p class="col-xs-6 col-lg-6 col-sm-6">Entrada</p>
-				</div>
-
-				<div class="col-xs-6  col-lg-6 listExibDesp">
-					<table class="col-xs-12 col-lg-12">
-						<thead class="theadDesp">
-							<tr>
-								<th width="5vw">Data</th>
-								<th width="90vw">Tipo</th>
-								<th width="1vw"></th>
-								<th width="4vw">Valor</th>
-							</tr>
-
-						</thead>
-						<tbody id="visualizaDesp" class="listDesp">
-
-						</tbody>
-					</table>
-				</div>
-
-				<div class="col-xs-6 col-lg-6 listExibEntrada">
-					<table class="col-xs-12 col-lg-12">
-						<thead class="theadEntrada">
-							<tr>
-								<th width="5vw">Data</th>
-								<th width="75vw">Tipo</th>
-								<th width="1vw"></th>
-								<th width="2vw">Valor</th>
-							</tr>
-
-						</thead>
-						<tbody id="visualizaEntrada" class="listEntrada">
-
-						</tbody>
-					</table>
-				</div>
-
-				<div class="col-xs-6 col-xs-offset-6 col-lg-6 col-lg-offset-6 totalEntrada">
-					<table class="col-xs-12">
-						<thead class="theadCalculos">
-							<tr>
-								<th width="90vw">Total Entrada </th>
-								<th width="5vw">R$</th>
-								<th width="2vw" id="totalEntrada"></th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-
-				<div class="col-xs-6 col-xs-offset-6 col-lg-6 col-lg-offset-6 listExibCalculos">
-					<table class="col-xs-12">
-						<thead class="theadCalculos">
-							<tr>
-								<th width="80vw">Total Despesas </th>
-								<th width="2vw">R$</th>
-								<th width="18vw" id="calculototalDespesas"></th>
-							</tr>
-							<tr>
-								<th width="80vw">Total Entrada </th>
-								<th width="2vw">R$</th>
-								<th width="18vw" id="calculototalEntrada"></th>
-							</tr>
-							<tr>
-								<th width="80vw" id="saldoGeral">Saldo Geral </th>
-								<th width="2vw" id="simboloMoeda">R$</th>
-								<th width="18vw" id="calculosomaGeral"></th>
-							</tr>
-
-						</thead>
-						<tbody id="visualizaEntrada" class="listEntrada money">
-
-						</tbody>
-					</table>
-				</div>
-
-				<div class="col-xs-6 col-lg-6 totalDespesas">
-					<table class="col-xs-12 col-lg-12">
-						<thead class="theadCalculos">
-							<tr>
-								<th width="80vw">Total Despesas </th>
-								<th width="2vw">R$</th>
-								<th width="18vw" id="totalDespesas"></th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-			</div>
-		</div>
+<panel-views>
+	<!--
+	<div class="col-xs-12 col-lg-12 textExibir" id="textExibir">
+		<p class="col-xs-6 col-lg-6 col-sm-6">Despesa</p>
+		<p class="col-xs-6 col-lg-6 col-sm-6">Entrada</p>
 	</div>
-	<div hidden id="divCompara">
-		<p hidden id="comparaDt"></p>
+-->
+	<div class="col-xs-6  col-lg-6 listExibDesp">
+		<table class="col-xs-12 col-lg-12">
+			<thead class="theadDesp">
+				<tr style="color: #fff">
+					<th colspan="4">Despesa</th>
+				</tr>
+				<tr>
+					<th width="5vw">Data</th>
+					<th width="90vw">Tipo</th>
+					<th width="1vw"></th>
+					<th width="4vw">Valor</th>
+				</tr>
+
+			</thead>
+			<tbody id="visualizaDesp" class="listDesp">
+
+			</tbody>
+		</table>
 	</div>
+
+	<div class="col-xs-6 col-lg-6 listExibEntrada">
+		<table class="col-xs-12 col-lg-12">
+			<thead class="theadEntrada">
+				<tr style="color: #fff">
+					<th colspan="4">Despesa</th>
+				</tr>
+				<tr>
+					<th width="5vw">Data</th>
+					<th width="75vw">Tipo</th>
+					<th width="1vw"></th>
+					<th width="2vw">Valor</th>
+				</tr>
+
+			</thead>
+			<tbody id="visualizaEntrada" class="listEntrada">
+
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-xs-6 col-xs-offset-6 col-lg-6 col-lg-offset-6 totalEntrada">
+		<table class="col-xs-12">
+			<thead class="theadCalculos">
+				<tr>
+					<th width="90vw">Total Entrada </th>
+					<th width="5vw">R$</th>
+					<th width="2vw" id="totalEntrada"></th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+	<div class="col-xs-6 col-xs-offset-6 col-lg-6 col-lg-offset-6 listExibCalculos">
+		<table class="col-xs-12">
+			<thead class="theadCalculos">
+				<tr>
+					<th width="80vw">Total Despesas </th>
+					<th width="2vw">R$</th>
+					<th width="18vw" id="calculototalDespesas"></th>
+				</tr>
+				<tr>
+					<th width="80vw">Total Entrada </th>
+					<th width="2vw">R$</th>
+					<th width="18vw" id="calculototalEntrada"></th>
+				</tr>
+				<tr>
+					<th width="80vw" id="saldoGeral">Saldo Geral </th>
+					<th width="2vw" id="simboloMoeda">R$</th>
+					<th width="18vw" id="calculosomaGeral"></th>
+				</tr>
+
+			</thead>
+			<tbody id="visualizaEntrada" class="listEntrada money">
+
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-xs-6 col-lg-6 totalDespesas">
+		<table class="col-xs-12 col-lg-12">
+			<thead class="theadCalculos">
+				<tr>
+					<th width="80vw">Total Despesas </th>
+					<th width="2vw">R$</th>
+					<th width="18vw" id="totalDespesas"></th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</panel-views>

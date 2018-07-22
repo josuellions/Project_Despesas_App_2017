@@ -1,27 +1,29 @@
-var app = angular.module('todoApp', ['ngRoute']);
-app.config(function ($routeProvider) {
+angular.module('todoApp', ['ngRoute', 'depesasDirectives'])
+.config(function ($routeProvider) {
 
   var producao = true;
   var urlApp;
 
-  producao ? urlApp = '/android_asset/www/' : urlApp = window.location.pathname;
+  producao ? urlApp = '/android_asset/www/' : urlApp =  window.location.pathname;
  
 //var url = window.location.pathname;
-//alert(window.location.pathname);
+alert(window.location.pathname);
   $routeProvider
     .when('/', {
       //template: 'Hello World - Welcom user!',
       //templateUrl: '/public/home.html'
       //templateUrl: url + 'public/home.html'
-      templateUrl: urlApp + 'public/home.html'
+      templateUrl: urlApp + '/public/home.html',
+     // controller: 'DespesasController'
     })
     .when('/despesas', {
       //templateUrl: url + 'public/despesas.html',
-      templateUrl: urlApp + 'public/despesas.html',
+      templateUrl: urlApp + 'public/despesas.html'
+
       //templeteUrl: '/public/menuMobile.html'
     })
     .when('/entrada', {
-         templateUrl: urlApp + 'public/entrada.html',
+         templateUrl: urlApp + 'public/entrada.html'
          //templateUrl: url + 'public/entrada.html',
          //templeteView: '/public/menuMobile.html'
     })
@@ -35,16 +37,16 @@ app.config(function ($routeProvider) {
     .otherwise({
       redirectTo: '/'
     });
-});
- 
-app.controller('navegarApp', function ($scope, $location) {
+})
+
+
+.controller('navegarApp', function ($scope, $location) {
   $scope.submit = function ($page) {
     if ($page == 'entrada') {
       $location.path('/entrada');
       //document.location.reload();
     } else if ($page == 'despesas') {
       $location.path('/despesas');
-      //document.location.reload();
     } else if ($page == 'visualizar') {
       $location.path('/visualizar');
       //document.location.reload();
@@ -53,8 +55,13 @@ app.controller('navegarApp', function ($scope, $location) {
       //document.location.reload();
     } else {
       $location.path('/');
+
+      
+
       //document.location.reload(true);
     }
   }
-});
+})
+
+
 
