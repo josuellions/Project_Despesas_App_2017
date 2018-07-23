@@ -133,7 +133,7 @@ dimTela();
 		let convertMes = (recebMes, recebAno) => {
 			let mesExt = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
 
-			return mesExt[recebMes] + "/" + recebAno;
+			return mesExt[recebMes] + "/" + recebAnoa;
 
 		}
 
@@ -170,6 +170,7 @@ dimTela();
 		}
 	
 */
+/*
 // EXIBIR O MÊS DE REFENCIA
 let exibTitleCabecalho = (titleCab, titleRef) => {
 	$('#titleCabecalho').text(titleCab)
@@ -207,8 +208,10 @@ let exibTitleCabecalho = (titleCab, titleRef) => {
 			default:
 						break;
 			}
-			
+	*/
+		/*	
 			/*Retira icone Home, Add icone MenuMobile*/
+			/*
 			$('#menuMobile').removeAttr('hidden', 'hidden');
 			$('.alingMenu').attr('hidden', 'hidden');
 			$("#btnInfo").css('display', 'inline');
@@ -236,9 +239,9 @@ let exibTitleCabecalho = (titleCab, titleRef) => {
 		
 
 	//});
-
+*/
 	// Controle de Versão
-	$("#contVer").html("Versão beta 0.0.9-AngularJS - 20/07/2018");
+	$("#contVer").html("Versão beta 0.0.9-AngularJS - 22/07/2018");
 
 	//Nome Desenvolvedor
 	$("#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");

@@ -6,8 +6,8 @@
 		padding: 0;
 		color: white;
 		position: absolute;
-		margin-left: 82%;
-		margin-top: 1.7%;
+		margin-left: 85.3%;
+		margin-top: 2%;
 		/* height: 7px; */
 	}
 	nav.alingMenu.alingMenuIndex {
@@ -19,12 +19,12 @@
 		
 	}
 	/*EXIBIR ICONE MENU HOME E OUTRAS VIEWS*/
-	.menuMobile {
+	/*.menuMobile {
 		display: none;
 	}
 	.btnInfo {
 		display: none;
-	}
+	}*/
 	/*DEFINE ESTILO BOTÃO MENU*/
 	.btn {
 		background-color: #474e5d;

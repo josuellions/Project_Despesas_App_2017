@@ -1,10 +1,10 @@
-angular.module('todoApp', ['ngRoute', 'depesasDirectives'])
+angular.module('todoApp', ['ngRoute', 'ngAnimate', 'ngResource', 'depesasDirectives'])
 .config(function ($routeProvider) {
 
- /* var producao = false;
+  var producao = true;
   var urlApp;
 
-  producao ? urlApp = '/android_asset/www/' : urlApp =  window.location.pathname;*/
+  producao ? urlApp = '/android_asset/www/' : urlApp = null;/* window.location.pathname;*/
  
 //var url = window.location.pathname;
 /*alert(window.location.pathname);*/
@@ -12,23 +12,24 @@ angular.module('todoApp', ['ngRoute', 'depesasDirectives'])
     .when('/', {
       //template: 'Hello World - Welcom user!',
       //templateUrl: '/public/home.html'
-      //templateUrl: url + 'public/home.html'
-      templateUrl: '/android_asset/www/public/home.html',
-     // controller: 'DespesasController'
+      templateUrl: url + 'public/home.html'
+      //templateUrl: '/public/home.html',
+      //controller: 'DespesasController'
     })
     .when('/despesas', {
-      //templateUrl: url + 'public/despesas.html',
-      templateUrl: '/android_asset/www/public/despesas.html'
+      templateUrl: url + 'public/despesas.html',
+      //templateUrl: '/public/despesas.html',
+      //controller: 'DespesasController'
 
       //templeteUrl: '/public/menuMobile.html'
     })
     .when('/entrada', {
-      templateUrl: '/android_asset/www/public/entrada.html'
-         //templateUrl: url + 'public/entrada.html',
+      //templateUrl: '/public/entrada.html'
+         templateUrl: url + 'public/entrada.html',
          //templeteView: '/public/menuMobile.html'
     })
     .when('/visualizar', {
-      templateUrl: '/android_asset/www/public/visualiza.html'
+      templateUrl: url + '/public/visualiza.html'
       //templateUrl: '/android_asset/www/public/visualiza.html'
     })
     .when('/relatorio', {
@@ -39,7 +40,7 @@ angular.module('todoApp', ['ngRoute', 'depesasDirectives'])
     });
 })
 
-
+/*
 .controller('navegarApp', function ($scope, $location) {
   $scope.submit = function ($page) {
     if ($page == 'entrada') {
@@ -62,6 +63,6 @@ angular.module('todoApp', ['ngRoute', 'depesasDirectives'])
     }
   }
 })
-
+*/
 
 
