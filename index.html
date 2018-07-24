@@ -25,52 +25,22 @@
   <title>Controle Despesas</title>
 </head>
 
-<body ng-controller="NavegarController">
-  <div class="backgroundSeven">
-    <!-- class="heightVisualizar" id="heightDespesas">-->
-    <section>
-      <div class="container-fluid bg-01 col-xs-12 col-lg-12">
-        <img class="col-xs-2 col-lg-2 img-responsive length-inline imgLg" src="assets/img/logo_seven_antes.jpg" alt="{{titleTop.imglogoalt}}"
-          title="{{titleTop.imglogotitle}}">
-        <div class="container-fluid col-xs-8 col-lg-8">
-          <p class="contVer" id="contVer"></p>
-        </div>
-        <!-- MENU INFO-->
-        <!--<menu-info></menu-info>-->
-        <!-- END MENU INFO -->
-        <!--MENU MOBILE-->
-        <!--<menu-top></menu-top>-->
-        <!-- END MENU MOBILE -->
-      </div>
-      <dir class="container-fluid col-xs-12 col-lg-12 bg-03">
-        <h1 class="col-xs-12 col-lg-12" id="titleCabecalho">{{titleTop.titulo}}</h1>
-      </dir>
+<body class="backgroundSeven" ng-controller="NavegarController">
 
-      <div class="container-fluid col-xs-12 bg-04">
-        <span class="glyphicon glyphicon-menu-left spanOpcaoMesEsquerdo hidden col-xs-4 col-lg-5" title="Voltar para mês anterior "
-          id="OpcaoMesEsquerdo"></span>
-        <h2 class="alinharMes col-xs-4 col-lg-2" id="dtReference">{{titleTop.subtitulo}}</h2>
-        <span class="glyphicon glyphicon-menu-right spanOpcaoMesDireito hidden col-xs-4 col-lg-5" title="Passar para mês seguinte"
-          id="OpcaoMesDireito"></span>
-      </div>
-    </section>
+  <barra-top></barra-top>
 
-    <div class="heightVisualizar">
-      <ng-view></ng-view>
-    </div>
-  </div>
+  <title-top titulo="{{titulo}}"></title-top>
+
+  <!--<subtitle-top subtitulo={{subtitulo}}></subtitle-top>-->
+  <toptitle-panel subtitulo={{subtitulo}}></toptitle-panel>
+
+  <ng-view class="heightVisualizar"></ng-view>
 
 </body>
-<footer class="col-xs-12 col-lg-12 bg-02" id="btnSobre">
-  <div class="container-fluid col-xs-12 col-lg-12">
-    <p id="nomeDeveloper"></p>
-    <p id="nomeEmpresa"></p>
-  </div>
-</footer>
+
+<panel-footer></panel-footer>
 
 </html>
-
-
 
 <script type="text/javascript" src="scripts/js/libs/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="scripts/js/libs/jquery.mask.js"></script>
@@ -78,10 +48,12 @@
 <script type="text/javascript" src="assets/css/libs/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="scripts/js/controllers/navegar-controller.js"></script>
+<script type="text/javascript" src="scripts/js/controllers/btnhomemenu-controller.js"></script>
 <script type="text/javascript" src="scripts/js/directives/depesas-directives.js"></script>
 
+
+<script type="text/javascript" src="scripts/js/offlinedatabaseJS.js"></script>
 <script type="text/javascript" src="scripts/js/controller_system.js"></script>
-<script type="text/javascript" src="scripts/js/offlinedatabaseJS.js"></script>-->
 
 <!--  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>-->

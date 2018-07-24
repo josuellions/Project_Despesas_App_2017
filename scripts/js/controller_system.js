@@ -170,29 +170,30 @@ dimTela();
 		}
 	
 */
-/*
+
 // EXIBIR O MÊS DE REFENCIA
-let exibTitleCabecalho = (titleCab, titleRef) => {
-	$('#titleCabecalho').text(titleCab)
-	$('#dtReference').text(titleRef) // defineMes());
-}
+//let exibTitleCabecalho = (titleCab, titleRef) => {
+//	$('#titleCabecalho').text(titleCab)
+//	$('#dtReference').text(titleRef) // defineMes());
+//}
 		// DEFINIR O MÊS ATUAL NO INPUT DATA
 		//$('#dtDespesa').val(formataData());
-
-
-		//if (verificaMesRef() != "Menu") {
-			if (window.location.hash == '#!/') {
+//$(document).ready(function(){
+//	$('#dtReference').removeClass('col-xs-4');
+//})//if (verificaMesRef() != "Menu") {
+			//if (window.location.hash == '#!/') {
+			//	console.log(window.location.hash)
 				
-				exibTitleCabecalho('Controle Despesas', 'Menu');
+				//exibTitleCabecalho('Controle Despesas', 'Menu');
 
-				$('#dtReference').css({ 'margin-left': '30.5vw', })
-				$('#menuMobile').attr('hidden','hidden');
+			//	$('#dtReference').css({ 'margin-left': '30.5vw', })
+			//	$('#menuMobile').attr('hidden','hidden');
 			//	$('#btnInfo').removeClass('hidden','hidden');
 			//	$('#btnInfo').css({'display': 'inline'});
 		//	return false;
 
-			} //else {
-			
+		//	} //else {
+		/*	
 		let viewNavegacao = (postPage) => {
 
 		switch (postPage) {
@@ -208,47 +209,29 @@ let exibTitleCabecalho = (titleCab, titleRef) => {
 			default:
 						break;
 			}
-	*/
-		/*	
+	
+			
 			/*Retira icone Home, Add icone MenuMobile*/
-			/*
-			$('#menuMobile').removeAttr('hidden', 'hidden');
-			$('.alingMenu').attr('hidden', 'hidden');
-			$("#btnInfo").css('display', 'inline');
+			
+		//	$('#menuMobile').removeAttr('hidden', 'hidden');
+		//	$('.alingMenu').attr('hidden', 'hidden');
+		//	$("#btnInfo").css('display', 'inline');
 
 				//if ($("#dtReference").text() != 'Menu') {
-			$('#OpcaoMesEsquerdo').mousedown(() => { defineMes(1), convertMes() });
-			$('#OpcaoMesDireito').mousedown(() => { defineMes(2), convertMes() });
+		//	$('#OpcaoMesEsquerdo').mousedown(() => { defineMes(1), convertMes() });
+		//	$('#OpcaoMesDireito').mousedown(() => { defineMes(2), convertMes() });
 
 			//$('#menuMobile').css('display', 'inline');
 			//$("#btnInfo").css('display', 'none');
 
 			// ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA
-			$(document).ready(function () {
-				$('.money').mask('000.000.000.000,00', { reverse: true });
+		//	$(document).ready(function () {
+			//	$('.money').mask('000.000.000.000,00', { reverse: true });
 
-				let teste = $(".money").change(function () {
-					$(".valDespesa").html($(this).val().replace(/\D/g, ''))
-				})
-			});
+			//	let teste = $(".money").change(function () {
+			//		$(".valDespesa").html($(this).val().replace(/\D/g, ''))
+			//	})
+		//	});
 		
 		//window.location.reload();
-		}
-		
-	
-		
-
-	//});
-*/
-	// Controle de Versão
-	$("#contVer").html("Versão beta 0.0.9-AngularJS - 22/07/2018");
-
-	//Nome Desenvolvedor
-	$("#nomeDeveloper").html("&copy 2017 - Josuel A. Lopes");
-
-	//Nome Empresa Desenvolvedora
-	$("#nomeEmpresa").html("&reg Seven Solutions Tecnologic");
-
-	// $( "#btnSair").window.close( );
-
-//});
+		//}

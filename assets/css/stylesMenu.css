@@ -9,6 +9,7 @@
 		margin-left: 85.3%;
 		margin-top: 2%;
 		/* height: 7px; */
+		z-index: 1000;
 	}
 	nav.alingMenu.alingMenuIndex {
 		/* margin-top: 3%; */

@@ -137,10 +137,10 @@
 	/*ALINHAR FORMULARIO DE DADOS*/
 	.container-fluid>div>div>.alinharFormDesp {
 		margin-top: 5vh;
-		border: 382px 604px solid 2px #337ab7;
+		border: 200px 300px solid 2px #337ab7;
 		overflow: auto;
-		height: 71.5vh;
-		max-height: 71.5vh;
+		height: 72.5vh;
+		max-height: 72.5vh;
 	}
 	table thead, tfoot {
 		background-color: #474e5d;
@@ -223,27 +223,30 @@
 		margin-left: 2%;
 		text-align: right;
 	}
-	.textExibir th {
-		color: aliceblue;
-		padding: 5% !important;
-		font-size: 1.5rem !important;
+	.container-fluid>.textExibir {
+		padding: 0;
+		margin-top: 10%;
+		text-align: left;
 		text-shadow: 0px 0px 3px lightslategrey;
 	}
 	.container-fluid>div>p {
 		padding: 0;
 	}
-	.listExibDesp {
+	div.listExibDesp {
 		float: right;
+		;
+		margin-left: 0;
+		margin-right: 0;
+		border: 2px solid lightgray;
 		padding: 0;
 		padding-top: 0%;
+		/*margin-top: -3%;*/
+		margin-left: -1%;
 		font-size: .7rem;
 		text-align: center;
 		overflow: auto;
-		height: 62vh;
-		max-height: 62vh;
-		border: 2px solid lightgray;
-		background-color: #474e5d;
-		opacity: .90 !important;
+		height: 37vh;
+		max-height: 37vh;
 	}
 	.listDesp {
 		padding-top: 4%;
@@ -257,53 +260,46 @@
 		margin-left: 2%;
 		padding-top: 4%;
 	}
-	.listExibEntrada {
+	div.listExibEntrada {
 		background-color: #474e5d;
 		float: left;
 		border: 2px solid lightgray;
 		padding: 0%;
 		padding-top: 0%;
+		/*	margin-left: 1%;*/
+		/*margin-top: -3%;*/
 		font-size: .7rem;
 		overflow: auto;
-		height: 47vh;
-		max-height: 47vh;
-		opacity: .90;
+		height: 20vh;
+		max-height: 20vh;
 	}
 	div.totalEntrada {
-		background-color: #474e5d;
 		border: 2px solid lightgray;
 		margin-left: 0;
 		padding: 2%;
-		padding-top: 2.7%;
-		margin-top: 2.5%;
+		margin-top: 2%;
 		min-height: 5vh;
 		font-size: 1rem;
-		opacity: .90;
 	}
 	div.listExibCalculos {
-		background-color: #474e5d;
 		border: 2px solid lightgray;
 		padding: 2%;
-		padding-top: 7%;
+		padding-top: 0%;
 		margin-left: 0%;
-		margin-top: 2.5%;
+		margin-top: 0%;
 		min-height: 13.5vh;
 		font-size: 1rem;
-		opacity: .90;
 	}
-	/*div.listExibCalculos tr th {
+	div.listExibCalculos tr th {
 		padding-bottom: 5%;
-	}*/
+	}
 	div.totalDespesas {
-		background-color: #474e5d;
 		border: 2px solid lightgray;
-		padding-top: 2.7% !important;
 		padding: 2%;
-		margin-top: -10.9%;
+		margin-top: 0%;
 		min-height: 5vh;
-		margin-left: 0%;
+		margin-left: -1%;
 		font-size: 1rem;
-		float: left;
 	}
 	/*CHECKBOX PAGO*/
 	/*body {
@@ -362,7 +358,7 @@
 	/*TEXTAREA DESPESAS - Tela Visualizar*/
 	.container-fluid>div>.despesa {
 		width: 150px;
-		height: 320vh;
+		height: 200px;
 		padding: 2%;
 		padding-top: 2%;
 		font-size: .7rem;
@@ -371,16 +367,14 @@
 	thead.theadDesp tr th {
 		text-align: center;
 		margin-left: 1%;
+		background-color: lightgray;
 		font-size: 1rem;
-		background-color: #474e5d;
-		opacity: .90 !important;
 	}
 	thead.theadEntrada tr th {
 		text-align: center;
 		margin-left: 1%;
+		background-color: lightgray;
 		font-size: 1rem;
-		background-color: #474e5d;
-		opacity: .80 !important;
 	}
 	.listEntrada {
 		padding-top: 4%;
@@ -505,21 +499,19 @@
 	html {
 		/*background-color: #5486ac !important;*/
 		/*background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 90%);*/
-		/*background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 120%), url("../img/logoHomeSize.png");*/
-		background-image: url("../img/logoHomeSize.png");
+		background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 120%), url("../img/logoHomeSize.png");
 		background-size: 412px 650px;
 		background-repeat: no-repeat;
 		background-position: right top;
 		background-attachment: fixed;
 		background-position-y: 18vh;
 		background-attachment: fixed;
-	/*	opacity: .90;*/
 	}
-	/*body {*/
+	body {
 		/*background-color: snow !important;*/
 		/* gainsboro !important;*/
-	/*}
-	body {*/
+	}
+	body {
 		/*background-image: url("../img/logoHomeSize.png");*/
 		/*background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 90%), url("../img/logoHomeSize.png");*/
 		/* #042b4a*/
@@ -530,7 +522,7 @@
 		background-position-y: 18.2vh;
 		background-attachment: fixed;
 		/*background-blend-mode: lighten;*/
-	/*}*/
+	}
 	/*
 	.heightVisualizar {
 		position: absolute;
@@ -566,3 +558,267 @@
 }
 
 /*TELAS DESKTOPS*/
+
+@media screen and (min-width: 1024px) {
+	/*DEFINIR COR DE FUNDO - 01 - Superio*/
+	.bg-01 {
+		background-color: #474e5d;
+		position: fixed;
+		height: 7%;
+		z-index: 3;
+	}
+	/*img.imgLg {
+		width: 7%;
+		height: 7%;
+	}
+	*/
+	/*DEFINIR COR DE FUNDO - 02 - Rodapé*/
+	.bg-02 {
+		background-color: #474e5d;
+		color: #ffffff;
+		position: fixed;
+		z-index: 1;
+		height: 9%;
+	}
+	/*DEFINIR COR DE FUNDO - 03 - Titulo*/
+	.bg-03 {
+		background-color: #737d93;
+		color: #ffffff;
+		position: fixed;
+		z-index: 1;
+		text-align: center;
+		height: 7%;
+	}
+	/*DEFINIR COR DE FUNDO - 04 - Mês Referencia*/
+	.bg-04 {
+		background-color: #c5cad5;
+		color: #ffffff;
+		position: fixed;
+		width: 100%;
+		z-index: 1;
+		height: 7%;
+	}
+	/*BOTÃO OPÇÃO MÊS*/
+	.spanOpcaoMesEsquerdo {
+		font-size: 4rem;
+		float: left;
+		color: white;
+		text-align: right;
+		position: fixed;
+		margin: 0;
+		padding: 0;
+		padding-top: .7%;
+	}
+	.spanOpcaoMesDireito {
+		font-size: 4rem;
+		float: right;
+		color: white;
+		text-align: left;
+		position: fixed;
+		margin: 0;
+		padding: 0;
+		padding-top: .7%;
+	}
+	/*ALINHA MÊS*/
+	.container-fluid>.alinharMes {
+		text-align: center;
+		font-size: 3rem;
+		padding: 1%;
+		margin: 0;
+	}
+	/*ALINHAR FORMULARIO DE DADOS*/
+	.container-fluid>div>div>.alinharFormDesp {
+		margin-top: 5%;
+		border: 200px 300px solid 2px white;
+	}
+	/*BOTÃO ADICIONAR LINHA TABELA*/
+	.btnDesp {
+		float: right;
+		margin-left: 3.2%;
+		font-size: 3rem;
+		text-align: center;
+		margin-right: 1%;
+	}
+	.container-fluid>div>div>div>span .dtDespesa {
+		height: 31px;
+		padding: .8%;
+	}
+	.container-fluid>div>div>div>span .listDespesa {
+		margin-left: 2%;
+		height: 30px;
+		padding: .8%;
+		overflow: auto;
+	}
+	.container-fluid>div>div>div>span .valDespesa {
+		height: 30px;
+		margin-left: 2%;
+		text-align: right;
+	}
+	.container-fluid>.textExibir {
+		padding: 0;
+		margin-top: 5%;
+		text-align: left;
+	}
+	.container-fluid>div>p {
+		padding: 0;
+		font-size: 2rem;
+	}
+	div.listExibDesp {
+		margin-left: 0%;
+		border: 2px solid lightgray;
+		padding: 0;
+		padding-top: 0%;
+		margin-top: -1%;
+		height: 470px;
+		min-height: 470px;
+		margin-left: -1%;
+		font-size: 1.5rem;
+		text-align: center;
+		overflow: auto;
+	}
+	.listDesp {
+		padding-top: 4%;
+		padding-left: 0%;
+		text-align: left;
+	}
+	tbody.listDesp tr td {
+		padding-left: 4%;
+		margin-left: 2%;
+		padding-top: 4%;
+	}
+	div.listExibEntrada {
+  	border: 2px solid lightgray;
+		padding: 0%;
+		padding-top: 0%;
+		margin-top: -1%;
+		margin-left: 1%;
+		min-height: 20vh;
+		font-size: 1.5rem;
+		overflow: auto;
+	}
+	div.totalEntrada {
+		border: 2px solid lightgray;
+		padding: 2%;
+		margin-top: 2%;
+		margin-left: 1%;
+		min-height: 5vh;
+		font-size: 1.5rem;
+	}
+	div.listExibCalculos {
+		border: 2px solid lightgray;
+		padding: 2%;
+		padding-top: 4%;
+		margin-top: -14%;
+		min-height: 13.5vh;
+		font-size: 1.5rem;
+	}
+	div.listExibCalculos tr th {
+		padding-bottom: 5%;
+	}
+	div.totalDespesas {
+		border: 2px solid lightgray;
+		padding: 2%;
+		margin-top: -8%;
+		min-height: 5vh;
+		margin-left: -1%;
+		font-size: 1.5rem;
+	}
+	/*TEXTAREA DESPESAS - Tela Visualizar*/
+	thead.theadDesp tr th {
+		background-color: #474e5d !important;
+		text-align: center;
+		margin-left: 1%;
+		/*background-color: lightgray;*/
+		font-size: 1.5rem;
+		overflow-y: auto;
+	}
+	thead.theadEntrada tr th {
+		background-color: #474e5d !important;
+		text-align: center;
+		margin-left: 1%;
+		/*background-color: lightgray;*/
+		font-size: 1.5rem;
+		overflow: auto;
+	}
+	.listEntrada {
+		padding-left: 0%;
+		text-align: left;
+	}
+	tbody.listEntrada tr td {
+		padding-left: 4%;
+		margin-left: 2%;
+		margin-left: 2%;
+		padding-top: 4%;
+	}
+	.container-fluid .tbmenuDesp {
+		background-color: lightgray;
+		opacity: .7;
+	}
+	/*TEXTAREA ENTRADA - Tela Visualizar*/
+	/*ALINHA BOTÕES PAGINA INICIAL*/
+	.container-fluid>.menuInicial {
+		margin-bottom: -1%;
+	}
+	/*ALINHA BOTÕES PAGINA INICIAL*/
+	/*
+	.container-fluid>.btnAlingDesp {
+		margin-top: 6.5%;
+		position: fixed;
+		margin-bottom: 16.5%;
+	}
+	*/
+	/*BOTÕES DA PAGINA INICIAL*/
+	/*
+	.container-fluid>div>.btnDesp {
+		border-radius: 4%;
+		text-align: center;
+		padding: 5%;
+		margin-bottom: 5%;
+		font-size: 2rem;
+	}*/
+	/*CONTROLE DE VESÃO*/
+	.container-fluid>.contVer {
+		color: white;
+		padding: 0;
+		margin-top: 3.5%;
+		font-size: 1.2rem;
+		z-index: 3;
+	}
+	.tbDespfoot {
+		float: left;
+		margin-top: 2.5%;
+	}
+	/*BOTÃO MENU HOME*/
+	.btnMenu {
+		float: right;
+		margin-right: -10%;
+		margin-top: 1.5%;
+		font-size: 5rem;
+		position: fixed;
+		z-index: 2;
+	}
+	/*ICONE REMOVER*/
+	span.glyphicon.glyphicon-trash {
+		font-size: 2rem;
+		color: red;
+		opacity: .3;
+		margin-right: 1vh;
+		z-index: 0;
+	}
+	footer.footerIndex, footer.footerEntrada, footer.footerDespesas, footer.footerVisualizar {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+		text-align: center;
+	}
+	/*DEFINIR TAMANHO LOGO SUPERIOR*/
+	.container-fluid img {
+		float: left;
+		height: 60px;
+		margin-top: .2%;
+		border-radius: 10%;
+		padding-bottom: 0.7%;
+		padding: 0;
+	}
+}

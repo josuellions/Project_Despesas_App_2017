@@ -1,68 +1,63 @@
 angular.module('todoApp', ['ngRoute', 'ngAnimate', 'ngResource', 'depesasDirectives'])
-.config(function ($routeProvider) {
+  .config(function ($routeProvider) {
 
-  //var producao = true;
-  //var urlApp;
+    var producao = true;
+    var urlApp;
 
-  //producao ? urlApp = '/android_asset/www/' : urlApp = null;/* window.location.pathname;*/
- 
-//var url = window.location.pathname;
-/*alert(window.location.pathname);*/
-  $routeProvider
-    .when('/', {
-      //template: 'Hello World - Welcom user!',
-      //templateUrl: '/public/home.html'
-      templateUrl: '/android_asset/www/public/home.html'
-      //templateUrl: '/public/home.html',
-      //controller: 'DespesasController'
-    })
-    .when('/despesas', {
-      templateUrl: '/android_asset/www/public/despesas.html'
-      //templateUrl: '/public/despesas.html',
-      //controller: 'DespesasController'
+    //producao ? urlApp = window.location.pathname : urlApp = '';
 
-      //templeteUrl: '/public/menuMobile.html'
-    })
-    .when('/entrada', {
-      //templateUrl: '/public/entrada.html'
-         templateUrl: '/android_asset/www/public/entrada.html'
-         //templeteView: '/public/menuMobile.html'
-    })
-    .when('/visualizar', {
-      templateUrl: '/android_asset/www/public/visualiza.html'
-      //templateUrl: '/android_asset/www/public/visualiza.html'
-    })
-    .when('/relatorio', {
-      //templateUrl: '/public/relariorio.html',
-    })
-    .otherwise({
-      redirectTo: '/'
-    });
-})
+    //var url = window.location.pathname;
+    /*alert(window.location.pathname);*/
 
-/*
-.controller('navegarApp', function ($scope, $location) {
-  $scope.submit = function ($page) {
-    if ($page == 'entrada') {
-      $location.path('/entrada');
-      //document.location.reload();
-    } else if ($page == 'despesas') {
-      $location.path('/despesas');
-    } else if ($page == 'visualizar') {
-      $location.path('/visualizar');
-      //document.location.reload();
-    } else if ($page == 'relatorio') {
-      alert('Em Desenvolvimento');
-      //document.location.reload();
+    if (producao) {
+      /* PRODUÇÂO */
+      $routeProvider
+        .when('/', {
+          templateUrl: '/android_asset/www/public/home.html',
+          //controller: 'NavegarController'
+
+        })
+        .when('/despesas', {
+          templateUrl: '/android_asset/www/public/despesas.html'
+        })
+        .when('/entrada', {
+          templateUrl: '/android_asset/www/public/entrada.html'
+        })
+        .when('/visualizar', {
+          templateUrl: '/android_asset/www/public/visualiza.html'
+        })
+        .when('/relatorio', {
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+
     } else {
-      $location.path('/');
 
-      
-
-      //document.location.reload(true);
+      /* Desenvolvimento */
+      $routeProvider
+        .when('/', {
+          templateUrl: '/public/home.html',
+          controller: 'NavegarController'
+          //controller: 'DespesasController'
+        })
+        .when('/despesas', {
+          templateUrl: '/public/despesas.html',
+          //controller: 'DespesasController'
+        })
+        .when('/entrada', {
+          templateUrl: '/public/entrada.html'
+        })
+        .when('/visualizar', {
+          templateUrl: '/public/visualiza.html'
+        })
+        .when('/relatorio', {
+          //templateUrl: urlApp + '/public/relariorio.html',
+        })
+        .otherwise({
+          redirectTo: '/',
+        });
     }
-  }
-})
-*/
+  })
 
 
