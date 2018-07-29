@@ -1,15 +1,25 @@
 <menu-info></menu-info>
+
+<panel-top></panel-top>
+<!--<title-top titulo="{{titulo}}"></title-top>-->
+
+<!--<subtitle-top subtitulo={{subtitulo}}></subtitle-top>-->
+<!--<toptitle-panel subtitulo={{subtitulo}}></toptitle-panel>-->
+
 <div class="container-fluid col-xs-12 col-lg-12" ng-controller="BtnhomemenuController">
 	<div class="btnAlingDesp from-group col-xs-12 col-lg-4 col-lg-offset-4">
-		<button type="submit" class="col-xs-11 col-sm-11 col-lg-12 btn btn-primary" id="btnAddEntra" ng-click="submit('entrada')"> <!-- onclick="viewNavegacao(1)">-->
+		<button type="submit" class="col-xs-11 col-sm-11 col-lg-12 btn btn-primary" id="btnAddEntra" ng-click="submit('entrada')">
+			<!-- onclick="viewNavegacao(1)">-->
 			<i class="glyphicon glyphicon-usd"></i>
 			</br>Entrada Caixa
-		 </button>
-		<button type="submit" class="col-xs-11 col-sm-11 col-lg-12 btn btn-primary" id="btnAddDesp" ng-click="submit('despesas')"> <!--  onclick="viewNavegacao(2)">-->
+		</button>
+		<button type="submit" class="col-xs-11 col-sm-11 col-lg-12 btn btn-primary" id="btnAddDesp" ng-click="submit('despesas')">
+			<!--  onclick="viewNavegacao(2)">-->
 			<i class="glyphicon glyphicon-shopping-cart"></i>
 			<br>Despesas
 		</button>
-		<button type="submit" class="col-xs-11 col-sm-11 col-lg-12 btn btn-primary" id="btnVisual" ng-click="submit('visualizar')"> <!--  onclick="viewNavegacao(3)">-->
+		<button type="submit" class="col-xs-11 col-sm-11 col-lg-12 btn btn-primary" id="btnVisual" ng-click="submit('visualizar')">
+			<!--  onclick="viewNavegacao(3)">-->
 			<i class="glyphicon glyphicon-zoom-in"></i>
 			<br/> Visualizar
 		</button>
@@ -19,3 +29,4 @@
 		</button>
 	</div>
 </div>
+

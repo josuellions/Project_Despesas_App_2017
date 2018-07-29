@@ -14,19 +14,32 @@ angular.module('todoApp', ['ngRoute', 'ngAnimate', 'ngResource', 'depesasDirecti
       $routeProvider
         .when('/', {
           templateUrl: '/android_asset/www/public/home.html',
-          //controller: 'NavegarController'
+          controller: 'NavegarController'
 
         })
         .when('/despesas', {
-          templateUrl: '/android_asset/www/public/despesas.html'
+          templateUrl: '/android_asset/www/public/despesas.html',
+          controller: 'NavegarController'
         })
         .when('/entrada', {
-          templateUrl: '/android_asset/www/public/entrada.html'
+          templateUrl: '/android_asset/www/public/entrada.html',
+          controller: 'NavegarController',
         })
         .when('/visualizar', {
-          templateUrl: '/android_asset/www/public/visualiza.html'
+          templateUrl: '/android_asset/www/public/visualiza.html',
+          controller: 'NavegarController'
         })
         .when('/relatorio', {
+          //templateUrl: '/android_asset/www/public/home.html',
+          controller: 'NavegarController'
+        })
+        .when('/informacoes', {
+          //templateUrl: '/public/relariorio.html',
+          controller: 'NavegarController'
+        })
+        .when('/sobre', {
+          //templateUrl: '/public/relariorio.html',
+          controller: 'NavegarController'
         })
         .otherwise({
           redirectTo: '/'
@@ -39,20 +52,30 @@ angular.module('todoApp', ['ngRoute', 'ngAnimate', 'ngResource', 'depesasDirecti
         .when('/', {
           templateUrl: '/public/home.html',
           controller: 'NavegarController'
-          //controller: 'DespesasController'
         })
         .when('/despesas', {
           templateUrl: '/public/despesas.html',
-          //controller: 'DespesasController'
+          controller: 'NavegarController'
         })
         .when('/entrada', {
-          templateUrl: '/public/entrada.html'
+          templateUrl: '/public/entrada.html',
+          controller: 'NavegarController'
         })
         .when('/visualizar', {
-          templateUrl: '/public/visualiza.html'
+          templateUrl: '/public/visualiza.html',
+          controller: 'NavegarController'
         })
         .when('/relatorio', {
-          //templateUrl: urlApp + '/public/relariorio.html',
+          //templateUrl: '/public/relariorio.html',
+          controller: 'NavegarController'
+        })
+        .when('/informacoes', {
+          //templateUrl: '/public/relariorio.html',
+          controller: 'NavegarController'
+        })
+        .when('/sobre', {
+          //templateUrl: '/public/relariorio.html',
+          controller: 'NavegarController'
         })
         .otherwise({
           redirectTo: '/',
