@@ -3,33 +3,41 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
   $scope.mensagem = '';
   $scope.passmes = false;
   const dtCustom = { 0: 'JAN', 1: 'FEV', 2: 'MAR', 3: 'ABR', 4: 'MAI', 5: 'JUN', 6: 'JUL', 7: 'AGO', 8: 'SET', 9: 'OUT', 10: 'NOV', 11: 'DEZ' };
+  const localPage = { 0: '/', 1: '/despesas', 2: '/entrada', 3: '/visualizar', 4: '/relatorio' }
 
   $scope.titleTop = {
     imglogoalt: 'Logo Seven',
     imglogotitle: 'Logo Seven',
     //imglogo: 'assets/img/logo_seven_antes.jpg'
-    contVer: 'Versão beta 0.0.9a-AngularJS - 27/07/2018'
+    contVer: 'Versão beta 0.0.9b-AngularJS - 29/07/2018'
   };
 
   /* Formata data top */
-  let dtFormat = (passMes) => {
+  let dtFormat = (passMes, pageAtual) => {
+
+    let dtMesFull = new Date();
+    let recebMes = null;
+    let dtMes = null;
+
+    !passMes && pageAtual ? recebMes = dtMesFull.getMonth() : recebMes = passMes;
+
+    $.each(dtCustom, (id, item) => {
+      id == recebMes ? dtMes = item + '/' + dtMesFull.getFullYear() : false;
+    });
+
+    $scope.subtitulo = dtMes;
+    
+    passMes =  passMes + 1;
+
+    $location.$$path == localPage[1] ? onInit(1) : false;
+    $location.$$path == localPage[1] && passMes >= 0 && passMes <= 9 ? $('#dtDespesa').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate() ) : false;
+    $location.$$path == localPage[1] && passMes >= 10 ? $('#dtDespesa').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
+    $location.$$path == localPage[2] ? onInit(2) : false;
+    $location.$$path == localPage[2] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate() ) : false;
+    $location.$$path == localPage[2] && passMes >= 10 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
 
     setTimeout(() => {
-
-      let dtMesFull = new Date();
-      //dtMesFull = dtMesFull.getMonth();
-      let recebMes;
-
-      passMes ? recebMes = passMes : recebMes = dtMesFull.getMonth();
-
-      console.log(passMes)
-
-      $.each(dtCustom, (id, item) => {
-        id == recebMes ? dtMes = item + '/' + dtMesFull.getFullYear() : 'MENU';
-      });
-
-      $scope.subtitulo = dtMes;
-
+      $("#comparaDt").html(dtMes);
     }, 100);
 
   }
@@ -41,13 +49,11 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     let recebPass = $page;
 
     $.each(dtCustom, (id, item) => {
-      item === mes.substr(0, 3) && !recebPass && id > 0 && id <= 11 ? dtFormat(--id) : false;
-      item === mes.substr(0, 3) && recebPass && id > 0 && id <= 11 ? dtFormat(++id) : false;
 
-      item === mes.substr(0, 3) && !recebPass && id == -1 ? dtFormat(0) : false;
-      //item === mes.substr(0, 3) && recebPass && id == 0 ? dtFormat(id = 11) : false;
-      item === mes.substr(0, 3) && recebPass && id > 11 ? dtFormat(id = 0) : false;
-
+      item === mes.substr(0, 3) && recebPass == 0 && id >= 0 && id <= 11 ? dtFormat(--id) : false;
+      item === mes.substr(0, 3) && recebPass == 1 && id >= 0 && id <= 11 ? dtFormat(++id) : false;
+      item === mes.substr(0, 3) && recebPass == 0 && id == -1 ? dtFormat(id = 11) : false;
+      item === mes.substr(0, 3) && recebPass == 1 && id == 12 ? dtFormat(id = 0) : false;
     })
 
   }
@@ -96,34 +102,32 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
   /* Carregar Views */
   let carregarPage = () => {
 
-
     if ($location.$$path == '/entrada') {
 
       $scope.titulo = 'Adicionar Entrada';
-      //$scope.subtitulo = dtMes; //'JUL/2018';
       $scope.passmes = true;
       selectCampoValor();
       formatValor();
-      dtFormat();
-
+      dtFormat(null, 2);
       menuTop();
+      onInit(2)
 
     } else if ($location.$$path == '/despesas') {
 
       $scope.titulo = 'Adicionar Despesas';
-      //$scope.subtitulo = dtMes;
       $scope.passmes = true;
       selectCampoValor();
       formatValor();
-      dtFormat();
+      dtFormat(null, 1);
       menuTop();
+      onInit(1)
 
     } else if ($location.$$path == '/visualizar') {
       $scope.titulo = 'Visualizar Despesas';
-      //$scope.subtitulo = dtMes;
       $scope.passmes = true;
-      dtFormat();
+      dtFormat(null, 3);
       menuTop();
+      onInit(3)
 
     } else if ($location.$$path == '/relatorio') {
 
@@ -141,22 +145,22 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     } else if ($location.$$path == '/') {
       $scope.titulo = 'Controle Despesas';
       $scope.subtitulo = 'MENU';
-      dtFormat();
 
       setTimeout(() => {
         $('#dtReference').css('margin-left', '31%');
       }, 100);
 
     }
+
   }
-
-  carregarPage();
-
 
   $scope.dadosApp = {
     nomeDeveloper: ' 2017 - Josuel A. Lopes',
     nomeEmpresa: ' Seven Solutions Tecnologic'
   }
+
+  carregarPage();
+
 
 })
 

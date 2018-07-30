@@ -1,23 +1,29 @@
-angular.module("todoApp").controller('BtnhomemenuController', function($scope, $location){
+angular.module("todoApp").controller('BtnhomemenuController', function ($scope, $location) {
 
   $scope.mensagem = '';
 
   $scope.submit = function ($page) {
     if ($page == 'entrada') {
       $location.path('/entrada');
-      onInit(2);
-      //document.location.reload();
+      setTimeout(() => {
+        onInit(2);
+        //document.location.reload();
+      }, 110);
 
     } else if ($page == 'despesas') {
       $location.path('/despesas');
-      onInit(1);
-      //document.location.reload();
+      setTimeout(() => {
+        onInit(1);
+      }, 110);
+      //document.loca100load();
 
     } else if ($page == 'visualizar') {
       $location.path('/visualizar');
-      onInit(3)
-     // document.location.reload();
-
+      setTimeout(() => {
+        onInit(3);
+        //document.loca100load();
+        // document.location.reload();
+      }, 110);
     } else if ($page == 'relatorio') {
       //alert('Em Desenvolvimento');
       //document.location.reload();
