@@ -507,7 +507,7 @@
 	html {
 		/*background-color: #5486ac !important;*/
 		/*background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 90%);*/
-		background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 120%), url("../img/logoHomeSize.png");
+		background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 120%); /*, url("../img/logoHomeSize.png");*/
 		/*background-image: url("../img/logoHomeSize.png");*/
 		background-size: 412px 650px;
 		background-repeat: no-repeat;
