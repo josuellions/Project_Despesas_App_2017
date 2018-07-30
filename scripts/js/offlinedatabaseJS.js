@@ -282,11 +282,11 @@ function onDelete(id) {
       alert("Erro: DELETE não realizado " + e + ".");
     }
     onInit(1)
-    //window.location.reload();
+    window.location.reload();
 
   } else {
     onInit(1)
-    //window.location.reload();
+    window.location.reload();
   }
 }
 
@@ -772,14 +772,10 @@ let onUpdateDespBd = (() => {
       alert("Erro: UPDATE não realizado " + e + ".");
     }
     onInit(1)
-
-    
-    
-    //window.location.reload(queryAndUpdateOverviewLancaDespesas());
+    window.location.reload();
   } else {
     onInit(1)
-    //queryAndUpdateOverviewLancaDespesas(false);
-    //window.location.reload();
+    window.location.reload();
   }
 });
 
@@ -968,10 +964,10 @@ let onUpdateEntBd = () => {
       alert("Erro: UPDATE não realizado " + e + ".");
     }
     onInit(2);
-    //window.location.reload();
+    window.location.reload();
   } else {
     onInit(2);
-    //window.location.reload();
+    window.location.reload();
   }
 };
 

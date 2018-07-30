@@ -35,6 +35,11 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     $location.$$path == localPage[2] ? onInit(2) : false;
     $location.$$path == localPage[2] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate() ) : false;
     $location.$$path == localPage[2] && passMes >= 10 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
+    $location.$$path == localPage[3] ? onInit(3) : false;
+    $location.$$path == localPage[3] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate()) : false;
+    $location.$$path == localPage[3] && passMes >= 10 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
+
+
 
     setTimeout(() => {
       $("#comparaDt").html(dtMes);
