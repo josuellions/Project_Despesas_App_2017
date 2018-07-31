@@ -89,7 +89,7 @@ function createTables() {
 
     'CREATE TABLE IF NOT EXISTS TbEntradas(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dtLanc VARCHAR NOT NULL, data VARCHAR NOT NULL, entrada VARCHAR NOT NULL, valor FLOAT NOT NULL);',
 
-    'CREATE TABLE IF NOT EXISTS TbStatusDesp(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, despID INT NOT NULL, statusDesp INT NOT NULL);'
+    'CREATE TABLE IF NOT EXISTS TbDespesasStatus(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dtLanc VARCHAR NOT NULL, data VARCHAR NOT NULL, despesa VARCHAR NOT NULL, valor FLOAT NOT NULL, statusDesp INT NOT NULL);',
   ];
 
   criarTb.forEach(function (query, id) {
@@ -167,11 +167,11 @@ try {
 */
 
 //INSERT STATUS DESPESAS
-let insertStatus = (row, status) => {
-  var query = "INSERT INTO TbStatusDesp ( despID, statusDesp) VALUES (?, ?);";
+let insertStatus = (dtLanc, data, despesa, valor, status) => {
+  var query = "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?);";
   try {
     localDB.transaction(function (transaction) {
-      transaction.executeSql(query, [row, status], function (transaction, results) {
+      transaction.executeSql(query, [dtLanc, data, despesa, valor, status], function (transaction, results) {
         !results.rowsAffected ? alert("Erro: Inserção não realizada") : false;
       }, errorHandler);
     });
@@ -181,9 +181,10 @@ let insertStatus = (row, status) => {
 }
 
 // UPDATE STATUS DESPESAS NO DADOS BANCO
+
 let onUpdateStatusDesp = (id, status) => {
 
-  let query = "UPDATE TbStatusDesp SET statusDesp = ? WHERE despID = ?;";
+  let query = "UPDATE TbDespesasStatus SET statusDesp = ? WHERE ID = ?;";
 
   try {
     localDB.transaction(function (transaction) {
@@ -202,8 +203,8 @@ let onUpdateStatusDesp = (id, status) => {
 let verifStatus = (idDesp, statusDesp, upStatus) => {
   let verif = false;
   let queryDesp = 'SELECT * FROM TbDespesas';
-  let queryStatusDesp = 'SELECT * FROM TbStatusDesp;'
-  let queryDespID = 'SELECT FROM TbStatusDesp  WHERE id = ? ;'
+  let queryStatusDesp = 'SELECT * FROM  TbDespesasStatus;';
+  let queryDelete = 'DROP TABLE TbDespesas;';
 
   try {
     localDB.transaction(function (transaction) {
@@ -216,9 +217,10 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
 
             if (results.rows.length > 0) {
               if (verif) {
+
                 for (let i = 0; i < results.rows.length; i++) {
                   let row = results.rows.item(i);
-                  insertStatus(row.id, 0)
+                  insertStatus(row.dtLanc, row.data, row.despesa, row.valor, 0);
                 }
               } else if (upStatus) {
                 let verif = true;
@@ -230,9 +232,18 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
                     verif = false;
                   }
                 }
-                verif == true ? insertStatus(idDesp, statusDesp) : false;
+                //verif == true ? insertStatus(idDesp, statusDesp) : false;
               }
+            } else if (result.rows.length > 0) {
+              console.log('aqui')
+              localDB.transaction(function (transaction) {
+                transaction.executeSql(queryDelete, [], function (transaction, result) {
+                  //alert("Sucesso, seus lançamentos despesas foram transferido para nova versão!")
+                  onInit(1);
+                });
+              });
             }
+
           });
         });
       });
@@ -242,7 +253,10 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
   }
 }
 
+verifStatus();
+
 // REMOVE DADOS BANCO, TELA ADD DESPESAS
+/*
 function onDeleteStatusDesp(id) {
 
   let query = "DELETE FROM TbStatusDesp WHERE despID=?;";
@@ -258,7 +272,7 @@ function onDeleteStatusDesp(id) {
     alert("Erro: DELETE não realizado " + e + ".");
   }
 }
-
+*/
 // REMOVE DADOS BANCO, TELA ADD DESPESAS
 function onDelete(id) {
 
@@ -266,7 +280,7 @@ function onDelete(id) {
 
   if (confirma == true) {
 
-    let query = "DELETE FROM TbDespesas WHERE id=?;";
+    let query = "DELETE FROM TbDespesasStatus WHERE id=?;";
 
     try {
       localDB.transaction(function (transaction) {
@@ -276,17 +290,18 @@ function onDelete(id) {
         }, errorHandler);
       });
 
-      onDeleteStatusDesp(id);
+      //onDeleteStatusDesp(id);
 
     } catch (e) {
       alert("Erro: DELETE não realizado " + e + ".");
     }
-    onInit(1)
     window.location.reload();
+    onInit(1)
+
 
   } else {
-    onInit(1)
     window.location.reload();
+    onInit(1)
   }
 }
 
@@ -321,10 +336,10 @@ function onCreate() {
   if (data == "" || despesa == "" || valor == "" || valor < 0) {
     valor < 0 ? $("#valDespesa").select() : alert("Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios!");
   } else {
-    var query = "INSERT INTO TbDespesas (dtLanc, data, despesa, valor) VALUES (?, ?, ?, ?);";
+    var query = "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?);";
     try {
       localDB.transaction(function (transaction) {
-        transaction.executeSql(query, [dtLancamento, data, despesa, valor], function (transaction, results) {
+        transaction.executeSql(query, [dtLancamento, data, despesa, valor, 0], function (transaction, results) {
           !results.rowsAffected ? alert("Erro: Inserção não realizada") : onInit(1);;
         }, errorHandler);
       });
@@ -558,8 +573,8 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
   let basemesPag = $("#comparaDt").text();
 
-  let queryDesp = "SELECT * FROM TbDespesas;";
-  let queryStatusDesp = 'SELECT * FROM TbStatusDesp;'
+  let queryDesp = "SELECT * FROM TbDespesasStatus;";
+  //let queryStatusDesp = 'SELECT * FROM TbDespesasStatus;'
 
   try {
 
@@ -576,9 +591,9 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
       transaction.executeSql(queryDesp, [], function (transaction, results) {
 
-        localDB.transaction(function (transaction) {
+        //localDB.transaction(function (transaction) {
 
-          transaction.executeSql(queryStatusDesp, [], function (transaction, result) {
+          //transaction.executeSql(queryStatusDesp, [], function (transaction, result) {
 
             $("#tbDespesas tbody tr").remove();
 
@@ -601,8 +616,8 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
                 dtFormt = (dtDia + "/" + dtMesAlt);
 
-                $('input' + results.rows.length).checked = true;
-                $('input' + results.rows.length).checked = false;
+                //$('input' + results.rows.length).checked = true;
+                //$('input' + results.rows.length).checked = false;
 
                 let valorFormatDespesa = formataValor(row['valor']);
 
@@ -614,26 +629,27 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
                   '<td style="text-align: right; padding-right: 4%;" onclick="onUpdateDesp( ' + row['id'] + ' )">' + valorFormatDespesa + '</td>' +
                   '<td width="5%"><div class="toggle"><input type="checkbox" id="' + row['id'] + '" onclick="onStatusDesp( ' + row['id'] + ' )"><label for="' + row['id'] + '"></label></div>' +
                   '<a id="' + row['id'] + '" onclick="onDelete( ' + row['id'] + ' )" hidden><span class="glyphicon glyphicon-trash"></span></a>' +
-                  /* '<td width="5%"><a href="" id="' + row['id'] + '" onclick="onDelete( ' +
-                    row['id'] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +*/
+                  /*'<td width="5%"><a href="" id="' + row['id'] + '" onclick="onDelete( ' +
+                  row['id'] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +*/
                   '</td></tr>'
                 );
-
-                if (results.rows.length > 0 && result.rows.length > 0 && (result.rows.length == results.rows.length - 1) && !verStatus) {
-                  insertStatus(results.rows.length, 0)
-                  verStatus = true;
-                }
-
-                if (result.rows.length > 0 ) {
-                  rowStatus = result.rows.item(i);
-                  rowStatus = rowStatus.statusDesp;
-                }
-
-                rowStatus == 1 ? $('#' + row['id']).val('checked')[0].checked = true : $('#' + row['id']).val('checked')[0].checked = false;
-
+                /*
+                                if (results.rows.length > 0 && result.rows.length > 0 && (result.rows.length == results.rows.length - 1) && !verStatus) {
+                                  insertStatus(results.rows.length, 0)
+                                  verStatus = true;
+                                }
+                
+                                if (result.rows.length > 0 ) {
+                                  rowStatus = result.rows.item(i);
+                                  rowStatus = rowStatus.statusDesp;
+                                }
+                */
+                rowStatus = row['statusDesp'];
+                                rowStatus == 1 ? $('#' + row['id']).val('checked')[0].checked = true : $('#' + row['id']).val('checked')[0].checked = false;
+                
                 somaDespesa += parseFloat(row['valor'].replace(",", "."));
 
-                cont++;
+                //              cont++;
 
               } else if ((window.location.pathname === "/public/despesas.html") && (conf === false)) {
                 document.getElementById("somaDespesas").innerText = "";
@@ -644,7 +660,7 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
             }
 
-            verifStatus()
+            //verifStatus()
 
             valorFormatDespesa = formataValor((somaDespesa).toFixed(2).replace('.', ','));
 
@@ -664,8 +680,8 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
             alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
           });
         });
-      });
-    });
+     // });
+    //});
   } catch (e) {
     alert("Error: SELECT não realizado " + e + ".");
   }

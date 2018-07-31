@@ -26,14 +26,14 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     });
 
     $scope.subtitulo = dtMes;
-    
-    passMes =  passMes + 1;
+
+    passMes = passMes + 1;
 
     $location.$$path == localPage[1] ? onInit(1) : false;
-    $location.$$path == localPage[1] && passMes >= 0 && passMes <= 9 ? $('#dtDespesa').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate() ) : false;
+    $location.$$path == localPage[1] && passMes >= 0 && passMes <= 9 ? $('#dtDespesa').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate()) : false;
     $location.$$path == localPage[1] && passMes >= 10 ? $('#dtDespesa').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
     $location.$$path == localPage[2] ? onInit(2) : false;
-    $location.$$path == localPage[2] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate() ) : false;
+    $location.$$path == localPage[2] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate()) : false;
     $location.$$path == localPage[2] && passMes >= 10 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
     $location.$$path == localPage[3] ? onInit(3) : false;
     $location.$$path == localPage[3] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate()) : false;
