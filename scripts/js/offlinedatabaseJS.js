@@ -141,31 +141,6 @@ let dtbaseBd = () => {
 // CHECK POSSUI DADOS NO BANCO
 onInit(this.comp);
 
-/*
-let query = "SELECT * FROM TbEntradas;";
- 
-try {
- 
-  localDB.transaction(function (transaction) {
- 
-    transaction.executeSql(query, [], function (transaction, results) {
- 
-      for (let i = 0; i < results.rows.length; i++) {
- 
-        let row = results.rows.item(i);
- 
-      }
- 7
- 7}, function (transaction, error) {
- 7  alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
- 7});
- 7;
- 7
-} catch (e) {
-  alert("Error: SELECT não realizado " + e + ".");
-}
-*/
-
 //INSERT STATUS DESPESAS
 let insertStatus = (dtLanc, data, despesa, valor, status) => {
   var query = "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?);";
@@ -184,7 +159,7 @@ let insertStatus = (dtLanc, data, despesa, valor, status) => {
 
 let onUpdateStatusDesp = (id, status) => {
 
-  let query = "UPDATE TbDespesasStatus SET statusDesp = ? WHERE ID = ?;";
+  let query = "UPDATE TbDespesasStatus SET statusDesp = ? WHERE id = ?;";
 
   try {
     localDB.transaction(function (transaction) {
@@ -222,28 +197,18 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
                   let row = results.rows.item(i);
                   insertStatus(row.dtLanc, row.data, row.despesa, row.valor, 0);
                 }
-              } else if (upStatus) {
-                let verif = true;
-                for (let j = 0; j < result.rows.length; j++) {
-                  let rowElse = result.rows.item(j);
-
-                  if (rowElse.id == idDesp) {
-                    onUpdateStatusDesp(idDesp, statusDesp);
-                    verif = false;
-                  }
-                }
-                //verif == true ? insertStatus(idDesp, statusDesp) : false;
-              }
-            } else if (result.rows.length > 0) {
-              console.log('aqui')
+              } 
+            } else if (upStatus) {
+              onUpdateStatusDesp(idDesp, statusDesp);
+            } 
+            
+            else if (result.rows.length == results.rows.length) {
               localDB.transaction(function (transaction) {
                 transaction.executeSql(queryDelete, [], function (transaction, result) {
-                  //alert("Sucesso, seus lançamentos despesas foram transferido para nova versão!")
                   onInit(1);
                 });
               });
             }
-
           });
         });
       });
@@ -255,24 +220,6 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
 
 verifStatus();
 
-// REMOVE DADOS BANCO, TELA ADD DESPESAS
-/*
-function onDeleteStatusDesp(id) {
-
-  let query = "DELETE FROM TbStatusDesp WHERE despID=?;";
-
-  try {
-    localDB.transaction(function (transaction) {
-
-      transaction.executeSql(query, [id], function (transaction, results) {
-        !results.rowsAffected ? alert("Erro: Delete não realizado.") : onInit(1);;
-      }, errorHandler);
-    });
-  } catch (e) {
-    alert("Erro: DELETE não realizado " + e + ".");
-  }
-}
-*/
 // REMOVE DADOS BANCO, TELA ADD DESPESAS
 function onDelete(id) {
 
@@ -295,13 +242,12 @@ function onDelete(id) {
     } catch (e) {
       alert("Erro: DELETE não realizado " + e + ".");
     }
-    window.location.reload();
     onInit(1)
-
+    window.location.reload();
 
   } else {
-    window.location.reload();
     onInit(1)
+    window.location.reload();
   }
 }
 
@@ -394,7 +340,7 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
   let basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
 
-  let queryDesp = "SELECT * FROM TbDespesas;";
+  let queryDesp = "SELECT * FROM TbDespesasStatus;";
 
   try {
     let dtDia;
@@ -429,12 +375,6 @@ function queryAndUpdateOverviewVizualizarDespesas() {
 
             conf = true;
 
-            /* let td = document.createElement("td");
- 
-             td.setAttribute("id", row['id']);
-             td.setAttribute("class", "date col-xs-12");
-             td.setAttribute("onclick", "onSelect(this)");
- */
             dtDia = row['data'].substr(8, 10);
             dtMes = row['data'].substr(4, 5);
             dtMesAlt = dtMes.substr(1, 2);
@@ -567,14 +507,11 @@ cont = 0;
 // CONSULTA BANCO DADOS, CRIA NOVAS LINHAS NA TABELA, TELA ADD DESPESAS.
 function queryAndUpdateOverviewLancaDespesas(verif) {
 
-  //$(document).ready(function () {
-
   convertMes();
 
   let basemesPag = $("#comparaDt").text();
 
   let queryDesp = "SELECT * FROM TbDespesasStatus;";
-  //let queryStatusDesp = 'SELECT * FROM TbDespesasStatus;'
 
   try {
 
@@ -590,10 +527,6 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
     localDB.transaction(function (transaction) {
 
       transaction.executeSql(queryDesp, [], function (transaction, results) {
-
-        //localDB.transaction(function (transaction) {
-
-          //transaction.executeSql(queryStatusDesp, [], function (transaction, result) {
 
             $("#tbDespesas tbody tr").remove();
 
@@ -616,9 +549,6 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
                 dtFormt = (dtDia + "/" + dtMesAlt);
 
-                //$('input' + results.rows.length).checked = true;
-                //$('input' + results.rows.length).checked = false;
-
                 let valorFormatDespesa = formataValor(row['valor']);
 
                 $('#tbDespesas > tbody').append(
@@ -633,23 +563,13 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
                   row['id'] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +*/
                   '</td></tr>'
                 );
-                /*
-                                if (results.rows.length > 0 && result.rows.length > 0 && (result.rows.length == results.rows.length - 1) && !verStatus) {
-                                  insertStatus(results.rows.length, 0)
-                                  verStatus = true;
-                                }
-                
-                                if (result.rows.length > 0 ) {
-                                  rowStatus = result.rows.item(i);
-                                  rowStatus = rowStatus.statusDesp;
-                                }
-                */
+
                 rowStatus = row['statusDesp'];
                                 rowStatus == 1 ? $('#' + row['id']).val('checked')[0].checked = true : $('#' + row['id']).val('checked')[0].checked = false;
                 
                 somaDespesa += parseFloat(row['valor'].replace(",", "."));
 
-                //              cont++;
+                              cont++;
 
               } else if ((window.location.pathname === "/public/despesas.html") && (conf === false)) {
                 document.getElementById("somaDespesas").innerText = "";
@@ -659,9 +579,6 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
               }
 
             }
-
-            //verifStatus()
-
             valorFormatDespesa = formataValor((somaDespesa).toFixed(2).replace('.', ','));
 
             if (this.verif) {
@@ -699,7 +616,7 @@ let onUpdateDesp = (id) => {
 
     let basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
 
-    let queryDesp = "SELECT * FROM TbDespesas;";
+    let queryDesp = "SELECT * FROM TbDespesasStatus;";
 
     try {
 
@@ -774,13 +691,13 @@ let onUpdateDespBd = (() => {
     valor < 0 ? $("#valDespesa").select() : alert("Erro: 'Data', 'Entrada' e 'Valor' são campos obrigatórios!");
   }
   else if (confirma) {
-    let query = "UPDATE TbDespesas SET dtLanc = ?, data = ?, despesa = ?, valor = ? WHERE id=?;";
+    let query = "UPDATE TbDespesasStatus SET dtLanc = ?, data = ?, despesa = ?, valor = ?, statusDesp = ? WHERE id=?;";
 
     valor.length >= 7 ? valor = valor.substr(0, 1) + valor.substr(2) : false
 
     try {
       localDB.transaction(function (transaction) {
-        transaction.executeSql(query, [dtLancamento, data, despesa, valor, transfId], function (transaction, results) {
+        transaction.executeSql(query, [dtLancamento, data, despesa, valor, 0, transfId], function (transaction, results) {
           !results.rowsAffected ? alert("Erro: UPDATE não realizado.") : onInit(1);;
         }, errorHandler);
       });
