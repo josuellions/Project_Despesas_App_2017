@@ -2,22 +2,20 @@
 	nav.alingMenu {
 		/* float: right; */
 		/* margin-right: -3.5%; */
-		margin-top: 2.2%;
+		margin-top: .7% !important;
 		padding: 0;
 		color: white;
 		position: absolute;
-		margin-left: 85.3%;
-		margin-top: 2%;
+		margin-left: 87.3%;
 		/* height: 7px; */
 		z-index: 1000;
 	}
 	nav.alingMenu.alingMenuIndex {
 		/* margin-top: 3%; */
 		position: absolute;
-		margin-left: 78%;
-		margin-top: 3.2%;
+		margin-left: 80%;
+		margin-top: 2.5% !important;
 		text-shadow: 0px 0px 15px #337ab7;
-		
 	}
 	/*EXIBIR ICONE MENU HOME E OUTRAS VIEWS*/
 	/*.menuMobile {
@@ -30,15 +28,18 @@
 	.btn {
 		background-color: #474e5d;
 	}
+	/* Alinhamento dropdown do menu top  */
 	.dropdown-menu {
 		background-color: #474e5d !important;
+		padding-right: -5rem !important;
 		opacity: .9;
+		float: right;
+		margin-right: -4.4vw !important;
 	}
 	.dropdown-toggle {
-		margin-top: -2%;
-		margin-top: -5%;
 		z-index: 2 !important;
-		margin-top: -5%;
+		margin-top: -7%;
+		padding-right: 15% !important;
 	}
 	/*Tamanho do icone do botão menu*/
 	nav button span {
@@ -48,7 +49,7 @@
 	/*Tamanho alinhamento Menu*/
 	nav ul li span {
 		font-size: 2.5rem;
-		padding: 10.2%;
+		padding: 10.1%;
 		padding-bottom: 10.2%;
 		width: 60vw;
 		padding-left: 15%;

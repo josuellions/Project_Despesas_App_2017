@@ -241,6 +241,7 @@
 		overflow: auto;
 		height: 62vh;
 		max-height: 62vh;
+		color: aliceblue;
 		border: 2px solid lightgray;
 		background-color: #474e5d;
 		opacity: .90 !important;
@@ -259,8 +260,8 @@
 	}
 	.listExibEntrada {
 		background-color: #474e5d;
-		float: left;
 		border: 2px solid lightgray;
+		color: aliceblue;
 		padding: 0%;
 		padding-top: 0%;
 		font-size: .7rem;
@@ -268,6 +269,7 @@
 		height: 47vh;
 		max-height: 47vh;
 		opacity: .90;
+		float: left;
 	}
 	div.totalEntrada {
 		background-color: #474e5d;
@@ -513,17 +515,17 @@
 		background-attachment: fixed;
 		background-position-y: 18vh;
 		background-attachment: fixed;
-	/*	opacity: .90;*/
+		/*	opacity: .90;*/
 	}
 	/*body {*/
-		/*background-color: snow !important;*/
-		/* gainsboro !important;*/
+	/*background-color: snow !important;*/
+	/* gainsboro !important;*/
 	/*}
 	body {*/
-		/*background-image: url("../img/logoHomeSize.png");*/
-		/*background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 90%), url("../img/logoHomeSize.png");*/
-		/* #042b4a*/
-		/*	background-size: 410px 640px;
+	/*background-image: url("../img/logoHomeSize.png");*/
+	/*background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 90%), url("../img/logoHomeSize.png");*/
+	/* #042b4a*/
+	/*	background-size: 410px 640px;
 		background-repeat: no-repeat;
 		background-position: right top;
 		background-attachment: fixed;

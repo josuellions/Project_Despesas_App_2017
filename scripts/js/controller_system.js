@@ -8,70 +8,76 @@ let dimTela = () => {
 
 dimTela();
 */
-//$(document).ready(() => {
+/*
 
-	//	var Page = window.location.pathname;
+$(document).ready(() => {
+	setTimeout(() => {
 
-	//	if (Page == '/index.html' || '/') {
-		/*
-	let alertInfo = (item) => {
+		var Page = window.location.pathname;
+
+		if (Page == '/index.html' || '/') {
+
+			let alertInfo = (item) => {
+
+				if (item === 'btnInfo' || item === 'btnInfoMenu') {
+					alert("APLICATIVO CONTROLE DESPESAS \n" +
+						"\t\t\t\t\t\t\tdiárias ou mensais \n\n" +
+						"Entrada Caixa: \n" +
+						"lançamentos de entra de caixa, \n" +
+						"exemplo, salário, comisão, vale alimentação e outros.\n\n" +
+						"Despesas: \n" +
+						"lançamentos dos gastos com despesas, \n" +
+						"exemplo, almoço, mercado, roupas e outros. \n\n" +
+						"Visualizar: \n" +
+						"vizualização dos laçamentos entrada e despesas lançados, \n\n" +
+						"Relatório: \n" +
+						"Em Desenvolvimento \n "
+					);
+				} else {
+					alert("\t\t\t\t INFORMAÇÕES DESENVOLVEDOR \n\n" +
+						"Aplicativo:\n" +
+						"Controle Despesas Mensal\n\n" +
+
+						"Versão:\n" +
+						"Versão beta 0.0.9 - AngularJS - 20/07/2018\n\n" +
+
+						"Desenvolvedor: \n" +
+						"Josuel A. Lopes \n\n" +
+
+						"Contato: \n" +
+						"Celular: 11 98273 8274 \n" +
+						"email: josuel_lions@hotmail.com \n\n" +
+
+						"Desenvolvimento e Programação: \n" +
+						"Aplicativos Mobile App, Mobile Web, Web Sites e Desktop\n\n" +
+
+						"Desenvolvimento de aplicações nas linguagens: \n" +
+						"HTML5, CSS3, JavaScript, JQuery, \n" +
+						"PHP, Laravel, Eloquent, Blade, \n " +
+						"C#, ASP.NET, ADO.NET, MVC, \n" +
+						"NodeJS, Angular, AngularJS \n" +
+						"PhoneGap, SQL, MySQL, \n " +
+						"Linux e Microsoft"
+					);
+				}
+			};
 		
-		if (item === 'btnInfo' || item === 'btnInfoMenu') {
-			alert("APLICATIVO CONTROLE DESPESAS \n" +
-				"\t\t\t\t\t\t\tdiárias ou mensais \n\n" +
-				"Entrada Caixa: \n" +
-				"lançamentos de entra de caixa, \n" +
-				"exemplo, salário, comisão, vale alimentação e outros.\n\n" +
-				"Despesas: \n" +
-				"lançamentos dos gastos com despesas, \n" +
-				"exemplo, almoço, mercado, roupas e outros. \n\n" +
-				"Visualizar: \n" +
-				"vizualização dos laçamentos entrada e despesas lançados, \n\n" +
-				"Relatório: \n" +
-				"Em Desenvolvimento \n "
-			);			
-		} else {
-			alert("\t\t\t\t INFORMAÇÕES DESENVOLVEDOR \n\n" +
-				"Aplicativo:\n" +
-				"Controle Despesas Mensal\n\n" +
+		$('#btnInfo').click(() => {
+			alertInfo('btnInfo');
+		});
 
-				"Versão:\n" +
-				"Versão beta 0.0.9 - AngularJS - 20/07/2018\n\n" +
+		$('#btnInfoMenu').click(() => {
+			alertInfo('btnInfoMenu');
+		});
 
-				"Desenvolvedor: \n" +
-				"Josuel A. Lopes \n\n" +
-
-				"Contato: \n" +
-				"Celular: 11 98273 8274 \n" +
-				"email: josuel_lions@hotmail.com \n\n" +
-
-				"Desenvolvimento e Programação: \n" +
-				"Aplicativos Mobile App, Mobile Web, Web Sites e Desktop\n\n" +
-
-				"Desenvolvimento de aplicações nas linguagens: \n" +
-				"HTML5, CSS3, JavaScript, JQuery, \n" +
-				"PHP, Laravel, Eloquent, Blade, \n " +
-				"C#, ASP.NET, ADO.NET, MVC, \n" +
-				"NodeJS, Angular, AngularJS \n" +
-				"PhoneGap, SQL, MySQL, \n " +
-				"Linux e Microsoft"
-			);
-		}
-	};
-	//	}
-	$('#btnInfo').click(() => {
-		alertInfo('btnInfo');
-	});
-	$('#btnInfoMenu').click(() => {
-		alertInfo('btnInfoMenu');
-	});
-
-	$("#btnSobre").click(() => {
-		alertInfo(this);
-	});
-
-	//$(document).ready(() => {
+		$("#btnSobre").click(() => {
+			alertInfo(this);
+		});
+	}
+	*/
+		//$(document).ready(() => {
 		// EFEITO MENU SUPERIOR
+		/*
 		$("#btnMenu").click(() => {
 			$("#liMenu").slideToggle(() => {
 				$(this).click(() => {
@@ -83,9 +89,9 @@ dimTela();
 			});
 			$("body").mousedown(() => {
 				$("#liMenu").animate().slideUp(700);
+				console.log('aqui');
 			});
 		});
-
 		//Select campo number
 		$("#valDespesa").click(() => { $('#valDespesa').select(); });
 
@@ -156,19 +162,20 @@ dimTela();
 			else if (verifCampo == "Adicionar Entrada") { onInit(2); }
 			else if (verifCampo == "Visualizar Despesas") { onInit(3); }
 
-			//$("#dtReference").html(convertMes(mesGlobal, anoGlobal));
+			$("#dtReference").html(convertMes(mesGlobal, anoGlobal));
 
 		}
 
 		// AVANÇAR MÊS DE REFERÊNCIA
 		var verificaMesRef = () => {
-			$(document).ready(function(){
-				//mesRef =  $("#dtReference").text();
-				//console.log(mesRef)
-				//return mesRef;
+			$(document).ready(function () {
+				mesRef = $("#dtReference").text();
+				console.log(mesRef)
+				return mesRef;
 			})
 		}
-	
+	}, 100);
+});
 */
 
 // EXIBIR O MÊS DE REFENCIA
@@ -183,7 +190,7 @@ dimTela();
 //})//if (verificaMesRef() != "Menu") {
 			//if (window.location.hash == '#!/') {
 			//	console.log(window.location.hash)
-				
+
 				//exibTitleCabecalho('Controle Despesas', 'Menu');
 
 			//	$('#dtReference').css({ 'margin-left': '30.5vw', })
@@ -212,7 +219,7 @@ dimTela();
 	
 			
 			/*Retira icone Home, Add icone MenuMobile*/
-			
+
 		//	$('#menuMobile').removeAttr('hidden', 'hidden');
 		//	$('.alingMenu').attr('hidden', 'hidden');
 		//	$("#btnInfo").css('display', 'inline');
@@ -232,6 +239,6 @@ dimTela();
 			//		$(".valDespesa").html($(this).val().replace(/\D/g, ''))
 			//	})
 		//	});
-		
+
 		//window.location.reload();
 		//}

@@ -5,14 +5,17 @@ angular.module("todoApp").controller('BtnhomemenuController', function($scope, $
   $scope.submit = function ($page) {
     if ($page == 'entrada') {
       $location.path('/entrada');
+      onInit(2);
       //document.location.reload();
 
     } else if ($page == 'despesas') {
       $location.path('/despesas');
+      onInit(1);
       //document.location.reload();
 
     } else if ($page == 'visualizar') {
       $location.path('/visualizar');
+      onInit(3)
      // document.location.reload();
 
     } else if ($page == 'relatorio') {
@@ -32,8 +35,7 @@ angular.module("todoApp").controller('BtnhomemenuController', function($scope, $
 
     } else {
       $location.path('/');
-      //document.location.reload( )
-     
+      //document.location.reload( )    
     }
   }
 });
