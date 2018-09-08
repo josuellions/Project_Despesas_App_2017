@@ -9,7 +9,7 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     imglogoalt: 'Logo Seven',
     imglogotitle: 'Logo Seven',
     //imglogo: 'assets/img/logo_seven_antes.jpg'
-    contVer: 'Versão beta 0.0.9c-AngularJS - 30/07/2018'
+    contVer: 'Versão beta 0.0.9d-AngularJS - 07/09/2018'
   };
 
   /* Formata data top */
