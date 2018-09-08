@@ -197,11 +197,11 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
                   let row = results.rows.item(i);
                   insertStatus(row.dtLanc, row.data, row.despesa, row.valor, 0);
                 }
-              } 
+              }
             } else if (upStatus) {
               onUpdateStatusDesp(idDesp, statusDesp);
-            } 
-            
+            }
+
             else if (result.rows.length == results.rows.length) {
               localDB.transaction(function (transaction) {
                 transaction.executeSql(queryDelete, [], function (transaction, result) {
@@ -528,76 +528,76 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
       transaction.executeSql(queryDesp, [], function (transaction, results) {
 
+        $("#tbDespesas tbody tr").remove();
+
+        for (let i = 0; i < results.rows.length; i++) {
+
+
+          let row = results.rows.item(i);
+          let rowStatus = 0;
+
+          verif = row['data'].slice(0, 7) == basemesPag.slice(0, 7) ? true : false;
+
+          if (verif == true) {
+
+            conf = true;
+
+            dtDia = row['data'].substr(8, 10);
+            dtMes = row['data'].substr(4, 5);
+            dtMesAlt = dtMes.substr(1, 2);
+            dtAno = row['data'].substr(2, 2);
+
+            dtFormt = (dtDia + "/" + dtMesAlt);
+
+            let valorFormatDespesa = formataValor(row['valor']);
+
+            $('#tbDespesas > tbody').append(
+              '<tr id=" ' + row['id'] + ' ">' +
+              '<td width="22%" onclick="onUpdateDesp( ' + row['id'] + ' )">' + dtFormt + '</td>' +
+              '<td width="48%" onclick="onUpdateDesp( ' + row['id'] + ' )">' + row['despesa'] + '</td>' +
+              '<td> R$ </td>' +
+              '<td style="text-align: right; padding-right: 4%;" onclick="onUpdateDesp( ' + row['id'] + ' )">' + valorFormatDespesa + '</td>' +
+              '<td width="5%"><div class="toggle"><input type="checkbox" id="' + row['id'] + '" onclick="onStatusDesp( ' + row['id'] + ' )"><label for="' + row['id'] + '"></label></div>' +
+              '<a id="' + row['id'] + '" onclick="onDelete( ' + row['id'] + ' )" hidden><span class="glyphicon glyphicon-trash"></span></a>' +
+              /*'<td width="5%"><a href="" id="' + row['id'] + '" onclick="onDelete( ' +
+              row['id'] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +*/
+              '</td></tr>'
+            );
+
+            rowStatus = row['statusDesp'];
+            rowStatus == 1 ? $('#' + row['id']).val('checked')[0].checked = true : $('#' + row['id']).val('checked')[0].checked = false;
+
+            somaDespesa += parseFloat(row['valor'].replace(",", "."));
+
+            cont++;
+
+          } else if ((window.location.pathname === "/public/despesas.html") && (conf === false)) {
+            document.getElementById("somaDespesas").innerText = "";
+
             $("#tbDespesas tbody tr").remove();
 
-            for (let i = 0; i < results.rows.length; i++) {
+          }
 
+        }
+        valorFormatDespesa = formataValor((somaDespesa).toFixed(2).replace('.', ','));
 
-              let row = results.rows.item(i);
-              let rowStatus = 0;
+        if (this.verif) {
+          $('.toggle').remove()
+          $('.despPG').html('Del');
+          $('#tbDespesas tbody tr td a').removeAttr('hidden');
+        } else {
+          $('.despPG').html('Pago');
+          $('.toggle').css({ 'display': 'block' });
+          $('#tbDespesas tbody tr td a').attr('hidden');
+        }
 
-              verif = row['data'].slice(0, 7) == basemesPag.slice(0, 7) ? true : false;
+        $("#somaDespesas").html(valorFormatDespesa);
 
-              if (verif == true) {
-
-                conf = true;
-
-                dtDia = row['data'].substr(8, 10);
-                dtMes = row['data'].substr(4, 5);
-                dtMesAlt = dtMes.substr(1, 2);
-                dtAno = row['data'].substr(2, 2);
-
-                dtFormt = (dtDia + "/" + dtMesAlt);
-
-                let valorFormatDespesa = formataValor(row['valor']);
-
-                $('#tbDespesas > tbody').append(
-                  '<tr id=" ' + row['id'] + ' ">' +
-                  '<td width="22%" onclick="onUpdateDesp( ' + row['id'] + ' )">' + dtFormt + '</td>' +
-                  '<td width="48%" onclick="onUpdateDesp( ' + row['id'] + ' )">' + row['despesa'] + '</td>' +
-                  '<td> R$ </td>' +
-                  '<td style="text-align: right; padding-right: 4%;" onclick="onUpdateDesp( ' + row['id'] + ' )">' + valorFormatDespesa + '</td>' +
-                  '<td width="5%"><div class="toggle"><input type="checkbox" id="' + row['id'] + '" onclick="onStatusDesp( ' + row['id'] + ' )"><label for="' + row['id'] + '"></label></div>' +
-                  '<a id="' + row['id'] + '" onclick="onDelete( ' + row['id'] + ' )" hidden><span class="glyphicon glyphicon-trash"></span></a>' +
-                  /*'<td width="5%"><a href="" id="' + row['id'] + '" onclick="onDelete( ' +
-                  row['id'] + ' )"><span class="glyphicon glyphicon-trash"></a></span></td>' +*/
-                  '</td></tr>'
-                );
-
-                rowStatus = row['statusDesp'];
-                                rowStatus == 1 ? $('#' + row['id']).val('checked')[0].checked = true : $('#' + row['id']).val('checked')[0].checked = false;
-                
-                somaDespesa += parseFloat(row['valor'].replace(",", "."));
-
-                              cont++;
-
-              } else if ((window.location.pathname === "/public/despesas.html") && (conf === false)) {
-                document.getElementById("somaDespesas").innerText = "";
-
-                $("#tbDespesas tbody tr").remove();
-
-              }
-
-            }
-            valorFormatDespesa = formataValor((somaDespesa).toFixed(2).replace('.', ','));
-
-            if (this.verif) {
-              $('.toggle').remove()
-              $('.despPG').html('Del');
-              $('#tbDespesas tbody tr td a').removeAttr('hidden');
-            } else {
-              $('.despPG').html('Pago');
-              $('.toggle').css({ 'display': 'block' });
-              $('#tbDespesas tbody tr td a').attr('hidden');
-            }
-
-            $("#somaDespesas").html(valorFormatDespesa);
-
-          }, function (transaction, error) {
-            alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
-          });
-        });
-     // });
+      }, function (transaction, error) {
+        alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
+      });
+    });
+    // });
     //});
   } catch (e) {
     alert("Error: SELECT não realizado " + e + ".");
@@ -643,7 +643,6 @@ let onUpdateDesp = (id) => {
             if (verif == true) {
 
               conf = true;
-
 
               dtDia = row['data'].substr(8, 10);
               dtMes = row['data'].substr(4, 5);
@@ -736,11 +735,11 @@ function queryAndUpdateOverviewLancaEntrada() {
     let dtDia;
     let dtMes;
     let dtMesAlt;
-    let dtAno;
     let dtFormt;
     let somaEntrada = 0.00;
-    let formatasomaEntrada;
     let conf = false;
+    let copyConfirmar = false;
+    let dtMesVerifica;
 
     localDB.transaction(function (transaction) {
 
@@ -754,6 +753,8 @@ function queryAndUpdateOverviewLancaEntrada() {
 
           let verif = row['data'].slice(0, 7) == basemesPag.slice(0, 7) ? true : false;
 
+          dtMesVerifica = row['data'].slice(5, 7);
+
           if (verif == true) {
 
             conf = true;
@@ -762,7 +763,6 @@ function queryAndUpdateOverviewLancaEntrada() {
             dtMes = row['data'].substr(4, 5);
             dtMesAlt = dtMes.substr(1, 2);
             dtAno = row['data'].substr(2, 2);
-
             dtFormt = (dtDia + "/" + dtMesAlt);
 
             let valorFormat = formataValor(row['valor']);
@@ -779,8 +779,21 @@ function queryAndUpdateOverviewLancaEntrada() {
             );
             somaEntrada += parseFloat(row['valor'].replace(",", "."));
 
+          } else if (basemesPag.slice(0, 7) > row['data'].slice(0, 7) && !verif && (i == results.rows.length - 1)) {
 
-          } else if ((window.location.pathname === "/public/entrada.html") && (conf == false)) {
+            if (!copyConfirmar) {
+              copyConfirmar = confirm("Adicionar laçamentos com base no mês anterior?")
+            }
+            if (copyConfirmar && (dtMesVerifica == (basemesPag.slice(5, 7) - 1))) {
+
+              let ver = row['data'].slice(5, 7);
+              ver = parseInt(ver);
+              //insertMes( basemesPag.slice(0, 5) + --ver + basemesPag.slice(7))
+              insertMes(basemesPag); //   row['data'])
+            }
+
+          }
+          else if ((window.location.pathname === "/public/entrada.html") && (conf == false)) {
             document.getElementById("somaEntrada").innerText = "";
 
             $("#tbEntrada tbody tr").remove();
@@ -914,3 +927,62 @@ errorHandler = function (transaction, error) {
 
 nullDataHandler = function (transaction, results) {
 }
+
+//******************************************/
+let insertMes = (dados) => {
+
+  convertMes();
+
+  let queryDesp = "SELECT * FROM TbEntradas;";
+
+  try {
+
+    localDB.transaction(function (transaction) {
+
+      transaction.executeSql(queryDesp, [], function (transaction, results) {
+
+        for (let i = 0; i < results.rows.length; i++) {
+
+          let row = results.rows.item(i);
+          console.log(results.rows);
+
+          let ver = dados.slice(5, 7);
+          ver = parseInt(ver);
+
+          let dtLancamento = formataData();
+          let data = dados;
+          let entrada = row['entrada'];
+          let valor = row['valor'];
+
+          valor.length >= 7 ? valor = valor.substr(0, 1) + valor.substr(2) : false
+
+          if (data == "" || entrada == "" || valor == "" || valor < 0) {
+            valor < 0 ? $("#valEntrada").select() : alert("Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios!");
+          }
+          else {
+            let query = "INSERT INTO TbEntradas (dtLanc, data, entrada, valor) VALUES (?, ?, ?, ?);";
+            try {
+              localDB.transaction(function (transaction) {
+                transaction.executeSql(query, [dtLancamento, data, entrada, valor], function (transaction, results) {
+                  !results.rowsAffected ? alert("Erro: Inserção não realizada") : onInit(2);;
+                }, errorHandler);
+              });
+            } catch (e) {
+              alert("Erro: INSERT não realizado " + e + ".");
+            }
+            $('#dtEntrada').val(formataData()).focus();
+            $('#textEntrada').val("");
+            $('#valEntrada').val("");
+          }
+        }
+      }, function (transaction, error) {
+        alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
+      });
+    });
+  } catch (e) {
+    alert("Erro" + e)
+  }
+}
+
+
+

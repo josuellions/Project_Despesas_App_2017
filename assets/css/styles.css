@@ -228,7 +228,13 @@ span.glyphicon.glyphicon-trash {
 /*ALINHA BOTÕES PAGINA INICIAL*/
 
 .container-fluid>.menuInicial {
-	margin-bottom: -1%;
+	/*margin-bottom: -1%;*/
+	margin: 0 auto;
+}
+
+.col-xs-offset-1 {
+	margin: 0 auto;
+	margin-left: 5vw !important;
 }
 
 /*ALINHA BOTÕES PAGINA INICIAL*/
@@ -253,7 +259,8 @@ span.glyphicon.glyphicon-trash {
 	font-size: 1.5rem !important;
 	border: none !important;
 	border-radius: 2rem !important;
-	background: #337ab7 !important;
+	/*background: #337ab7 !important;*/
+	background: transparent !important;
 	color: orange !important;
 	opacity: .4rem !important;
 	box-shadow: 0px 0px 15px whitesmoke !important;
@@ -294,10 +301,10 @@ footer p {
 /*IMG DE FUNDO BODY GERAL*/
 
 html {
-	/*background-color: #5486ac !important;*/
-	/*background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 90%);*/
+	background-color: #5486ac !important;
+	background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 90%);
 	/*background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 120%), url("../img/logoHomeSize.png");*/
-	background-image: url("../img/logoHomeSize.png");
+	/*background-image: url("../img/logoHomeSize.png");*/
 	background-repeat: no-repeat;
 	background-position: right top;
 	background-attachment: fixed;
@@ -323,7 +330,8 @@ section {
 	padding-bottom: 1.6rem !important;
 	font-size: 2.7rem;
 	text-align: center;
-	color: #337ab7;
+	/*color: #337ab7;*/
+	color: #fff;
 	background: transparent;
 	border: .1rem solid #fff;
 	box-shadow: 0px 0px 10px #337ab7;
@@ -352,7 +360,11 @@ section {
 		background-size: 200px 200px !important;
 	}
 	.container-fluid>.btnAlingDesp {
-		margin-top: 2.5vh !important;
+		clear: both;
+		float: left;
+		padding: 0;
+		margin: 0 auto;
+		margin-top: 11vh !important;
 	}
 	.container-fluid>div>.btn {
 		height: 15vh !important;
@@ -402,6 +414,12 @@ section {
 		/*font-weight: bolder;*/
 		margin-bottom: 2.5%;
 	}
+	.alinharFormDesp {
+		margin-top: .7vh !important;
+	}
+	footer div p {
+		font-size: 1rem !important;
+	}
 }
 
 @media screen and ( min-width: 412px) and (max-width: 1020px) {
@@ -447,7 +465,8 @@ section {
 	}
 	/*ALINHA BOTÕES PAGINA INICIAL*/
 	.container-fluid>.btnAlingDesp {
-		margin-top: 8vh;
+		margin: 0 auto;
+		margin-top: 15vh;
 	}
 	/*BOTÕES DA PAGINA INICIAL*/
 	.container-fluid>div>.btn {
