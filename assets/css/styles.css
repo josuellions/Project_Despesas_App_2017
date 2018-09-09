@@ -240,8 +240,9 @@ span.glyphicon.glyphicon-trash {
 /*ALINHA BOTÕES PAGINA INICIAL*/
 
 .container-fluid>.btnAlingDesp {
-	margin-left: 1.5vw !important;
-	position: fixed;
+	margin: 0 auto;
+	margin-left: 2.5vw !important;
+	position: absolute;
 	padding: 0;
 	padding-bottom: .5% !important;
 }
@@ -258,15 +259,20 @@ span.glyphicon.glyphicon-trash {
 	color: #5486ac;
 	font-size: 1.5rem !important;
 	border: none !important;
-	border-radius: 2rem !important;
+	border-radius: 1rem !important;
 	/*background: #337ab7 !important;*/
 	background: transparent !important;
-	color: orange !important;
+	color: white !important;
+	/* orange !important;*/
 	opacity: .4rem !important;
 	box-shadow: 0px 0px 15px whitesmoke !important;
 	text-shadow: 0px 0px 15px white !important;
 	padding-top: 7% !important;
 	padding-bottom: 7% !important;
+}
+
+.container-fluid>div>.btn>i {
+	padding-bottom: 2rem;
 }
 
 /*Rodapé */
@@ -301,10 +307,12 @@ footer p {
 /*IMG DE FUNDO BODY GERAL*/
 
 html {
-	background-color: #5486ac !important;
-	background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 90%);
+	/*background-color: #5486ac !important;*/
+	/*background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 90%);*/
 	/*background-image: linear-gradient(to right, #042b4ad6 0%, #337ab706 120%), url("../img/logoHomeSize.png");*/
 	/*background-image: url("../img/logoHomeSize.png");*/
+	background-color: rgba(60, 87, 115, 1);
+	/*background-color: rgb(151, 166, 181);*/
 	background-repeat: no-repeat;
 	background-position: right top;
 	background-attachment: fixed;
@@ -334,8 +342,10 @@ section {
 	/*color: #fff;*/
 	background: transparent;
 	border: .1rem solid #fff;
-	box-shadow: 0px 0px 10px white; /* #337ab7;*/
-	text-shadow: 0px 0px 10px white; /* #337ab7;*/
+	box-shadow: 0px 0px 10px white;
+	/* #337ab7;*/
+	text-shadow: 0px 0px 10px white;
+	/* #337ab7;*/
 	/*border-color: 1px solid #c5cad5 ;*/
 	border-radius: 50%;
 }
@@ -347,11 +357,13 @@ section {
 	padding-bottom: 1.5rem !important;
 	font-size: 2.7rem;
 	text-align: center;
-	color: white; /*  #337ab7;*/
+	color: white;
+	/*  #337ab7;*/
 	background: transparent;
 	border: .1rem solid #fff;
 	box-shadow: 0px 0px 10px #337ab7;
-	text-shadow: 0px 0px 10px white; /* #337ab7;*/
+	text-shadow: 0px 0px 10px white;
+	/* #337ab7;*/
 	border-radius: 50%;
 }
 
@@ -364,10 +376,10 @@ section {
 		float: left;
 		padding: 0;
 		margin: 0 auto;
-		margin-top: 11vh !important;
+		margin-top: 4vh !important;
 	}
 	.container-fluid>div>.btn {
-		height: 15vh !important;
+		height: 20vh !important;
 	}
 	span.btnDesp {
 		padding-top: 1.2rem !important;
@@ -418,6 +430,7 @@ section {
 		margin-top: .7vh !important;
 	}
 	footer div p {
+		margin-top: 1vh !important;
 		font-size: 1rem !important;
 	}
 }
@@ -466,12 +479,13 @@ section {
 	/*ALINHA BOTÕES PAGINA INICIAL*/
 	.container-fluid>.btnAlingDesp {
 		margin: 0 auto;
-		margin-top: 15vh;
+		margin-top: 6.5vh;
 	}
 	/*BOTÕES DA PAGINA INICIAL*/
 	.container-fluid>div>.btn {
 		/*font-weight: bolder;*/
 		margin-bottom: 5%;
+		height: 20vh !important;
 	}
 }
 

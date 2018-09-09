@@ -913,7 +913,6 @@ let onUpdateEnt = (id) => {
           alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
         });
       });
-      //}
     } catch (e) {
       alert("Erro" + e)
     }
@@ -930,6 +929,27 @@ let onUpdateEntBd = () => {
   let data = document.getElementById("dtEntrada").value;
   let entrada = document.getElementById("textEntrada").value;
   let valor = document.getElementById("valEntrada").value;
+
+
+  let limparDados = () => {
+    $.ajax({
+      url: window.location.pathname,
+      success: function () {
+        $("#itemTbody tr td").remove();
+        $('#dtEntrada').val('');
+        $('#textEntrada').val('');
+        $('#valEntrada').val('');
+        $('#btnEntEdit').css({ 'display': 'none' });
+        $('#btnEntrada').css({ 'display': 'inline' })
+        ///queryAndUpdateOverviewLancaDespesas(true);
+        onInit(2);
+      },
+      error: function () {
+        alert("Error");
+      }
+    });
+  }
+
 
   if (data == "" || entrada == "" || valor == "" || valor < 0) {
     valor < 0 ? $("#valEntrada").select() : alert("Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios!");
@@ -948,10 +968,15 @@ let onUpdateEntBd = () => {
     } catch (e) {
       alert("Erro: UPDATE não realizado " + e + ".");
     }
-    onInit(2);
+   
+    limparDados();
+   
     //window.location.reload();
   } else {
-    onInit(2);
+   
+    limparDados();
+   
+    //onInit(2);
     //window.location.reload();
   }
 };
