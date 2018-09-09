@@ -30,14 +30,14 @@ angular.module("todoApp").controller('BtnhomemenuController', function ($scope, 
       $location.path('/relatorio');
       $scope.mensagem = 'Relatorio, em desenvolvimento';
 
-    } else if ($page == '/informacoes') {
+    } else if ($page == 'informacoes') {
       $location.path('/informacoes');
       $scope.mensagem = 'Informações, em desenvolvimento';
 
     }
-    else if ($page == '/sobre') {
+    else if ($page == 'sobre') {
       $location.path('/sobre');
-      $scope.mensagem = 'Sobre, em desenvolvimento';
+      $scope.mensagem = 'Sobre Nós, em desenvolvimento';
 
     } else {
       $location.path('/');

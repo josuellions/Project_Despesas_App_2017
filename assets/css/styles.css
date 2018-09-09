@@ -330,12 +330,12 @@ section {
 	padding-bottom: 1.6rem !important;
 	font-size: 2.7rem;
 	text-align: center;
-	/*color: #337ab7;*/
-	color: #fff;
+	color: #337ab7;
+	/*color: #fff;*/
 	background: transparent;
 	border: .1rem solid #fff;
-	box-shadow: 0px 0px 10px #337ab7;
-	text-shadow: 0px 0px 10px #337ab7;
+	box-shadow: 0px 0px 10px white; /* #337ab7;*/
+	text-shadow: 0px 0px 10px white; /* #337ab7;*/
 	/*border-color: 1px solid #c5cad5 ;*/
 	border-radius: 50%;
 }
@@ -347,11 +347,11 @@ section {
 	padding-bottom: 1.5rem !important;
 	font-size: 2.7rem;
 	text-align: center;
-	color: #337ab7;
+	color: white; /*  #337ab7;*/
 	background: transparent;
 	border: .1rem solid #fff;
 	box-shadow: 0px 0px 10px #337ab7;
-	text-shadow: 0px 0px 10px #337ab7;
+	text-shadow: 0px 0px 10px white; /* #337ab7;*/
 	border-radius: 50%;
 }
 
@@ -440,7 +440,7 @@ section {
 		margin-top: .4vh;
 	}
 	.btnDesp {
-		margin-top: -1.2vh !important;
+		margin-top: -1.7vh !important;
 		margin-left: -.2vw !important;
 	}
 	.btnDespSalve {

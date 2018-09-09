@@ -39,8 +39,6 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     $location.$$path == localPage[3] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate()) : false;
     $location.$$path == localPage[3] && passMes >= 10 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
 
-
-
     setTimeout(() => {
       $("#comparaDt").html(dtMes);
     }, 100);
@@ -139,13 +137,13 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
       $scope.mensagem = 'Relatorio, em desenvolvimento';
 
     } else if ($location.$$path == '/informacoes') {
-
+      
       $scope.mensagem = 'Informações, em desenvolvimento';
 
     }
     else if ($location.$$path == '/sobre') {
 
-      $scope.mensagem = 'Sobre, em desenvolvimento';
+      $scope.mensagem = 'Sobre nós, em desenvolvimento';
 
     } else if ($location.$$path == '/') {
       $scope.titulo = 'Controle Despesas';
