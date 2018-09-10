@@ -528,7 +528,7 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
 
       transaction.executeSql(queryDesp, [], function (transaction, results) {
 
-        $("#tbDespesas tbody tr").remove();
+        $("#tbDespesas>tbody>tr").remove();
 
         for (let i = 0; i < results.rows.length; i++) {
 
@@ -536,7 +536,7 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
           let row = results.rows.item(i);
           let rowStatus = 0;
 
-          verif = row['data'].slice(0, 7) == basemesPag.slice(0, 7) ? true : false;
+          let verif = row['data'].slice(0, 7) == basemesPag.slice(0, 7) ? true : false;
 
           dtMesVerifica = row['data'].slice(5, 7);
 
@@ -595,7 +595,7 @@ function queryAndUpdateOverviewLancaDespesas(verif) {
         }
         valorFormatDespesa = formataValor((somaDespesa).toFixed(2).replace('.', ','));
 
-        if (this.verif) {
+        if (!verif) {
           $('.toggle').remove()
           $('.despPG').html('Del');
           $('#tbDespesas tbody tr td a').removeAttr('hidden');
@@ -676,7 +676,7 @@ let onUpdateDesp = (id) => {
               }
             }
           }
-          queryAndUpdateOverviewLancaDespesas(true);
+          queryAndUpdateOverviewLancaDespesas(false);
 
         }, function (transaction, error) {
           alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
@@ -704,15 +704,12 @@ let onUpdateDespBd = (() => {
     $.ajax({
       url: window.location.pathname,
       success: function () {
-        $("#itemTbody tr td").remove();
         document.getElementById("dtDespesa").value = "";
         document.getElementById("selectDespesas").value = "";
         document.getElementById("valDespesa").value = "";
         $('#btnDespEdit').css({ 'display': 'none' });
         $('#btnDesp').css({ 'display': 'inline' })
         $('.toggle').css({ 'display': 'block' });
-        //$('a>span.glyphicon.glyphicon-trash').css('display', 'none');
-        queryAndUpdateOverviewLancaDespesas(true);
       },
       error: function () {
         alert("Error");
@@ -738,17 +735,14 @@ let onUpdateDespBd = (() => {
       limparDados();
 
     } catch (e) {
+
       alert("Erro: UPDATE não realizado " + e + ".");
 
     }
-    //$("#tbEntrada tbody tr").remove();
-    //onInit(1)
-    //window.location.reload();
   } else {
-    //$("#tbEntrada tbody tr").remove();
-    //onInit(1)
-    //window.location.reload();
+
     limparDados();
+    onInit(1);
   }
 });
 
@@ -784,7 +778,7 @@ function queryAndUpdateOverviewLancaEntrada() {
 
       transaction.executeSql(query, [], function (transaction, results) {
 
-        $("#tbEntrada tbody tr").remove();
+        $("#tbEntrada > tbody > tr").remove();
 
         for (let i = 0; i < results.rows.length; i++) {
 
@@ -929,7 +923,7 @@ let onUpdateEntBd = () => {
   let data = document.getElementById("dtEntrada").value;
   let entrada = document.getElementById("textEntrada").value;
   let valor = document.getElementById("valEntrada").value;
-
+debugger
 
   let limparDados = () => {
     $.ajax({
@@ -1042,9 +1036,6 @@ let insertMesEntrada = (dados) => {
             } catch (e) {
               alert("Erro: INSERT não realizado " + e + ".");
             }
-            $('#dtEntrada').val(formataData()).focus();
-            $('#textEntrada').val("");
-            $('#valEntrada').val("");
           }
         }
       }, function (transaction, error) {
@@ -1105,10 +1096,7 @@ let insertMesDespesa = (dados) => {
             } catch (e) {
               alert("Erro: INSERT não realizado " + e + ".");
             }
-            $('#dtDespesa').val(formataData()).focus();
-            $('#selectDespesas').val("");
-            $('#valDespesa').val("");
-          }
+           }
         }
       }, function (transaction, error) {
         alert("Erro: " + error.code + "<br>Mensagem: " + error.message);

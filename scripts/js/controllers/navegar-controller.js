@@ -134,16 +134,35 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
 
     } else if ($location.$$path == '/relatorio') {
 
-      $scope.mensagem = 'Relatorio, em desenvolvimento';
+      //$scope.mensagem = 'Relatorio, em desenvolvimento';
+      
+      $scope.titulo = 'Relatório Mesal';
+      $scope.subtitulo = 'Gráficos';
+
+      setTimeout(() => {
+        $('#dtReference').css('margin-left', '31%');
+      }, 100);
 
     } else if ($location.$$path == '/informacoes') {
       
-      $scope.mensagem = 'Informações, em desenvolvimento';
+      //$scope.mensagem = 'Informações, em desenvolvimento';
+      $scope.titulo = 'Controle Despesas';
+      $scope.subtitulo = 'Informações';
+
+      setTimeout(() => {
+        $('#dtReference').css('margin-left', '31%');
+      }, 100);
 
     }
     else if ($location.$$path == '/sobre') {
 
-      $scope.mensagem = 'Sobre nós, em desenvolvimento';
+      //$scope.mensagem = 'Sobre nós, em desenvolvimento';
+      $scope.titulo = 'Controle Despesas';
+      $scope.subtitulo = 'Sobre';
+
+      setTimeout(() => {
+        $('#dtReference').css('margin-left', '31%');
+      }, 100);
 
     } else if ($location.$$path == '/') {
       $scope.titulo = 'Controle Despesas';

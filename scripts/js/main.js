@@ -30,15 +30,15 @@ angular.module('todoApp', ['ngRoute', 'ngAnimate', 'ngResource', 'depesasDirecti
           controller: 'NavegarController'
         })
         .when('/relatorio', {
-          //templateUrl: '/android_asset/www/public/home.html',
+          templateUrl: '/android_asset/www/public/relatorio.html',
           controller: 'NavegarController'
         })
         .when('/informacoes', {
-          //templateUrl: '/public/relariorio.html',
+          templateUrl: '/android_asset/www/public/informacoes.html',
           controller: 'NavegarController'
         })
         .when('/sobre', {
-          //templateUrl: '/public/relariorio.html',
+          templateUrl: '/android_asset/www/public/sobre.html',
           controller: 'NavegarController'
         })
         .otherwise({
@@ -66,15 +66,15 @@ angular.module('todoApp', ['ngRoute', 'ngAnimate', 'ngResource', 'depesasDirecti
           controller: 'NavegarController'
         })
         .when('/relatorio', {
-          //templateUrl: '/public/relariorio.html',
+          templateUrl: '/public/relatorio.html',
           controller: 'NavegarController'
         })
         .when('/informacoes', {
-          //templateUrl: '/public/relariorio.html',
+          templateUrl: '/public/informacoes.html',
           controller: 'NavegarController'
         })
         .when('/sobre', {
-          //templateUrl: '/public/relariorio.html',
+          templateUrl: '/public/sobre.html',
           controller: 'NavegarController'
         })
         .otherwise({
