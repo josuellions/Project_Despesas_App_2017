@@ -136,7 +136,7 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
 
       //$scope.mensagem = 'Relatorio, em desenvolvimento';
       
-      $scope.titulo = 'Relatório Mesal';
+      $scope.titulo = 'Relatório Mensal';
       $scope.subtitulo = 'Gráficos';
 
       setTimeout(() => {

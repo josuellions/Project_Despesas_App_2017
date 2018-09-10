@@ -28,16 +28,16 @@ angular.module("todoApp").controller('BtnhomemenuController', function ($scope, 
       //alert('Em Desenvolvimento');
       //document.location.reload();
       $location.path('/relatorio');
-      $scope.mensagem = 'Relatorio, em desenvolvimento';
+      //$scope.mensagem = 'Relatorio, em desenvolvimento';
 
     } else if ($page == 'informacoes') {
       $location.path('/informacoes');
-      $scope.mensagem = 'Informações, em desenvolvimento';
+      //$scope.mensagem = 'Informações, em desenvolvimento';
 
     }
     else if ($page == 'sobre') {
       $location.path('/sobre');
-      $scope.mensagem = 'Sobre Nós, em desenvolvimento';
+      //$scope.mensagem = 'Sobre Nós, em desenvolvimento';
 
     } else {
       $location.path('/');
