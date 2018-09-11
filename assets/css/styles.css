@@ -456,7 +456,7 @@ section {
 		margin-top: .4vh;
 	}
 	.btnDesp {
-		margin-top: -1.7vh !important;
+		margin-top: -1.5vh !important;
 		margin-left: -.2vw !important;
 	}
 	.btnDespSalve {
@@ -489,6 +489,18 @@ section {
 		/*font-weight: bolder;*/
 		margin-bottom: 5%;
 		height: 20vh !important;
+	}
+	.container-fluid>div>div>.alinharFormDesp {
+		border: 382px 604px solid 2px #337ab7;
+		height: 69vh !important;
+		max-height: 69vh !important;
+	}
+	.listExibDesp {
+		height: 68.5vh !important;
+		max-height: 68.5vh !important;
+	}
+	h5 {
+		margin-top: 2vh !important;
 	}
 }
 
