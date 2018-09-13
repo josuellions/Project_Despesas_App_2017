@@ -1156,7 +1156,9 @@ let onloadRelatorio = () => {
         transaction.executeSql(queryDesp, [dt, dtFim], function (transaction, results) {
 
           //console.log(queryDesp, [dt, basemesPag])
-          const colorProgressBar = { 1: "progress-bar-success", 2: "progress-bar-info", 3: "progress-bar-primary", 4: "progress-bar-warning", 5: "progress-bar-danger" }
+          const colorProgressBar = { 1: "progress-bar-success", 2: "progress-bar-info", 
+                                     3: "progress-bar-primary", 4: "progress-bar-warning",
+                                     5: "progress-bar-danger" }
           let defineColorProgressBar;
           let porcentagem;
           let verif;
@@ -1181,16 +1183,16 @@ let onloadRelatorio = () => {
             if (verif <= 5) {
               defineColorProgressBar = colorProgressBar[1];
             }
-            else if (verif <= 10) {
+            else if (verif > 5 && verif <= 10) {
               defineColorProgressBar = colorProgressBar[2];
 
-            } else if (verif <= 20) {
+            } else if (verif > 10 && verif <= 20) {
               defineColorProgressBar = colorProgressBar[3];
 
-            } else if (verif <= 30) {
+            } else if (verif > 20 && verif <= 30) {
               defineColorProgressBar = colorProgressBar[4];
 
-            } else if (verif >= 40) {
+            } else if (verif >= 30) {
               defineColorProgressBar = colorProgressBar[5];
             }
 
