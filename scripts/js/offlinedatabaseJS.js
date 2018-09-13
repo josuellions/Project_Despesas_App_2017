@@ -1,3 +1,5 @@
+
+
 // DEFINIR DATA 
 function formataData() {
   dt = new Date()
@@ -58,6 +60,7 @@ function onInit(comp) {
     comp === 1 ? $(document).ready(() => { queryAndUpdateOverviewLancaDespesas(1) }) : false
     comp === 2 ? $(document).ready(() => { queryAndUpdateOverviewLancaEntrada(2) }) : false
     comp === 3 ? $(document).ready(() => { queryAndUpdateOverviewVizualizarDespesas(3) }) : false
+    comp === 4 ? $(document).ready(() => { onloadRelatorio() }) : false
 
   } catch (e) {
     const alertErroVersaoBd = "Erro: Versão de banco de dados inválida.";
@@ -923,7 +926,7 @@ let onUpdateEntBd = () => {
   let data = document.getElementById("dtEntrada").value;
   let entrada = document.getElementById("textEntrada").value;
   let valor = document.getElementById("valEntrada").value;
-debugger
+  debugger
 
   let limparDados = () => {
     $.ajax({
@@ -962,14 +965,14 @@ debugger
     } catch (e) {
       alert("Erro: UPDATE não realizado " + e + ".");
     }
-   
+
     limparDados();
-   
+
     //window.location.reload();
   } else {
-   
+
     limparDados();
-   
+
     //onInit(2);
     //window.location.reload();
   }
@@ -1004,8 +1007,6 @@ let insertMesEntrada = (dados) => {
     localDB.transaction(function (transaction) {
 
       transaction.executeSql(queryDesp, [dt, dados], function (transaction, results) {
-
-        console.log(queryDesp, [dt, dados])
 
         for (let i = 0; i < results.rows.length; i++) {
 
@@ -1047,7 +1048,6 @@ let insertMesEntrada = (dados) => {
   }
 }
 
-
 let insertMesDespesa = (dados) => {
 
   convertMes();
@@ -1071,8 +1071,6 @@ let insertMesDespesa = (dados) => {
         for (let i = 0; i < results.rows.length; i++) {
 
           let row = results.rows.item(i);
-          console.log(results.rows);
-
           let ver = dados.slice(5, 7);
           ver = parseInt(ver);
 
@@ -1096,7 +1094,7 @@ let insertMesDespesa = (dados) => {
             } catch (e) {
               alert("Erro: INSERT não realizado " + e + ".");
             }
-           }
+          }
         }
       }, function (transaction, error) {
         alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
@@ -1107,5 +1105,120 @@ let insertMesDespesa = (dados) => {
   }
 }
 
+/*RELATÓRIO GRAFICO */
+
+let onloadRelatorio = () => {
+
+  let basemesPag;
+  setTimeout(() => {
+    convertMes()
+    basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
+    //onloadRelatorio(basemesPag);
 
 
+    dt = basemesPag; // new Date()
+    dtDia = '01'; // dt.getDate();
+    dtMes = parseInt(dt.slice(5, 7)) < 11 ? ('0' + (parseInt(dt.slice(5, 7))).toString()) : dt.slice(5, 7)
+    dtAno = dt.slice(0, 4);
+    dt = [dtAno, dtMes, dtDia].join('-')
+    dtFim = (basemesPag += "-" + "31")
+
+    let cont = 0;
+
+    try {
+      let queryEntrad = "SELECT * FROM TbEntradas WHERE data >=  ?  and data <= ?;";
+      localDB.transaction(function (transaction) {
+        transaction.executeSql(queryEntrad, [dt, dtFim], function (transaction, results) {
+
+          for (let i = 0; i < results.rows.length; i++) {
+
+            let row = results.rows.item(i);
+            //let ver = basemesPag.slice(5, 7);
+            //ver = parseInt(ver);
+            let valor = row['valor'];
+
+            cont += parseFloat(valor)
+          }
+        }, function (transaction, error) {
+          alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
+        });
+      });
+    } catch (e) {
+      alert("Erro" + e)
+    }
+
+    try {
+      let queryDesp = "SELECT * FROM TbDespesasStatus WHERE data >=  ?  and data <= ?;";
+      //console.log(basemesPag, [dtAno, dtMes, dtDia].join('-'));    //dt.toLocaleString('yyyy-MM-dd'));
+
+      localDB.transaction(function (transaction) {
+
+        transaction.executeSql(queryDesp, [dt, dtFim], function (transaction, results) {
+
+          //console.log(queryDesp, [dt, basemesPag])
+          const colorProgressBar = { 1: "progress-bar-success", 2: "progress-bar-info", 3: "progress-bar-primary", 4: "progress-bar-warning", 5: "progress-bar-danger" }
+          let defineColorProgressBar;
+          let porcentagem;
+          let verif;
+
+          for (let i = 0; i < results.rows.length; i++) {
+
+            let row = results.rows.item(i);
+            let despesa = row['despesa'];
+            let valor = row['valor'];
+            //let ver = basemesPag.slice(5, 7);
+            //ver = parseInt(ver);
+
+            porcentagem = results.rows.length * cont / 100;
+
+            $('#valorTotalEnt').html("R$ " + cont).css({ "font-size": "1rem" }).mask('000.000.000.000,00');
+            $('#progressTotal').css({ 'width': porcentagem + '%' })
+            $('#progressTotal').html(porcentagem + "%")
+
+            porcentagem = ((parseFloat(valor) * 1) / 100)
+            verif = parseInt(porcentagem);
+
+            if (verif <= 5) {
+              defineColorProgressBar = colorProgressBar[1];
+            }
+            else if (verif <= 10) {
+              defineColorProgressBar = colorProgressBar[2];
+
+            } else if (verif <= 20) {
+              defineColorProgressBar = colorProgressBar[3];
+
+            } else if (verif <= 30) {
+              defineColorProgressBar = colorProgressBar[4];
+
+            } else if (verif >= 40) {
+              defineColorProgressBar = colorProgressBar[5];
+            }
+
+            $('#sectionRelatorioGrupo').append(
+
+              '<div class="col-xs-6 text-left">' +
+              '<label for="">' + despesa + '</label>' +
+              '</div>' +
+              '<div class="col-xs-6 text-right">' +
+              '<label for="">R$ ' + cont + '</label>' +
+              '</div>' +
+              '<br />' +
+              '<div class="col-xs-12">' +
+              '<div class="progress">' +
+              '<div class="progress-bar ' + defineColorProgressBar + '" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:' + porcentagem + '%;">' + porcentagem + '%</div>' +
+              '</div>' +
+              '</div>' +
+              '<br />'
+
+            )
+
+          }
+        }, function (transaction, error) {
+          alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
+        });
+      });
+    } catch (e) {
+      alert("Erro" + e)
+    }
+  }, 100);
+}

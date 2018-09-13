@@ -67,9 +67,9 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
       setTimeout(() => {
         $('.money').mask('000.000.000.000,00', { reverse: true });
 
-        let teste = $(".money").change(function () {
-          $(".valDespesa").html($(this).val().replace(/\D/g, ''))
-        })
+        // let teste = $(".money").change(function () {
+        //   $(".valDespesa").html($(this).val().replace(/\D/g, ''))
+        // })
       }, 100);
     });
   }
@@ -137,17 +137,22 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
       //$scope.mensagem = 'Relatorio, em desenvolvimento';
       
       $scope.titulo = 'Relatório Mensal';
-      $scope.subtitulo = 'Gráficos';
+      $scope.passmes = true;
+      dtFormat(null, 3);
+      //$scope.subtitulo = 'Gráficos';
+      menuTop();
+      onInit(4)
 
-      setTimeout(() => {
-        $('#dtReference').css('margin-left', '31%');
-      }, 100);
+      // setTimeout(() => {
+      //   $('#dtReference').css('margin-left', '31%');
+      // }, 100);
 
     } else if ($location.$$path == '/informacoes') {
       
       //$scope.mensagem = 'Informações, em desenvolvimento';
       $scope.titulo = 'Controle Despesas';
       $scope.subtitulo = 'Informações';
+      menuTop();
 
       setTimeout(() => {
         $('#dtReference').css('margin-left', '31%');
@@ -159,6 +164,7 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
       //$scope.mensagem = 'Sobre nós, em desenvolvimento';
       $scope.titulo = 'Controle Despesas';
       $scope.subtitulo = 'Sobre';
+      menuTop();
 
       setTimeout(() => {
         $('#dtReference').css('margin-left', '31%');

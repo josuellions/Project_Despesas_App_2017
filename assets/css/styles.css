@@ -53,6 +53,15 @@
 	padding: 2%;
 }
 
+/*ICONE AJUDA PAGINA HOME*/
+
+#mensageminfo {
+	margin-top: 0;
+	padding: 2vh;
+	float: left !important;
+	z-index: 10001;
+}
+
 /*ALINHAR TEXTO h1 - Texto Principal*/
 
 .container-fluid>h1 {
@@ -369,6 +378,26 @@ section {
 	border-radius: 50%;
 }
 
+/*Container View */
+
+.viewExib {
+	float: left;
+	margin: 0 auto;
+	padding: 0;
+	padding-top: 0%;
+	font-size: .7rem;
+	text-align: center;
+	overflow: auto;
+	color: aliceblue;
+	border: 2px solid lightgray;
+	background-color: #474e5d;
+	opacity: .90 !important;
+}
+
+h5 {
+	margin-top: 1.5vh !important;
+}
+
 @media screen and (max-width:410px) {
 	.html {
 		background-size: 200px 200px !important;
@@ -436,6 +465,11 @@ section {
 		margin-top: 1vh !important;
 		font-size: 1rem !important;
 	}
+	.viewExib {
+		margin-top: 1vh;
+		height: 67.5vh;
+		max-height: 67.5vh;
+	}
 }
 
 @media screen and ( min-width: 412px) and (max-width: 1020px) {
@@ -456,7 +490,7 @@ section {
 		margin-top: .4vh;
 	}
 	.btnDesp {
-		margin-top: -1.5vh !important;
+		margin-top: -1.2vh !important;
 		margin-left: -.2vw !important;
 	}
 	.btnDespSalve {
@@ -495,12 +529,9 @@ section {
 		height: 69vh !important;
 		max-height: 69vh !important;
 	}
-	.listExibDesp {
-		height: 68.5vh !important;
-		max-height: 68.5vh !important;
-	}
-	h5 {
-		margin-top: 2vh !important;
+	.viewExib {
+		height: 68.5vh;
+		max-height: 68.5vh;
 	}
 }
 
