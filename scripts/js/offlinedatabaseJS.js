@@ -1169,13 +1169,13 @@ let onloadRelatorio = () => {
             //let ver = basemesPag.slice(5, 7);
             //ver = parseInt(ver);
 
-            porcentagem = results.rows.length * cont / 100;
+            porcentagem = results.rows.length * cont / 1000;
 
             $('#valorTotalEnt').html("R$ " + cont).css({ "font-size": "1rem" }).mask('000.000.000.000,00');
             $('#progressTotal').css({ 'width': porcentagem + '%' })
             $('#progressTotal').html(porcentagem + "%")
 
-            porcentagem = ((parseFloat(valor) * 1) / 100)
+            porcentagem = (parseFloat(valor) * 100 / 1000)
             verif = parseInt(porcentagem);
 
             if (verif <= 5) {
@@ -1205,7 +1205,7 @@ let onloadRelatorio = () => {
               '<br />' +
               '<div class="col-xs-12">' +
               '<div class="progress">' +
-              '<div class="progress-bar ' + defineColorProgressBar + '" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:' + porcentagem + '%;">' + porcentagem + '%</div>' +
+              '<div class="progress-bar ' + defineColorProgressBar + '" role="progressbar" aria-valuenow="'+ porcentagem +'" aria-valuemin="0" aria-valuemax="100" style="width:' + porcentagem + '%;">' + porcentagem + '%</div>' +
               '</div>' +
               '</div>' +
               '<br />'
