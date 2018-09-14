@@ -39,6 +39,11 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     $location.$$path == localPage[3] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate()) : false;
     $location.$$path == localPage[3] && passMes >= 10 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
 
+    $location.$$path == localPage[4] ? onInit(4) : false;
+    $location.$$path == localPage[4] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate()) : false;
+    $location.$$path == localPage[4] && passMes >= 10 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
+
+
     setTimeout(() => {
       $("#comparaDt").html(dtMes);
     }, 100);
@@ -113,7 +118,7 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
       formatValor();
       dtFormat(null, 2);
       menuTop();
-      onInit(2)
+      //onInit(2)
 
     } else if ($location.$$path == '/despesas') {
 
@@ -123,14 +128,14 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
       formatValor();
       dtFormat(null, 1);
       menuTop();
-      onInit(1)
+      //onInit(1)
 
     } else if ($location.$$path == '/visualizar') {
       $scope.titulo = 'Visualizar Despesas';
       $scope.passmes = true;
       dtFormat(null, 3);
       menuTop();
-      onInit(3)
+      //onInit(3)
 
     } else if ($location.$$path == '/relatorio') {
 
@@ -141,7 +146,7 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
       dtFormat(null, 3);
       //$scope.subtitulo = 'Gráficos';
       menuTop();
-      onInit(4)
+      //onInit(4)
 
       // setTimeout(() => {
       //   $('#dtReference').css('margin-left', '31%');

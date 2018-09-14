@@ -1109,16 +1109,21 @@ let insertMesDespesa = (dados) => {
 
 let onloadRelatorio = () => {
 
+  /*LIMPAR DADOS RELATÓRIO*/
+  $('#valorTotalEnt').html("R$ 0,00").css({ "font-size": "1rem" });
+  $('#progressTotal').css({ 'width': '0%' });
+  $('#progressTotal').html("0%");
+  $('#sectionRelatorioGrupo>br').remove();
+  $('#sectionRelatorioGrupo>div').remove();
+
   let basemesPag;
   setTimeout(() => {
     convertMes()
     basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
-    //onloadRelatorio(basemesPag);
-
 
     dt = basemesPag; // new Date()
     dtDia = '01'; // dt.getDate();
-    dtMes = parseInt(dt.slice(5, 7)) < 11 ? ('0' + (parseInt(dt.slice(5, 7))).toString()) : dt.slice(5, 7)
+    dtMes = parseInt(dt.slice(5, 7)) < 10 ? ('0' + (parseInt(dt.slice(5, 7))).toString()) : dt.slice(5, 7)
     dtAno = dt.slice(0, 4);
     dt = [dtAno, dtMes, dtDia].join('-')
     dtFim = (basemesPag += "-" + "31")
@@ -1133,8 +1138,6 @@ let onloadRelatorio = () => {
           for (let i = 0; i < results.rows.length; i++) {
 
             let row = results.rows.item(i);
-            //let ver = basemesPag.slice(5, 7);
-            //ver = parseInt(ver);
             let valor = row['valor'];
 
             cont += parseFloat(valor)
@@ -1149,71 +1152,77 @@ let onloadRelatorio = () => {
 
     try {
       let queryDesp = "SELECT * FROM TbDespesasStatus WHERE data >=  ?  and data <= ?;";
-      //console.log(basemesPag, [dtAno, dtMes, dtDia].join('-'));    //dt.toLocaleString('yyyy-MM-dd'));
-
       localDB.transaction(function (transaction) {
-
         transaction.executeSql(queryDesp, [dt, dtFim], function (transaction, results) {
 
-          //console.log(queryDesp, [dt, basemesPag])
-          const colorProgressBar = { 1: "progress-bar-success", 2: "progress-bar-info", 
-                                     3: "progress-bar-primary", 4: "progress-bar-warning",
-                                     5: "progress-bar-danger" }
+          const colorProgressBar = {
+            1: "progress-bar-success", 2: "progress-bar-info",
+            3: "progress-bar-primary", 4: "progress-bar-warning",
+            5: "progress-bar-danger"
+          }
           let defineColorProgressBar;
-          let porcentagem;
-          let verif;
+          let porcentagemDesp = 0;
+          let porcentagemEnt = 0;
+          let convertValor = 0;
+          let porcentagem = 0;
 
           for (let i = 0; i < results.rows.length; i++) {
 
             let row = results.rows.item(i);
             let despesa = row['despesa'];
-            let valor = row['valor'];
-            //let ver = basemesPag.slice(5, 7);
-            //ver = parseInt(ver);
+            let valor = row['valor'] 
 
-            porcentagem = results.rows.length * cont / 1000;
+            porcentagemDesp = (parseFloat(valor) * (100 / cont))
+            porcentagem += porcentagemDesp
+            
+            let verifProcentagem = (dados) =>{
+              return dados != 0 ? true : false;
+            }
+            
+            verifProcentagem( porcentagem%2) ? porcentagemEnt = porcentagem.toFixed(2) : porcentagemEnt = porcentagem;
+            verifProcentagem( porcentagemDesp%2 ) ? porcentagemDesp = porcentagemDesp.toFixed(2) : false;
 
-            $('#valorTotalEnt').html("R$ " + cont).css({ "font-size": "1rem" }).mask('000.000.000.000,00');
-            $('#progressTotal').css({ 'width': porcentagem + '%' })
-            $('#progressTotal').html(porcentagem + "%")
-
-            porcentagem = (parseFloat(valor) * 100 / 1000)
-            verif = parseInt(porcentagem);
-
-            if (verif <= 5) {
+            if (porcentagemDesp <= 5) {
               defineColorProgressBar = colorProgressBar[1];
             }
-            else if (verif > 5 && verif <= 10) {
+            else if (porcentagemDesp > 5 && porcentagemDesp <= 10) {
               defineColorProgressBar = colorProgressBar[2];
 
-            } else if (verif > 10 && verif <= 20) {
+            } else if (porcentagemDesp > 10 && porcentagemDesp <= 20) {
               defineColorProgressBar = colorProgressBar[3];
 
-            } else if (verif > 20 && verif <= 30) {
+            } else if (porcentagemDesp > 20 && porcentagemDesp <= 30) {
               defineColorProgressBar = colorProgressBar[4];
 
-            } else if (verif >= 30) {
+            } else if (porcentagemDesp >= 30) {
               defineColorProgressBar = colorProgressBar[5];
             }
+            
+            convertValor = cont.toFixed(2).replace('.', ',')
+            convertValor = formataValor(convertValor)
+
+            $('#valorTotalEnt').html("R$ " + convertValor).css({ "font-size": "1rem" }); 
+            $('#progressTotal').css({ 'width': porcentagemEnt + '%' })
+            $('#progressTotal').html(porcentagemEnt + "%")
 
             $('#sectionRelatorioGrupo').append(
-
               '<div class="col-xs-6 text-left">' +
               '<label for="">' + despesa + '</label>' +
               '</div>' +
               '<div class="col-xs-6 text-right">' +
-              '<label for="">R$ ' + cont + '</label>' +
+              '<label for="">R$ ' + convertValor + '</label>' +
               '</div>' +
               '<br />' +
               '<div class="col-xs-12">' +
               '<div class="progress">' +
-              '<div class="progress-bar ' + defineColorProgressBar + '" role="progressbar" aria-valuenow="'+ porcentagem +'" aria-valuemin="0" aria-valuemax="100" style="width:' + porcentagem + '%;">' + porcentagem + '%</div>' +
+              '<div class="progress-bar ' + defineColorProgressBar + 
+              '" role="progressbar" aria-valuenow="' + porcentagemDesp + 
+              '" aria-valuemin="0" aria-valuemax="100" style="width:' + porcentagemDesp + 
+              '%; color: orange">' + porcentagemDesp + '%</div>' +
               '</div>' +
               '</div>' +
               '<br />'
-
             )
-
           }
         }, function (transaction, error) {
           alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
