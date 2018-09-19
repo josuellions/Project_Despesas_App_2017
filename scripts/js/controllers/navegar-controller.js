@@ -9,7 +9,7 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     imglogoalt: 'Logo Seven',
     imglogotitle: 'Logo Seven',
     //imglogo: 'assets/img/logo_seven_antes.jpg'
-    contVer: 'Versão beta 0.0.9d-AngularJS - 07/09/2018'
+    contVer: 'v1.0.2 - AngularJS - 17/09/2018'
   };
 
   /* Formata data top */
@@ -118,7 +118,6 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
       formatValor();
       dtFormat(null, 2);
       menuTop();
-      //onInit(2)
 
     } else if ($location.$$path == '/despesas') {
 
@@ -128,33 +127,23 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
       formatValor();
       dtFormat(null, 1);
       menuTop();
-      //onInit(1)
 
     } else if ($location.$$path == '/visualizar') {
       $scope.titulo = 'Visualizar Despesas';
       $scope.passmes = true;
       dtFormat(null, 3);
       menuTop();
-      //onInit(3)
 
     } else if ($location.$$path == '/relatorio') {
 
-      //$scope.mensagem = 'Relatorio, em desenvolvimento';
       
       $scope.titulo = 'Relatório Mensal';
       $scope.passmes = true;
       dtFormat(null, 3);
-      //$scope.subtitulo = 'Gráficos';
       menuTop();
-      //onInit(4)
-
-      // setTimeout(() => {
-      //   $('#dtReference').css('margin-left', '31%');
-      // }, 100);
 
     } else if ($location.$$path == '/informacoes') {
       
-      //$scope.mensagem = 'Informações, em desenvolvimento';
       $scope.titulo = 'Controle Despesas';
       $scope.subtitulo = 'Informações';
       menuTop();
@@ -166,7 +155,6 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     }
     else if ($location.$$path == '/sobre') {
 
-      //$scope.mensagem = 'Sobre nós, em desenvolvimento';
       $scope.titulo = 'Controle Despesas';
       $scope.subtitulo = 'Sobre';
       menuTop();
