@@ -32,7 +32,7 @@ let convertMes = () => {
   let dtBasepg = dtbasepag.substr(0, 3);
   let dtBaseAno = dtbasepag.substr(4);
 
-  let mesExt = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
+  const mesExt = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
 
   mesExt.forEach(function (campo, id) {
 
@@ -1092,8 +1092,8 @@ let onloadRelatorio = () => {
     convertMes()
     basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
 
-    dt = basemesPag; // new Date()
-    dtDia = '01'; // dt.getDate();
+    dt = basemesPag; 
+    dtDia = '01'; 
     dtMes = parseInt(dt.slice(5, 7)) < 10 ? ('0' + (parseInt(dt.slice(5, 7))).toString()) : dt.slice(5, 7)
     dtAno = dt.slice(0, 4);
     dt = [dtAno, dtMes, dtDia].join('-')
@@ -1111,7 +1111,7 @@ let onloadRelatorio = () => {
             let row = results.rows.item(i);
             let valor = row['valor'];
 
-            cont += parseFloat(valor)
+            cont += parseFloat( row['valor'].replace(",","."));
           }
         }, function (transaction, error) {
           alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
@@ -1131,6 +1131,7 @@ let onloadRelatorio = () => {
             3: "progress-bar-primary", 4: "progress-bar-warning",
             5: "progress-bar-danger"
           }
+
           let defineColorProgressBar;
           let porcentagemDesp = 0;
           let porcentagemEnt = 0;
@@ -1150,8 +1151,8 @@ let onloadRelatorio = () => {
               return dados != 0 ? true : false;
             }
 
-            verifProcentagem(porcentagem % 2) ? porcentagemEnt = porcentagem.toFixed(2) : porcentagemEnt = porcentagem;
-            verifProcentagem(porcentagemDesp % 2) ? porcentagemDesp = porcentagemDesp.toFixed(2) : false;
+            verifProcentagem(porcentagem %2) ? porcentagemEnt = porcentagem.toFixed(2) : porcentagemEnt = porcentagem;
+            verifProcentagem(porcentagemDesp %2) ? porcentagemDesp = porcentagemDesp.toFixed(2) : false;
 
             if (porcentagemDesp <= 5) {
               defineColorProgressBar = colorProgressBar[1];
@@ -1169,8 +1170,7 @@ let onloadRelatorio = () => {
               defineColorProgressBar = colorProgressBar[5];
             }
 
-            convertValor = cont.toFixed(2).replace('.', ',')
-            convertValor = formataValor(convertValor)
+            convertValor = formataValor(cont.toFixed(2).replace('.', ','));
 
             $('#valorTotalEnt').html("R$ " + convertValor).css({ "font-size": ".7rem" });
             $('#progressTotal').css({ 'width': porcentagemEnt + '%' })
