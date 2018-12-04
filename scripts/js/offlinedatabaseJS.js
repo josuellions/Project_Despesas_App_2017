@@ -34,6 +34,8 @@ let convertMes = () => {
 
   const mesExt = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
 
+
+
   mesExt.forEach(function (campo, id) {
 
     id < 9 ? (id = "0" + ++id) : ++id;
@@ -83,6 +85,12 @@ let limparDadosEntrada = () => {
 
 // CRIAR BANCO LOCAL WEB
 let localDB = null;
+const baseOnInit = {
+  entradaInit: 'entradaInit',
+  despesaInit: 'despesaInt',
+  visualizarInit: 'visualizarInit',
+  relatorioInit: 'relatorioInit'
+}
 
 function onInit(comp) {
 
@@ -91,10 +99,10 @@ function onInit(comp) {
   try {
     !window.openDatabase ? alert(alertErroNavegador) : (initDB(), createTables());
 
-    comp === 1 ? $(document).ready(() => { queryAndUpdateOverviewLancaDespesas(1) }) : false
-    comp === 2 ? $(document).ready(() => { queryAndUpdateOverviewLancaEntrada(2) }) : false
-    comp === 3 ? $(document).ready(() => { queryAndUpdateOverviewVizualizarDespesas(3) }) : false
-    comp === 4 ? $(document).ready(() => { onloadRelatorio() }) : false
+    comp === baseOnInit.entradaInit ? $(document).ready(() => { queryAndUpdateOverviewLancaEntrada(baseOnInit.entradaInit) }) : false
+    comp === baseOnInit.despesaInit ? $(document).ready(() => { queryAndUpdateOverviewLancaDespesas(baseOnInit.despesaInit) }) : false
+    comp === baseOnInit.visualizarInit ? $(document).ready(() => { queryAndUpdateOverviewVizualizarDespesas(baseOnInit.visualizarInit) }) : false
+    comp === baseOnInit.relatorioInit ? $(document).ready(() => { onloadRelatorio() }) : false
 
   } catch (e) {
     const alertErroVersaoBd = "Erro: Versão de banco de dados inválida.";
@@ -232,7 +240,7 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
             else if (result.rows.length == results.rows.length) {
               localDB.transaction(function (transaction) {
                 transaction.executeSql(queryDelete, [], function (transaction, result) {
-                  onInit(1);
+                  onInit(baseOnInit.despesaInit);
                 });
               });
             }
@@ -259,7 +267,7 @@ function onDelete(id) {
     try {
       localDB.transaction(function (transaction) {
         transaction.executeSql(query, [id], function (transaction, results) {
-          !results.rowsAffected ? alert("Erro: Delete não realizado.") : onInit(1);;
+          !results.rowsAffected ? alert("Erro: Delete não realizado.") : onInit(baseOnInit.despesaInit);;
         }, errorHandler);
       });
 
@@ -269,11 +277,11 @@ function onDelete(id) {
       alert("Erro: DELETE não realizado " + e + ".");
     }
 
-    onInit(1)
+    onInit(baseOnInit.despesaInit)
 
   } else {
 
-    onInit(1)
+    onInit(baseOnInit.despesaInit)
 
   }
 }
@@ -287,7 +295,7 @@ function onDeleteEntrada(id) {
     localDB.transaction(function (transaction) {
 
       transaction.executeSql(query, [id], function (transaction, results) {
-        !results.rowsAffected ? alert("Erro: Delete não realizado.") : onInit(2);;
+        !results.rowsAffected ? alert("Erro: Delete não realizado.") : onInit(baseOnInit.entradaInit);;
       }, errorHandler);
     });
 
@@ -316,7 +324,7 @@ function onCreate() {
     try {
       localDB.transaction(function (transaction) {
         transaction.executeSql(query, [dtLancamento, data, despesa, valor, 0], function (transaction, results) {
-          !results.rowsAffected ? alert("Erro: Inserção não realizada") : onInit(1);;
+          !results.rowsAffected ? alert("Erro: Inserção não realizada") : onInit(baseOnInit.despesaInit);;
         }, errorHandler);
       });
     } catch (e) {
@@ -347,7 +355,7 @@ function onCreateEntrada() {
     try {
       localDB.transaction(function (transaction) {
         transaction.executeSql(query, [dtLancamento, data, entrada, valor], function (transaction, results) {
-          !results.rowsAffected ? alert("Erro: Inserção não realizada") : onInit(2);;
+          !results.rowsAffected ? alert("Erro: Inserção não realizada") : onInit(baseOnInit.entradaInit);;
         }, errorHandler);
       });
     } catch (e) {
@@ -732,7 +740,7 @@ let onUpdateDespBd = (() => {
     try {
       localDB.transaction(function (transaction) {
         transaction.executeSql(query, [dtLancamento, data, despesa, valor, 0, transfId], function (transaction, results) {
-          !results.rowsAffected ? alert("Erro: UPDATE não realizado.") : onInit(1);
+          !results.rowsAffected ? alert("Erro: UPDATE não realizado.") : onInit(baseOnInit.despesaInit);
         }, errorHandler);
       });
 
@@ -746,7 +754,7 @@ let onUpdateDespBd = (() => {
   } else {
 
     limparDadosDespesas();
-    onInit(1);
+    onInit(baseOnInit.despesaInit);
   }
 });
 
@@ -934,12 +942,12 @@ let onUpdateEntBd = () => {
   else if (confirma == true) {
     let query = "UPDATE TbEntradas SET dtLanc = ?, data = ?, entrada = ?, valor = ? WHERE id=?;";
 
-    valor.length >= 7 ? valor = valor.substr(0, 1) + valor.substr(2) : false
+    valor.length >= 7 ? valor = valor.substr(0, 1) + valor.substr(1) : false
 
     try {
       localDB.transaction(function (transaction) {
         transaction.executeSql(query, [dtLancamento, data, entrada, valor, transfId], function (transaction, results) {
-          !results.rowsAffected ? alert("Erro: UPDATE não realizado.") : onInit(2);;
+          !results.rowsAffected ? alert("Erro: UPDATE não realizado.") : onInit(baseOnInit.entradaInit);;
         }, errorHandler);
       });
     } catch (e) {
@@ -1006,7 +1014,7 @@ let insertMesEntrada = (dados) => {
             try {
               localDB.transaction(function (transaction) {
                 transaction.executeSql(query, [dtLancamento, data, entrada, valor], function (transaction, results) {
-                  !results.rowsAffected ? alert("Erro: Inserção não realizada") : onInit(2);;
+                  !results.rowsAffected ? alert("Erro: Inserção não realizada") : onInit(baseOnInit.entradaInit);;
                 }, errorHandler);
               });
             } catch (e) {
@@ -1060,7 +1068,7 @@ let insertMesDespesa = (dados) => {
             try {
               localDB.transaction(function (transaction) {
                 transaction.executeSql(query, [dtLancamento, data, despesa, valor, 0], function (transaction, results) {
-                  !results.rowsAffected ? alert("Erro: Inserção não realizada") : onInit(1);;
+                  !results.rowsAffected ? alert("Erro: Inserção não realizada") : onInit(baseOnInit.despesaInit);;
                 }, errorHandler);
               });
             } catch (e) {

@@ -3,66 +3,122 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
   $scope.mensagem = '';
   $scope.passmes = false;
   const dtCustom = { 0: 'JAN', 1: 'FEV', 2: 'MAR', 3: 'ABR', 4: 'MAI', 5: 'JUN', 6: 'JUL', 7: 'AGO', 8: 'SET', 9: 'OUT', 10: 'NOV', 11: 'DEZ' };
-  const localPage = { 0: '/', 1: '/despesas', 2: '/entrada', 3: '/visualizar', 4: '/relatorio' }
+  const localPage = [
+    {
+      page: '/',
+      titulo: 'Controle Despesas',
+      subtitulo: 'MENU',
+      passmes: false,
+      dtFormat: null,
+      IdCampo: null,
+      IdInit: null,
+    },
+    {
+      page: '/entrada',
+      titulo: 'Adicionar Entrada',
+      subtitulo: null,
+      passmes: true,
+      dtFormat: 1,
+      IdCampo: 'dtEntrada',
+      IdInit: 'entradaInit'
+    },
+    {
+      page: '/despesas',
+      titulo: 'Adicionar Despesas',
+      subtitulo: null,
+      passmes: true,
+      dtFormat: 2,
+      IdCampo: 'dtDespesa',
+      IdInit: 'despesaInt'
+    },
+    {
+      page: '/visualizar',
+      titulo: 'Visualizar Despesas',
+      subtitulo: null,
+      passmes: true,
+      dtFormat: 3,
+      IdCampo: null,
+      IdInit: 'visualizarInit'
+    },
+    {
+      page: '/relatorio',
+      titulo: 'Relatório Mensal',
+      subtitulo: null,
+      passmes: true,
+      dtFormat: 3,
+      IdCampo: null,
+      IdInit: 'relatorioInit'
+    },
+    {
+      page: '/informacoes',
+      titulo: 'Controle Despesas',
+      subtitulo: 'Informações',
+      passmes: false,
+      dtFormat: null,
+      IdCampo: null,
+      IdInit: null
+    },
+    {
+      page: '/sobre',
+      titulo: 'Controle Despesas',
+      subtitulo: 'Sobre',
+      passmes: false,
+      dtFormat: null,
+      IdCampo: null,
+      IdInit: null
+    },
+  ];
 
   $scope.titleTop = {
     imglogoalt: 'Logo Seven',
     imglogotitle: 'Logo Seven',
-    //imglogo: 'assets/img/logo_seven_antes.jpg'
-    contVer: 'v1.0.2 - AngularJS - 17/09/2018'
+    contVer: 'v1.0.3 - AngularJS - 03/12/2018'
   };
 
+  let dtFull = new Date();
+  let dtMes = dtFull.getMonth();
+  let dtAno = dtFull.getFullYear();
+  let dtDia = dtFull.getDate();
+
   /* Formata data top */
-  let dtFormat = (passMes, pageAtual) => {
+  let dtFormat = (passMes, pageAtual, passAno) => {
 
-    let dtMesFull = new Date();
-    let recebMes = null;
-    let dtMes = null;
+    let recebDia = dtDia;
+    let recebMes = dtMes;
+    let dtFormatMes = null;
 
-    !passMes && pageAtual ? recebMes = dtMesFull.getMonth() : recebMes = passMes;
+    dtFormatMes = dtCustom[dtMes] + '/' + passAno;
+    $scope.subtitulo = dtFormatMes;
+    recebMes = dtMes + 1;
 
-    $.each(dtCustom, (id, item) => {
-      id == recebMes ? dtMes = item + '/' + dtMesFull.getFullYear() : false;
+    dtDia < 10 ? recebDia = "0" + dtDia : false;
+    recebMes < 10 ? recebMes = "0" + recebMes : false;
+
+    localPage.forEach(item => {
+
+      if (pageAtual == item.page) {
+
+        onInit(item.IdInit)
+        $('#' + item.IdCampo).val(dtAno + '-' + recebMes + '-' + recebDia);
+      }
     });
 
-    $scope.subtitulo = dtMes;
-
-    passMes = passMes + 1;
-
-    $location.$$path == localPage[1] ? onInit(1) : false;
-    $location.$$path == localPage[1] && passMes >= 0 && passMes <= 9 ? $('#dtDespesa').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate()) : false;
-    $location.$$path == localPage[1] && passMes >= 10 ? $('#dtDespesa').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
-    $location.$$path == localPage[2] ? onInit(2) : false;
-    $location.$$path == localPage[2] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate()) : false;
-    $location.$$path == localPage[2] && passMes >= 10 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
-    $location.$$path == localPage[3] ? onInit(3) : false;
-    $location.$$path == localPage[3] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate()) : false;
-    $location.$$path == localPage[3] && passMes >= 10 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
-
-    $location.$$path == localPage[4] ? onInit(4) : false;
-    $location.$$path == localPage[4] && passMes >= 0 && passMes <= 9 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-0' + passMes + '-' + dtMesFull.getDate()) : false;
-    $location.$$path == localPage[4] && passMes >= 10 ? $('#dtEntrada').val(dtMesFull.getFullYear() + '-' + passMes + '-' + dtMesFull.getDate()) : false;
-
-
     setTimeout(() => {
-      $("#comparaDt").html(dtMes);
-    }, 100);
+      $("#comparaDt").html(dtFormatMes);
+
+    }, 25);
 
   }
 
   /* Recebe o mês de referencia page */
   $scope.submit = function ($page) {
 
-    let mes = $scope.subtitulo;
-    let recebPass = $page;
+    $page == 0 && dtMes >= 0 && dtMes <= 11 ? --dtMes : false;
+    $page == 1 && dtMes >= 0 && dtMes <= 11 ? ++dtMes : false;
+    $page == 0 && dtMes == -1 ? (dtMes = 11, --dtAno) : false;
+    $page == 1 && dtMes == 12 ? (dtMes = 0, ++dtAno) : false;
 
-    $.each(dtCustom, (id, item) => {
-
-      item === mes.substr(0, 3) && recebPass == 0 && id >= 0 && id <= 11 ? dtFormat(--id) : false;
-      item === mes.substr(0, 3) && recebPass == 1 && id >= 0 && id <= 11 ? dtFormat(++id) : false;
-      item === mes.substr(0, 3) && recebPass == 0 && id == -1 ? dtFormat(id = 11) : false;
-      item === mes.substr(0, 3) && recebPass == 1 && id == 12 ? dtFormat(id = 0) : false;
-    })
+    dtFormat(dtMes, $location.$$path, dtAno)
 
   }
 
@@ -71,10 +127,6 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     $(document).ready(function () {
       setTimeout(() => {
         $('.money').mask('000.000.000.000,00', { reverse: true });
-
-        // let teste = $(".money").change(function () {
-        //   $(".valDespesa").html($(this).val().replace(/\D/g, ''))
-        // })
       }, 100);
     });
   }
@@ -106,73 +158,34 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     }, 100);
   }
 
-
   /* Carregar Views */
   let carregarPage = () => {
 
-    if ($location.$$path == '/entrada') {
+    localPage.forEach(item => {
 
-      $scope.titulo = 'Adicionar Entrada';
-      $scope.passmes = true;
-      selectCampoValor();
-      formatValor();
-      dtFormat(null, 2);
-      menuTop();
+      if ($location.$$path == item.page) {
 
-    } else if ($location.$$path == '/despesas') {
+        $scope.titulo = item.titulo;
+        menuTop();
 
-      $scope.titulo = 'Adicionar Despesas';
-      $scope.passmes = true;
-      selectCampoValor();
-      formatValor();
-      dtFormat(null, 1);
-      menuTop();
+        if (item.passmes) {
 
-    } else if ($location.$$path == '/visualizar') {
-      $scope.titulo = 'Visualizar Despesas';
-      $scope.passmes = true;
-      dtFormat(null, 3);
-      menuTop();
+          $scope.passmes = item.passmes;
+          dtFormat(null, item.page, dtAno);
+          selectCampoValor();
+          formatValor();
+          return;
 
-    } else if ($location.$$path == '/relatorio') {
+        } else {
+          $scope.subtitulo = item.subtitulo;
 
-      
-      $scope.titulo = 'Relatório Mensal';
-      $scope.passmes = true;
-      dtFormat(null, 3);
-      menuTop();
-
-    } else if ($location.$$path == '/informacoes') {
-      
-      $scope.titulo = 'Controle Despesas';
-      $scope.subtitulo = 'Informações';
-      menuTop();
-
-      setTimeout(() => {
-        $('#dtReference').css('margin-left', '31%');
-      }, 100);
-
-    }
-    else if ($location.$$path == '/sobre') {
-
-      $scope.titulo = 'Controle Despesas';
-      $scope.subtitulo = 'Sobre';
-      menuTop();
-
-      setTimeout(() => {
-        $('#dtReference').css('margin-left', '31%');
-      }, 100);
-
-    } else if ($location.$$path == '/') {
-      $scope.titulo = 'Controle Despesas';
-      $scope.subtitulo = 'MENU';
-
-      setTimeout(() => {
-        $('#dtReference').css('margin-left', '31%');
-      }, 100);
-
-    }
-
+          setTimeout(() => {
+            $('#dtReference').css('margin-left', '31%');
+          }, 25);
+        }
+        return;
+      }
+    });
   }
 
   $scope.dadosApp = {
@@ -182,6 +195,4 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
 
   carregarPage();
 
-
 })
-
