@@ -1,4 +1,4 @@
-angular.module('todoApp').controller('NavegarController', function ($scope, $location, $routeParams, $http, $resource) {
+angular.module('todoApp').controller('NavegarController', function ($scope, $location) {
 
   $scope.mensagem = '';
   $scope.passmes = false;
@@ -105,7 +105,6 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
 
     setTimeout(() => {
       $("#comparaDt").html(dtFormatMes);
-
     }, 25);
 
   }
@@ -147,7 +146,7 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
           $("#liMenu").animate().slideUp(700);
         });
       });
-    }, 100);
+    }, 25);
   }
 
   //Select campo number
@@ -155,7 +154,7 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
     setTimeout(() => {
       $("#valDespesa").click(() => { $('#valDespesa').select(); });
       $("#valEntrada").click(() => { $('#valEntrada').select(); });
-    }, 100);
+    }, 25);
   }
 
   /* Carregar Views */

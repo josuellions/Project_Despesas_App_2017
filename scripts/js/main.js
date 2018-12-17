@@ -2,7 +2,7 @@ angular.module('todoApp', ['ngRoute', 'ngAnimate', 'ngResource', 'depesasDirecti
   .config(function ($routeProvider) {
 
     var producao = true;
-    var urlApp;
+    //var urlApp;
 
     //producao ? urlApp = window.location.pathname : urlApp = '';
 

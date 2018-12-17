@@ -53,6 +53,18 @@
 	padding: 2%;
 }
 
+/*COLOR VALOR POSITIVO OU NEGATIVO*/
+
+.colorTotalViewPositivo {
+	color: #337ab7 !important;
+	text-shadow: 0px 0px 2px lightblue,
+}
+
+.colorTotalViewNegativo {
+	color: #F44336 !important;
+	text-shadow: 0px 0px 2px #337ab7
+}
+
 /*ICONE AJUDA PAGINA HOME*/
 
 #mensageminfo {
@@ -246,9 +258,10 @@ span.glyphicon.glyphicon-trash {
 	margin-left: 5vw !important;
 }
 
-.col-xs-5{
-	width: 42vw !important ;
+.col-xs-5 {
+	width: 42vw !important;
 }
+
 /*ALINHA BOTÕES PAGINA INICIAL*/
 
 .container-fluid>.btnAlingDesp {
