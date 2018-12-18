@@ -72,7 +72,7 @@ angular.module('todoApp').controller('NavegarController', function ($scope, $loc
   $scope.titleTop = {
     imglogoalt: 'Logo Seven',
     imglogotitle: 'Logo Seven',
-    contVer: 'v1.0.3 - AngularJS - 03/12/2018'
+    contVer: 'v1.0.3 - AngularJS - 17/12/2018'
   };
 
   let dtFull = new Date();

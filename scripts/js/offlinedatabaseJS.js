@@ -21,6 +21,7 @@ const queryAll = {
 
 // SELECT CAMPO DESPESA PARA UPDATE, TELA ADD DESPESAS
 let transfId = null;
+let executarConsulta = true;
 
 /*OBJECT DADOS DA VIEW*/
 let postItens = {
@@ -126,22 +127,26 @@ let executaQueryBD = (getQuery, getDados, getMensagem, getstatus) => {
 }
 
 /*EXECUTA QUERY RETONA RESULT DO BANCO*/
-let executaQueryVisualizarBD = (getQuery, getDados) => {
-  try {
-    setTimeout(() => {
-      localDB.transaction(function (transaction) {
-        transaction.executeSql(getQuery, getDados, function (transaction, results) {
-          resultRowsQuery = results.rows;
-        }, function (transaction, error) {
-          alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
+let executaQueryVisualizarBD = (getQuery, getDados, executarConsulta) => {
+  if (executarConsulta) {
+    try {
+      setTimeout(() => {
+        localDB.transaction(function (transaction) {
+          transaction.executeSql(getQuery, getDados, function (transaction, results) {
+            resultRowsQuery = results.rows;
+            executarConsulta = false;
+          }, function (transaction, error) {
+            alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
+          });
         });
-      });
-    }, 15);
-  } catch (e) {
-    alert("Error: SELECT não realizado " + e + ".");
+      }, 15);
+    } catch (e) {
+      alert("Error: SELECT não realizado " + e + ".");
+    }
   }
 }
 //END BANCO DADOS
+
 //#region  olcultarDev
 
 //FUNÇÕES TRATAMENTO DADOS
@@ -400,8 +405,6 @@ let exibirDadosRelatorioView = (getDesp, getValor, getColor, getDespPorcentagem)
     '<br />'
   )
 }
-
-
 //END RENDERIZAÇÃO DAS VIEWS
 
 //FUNÇÕES APLICAR CSS VIEWS
@@ -575,7 +578,7 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
     postQuery = queryAll.selectDespStatusDt;
 
     /*Consulta e Retorna dados do Banco*/
-    executaQueryVisualizarBD(postQuery, postDados)
+    executaQueryVisualizarBD(postQuery, postDados, true)
 
     /*Exibir dados Despesas na View*/
     const camposDesp = ['totalDespesas', 'calculototalDespesas', 'totalDespesas']
@@ -584,12 +587,15 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
     somaDespesaVisualizar = 0.0;
 
     setTimeout(() => {
-      $.each(resultRowsQuery, (id, row) => {
-        exibirDadosVisualizar('visualizaDesp', fotmatDateView(row.data), row.despesa, formataValor(row.valor));
-        somaDespesaVisualizar += parseFloat(row.valor.replace(",", "."));
-        valorFormatDespVisualiza = formataValor((somaDespesaVisualizar).toFixed(2).replace('.', ','));
-        customCssView(['totalDespesas', 'calculototalDespesas'], valorFormatDespVisualiza, "text-align", "right")
-      });
+      const resultConsultaBD = resultRowsQuery;
+      if (resultConsultaBD.length > 0) {
+        $.each(resultConsultaBD, (id, row) => {
+          exibirDadosVisualizar('visualizaDesp', fotmatDateView(row.data), row.despesa, formataValor(row.valor));
+          somaDespesaVisualizar += parseFloat(row.valor.replace(",", "."));
+          valorFormatDespVisualiza = formataValor((somaDespesaVisualizar).toFixed(2).replace('.', ','));
+          customCssView(['totalDespesas', 'calculototalDespesas'], valorFormatDespVisualiza, "text-align", "right");
+        });
+      }
     }, 50);
 
     //CONSULTA BANCO DADOS ENTRADA PARA VIEW VISUALIZAR
@@ -597,10 +603,6 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
       let valorFormatResult;
       let somaEntrada = 0.0;
       let somaResult = 0.0;
-      conf = false;
-
-      postQuery = queryAll.selectEntradaDt;
-      executaQueryVisualizarBD(postQuery, postDados)
 
       const camposEntrada = ['totalEntrada', 'calculototalEntrada', 'calculosomaGeral'];
       const camposTotal = ['saldoGeral', 'simboloMoeda', 'calculosomaGeral'];
@@ -608,24 +610,30 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
       limparVisualizarDados(camposEntrada);
       somaEntrada = 0.0;
 
+      postQuery = queryAll.selectEntradaDt;
+      executaQueryVisualizarBD(postQuery, postDados, true)
+
       setTimeout(() => {
-        $.each(resultRowsQuery, (id, row) => {
-          somaEntrada += parseFloat(row.valor.replace(",", "."));
-          exibirDadosVisualizar('visualizaEntrada', fotmatDateView(row.data), row.entrada, formataValor(row.valor));
+        const resultConsultaBD = resultRowsQuery;
+        if (resultConsultaBD.length > 0) {
+          $.each(resultConsultaBD, (id, row) => {
+            somaEntrada += parseFloat(row.valor.replace(",", "."));
+            exibirDadosVisualizar('visualizaEntrada', fotmatDateView(row.data), row.entrada, formataValor(row.valor));
 
-          somaResult = somaEntrada - somaDespesaVisualizar;
-          somaResult = formataValor((somaResult).toFixed(2).replace('.', ','));
-          valorFormatResult = formataValor((somaEntrada).toFixed(2).replace('.', ','));
+            somaResult = somaEntrada - somaDespesaVisualizar;
+            somaResult = formataValor((somaResult).toFixed(2).replace('.', ','));
+            valorFormatResult = formataValor((somaEntrada).toFixed(2).replace('.', ','));
 
-          customCssViewAppend(camposTotal, 'colorTotalViewPositivo', 'colorTotalViewNegativo')
-          customCssView(['totalEntrada', 'calculototalEntrada'], valorFormatResult, 'text-align', 'right');
-          customCssView(['calculosomaGeral'], somaResult, 'text-align', 'right');
-        });
-        if (parseInt(somaResult) <= 0) {
-          customCssViewAppend(camposTotal, 'colorTotalViewNegativo', 'colorTotalViewPositivo')
+            customCssViewAppend(camposTotal, 'colorTotalViewPositivo', 'colorTotalViewNegativo')
+            customCssView(['totalEntrada', 'calculototalEntrada'], valorFormatResult, 'text-align', 'right');
+            customCssView(['calculosomaGeral'], somaResult, 'text-align', 'right');
+          });
+          if (parseInt(somaResult) <= 0) {
+            customCssViewAppend(camposTotal, 'colorTotalViewNegativo', 'colorTotalViewPositivo')
+          }
         }
-      }, 150);
-    }, 250);
+      }, 100);
+    }, 150);
   }, 25);
 }
 
@@ -647,13 +655,14 @@ let queryAndUpdateOverviewLancaDespesas = () => {
     postDados = [dtConsulta.inicio, dtConsulta.fim];
     postQuery = queryAll.selectDespStatusDt;
 
-    executaQueryVisualizarBD(postQuery, postDados)
+    executaQueryVisualizarBD(postQuery, postDados, true)
 
     limparTableVisualizar('tbDespesas > tbody > tr');
 
     setTimeout(() => {
-      if (resultRowsQuery.length > 0) {
-        $.each(resultRowsQuery, (id, row) => {
+      const resulConsulta = resultRowsQuery;
+      if (resulConsulta.length > 0) {
+        $.each(resulConsulta, (id, row) => {
           exibirDadosLancamentosView('tbDespesas', row.id, fotmatDateView(row.data), row.despesa, formataValor(row.valor), 'onStatusDesp', 'onUpdateDesp', 'onDelete')
           row.statusDesp == 1 ? $('#checkbox' + row.id).prop({ 'checked': true }) : $('#checkbox' + row.id).prop('checked', false);
           somaDespesa += parseFloat(row.valor.replace(",", "."));
@@ -673,7 +682,7 @@ let onUpdateDesp = (id) => {
 
   postDados = [id]
   postQuery = queryAll.selectDespPorId;
-  executaQueryVisualizarBD(postQuery, postDados)
+  executaQueryVisualizarBD(postQuery, postDados, true)
 
   setTimeout(() => {
     const row = resultRowsQuery[0];
@@ -717,12 +726,13 @@ let queryAndUpdateOverviewLancaEntrada = (verif) => {
     postDados = [dtConsulta.inicio, dtConsulta.fim];
     postQuery = queryAll.selectEntradaDt;
 
-    executaQueryVisualizarBD(postQuery, postDados)
+    executaQueryVisualizarBD(postQuery, postDados, true)
 
     limparTableVisualizar('tbEntrada > tbody > tr');
 
     setTimeout(() => {
-      if (resultRowsQuery.length > 0) {
+      const resultConsultaBD = resultRowsQuery;
+      if (resultConsultaBD.length > 0) {
         $.each(resultRowsQuery, (id, row) => {
           exibirDadosLancamentosView('tbEntrada', row.id, fotmatDateView(row.data), row.entrada, formataValor(row.valor), 'onStatusEntrada', 'onUpdateEnt', 'onDeleteEntrada');
           somaEntrada += parseFloat(row.valor.replace(",", "."));
@@ -747,7 +757,7 @@ let onUpdateEnt = (id) => {
   postDados = [id];
   postQuery = queryAll.selectEntradaPorId
 
-  executaQueryVisualizarBD(postQuery, postDados)
+  executaQueryVisualizarBD(postQuery, postDados, true)
 
   setTimeout(() => {
     const row = resultRowsQuery[0];
@@ -791,7 +801,7 @@ nullDataHandler = function (transaction, results) {
 }
 
 /*SELECT E INSERT DADOS NO BANCO COM BASE MÊS ANTERIOR*/
-let insertMesBaseAnterior = (dados, getQuery, getView) => {
+let insertMesBaseAnterior = (dados, getQuery, getView) => { /////EDITANDO
 
   convertMes();
 
@@ -801,19 +811,21 @@ let insertMesBaseAnterior = (dados, getQuery, getView) => {
   postDados = [dtConsulta.inicio, dtConsulta.fim]
   postQuery = getQuery;
 
-  executaQueryVisualizarBD(postQuery, postDados)
+  executaQueryVisualizarBD(postQuery, postDados, true)
 
   getView ? postQuery = queryAll.insertDespStatus : postQuery = queryAll.insertEntrada;
 
   setTimeout(() => {
+    const resultConsultaBD = resultRowsQuery;
     if (getView) {
-      $.each(resultRowsQuery, (id, row) => {
+      $.each(resultConsultaBD, (id, row) => {
         postDados = [formataData(), dados, row.despesa, row.valor, 0];
         executaQueryBD(postQuery, postDados, postMensagem, onInit(baseOnInit.despesaInit));
       });
       return;
     } else {
-      $.each(resultRowsQuery, (id, row) => {
+      console.log("Ent")
+      $.each(resultConsultaBD, (id, row) => {
         postDados = [formataData(), dados, row.entrada, row.valor];
         executaQueryBD(postQuery, postDados, postMensagem, onInit(baseOnInit.entradaInit));
       });
@@ -824,7 +836,6 @@ let insertMesBaseAnterior = (dados, getQuery, getView) => {
 /*RELATÓRIO GRAFICO */ //-  REFATORANDO 09 - 12 - 2018 - PAROU AQUI
 let onloadRelatorio = () => {
 
-  let timeExec = 25;
   limparDadosViewRelatorio();
 
   setTimeout(() => {
@@ -871,35 +882,41 @@ let onloadRelatorio = () => {
 
     postDados = [dtConsulta.inicio, dtConsulta.fim]
     postQuery = { queryEntrada: queryAll.selectEntradaDt, queryDesp: queryAll.selectDespStatusDt }
-    executaQueryVisualizarBD(postQuery.queryEntrada, postDados);
+    executaQueryVisualizarBD(postQuery.queryEntrada, postDados, true);
 
     setTimeout(() => {
-      $.each(resultRowsQuery, (id, row) => {
-        somaValor += convertSomarValor(row.valor)
-      })
-    }, timeExec * 1);
+      const resultConsultaBD = resultRowsQuery;
+      if (resultConsultaBD.length > 0) {
+        $.each(resultConsultaBD, (id, row) => {
+          somaValor += convertSomarValor(row.valor)
+        });
+      }
+    }, 50);
 
     setTimeout(() => {
-      executaQueryVisualizarBD(postQuery.queryDesp, postDados);
+      executaQueryVisualizarBD(postQuery.queryDesp, postDados, true);
 
       setTimeout(() => {
-        $.each(resultRowsQuery, (id, row) => {
+        const resultConsultaBD = resultRowsQuery;
+        if (resultConsultaBD.length > 0) {
+          $.each(resultConsultaBD, (id, row) => {
 
-          porcentagemDesp = calculaPorcentgem(row.valor);
-          porcentagem += porcentagemDesp;
+            porcentagemDesp = calculaPorcentgem(row.valor);
+            porcentagem += porcentagemDesp;
 
-          verifProcentagem(porcentagem % 2) ? porcentagemEnt = porcentagem.toFixed(2) : porcentagemEnt = porcentagem;
-          verifProcentagem(porcentagemDesp % 2) ? porcentagemDesp = porcentagemDesp.toFixed(2) : false;
+            verifProcentagem(porcentagem % 2) ? porcentagemEnt = porcentagem.toFixed(2) : porcentagemEnt = porcentagem;
+            verifProcentagem(porcentagemDesp % 2) ? porcentagemDesp = porcentagemDesp.toFixed(2) : false;
 
-          convertValor = convertValorView(somaValor);
+            convertValor = convertValorView(somaValor);
 
-          $('#valorTotalEnt').html("R$ " + convertValor).css({ "font-size": ".7rem" });
-          $('#progressTotal').html(porcentagemEnt + "%").css({ 'width': porcentagemEnt + '%' })
+            $('#valorTotalEnt').html("R$ " + convertValor).css({ "font-size": ".7rem" });
+            $('#progressTotal').html(porcentagemEnt + "%").css({ 'width': porcentagemEnt + '%' })
 
-          exibirDadosRelatorioView(row.despesa, formataValor(row.valor), defineColorProgressBar(porcentagemDesp), porcentagemDesp);
+            exibirDadosRelatorioView(row.despesa, formataValor(row.valor), defineColorProgressBar(porcentagemDesp), porcentagemDesp);
 
-        }, timeExec * 2);
-      }, timeExec * 1.5);
-    }, timeExec * .5);
-  }, timeExec);
+          });
+        }
+      }, 100);
+    }, 75);
+  }, 25);
 }  //1222
