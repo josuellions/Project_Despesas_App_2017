@@ -92,7 +92,6 @@ let onInit = (recebTipoView) => {
   const alertErroNavegador = "Erro: Seu navegador não permite banco de dados.";
 
   try {
-
     !window.openDatabase ? alert(alertErroNavegador) : (initDB(), createTables()); //, verifStatus());
 
     recebTipoView === baseOnInit.entradaInit ? $(document).ready(() => { queryAndUpdateOverviewLancaEntrada(baseOnInit.entradaInit) }) : false
@@ -316,10 +315,13 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
 
           localDB.transaction(function (transaction) {
             transaction.executeSql(queryAll.selectDespStatus, [], (transaction, result) => {
-
               if (results.rows.length > 0 && result.rows.length == 0) {
-                results.forEach(item => {
-                  insertStatus(item.dtLanc, item.data, item.despesa, item.valor, 0);
+                postMensagem = "Erro: Inserção não realizada ";
+                postQuery = queryAll.insertDespStatus;
+
+                results.forEach(row => {
+                  postDados = [row.dtLanc, row.data, row.despesa, row.valor, 0];
+                  executaQueryBD(postQuery, postDados, postMensagem, false)
                 });
                 return;
 
@@ -341,7 +343,7 @@ let verifStatus = (idDesp, statusDesp, upStatus) => {
         });
       });
     } catch (e) {
-      alert('Error: Error tabela despesa, ' + e + '.');
+      alert('Error: Falha ao consultar tabelas, ' + e + '.');
     }
   }, 25);
 }
@@ -455,23 +457,13 @@ let customCssViewAppend = (getCampo, getParam, removeParam) => {
 //END FUNÇÕES CSS
 
 //FUNÇÕES MANIPULAÇÃO DADOS BANCO DADOS E VIEW
-/*INSERT STATUS DESPESAS */
-// let insertStatus = (dtLanc, data, despesa, valor, status) => {
-
-//   postDados = [dtLanc, data, despesa, valor, status];
-//   postMensagem = "Erro: Inserção não realizada ";
-//   postQuery = queryAll.insertStatus;
-
-//   executaQueryBD(postQuery, postDados, postMensagem, false)
-// }
-
 /*UPDATE STATUS PAGO VIEW DESPESAS SALVA NO DADOS BANCO*/
 let onUpdateStatusDesp = (id, status) => {
 
   postDados = [status, id]
   postMensagem = "Erro: UPDATE não realizado. ";
   postQuery = queryAll.updateStatusDesp;
- 
+
   executaQueryBD(postQuery, postDados, postMensagem, false); //onInit(baseOnInit.despesaInit))
 }
 
@@ -614,10 +606,11 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
         if (resultConsultaBD.length > 0) {
           $.each(resultConsultaBD, (id, row) => {
             somaEntrada += convertSomarValor(row.valor);
+            somaResult = convertValorView((somaEntrada - somaDespesaVisualizar));
             exibirDadosVisualizar('visualizaEntrada', fotmatDateView(row.data), row.entrada, formataValor(row.valor));
             customCssViewAppend(camposTotal, 'colorTotalViewPositivo', 'colorTotalViewNegativo')
             customCssView(['totalEntrada', 'calculototalEntrada'], convertValorView(somaEntrada), 'text-align', 'right');
-            customCssView(['calculosomaGeral'], convertValorView((somaEntrada - somaDespesaVisualizar)), 'text-align', 'right');
+            customCssView(['calculosomaGeral'], somaResult, 'text-align', 'right');
           });
           if (parseInt(somaResult) <= 0) {
             customCssViewAppend(camposTotal, 'colorTotalViewNegativo', 'colorTotalViewPositivo')
@@ -694,7 +687,7 @@ let onUpdateDespBd = (() => {
     postItens.itemID = 'selectDespesas';
     postItens.valID = 'valDespesa';
     postItens.msgCampo = ' Erro: \'Data\', \'Despesa\' e \'Valor\' são campos obrigatórios! ';
-    postItens.msgBd = 'Erro: Falha ao  inserir daodos! ';
+    postItens.msgBd = 'Erro: Falha ao  inserir dados! ';
     postItens.status = true;
     postItens.query = queryAll.updateDespStatus;
     postItens.tipoView = baseOnInit.despesaInit;
@@ -731,7 +724,7 @@ let queryAndUpdateOverviewLancaEntrada = (verif) => {
       } else {
         confirmarCopyMesAnterior(postQuery, false, false);
       }
-        $("#somaEntrada").html(convertValorView(somaEntrada));
+      $("#somaEntrada").html(convertValorView(somaEntrada));
     }, 50);
   }, 25);
 }
@@ -765,7 +758,7 @@ let onUpdateEntBd = () => {
     postItens.itemID = 'textEntrada';
     postItens.valID = 'valEntrada';
     postItens.msgCampo = ' Erro: \'Data\', \'Receita Caixa\' e \'Valor\' são campos obrigatórios! ';
-    postItens.msgBd = 'Erro: Falha ao  inserir daodos! ';
+    postItens.msgBd = 'Erro: Falha ao  inserir dados! ';
     postItens.status = false;
     postItens.query = queryAll.updateEntrada;
     postItens.tipoView = baseOnInit.entradaInit;
