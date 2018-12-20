@@ -454,22 +454,21 @@ let onDelete = (id) => {
 
     customCssAddClass(id, 'ng-leave-active')
 
-    
+    postDados = [id]
+    postMensagem = "Erro: Delete não realizado. ";
+    postQuery = queryAll.deleteDesp;
+
+    executaQueryBD(postQuery, postDados, postMensagem, false) // onInit(baseOnInit.despesaInit))
+
     setTimeout(() => {
       limparTableVisualizar(id)
     }, 1600);
 
     setTimeout(() => {
-      postDados = [id]
-      postMensagem = "Erro: Delete não realizado. ";
-      postQuery = queryAll.deleteDesp;
+      onInit(baseOnInit.despesaInit);
+    }, 2000);
 
-      executaQueryBD(postQuery, postDados, postMensagem, onInit(baseOnInit.despesaInit))
-
-      //return
-
-    }, 1600);
-
+    //return
   }
   limparDadosDespesasUpdate()
 }
@@ -481,21 +480,21 @@ let onDeleteEntrada = (id) => {
 
     customCssAddClass(id, 'ng-leave-active')
 
+    postDados = [id]
+    postMensagem = "Erro: Delete não realizado. ";
+    postQuery = queryAll.deleteEntrada;
+
+    executaQueryBD(postQuery, postDados, postMensagem, false) //onInit(baseOnInit.entradaInit))
+
     setTimeout(() => {
       limparTableVisualizar(id)
     }, 1600);
 
     setTimeout(() => {
-      postDados = [id]
-      postMensagem = "Erro: Delete não realizado. ";
-      postQuery = queryAll.deleteEntrada;
-
-      executaQueryBD(postQuery, postDados, postMensagem, onInit(baseOnInit.entradaInit))
-
-      return
-
+      onInit(baseOnInit.entradaInit);
     }, 2000);
 
+    return
   }
   limparDadosEntradaUpdate();
 }
