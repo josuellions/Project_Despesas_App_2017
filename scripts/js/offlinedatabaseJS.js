@@ -277,7 +277,6 @@ let limparDadosDespesas = () => {
 
 /*LIMPA DADOS DESPESAS UPDATE*/
 let limparDadosDespesasUpdate = () => {
-  console.log("aqui")
   const campos = ['selectDespesas', 'valDespesa'];
   const postCampos = { edit: 'btnDespEdit', salve: 'btnDesp' };// , statusPG: true };
 
@@ -302,7 +301,6 @@ let limparDadosEntradaUpdate = () => {
   limparCampos(campos);
   customCssViewPgRemover(postCampos, false)
 }
-
 
 /*LIMPAR DADOS TELA VISUALIZAR */
 let limparVisualizarDados = (campos) => {
@@ -462,7 +460,7 @@ let onDelete = (id) => {
 
     setTimeout(() => {
       limparTableVisualizar(id)
-      executaQueryBD(postQuery, postDados, postMensagem, false); // onInit(baseOnInit.despesaInit))
+      executaQueryBD(postQuery, postDados, postMensagem, onInit(baseOnInit.despesaInit))
     }, 1600);
 
     limparDadosDespesasUpdate()
@@ -475,7 +473,7 @@ let onDelete = (id) => {
 let onDeleteEntrada = (id) => {
 
   if (confirm("Salvar as alterações realizadas ")) {
-    
+
     customCssAddClass(id, 'ng-leave-active')
 
     postDados = [id]
@@ -484,7 +482,7 @@ let onDeleteEntrada = (id) => {
 
     setTimeout(() => {
       limparTableVisualizar(id)
-      executaQueryBD(postQuery, postDados, postMensagem,false); //onInit(baseOnInit.entradaInit))
+      executaQueryBD(postQuery, postDados, postMensagem, onInit(baseOnInit.entradaInit))
     }, 1600);
 
     limparDadosEntradaUpdate();
@@ -558,8 +556,21 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
   setTimeout(() => {
     convertMes();
 
+    const camposTotal = ['saldoGeral', 'simboloMoeda', 'calculosomaGeral'];
+    const camposDesp = ['totalDespesas', 'calculototalDespesas', 'totalDespesas']
+    const camposEntrada = ['totalEntrada', 'calculototalEntrada', 'calculosomaGeral'];
+
+    let somaEntrada = 0.0;
+    let somaResult = 0.0;
     let dtConsulta = dtConsultaBD();
     let somaDespesaVisualizar = 0.0;
+
+    limparVisualizarDados(camposDesp)
+    limparVisualizarDados(camposEntrada);
+
+    limparTableVisualizar('visualizaDesp  > tr');
+    limparTableVisualizar('visualizaEntrada > tr');
+
 
     postDados = [dtConsulta.inicio, dtConsulta.fim]
     postQuery = queryAll.selectDespStatusDt;
@@ -568,23 +579,14 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
     executaQueryVisualizarBD(postQuery, postDados, true)
 
     /*Exibir dados Despesas na View*/
-    const camposDesp = ['totalDespesas', 'calculototalDespesas', 'totalDespesas']
-    limparTableVisualizar('visualizaDesp  > tr');
-    limparVisualizarDados(camposDesp)
-    somaDespesaVisualizar = 0.0;
-
     setTimeout(() => {
 
       const resultConsultaBD = resultRowsQuery;
 
       if (resultConsultaBD.length > 0) {
-
         $.each(resultConsultaBD, (id, row) => {
-
           somaDespesaVisualizar += convertSomarValor(row.valor);
-
           exibirDadosVisualizar('visualizaDesp', fotmatDateView(row.data), row.despesa, formataValor(row.valor));
-
           customCssView(['totalDespesas', 'calculototalDespesas'], convertValorView(somaDespesaVisualizar), "text-align", "right");
         });
       }
@@ -592,16 +594,6 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
 
     //CONSULTA BANCO DADOS ENTRADA PARA VIEW VISUALIZAR
     setTimeout(() => {
-      let somaEntrada = 0.0;
-      let somaResult = 0.0;
-
-      const camposEntrada = ['totalEntrada', 'calculototalEntrada', 'calculosomaGeral'];
-      const camposTotal = ['saldoGeral', 'simboloMoeda', 'calculosomaGeral'];
-
-      limparTableVisualizar('visualizaEntrada > tr');
-      limparVisualizarDados(camposEntrada);
-      somaEntrada = 0.0;
-
       postQuery = queryAll.selectEntradaDt;
       executaQueryVisualizarBD(postQuery, postDados, true)
 
@@ -666,9 +658,10 @@ let queryAndUpdateOverviewLancaDespesas = () => {
 
     executaQueryVisualizarBD(postQuery, postDados, true)
 
-    limparTableVisualizar('tbDespesas > tbody > tr');
-
     setTimeout(() => {
+
+      limparTableVisualizar('tbDespesas > tbody > tr');
+
       const resulConsulta = resultRowsQuery;
       if (resulConsulta.length > 0) {
         $.each(resulConsulta, (id, row) => {
@@ -676,10 +669,13 @@ let queryAndUpdateOverviewLancaDespesas = () => {
           row.statusDesp == 1 ? $('#checkbox' + row.id).prop({ 'checked': true }) : $('#checkbox' + row.id).prop('checked', false);
           somaDespesa += convertSomarValor(row.valor);
         });
+        $("#somaDespesas").html(convertValorView(somaDespesa));
+
+        return;
+
       } else {
         confirmarCopyMesAnterior(postQuery, true);
       }
-      $("#somaDespesas").html(convertValorView(somaDespesa));
     }, 50);
   }, 25);
 }
@@ -718,12 +714,15 @@ let onUpdateDespBd = (() => {
     postItens.tipoView = baseOnInit.despesaInit;
 
     executaQueryViewBD(postItens);
-    limparTableVisualizar('tbDespesas > tbody > tr');
+    return;
   }
   limparDadosDespesasUpdate()
 });
 /*CONSULTA BANCO DADOS, EXIBI DADOS VIEW ENTRADA CAIXA.*/
 let queryAndUpdateOverviewLancaEntrada = () => {
+
+
+
   setTimeout(() => {
     convertMes();
 
@@ -735,19 +734,24 @@ let queryAndUpdateOverviewLancaEntrada = () => {
 
     executaQueryVisualizarBD(postQuery, postDados, true)
 
-    limparTableVisualizar('tbEntrada > tbody > tr');
-
     setTimeout(() => {
+
+      limparTableVisualizar('tbEntrada > tbody > tr');
+
       const resultConsultaBD = resultRowsQuery;
       if (resultConsultaBD.length > 0) {
         $.each(resultRowsQuery, (id, row) => {
           exibirDadosLancamentosView('tbEntrada', row.id, fotmatDateView(row.data), row.entrada, formataValor(row.valor), 'onStatusEntrada', 'onUpdateEnt', 'onDeleteEntrada');
           somaEntrada += convertSomarValor(row.valor);
         });
+
+        $("#somaEntrada").html(convertValorView(somaEntrada));
+
+        return;
+
       } else {
         confirmarCopyMesAnterior(postQuery, false);
       }
-      $("#somaEntrada").html(convertValorView(somaEntrada));
     }, 50);
   }, 25);
 }
@@ -787,7 +791,7 @@ let onUpdateEntBd = () => {
     postItens.tipoView = baseOnInit.entradaInit;
 
     executaQueryViewBD(postItens);
-    limparTableVisualizar('tbEntrada > tbody > tr');
+    return;
   }
   limparDadosEntradaUpdate()
 };
@@ -809,8 +813,6 @@ let insertMesBaseAnterior = (dados, getQuery, getView) => {
     convertMes();
 
     let dtConsulta = formatDataInsert();
-
-    console.log(dtConsulta)
 
     postMensagem = "Erro: Inserção não realizada. ";
     postDados = [dtConsulta.inicio, dtConsulta.fim]
