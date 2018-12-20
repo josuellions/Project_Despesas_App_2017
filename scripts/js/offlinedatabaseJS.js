@@ -467,10 +467,8 @@ let onDelete = (id) => {
     setTimeout(() => {
       onInit(baseOnInit.despesaInit);
     }, 2000);
-
-    //return
   }
-  limparDadosDespesasUpdate()
+  limparDadosDespesasUpdate();
 }
 
 /*REMOVER DADOS DO BANCO TELA ENTRADA DE CAIXA*/
@@ -493,8 +491,6 @@ let onDeleteEntrada = (id) => {
     setTimeout(() => {
       onInit(baseOnInit.entradaInit);
     }, 2000);
-
-    return
   }
   limparDadosEntradaUpdate();
 }
@@ -633,7 +629,7 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
 
 /*CONFIRMA COPY MÊS ANTERIOR*/
 let confirmarCopyMesAnterior = (getQuery, getTipoView) => {
-
+lim
   setTimeout(() => {
     convertMes();
 
