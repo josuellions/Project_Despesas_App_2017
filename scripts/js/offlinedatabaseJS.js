@@ -454,17 +454,22 @@ let onDelete = (id) => {
 
     customCssAddClass(id, 'ng-leave-active')
 
-    postDados = [id]
-    postMensagem = "Erro: Delete não realizado. ";
-    postQuery = queryAll.deleteDesp;
-
+    
     setTimeout(() => {
       limparTableVisualizar(id)
-      executaQueryBD(postQuery, postDados, postMensagem, onInit(baseOnInit.despesaInit))
     }, 1600);
 
-    limparDadosDespesasUpdate()
-    return
+    setTimeout(() => {
+      postDados = [id]
+      postMensagem = "Erro: Delete não realizado. ";
+      postQuery = queryAll.deleteDesp;
+
+      executaQueryBD(postQuery, postDados, postMensagem, onInit(baseOnInit.despesaInit))
+
+      //return
+
+    }, 1600);
+
   }
   limparDadosDespesasUpdate()
 }
@@ -476,17 +481,21 @@ let onDeleteEntrada = (id) => {
 
     customCssAddClass(id, 'ng-leave-active')
 
-    postDados = [id]
-    postMensagem = "Erro: Delete não realizado. ";
-    postQuery = queryAll.deleteEntrada;
-
     setTimeout(() => {
       limparTableVisualizar(id)
-      executaQueryBD(postQuery, postDados, postMensagem, onInit(baseOnInit.entradaInit))
     }, 1600);
 
-    limparDadosEntradaUpdate();
-    return
+    setTimeout(() => {
+      postDados = [id]
+      postMensagem = "Erro: Delete não realizado. ";
+      postQuery = queryAll.deleteEntrada;
+
+      executaQueryBD(postQuery, postDados, postMensagem, onInit(baseOnInit.entradaInit))
+
+      return
+
+    }, 2000);
+
   }
   limparDadosEntradaUpdate();
 }
