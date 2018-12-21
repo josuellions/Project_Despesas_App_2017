@@ -5,7 +5,6 @@ const queryAll = {
   selectDespStatus: 'SELECT * FROM  TbDespesasStatus',
   selectDespPorId: "SELECT * FROM TbDespesasStatus WHERE id=?;",
   selectDespStatusDt: 'SELECT * FROM TbDespesasStatus WHERE data >= ? and data <= ? ORDER BY data ASC ;',
-  selectDespRelatorioDt: 'SELECT * FROM TbDespesasStatus WHERE data >= ? and data <= ? ORDER BY valor ASC ;',
   selectDespStatusDtValor: 'SELECT valor FROM TbDespesasStatus WHERE data >= ? and data <= ? ;',
   dropDesp: 'DROP TABLE TbDespesas;',
   selectEntrada: 'SELECT * FROM TbEntradas;',
@@ -926,7 +925,7 @@ let onloadRelatorio = () => {
     }
 
     postDados = [dtConsulta.inicio, dtConsulta.fim]
-    postQuery = { queryEntrada: queryAll.selectEntradaDt, queryDesp: queryAll.selectDespRelatorioDt }
+    postQuery = { queryEntrada: queryAll.selectEntradaDt, queryDesp: queryAll.selectDespStatusDt }
     executaQueryVisualizarBD(postQuery.queryEntrada, postDados, true);
 
     setTimeout(() => {
