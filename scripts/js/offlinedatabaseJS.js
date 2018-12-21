@@ -2,13 +2,15 @@
 /*CONSTANTS QUERY */
 const queryAll = {
   selecDesp: 'SELECT * FROM TbDespesas;',
-  selectDespStatus: 'SELECT * FROM  TbDespesasStatus;',
+  selectDespStatus: 'SELECT * FROM  TbDespesasStatus',
   selectDespPorId: "SELECT * FROM TbDespesasStatus WHERE id=?;",
-  selectDespStatusDt: 'SELECT * FROM TbDespesasStatus WHERE data >= ? and data <= ? ;',
+  selectDespStatusDt: 'SELECT * FROM TbDespesasStatus WHERE data >= ? and data <= ? ORDER BY data ASC ;',
+  selectDespStatusDtValor: 'SELECT valor FROM TbDespesasStatus WHERE data >= ? and data <= ? ;',
   dropDesp: 'DROP TABLE TbDespesas;',
   selectEntrada: 'SELECT * FROM TbEntradas;',
   selectEntradaPorId: "SELECT * FROM TbEntradas WHERE id=?;",
-  selectEntradaDt: 'SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ;',
+  selectEntradaDt: 'SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;',
+  selectEntradaDtValor: 'SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;',
   insertDespeStatus: "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?);",
   updateStatusDesp: "UPDATE TbDespesasStatus SET statusDesp = ? WHERE id = ?;",
   deleteDesp: "DELETE FROM TbDespesasStatus WHERE id=?;",
@@ -247,7 +249,7 @@ let formatDataInsert = () => {
   let dtMes = parseInt(dtInicio.slice(5, 7)) < 11 ? ('0' + (parseInt(dtInicio.slice(5, 7)) - 1)) : dtInicio.slice(5, 7) - 1
   let dtAno = dtInicio.slice(0, 4)
 
-  dtMes == 00 ? (dtMes = "11", dtAno = dtAno - 1) : false
+  dtMes == 00 ? (dtMes = 12, dtAno = dtAno - 1) : false
 
   dtInicio = [dtAno, dtMes, dtDiaInicio].join('-');
   dtFim = [dtAno, dtMes, dtDiaFim].join('-');
@@ -343,6 +345,13 @@ let onStatusDesp = (id) => {
   verif ? onUpdateStatusDesp(id, 1) : onUpdateStatusDesp(id, 0)
 };
 
+/*ALTERAR TEXTO VIEW*/
+let customTextView = (getCampo, getText) => {
+  getCampo.forEach(campo => {
+    $("#" + campo).html(getText);
+  });
+}
+
 /*EXIBIR DADOS DO BANCO NA VIEW LANÇAMENTOS */
 let exibirDadosLancamentosView = (campoID, dadosID, dtFormat, campoNome, valorFormat, acaoStatus, acaoUpdate, acaoDelete) => {
   $('#' + campoID + ' > tbody').append(
@@ -437,6 +446,30 @@ let customCssAddClass = (id, classCss) => {
 //END FUNÇÕES CSS
 
 //FUNÇÕES MANIPULAÇÃO DADOS BANCO DADOS E VIEW
+
+/*REMOVER DADOS SEM RENDERIZAR VIEW*/
+let somaValorView = 0.0;
+let somarTotalValor = (tipoView) => {
+
+  convertMes();
+
+  let dtConsulta = dtConsultaBD();
+  postDados = [dtConsulta.inicio, dtConsulta.fim];
+  postMensagem = "Erro: Select não realizado. ";
+  tipoView ? postQuery = queryAll.selectDespStatusDtValor : postQuery = queryAll.selectEntradaDtValor;
+
+  executaQueryVisualizarBD(postQuery, postDados, true)
+  setTimeout(() => {
+
+    let resultConsulta = resultRowsQuery;
+    if (resultConsulta.length > 0) {
+      $.each(resultConsulta, (id, row) => {
+        somaValorView += convertSomarValor(row.valor);
+      })
+    }
+  }, 25);
+}
+
 /*UPDATE STATUS PAGO VIEW DESPESAS SALVA NO DADOS BANCO*/
 let onUpdateStatusDesp = (id, status) => {
 
@@ -459,14 +492,12 @@ let onDelete = (id) => {
     postQuery = queryAll.deleteDesp;
 
     executaQueryBD(postQuery, postDados, postMensagem, false) // onInit(baseOnInit.despesaInit))
+    somarTotalValor(true);
 
     setTimeout(() => {
       limparTableVisualizar(id)
+      customTextView(["somaDespesas"], convertValorView(somaValorView));
     }, 1600);
-
-    setTimeout(() => {
-      onInit(baseOnInit.despesaInit);
-    }, 2000);
   }
   limparDadosDespesasUpdate();
 }
@@ -483,14 +514,12 @@ let onDeleteEntrada = (id) => {
     postQuery = queryAll.deleteEntrada;
 
     executaQueryBD(postQuery, postDados, postMensagem, false) //onInit(baseOnInit.entradaInit))
+    somarTotalValor(false)
 
     setTimeout(() => {
       limparTableVisualizar(id)
+      customTextView(["somaEntrada"], convertValorView(somaValorView));
     }, 1600);
-
-    setTimeout(() => {
-      onInit(baseOnInit.entradaInit);
-    }, 2000);
   }
   limparDadosEntradaUpdate();
 }
@@ -516,10 +545,15 @@ let executaQueryViewBD = (getItens) => {//, getStatus, getMensagem, getMensagemD
     getItens.status ? postDados.push(0) : false;
     getItens.id ? postDados.push(itens.id) : false;
 
-    executaQueryBD(itens.query, postDados, itens.msgBd, onInit(itens.tipoView));
+    executaQueryBD(itens.query, postDados, itens.msgBd, false);
 
-    limparCampos([itens.itemID, itens.valID]);
-    $('#' + itens.dtID).val(formataData()).focus();
+    setTimeout(() => {
+      onInit(itens.tipoView)
+      limparCampos([itens.itemID, itens.valID]);
+      $('#' + itens.dtID).val(formataData()).focus();
+    }, 25);
+
+    
   }
 }
 
@@ -629,7 +663,7 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
 
 /*CONFIRMA COPY MÊS ANTERIOR*/
 let confirmarCopyMesAnterior = (getQuery, getTipoView) => {
-lim
+
   setTimeout(() => {
     convertMes();
 
@@ -641,7 +675,8 @@ lim
     executaQueryVisualizarBD(postQuery, postDados, true)
 
     setTimeout(() => {
-      if (resultRowsQuery.length > 0) {
+      const resultConsulta = resultRowsQuery;
+      if (resultConsulta.length > 0) {
         confirm("Adicionar laçamentos com base no mês anterior?") ? insertMesBaseAnterior(basemesPag(), getQuery, getTipoView) : false;
       }
     }, 50);
@@ -698,10 +733,10 @@ let onUpdateDesp = (id) => {
     transfId = row.id;
 
     const CamposUpdate = [{ id: 'dtDespesa', dado: row.data },
-    { id: 'selectDespesas', dado: row.despesa },
-    { id: 'valDespesa', dado: row.valor }];
+                          { id: 'selectDespesas', dado: row.despesa },
+                          { id: 'valDespesa', dado: row.valor }];
     customCssViewUpdate(CamposUpdate, 'btnDesp', 'btnDespEdit', true);
-  }, 100);
+  }, 25);
 }
 
 /*UPDATE NO DADOS BANCO, VIEW ADD DESPESAS*/
@@ -724,8 +759,6 @@ let onUpdateDespBd = (() => {
 });
 /*CONSULTA BANCO DADOS, EXIBI DADOS VIEW ENTRADA CAIXA.*/
 let queryAndUpdateOverviewLancaEntrada = () => {
-
-
 
   setTimeout(() => {
     convertMes();
