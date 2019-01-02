@@ -434,6 +434,7 @@ let customCssView = (getCampo, getText, getCss, getParam) => {
 
 /*CUSTOM Css VIEW APPEND*/
 let customCssViewAppend = (getCampo, getParam, removeParam) => {
+  console.log(getCampo)
   getCampo.forEach(campo => {
     $("#" + campo).removeClass(removeParam);
     $("#" + campo).addClass(getParam);
@@ -547,13 +548,14 @@ let executaQueryViewBD = (getItens) => {//, getStatus, getMensagem, getMensagemD
 
     executaQueryBD(itens.query, postDados, itens.msgBd, false);
 
+    customCssAddClass(itens.id, 'ng-leave-active')
+
     setTimeout(() => {
       onInit(itens.tipoView)
+      limparTableVisualizar(itens.id);
       limparCampos([itens.itemID, itens.valID]);
       $('#' + itens.dtID).val(formataData()).focus();
-    }, 25);
-
-    
+    }, 1200);
   }
 }
 
@@ -747,7 +749,7 @@ let onUpdateDespBd = (() => {
     postItens.itemID = 'selectDespesas';
     postItens.valID = 'valDespesa';
     postItens.msgCampo = ' Erro: \'Data\', \'Despesa\' e \'Valor\' são campos obrigatórios! ';
-    postItens.msgBd = 'Erro: Falha ao  inserir dados! ';
+    postItens.msgBd = 'Erro: Falha ao atualizar dados! ';
     postItens.status = true;
     postItens.query = queryAll.updateDespStatus;
     postItens.tipoView = baseOnInit.despesaInit;
@@ -808,8 +810,8 @@ let onUpdateEnt = (id) => {
     transfId = row.id;
 
     const CamposUpdate = [{ id: 'dtEntrada', dado: row.data },
-    { id: 'textEntrada', dado: row.entrada },
-    { id: 'valEntrada', dado: row.valor }];
+                          { id: 'textEntrada', dado: row.entrada },
+                          { id: 'valEntrada', dado: row.valor }];
     customCssViewUpdate(CamposUpdate, 'btnEntrada', 'btnEntEdit', true)
   }, 100)
 }
@@ -822,7 +824,7 @@ let onUpdateEntBd = () => {
     postItens.itemID = 'textEntrada';
     postItens.valID = 'valEntrada';
     postItens.msgCampo = ' Erro: \'Data\', \'Receita Caixa\' e \'Valor\' são campos obrigatórios! ';
-    postItens.msgBd = 'Erro: Falha ao  inserir dados! ';
+    postItens.msgBd = 'Erro: Falha ao atualizar dados! ';
     postItens.status = false;
     postItens.query = queryAll.updateEntrada;
     postItens.tipoView = baseOnInit.entradaInit;
