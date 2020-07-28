@@ -1197,6 +1197,7 @@ const PercorrerResult = () => {
 
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(arq, filename);
+      alert("IF - Salve");
     } else {
       var e = document.createEvent("MouseEvents"),
         a = document.createElement("a");
@@ -1222,9 +1223,9 @@ const PercorrerResult = () => {
       );
       a.dispatchEvent(e);
       // window.URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
+      alert("Sucesso: Backup dos dados realizado!");
     }
-
-    alert("Sucesso: Backup dos dados realizado!");
+    throw "Não foi possivel encontrar caminho!";
   } catch (error) {
     alert(`Error: Falha ao realizar backup dos dados! \nMensagem: ${error}`);
   }
@@ -1251,7 +1252,7 @@ const PercorrerBancoDados = () => {
 };
 
 const ConfirmBackup = () => {
-  let getConfirm = confirm("Confirme, para realizar BACKUP Banco Dados?");
+  let getConfirm = confirm("Confirme, para realizar BACKUP Banco Dados.");
 
   if (getConfirm) {
     try {
