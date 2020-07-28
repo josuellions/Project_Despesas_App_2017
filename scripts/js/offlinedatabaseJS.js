@@ -1206,11 +1206,11 @@ const PercorrerResult = () => {
       a.href = window.URL.createObjectURL(arq);
       a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
       e.initEvent(
-        //"click",
-        "deviceready",
+        "click",
+        //"deviceready",
         true,
         false,
-        window.open,
+        window,
         0,
         0,
         0,
@@ -1221,15 +1221,11 @@ const PercorrerResult = () => {
         false,
         false,
         0,
-        null,
-        function () {
-          navigator.notification.alert("click", "Cuidado", "Ok");
-        }
+        null
       );
       //a.dispatchEvent(e);
       // window.URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
       a.dispatchEvent(e);
-      console.log(e);
       //if(e.path)
       alert(`Sucesso: Backup dos dados realizado!`);
       //return;
