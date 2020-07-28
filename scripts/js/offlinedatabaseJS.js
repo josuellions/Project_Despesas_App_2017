@@ -1205,7 +1205,7 @@ const PercorrerResult = () => {
       a.download = filename;
       a.href = window.URL.createObjectURL(arq);
       a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
-      e.initEvent(
+      /*e.initEvent(
         "click",
         //"deviceready",
         true,
@@ -1222,9 +1222,10 @@ const PercorrerResult = () => {
         false,
         0,
         null
-      );
+      );*/
       //a.dispatchEvent(e);
       // window.URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
+      e.addEventListener("deviceready", onDeviceReady, false);
       a.dispatchEvent(e);
       //if(e.path)
       alert(`Sucesso: Backup dos dados realizado!`);
