@@ -1204,24 +1204,26 @@ const PercorrerResult = () => {
       a.download = filename;
       a.href = window.URL.createObjectURL(arq);
       a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
-      e.initEvent(
-        "click",
-        true,
-        false,
-        window,
-        0,
-        0,
-        0,
-        0,
-        0,
-        false,
-        false,
-        false,
-        false,
-        0,
-        null
-      );
-      a.dispatchEvent(e);
+      // e.initEvent(
+      //   "click",
+      //   true,
+      //   false,
+      //   window,
+      //   0,
+      //   0,
+      //   0,
+      //   0,
+      //   0,
+      //   false,
+      //   false,
+      //   false,
+      //   false,
+      //   0,
+      //   null
+      // );
+      let caminho = "/Android/data";
+      a.dispatchEvent(caminho);
+      //a.dispatchEvent(e);
       // window.URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
       alert("Sucesso: Backup dos dados realizado!");
     }
