@@ -1199,14 +1199,15 @@ const PercorrerResult = () => {
       window.navigator.msSaveOrOpenBlob(arq, filename);
       alert("IF - Salve");
     } else {
-      // var e = document.createEvent("MouseEvents"),
-      var e = document.createEvent("startcallbutton"),
+      var e = document.createEvent("MouseEvents"),
+        //var e = document.createEvent("startcallbutton"),
         a = document.createElement("a");
       a.download = filename;
       a.href = window.URL.createObjectURL(arq);
       a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
       e.initEvent(
-        "click",
+        //"click",
+        "deviceready",
         true,
         false,
         window,
