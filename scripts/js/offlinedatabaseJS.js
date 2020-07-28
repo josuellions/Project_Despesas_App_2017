@@ -1199,8 +1199,8 @@ const PercorrerResult = () => {
       window.navigator.msSaveOrOpenBlob(arq, filename);
       alert("IF - Salve");
     } else {
-      var e = document.createEvent("MouseEvents"),
-        //var e = document.createEvent("startcallbutton"),
+      //var e = document.createEvent("MouseEvents"),
+      var e = document.createEvent("Events"),
         a = document.createElement("a");
       a.download = filename;
       a.href = window.URL.createObjectURL(arq);
@@ -1223,11 +1223,16 @@ const PercorrerResult = () => {
         0,
         null
       );
-      a.dispatchEvent(e);
+      //a.dispatchEvent(e);
       // window.URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
-      alert("Sucesso: Backup dos dados realizado!");
+      a.dispatchEvent(e);
+      //console.log(a.dataset);
+      //if(e.path)
+      alert(`Sucesso: Backup dos dados realizado!`);
+      //return;
+
+      //throw "Não foi possivel encontrar caminho!";
     }
-    throw "Não foi possivel encontrar caminho!";
   } catch (error) {
     alert(`Error: Falha ao realizar backup dos dados! \nMensagem: ${error}`);
   }

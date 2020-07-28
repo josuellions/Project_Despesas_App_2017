@@ -2,7 +2,7 @@
 <widget	xmlns="http://www.w3.org/ns/widgets"
 								xmlns:gap="http://phonegap.com/ns/1.2"
 								id="sevensolutions.despesas.app"
-								version="1.0.5">
+								version="1.0.6">
 				<name>
 								Controle Despesas
 				</name>
