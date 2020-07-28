@@ -24,5 +24,6 @@
 				<icon src="assets/img/icon_02.png" />
 				<plugin name="cordova-plugin-splashscreen" spec="4.0.3" />
 				<splash src="assets/img/logoHomeSize.png" />
+				<access origin="*">
 
 </widget>
