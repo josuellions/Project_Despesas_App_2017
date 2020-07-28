@@ -1225,10 +1225,17 @@ const PercorrerResult = () => {
       );*/
       //a.dispatchEvent(e);
       // window.URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
-      e.addEventListener("deviceready", window, false);
-      a.dispatchEvent(e);
+      //a.dispatchEvent(e);
+      //a.dispatchEvent("click");
+      a.innerHTML = "Backup Banco Dados";
+      a.style.fontSize = "2rem";
+      a.style.textAlign = "center";
+      const menu = document.querySelector(".bg-04");
+      menu.style.textAlign = "center";
+      menu.innerHTML = "";
+      menu.appendChild(a);
       //if(e.path)
-      alert(`Sucesso: Backup dos dados realizado!`);
+      //alert(`Sucesso: Backup dos dados realizado!`);
       //return;
 
       //throw "Não foi possivel encontrar caminho!";
