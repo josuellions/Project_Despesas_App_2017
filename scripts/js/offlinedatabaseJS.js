@@ -1207,21 +1207,24 @@ const PercorrerResult = () => {
       a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
       e.initEvent(
         //"click",
-        "deviceready"
-        // true,
-        // false,
-        // window,
-        // 0,
-        // 0,
-        // 0,
-        // 0,
-        // 0,
-        // false,
-        // false,
-        // false,
-        // false,
-        // 0,
-        // null
+        "deviceready",
+        true,
+        false,
+        window.open,
+        0,
+        0,
+        0,
+        0,
+        0,
+        false,
+        false,
+        false,
+        false,
+        0,
+        null,
+        function () {
+          navigator.notification.alert("click", "Cuidado", "Ok");
+        }
       );
       //a.dispatchEvent(e);
       // window.URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
