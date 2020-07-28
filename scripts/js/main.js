@@ -12,7 +12,7 @@ angular
     //producao ? urlApp = window.location.pathname : urlApp = '';
 
     //var url = window.location.pathname;
-    /*alert(window.location.pathname);*/
+    alert(window.location.pathname);
 
     if (producao) {
       /* PRODUÇÂO */
