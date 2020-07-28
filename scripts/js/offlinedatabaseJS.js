@@ -1221,8 +1221,8 @@ const PercorrerResult = () => {
       //   0,
       //   null
       // );
-      let caminho = "/Android/data";
-      a.dispatchEvent(caminho);
+      //let caminho = "/Android/data";
+      a.dispatchEvent();
       //a.dispatchEvent(e);
       // window.URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
       alert("Sucesso: Backup dos dados realizado!");
