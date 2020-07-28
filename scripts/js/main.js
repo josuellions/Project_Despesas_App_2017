@@ -6,7 +6,7 @@ angular
     "depesasDirectives",
   ])
   .config(function ($routeProvider) {
-    var producao = false;
+    var producao = true;
     //var urlApp;
 
     //producao ? urlApp = window.location.pathname : urlApp = '';
