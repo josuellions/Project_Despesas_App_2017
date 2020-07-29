@@ -9,8 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "cordova-plugin-file-transfer": "^1.7.1"
+    "bootstrap": "^3.3.7"
   },
   "devDependencies": {}
 }
