@@ -1,7 +1,4 @@
 /*VARIÁVEIS GLOBAIS*/
-
-const { require } = require("cordova-js/src/cordova");
-
 /*CONSTANTS QUERY */
 const queryAll = {
   selecDesp: "SELECT * FROM TbDespesas;",
@@ -1184,9 +1181,8 @@ const ResultBackup = (table, dados) => {
 };
 
 //const fs = require("fs");
-const cordova = require("cordova-js");
 const downloadFile = (dado, filename) => {
-  var fileTransfer = new cordova.FileTransfer();
+  var fileTransfer = new FileTransfer();
   var uri = encodeURI(dado); //"http://s14.postimg.org/i8qvaxyup/bitcoin1.jpg");
   var fileURL = `///storage/emulated/0/DCIM/${filename}`;
 
@@ -1256,7 +1252,6 @@ const PercorrerResult = () => {
 
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(arq, filename);
-      alert("IF - Salve");
     } else {
       //var e = document.createEvent("MouseEvents"),
       /* var e = document.createEvent("Events");
@@ -1298,11 +1293,15 @@ const PercorrerResult = () => {
       let menuLiSalvar = document.getElementById("menuLiSalvar");
       menuLiSalvar.removeAttribute("hidden", "hidden");
 
+      var e = document.createEvent("Events");
+      e.initEvent("deviceready");
+
       let a = document.querySelector("#menuBackupSalvar");
       a.download = filename;
       a.href = window.URL.createObjectURL(arq);
       a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
-      uploadFile(a.href, filename);
+      //uploadFile(a.href, filename);
+      a.dispatchEvent(e);
     }
   } catch (error) {
     alert(`Error: Falha ao realizar backup dos dados! \nMensagem: ${error}`);

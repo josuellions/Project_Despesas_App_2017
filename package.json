@@ -9,8 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "cordova-js": "^6.0.0"
+    "bootstrap": "^3.3.7"
   },
   "devDependencies": {}
 }
