@@ -1241,6 +1241,9 @@ const PercorrerResult = () => {
       //return;
 
       //throw "Não foi possivel encontrar caminho!";
+      alert(window.cordova);
+      alert(cordova.platformId);
+      alert(cordova.file.externalDataDirectory);
 
       if (window.cordova && cordova.platformId !== "browser") {
         document.addEventListener("deviceready", function () {
