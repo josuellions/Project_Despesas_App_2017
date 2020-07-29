@@ -72,13 +72,19 @@
 
     <li role="separator" class="divider liDivider"></li>
 
-    <li>
+    <li id="menuliBackup">
       <span
         class="glyphicon glyphicon-compressed"
         id="btnBackup"
         ng-click="submit('backup')"
       >
         <a id="btnBackup">Backup</a>
+      </span>
+    </li>
+
+    <li id="menuLiSalvar" hidden>
+      <span class="glyphicon glyphicon-save">
+        <a href="#" id="menuBackupSalvar" download>Salvar</a>
       </span>
     </li>
 

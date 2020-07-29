@@ -1200,11 +1200,12 @@ const PercorrerResult = () => {
       alert("IF - Salve");
     } else {
       //var e = document.createEvent("MouseEvents"),
-      var e = document.createEvent("Events"),
-        a = document.createElement("a");
+      /* var e = document.createEvent("Events");
+      a = document.createElement("a");
       a.download = filename;
       a.href = window.URL.createObjectURL(arq);
       a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
+      */
       /*e.initEvent(
         "click",
         //"deviceready",
@@ -1225,72 +1226,23 @@ const PercorrerResult = () => {
       );*/
       //a.dispatchEvent(e);
       // window.URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
-      //a.dispatchEvent(e);
-      //a.dispatchEvent("click");
-      /*
-      a.innerHTML = "Backup Banco Dados";
-      a.style.fontSize = "2rem";
-      a.style.textAlign = "center";
-      const menu = document.querySelector(".bg-04");
-      menu.style.textAlign = "center";
-      menu.innerHTML = "";
-      menu.appendChild(a);
-      */
       //if(e.path)
       //alert(`Sucesso: Backup dos dados realizado!`);
       //return;
 
       //throw "Não foi possivel encontrar caminho!";
-      alert(window.cordova);
-      alert(cordova.platformId);
-      alert(cordova.file.externalDataDirectory);
 
-      if (window.cordova && cordova.platformId !== "browser") {
-        document.addEventListener("deviceready", function () {
-          var storageLocation = "";
+      // let menuMesSpanElement = document.querySelector("#menuMes span");
+      let menuMesH2Element = document.querySelector("#menuliBackup");
+      menuMesH2Element.setAttribute("hidden", "hidden");
 
-          switch (device.platform) {
-            case "Android":
-              alert("Plataforma android");
-              storageLocation = cordova.file.externalDataDirectory;
-              break;
+      let menuLiSalvar = document.getElementById("menuLiSalvar");
+      menuLiSalvar.removeAttribute("hidden", "hidden");
 
-            case "iOS":
-              alert("Plataforma IOS");
-              storageLocation = cordova.file.documentsDirectory;
-              break;
-          }
-
-          var folderPath = storageLocation;
-
-          window.resolveLocalFileSystemURL(
-            folderPath,
-            function (dir) {
-              alert("Windows resolve localfile");
-              dir.getFile(
-                filename,
-                {
-                  create: true,
-                },
-                function (file) {
-                  // The file...
-                },
-                function (err) {
-                  alert("Unable to download");
-                  console.error(err);
-                }
-              );
-            },
-            function (err) {
-              alert("Unable to download");
-              console.error(err);
-            }
-          );
-        });
-      } else {
-        alert("browser");
-        //saveAs(arq, filename);
-      }
+      let a = document.querySelector("#menuBackupSalvar");
+      a.download = filename;
+      a.href = window.URL.createObjectURL(arq);
+      a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
     }
   } catch (error) {
     alert(`Error: Falha ao realizar backup dos dados! \nMensagem: ${error}`);
