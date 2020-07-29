@@ -18,7 +18,8 @@
 				<preference name="premissions" value="none" />
 				<preference name="orientation" value="portrait" />
 				<!-- <preference name="fullscreen" value="true" /> -->
-				<preference name="android-minSdkVersion" value="16" />
+				<!-- <preference name="android-minSdkVersion" value="16" /> -->
+				<preference name="android-targetSdkVersion" value="28" />
     		<platform name="android" />
 
 				<icon src="assets/img/icon_02.png" />
