@@ -1,4 +1,7 @@
 /*VARIÁVEIS GLOBAIS*/
+
+const { require } = require("cordova-js/src/cordova");
+
 /*CONSTANTS QUERY */
 const queryAll = {
   selecDesp: "SELECT * FROM TbDespesas;",
@@ -1181,8 +1184,9 @@ const ResultBackup = (table, dados) => {
 };
 
 //const fs = require("fs");
+const cordova = require("cordova-js");
 const downloadFile = (dado, filename) => {
-  var fileTransfer = new FileTransfer();
+  var fileTransfer = new cordova.FileTransfer();
   var uri = encodeURI(dado); //"http://s14.postimg.org/i8qvaxyup/bitcoin1.jpg");
   var fileURL = `///storage/emulated/0/DCIM/${filename}`;
 
