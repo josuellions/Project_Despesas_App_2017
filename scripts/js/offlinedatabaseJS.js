@@ -1227,6 +1227,7 @@ const PercorrerResult = () => {
       // window.URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
       //a.dispatchEvent(e);
       //a.dispatchEvent("click");
+      /*
       a.innerHTML = "Backup Banco Dados";
       a.style.fontSize = "2rem";
       a.style.textAlign = "center";
@@ -1234,11 +1235,59 @@ const PercorrerResult = () => {
       menu.style.textAlign = "center";
       menu.innerHTML = "";
       menu.appendChild(a);
+      */
       //if(e.path)
       //alert(`Sucesso: Backup dos dados realizado!`);
       //return;
 
       //throw "Não foi possivel encontrar caminho!";
+
+      if (window.cordova && cordova.platformId !== "browser") {
+        document.addEventListener("deviceready", function () {
+          var storageLocation = "";
+
+          switch (device.platform) {
+            case "Android":
+              alert("Plataforma android");
+              storageLocation = cordova.file.externalDataDirectory;
+              break;
+
+            case "iOS":
+              alert("Plataforma IOS");
+              storageLocation = cordova.file.documentsDirectory;
+              break;
+          }
+
+          var folderPath = storageLocation;
+
+          window.resolveLocalFileSystemURL(
+            folderPath,
+            function (dir) {
+              alert("Windows resolve localfile");
+              dir.getFile(
+                filename,
+                {
+                  create: true,
+                },
+                function (file) {
+                  // The file...
+                },
+                function (err) {
+                  alert("Unable to download");
+                  console.error(err);
+                }
+              );
+            },
+            function (err) {
+              alert("Unable to download");
+              console.error(err);
+            }
+          );
+        });
+      } else {
+        alert("browser");
+        //saveAs(arq, filename);
+      }
     }
   } catch (error) {
     alert(`Error: Falha ao realizar backup dos dados! \nMensagem: ${error}`);
