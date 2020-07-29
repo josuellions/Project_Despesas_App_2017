@@ -1181,19 +1181,21 @@ const ResultBackup = (table, dados) => {
 };
 
 //const fs = require("fs");
-const downloadFile = (dado) => {
+const downloadFile = (dado, filename) => {
   var fileTransfer = new FileTransfer();
   var uri = encodeURI(dado); //"http://s14.postimg.org/i8qvaxyup/bitcoin1.jpg");
-  var fileURL = "///storage/emulated/0/DCIM/Bkp";
+  var fileURL = `///storage/emulated/0/DCIM/${filename}`;
 
   fileTransfer.download(
     uri,
     fileURL,
     function (entry) {
+      alert(`Upload ${(fileURL, filename)}`);
       console.log("download complete: " + entry.toURL());
     },
 
     function (error) {
+      alert(`Error: ${error}`);
       console.log("download error source " + error.source);
       console.log("download error target " + error.target);
       console.log("download error code" + error.code);
@@ -1206,6 +1208,33 @@ const downloadFile = (dado) => {
       },
     }
   );
+};
+
+const uploadFile = (urlUpload, filename) => {
+  var fileURL = `///storage/emulated/0/DCIM/${filename}`;
+  var uri = encodeURI(urlUpload);
+  var options = new FileUploadOptions();
+  options.fileKey = "file";
+  options.fileName = fileURL.substr(fileURL.lastIndexOf("/") + 1);
+  options.mimeType = "text/plain";
+
+  var headers = { headerParam: "headerValue" };
+  options.headers = headers;
+  var ft = new FileTransfer();
+  ft.upload(fileURL, uri, onSuccess, onError, options);
+
+  function onSuccess(r) {
+    alert(`Upload ${(fileURL, filename)}`);
+    console.log("Code = " + r.responseCode);
+    console.log("Response = " + r.response);
+    console.log("Sent = " + r.bytesSent);
+  }
+
+  function onError(error) {
+    alert("An error has occurred: Code = " + error.code);
+    console.log("upload error source " + error.source);
+    console.log("upload error target " + error.target);
+  }
 };
 
 const PercorrerResult = () => {
@@ -1269,7 +1298,7 @@ const PercorrerResult = () => {
       a.download = filename;
       a.href = window.URL.createObjectURL(arq);
       a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
-      downloadFile(a);
+      uploadFile(a.href, filename);
     }
   } catch (error) {
     alert(`Error: Falha ao realizar backup dos dados! \nMensagem: ${error}`);
