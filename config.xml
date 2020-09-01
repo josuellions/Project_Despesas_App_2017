@@ -25,8 +25,8 @@
 				<icon src="assets/img/icon_02.png" />
 				<!-- <plugin name="cordova-plugin-splashscreen" spec="4.0.3" /> -->
 				<!-- <plugin name="cordova-plugin-file-transfer" spec="1" />  -->
-				<plugin name="File" value="org.apache.cordova.FileUtils" source="npm"/>
-			  <plugin name="FileTransfer" value="org.apache.cordova.FileTransfer" source="npm"/> 
+				<gap:plugin name="File" value="org.apache.cordova.FileUtils" source="npm"/>
+			  <gap:plugin name="FileTransfer" value="org.apache.cordova.FileTransfer" source="npm"/> 
 				<splash src="assets/img/logoHomeSize.png" />
 				<access origin="*"/>
 </widget>
