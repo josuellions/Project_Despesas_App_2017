@@ -1287,14 +1287,14 @@ const PercorrerResult = () => {
       //return;
 
       //throw "Não foi possivel encontrar caminho!";
-
+      //console.log(device);
       // let menuMesSpanElement = document.querySelector("#menuMes span");
       let menuMesH2Element = document.querySelector("#menuliBackup");
       menuMesH2Element.setAttribute("hidden", "hidden");
 
       let menuLiSalvar = document.getElementById("menuLiSalvar");
       menuLiSalvar.removeAttribute("hidden", "hidden");
-
+      // document.addEventListener("deviceready", onDeviceReady, false);
       var e = document.createEvent("Events");
       e.initEvent("deviceready");
 
@@ -1302,8 +1302,8 @@ const PercorrerResult = () => {
       a.download = filename;
       a.href = window.URL.createObjectURL(arq);
       a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
-      //uploadFile(a.href, filename);
-      a.dispatchEvent(e);
+      uploadFile(a.href, filename);
+      //a.dispatchEvent(e);
     }
   } catch (error) {
     alert(`Error: Falha ao realizar backup dos dados! \nMensagem: ${error}`);
