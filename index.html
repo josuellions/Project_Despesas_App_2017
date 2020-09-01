@@ -9,6 +9,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/stylesMenu.css" />
     <link
@@ -42,7 +43,11 @@
     <title>Controle Despesas</title>
   </head>
 
-  <body class="backgroundSeven" ng-controller="NavegarController">
+  <body
+    class="backgroundSeven"
+    ng-controller="NavegarController"
+    onload="onLoad()"
+  >
     <barra-top></barra-top>
 
     <ng-view class="heightVisualizar"></ng-view>
