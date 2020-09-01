@@ -44,9 +44,8 @@
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="10" />
-    <preference name="android-targetSdkVersion" value="19" />
     <preference name="android-installLocation" value="auto" />
-    <gap:plugin name="org.apache.cordova.battery-status" source="npm" />
+    <!-- <gap:plugin name="org.apache.cordova.battery-status" source="npm" /> -->
     <gap:plugin name="cordova-plugin-camera" source="npm" />
     <gap:plugin name="org.apache.cordova.media-capture" source="npm" />
     <gap:plugin name="org.apache.cordova.console" source="npm" />
