@@ -58,8 +58,8 @@
     <!-- <gap:plugin name="org.apache.cordova.file" source="npm" /> -->
     <!-- <gap:plugin name="org.apache.cordova.file-transfer" source="npm" /> -->
 
-		<gap:plugin name="cordova-plugin.FileUtils" source="npm"/>
-		<gap:plugin name="cordova-plugin.FileTransfer" source="npm"/> 
+		<gap:plugin name="cordova-plugin.file" source="npm"/>
+		<gap:plugin name="cordova-plugin.file-transfer" source="npm"/> 
 		<gap:plugin name="cordova-plugin.media" source="npm" />
     <!-- <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" /> -->
     <!-- <gap:plugin name="org.apache.cordova.media" source="npm" />
