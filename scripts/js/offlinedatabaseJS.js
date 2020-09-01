@@ -1252,7 +1252,9 @@ const PercorrerResult = () => {
 
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(arq, filename);
+      alert("IF SAVE");
     } else {
+      alert("ELSE SAVE");
       //var e = document.createEvent("MouseEvents"),
       /* var e = document.createEvent("Events");
       a = document.createElement("a");
@@ -1343,8 +1345,8 @@ const ConfirmBackup = () => {
   }
 };
 
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-  alert(String(cordova.file));
-  alert(device.cordova);
-}
+// document.addEventListener("deviceready", onDeviceReady, false);
+// function onDeviceReady() {
+//   alert();
+//   alert();
+// }
