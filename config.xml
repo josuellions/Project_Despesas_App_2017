@@ -62,10 +62,10 @@
 		<gap:plugin name="org.apache.cordova.FileTransfer" source="npm"/> -->
 
     <!-- <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" /> -->
-    <gap:plugin name="org.apache.cordova.media" source="npm" />
+    <!-- <gap:plugin name="org.apache.cordova.media" source="npm" />
     <gap:plugin name="org.apache.cordova.network-information" source="npm" />
     <gap:plugin name="org.apache.cordova.splashscreen" source="npm" />
-    <gap:plugin name="org.apache.cordova.vibration" source="npm" />
+    <gap:plugin name="org.apache.cordova.vibration" source="npm" /> -->
 
     <!-- <icon src="icon.png" /> -->
 
