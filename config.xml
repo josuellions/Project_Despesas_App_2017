@@ -48,7 +48,7 @@
     <!-- <gap:plugin name="org.apache.cordova.battery-status" source="npm" /> -->
     <!-- <gap:plugin name="cordova-plugin-camera" source="npm" /> -->
     <!-- <gap:plugin name="org.apache.cordova.media-capture" source="npm" /> -->
-    <gap:plugin name="org.apache.cordova.console" source="npm" />
+    <!-- <gap:plugin name="org.apache.cordova.console" source="npm" /> -->
     <gap:plugin name="org.apache.cordova.contacts" source="npm" />
 
 
