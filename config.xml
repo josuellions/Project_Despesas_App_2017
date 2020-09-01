@@ -20,7 +20,6 @@
 				<!-- <preference name="fullscreen" value="true" /> -->
 				<!-- <preference name="android-minSdkVersion" value="16" /> -->
 				<preference name="android-targetSdkVersion" value="28" />
-				<preference name="target-device" value="universal" />
     		<platform name="android" />
 
 				<icon src="assets/img/icon_02.png" />
@@ -30,4 +29,121 @@
 			  <gap:plugin name="FileTransfer" value="org.apache.cordova.FileTransfer" source="npm"/>  -->
 				<splash src="assets/img/logoHomeSize.png" />
 				<access origin="*"/>
+
+				 <preference name="orientation" value="default" />
+
+    <preference name="target-device" value="universal" />
+
+    <preference name="fullscreen" value="false" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="disallowOverscroll" value="true" />
+    <preference name="prerendered-icon" value="true" />
+    <preference name="stay-in-webview" value="false" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="false" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="disable-cursor" value="false" />
+    <preference name="android-minSdkVersion" value="10" />
+    <preference name="android-targetSdkVersion" value="19" />
+    <preference name="android-installLocation" value="auto" />
+    <gap:plugin name="org.apache.cordova.battery-status" source="npm" />
+    <gap:plugin name="cordova-plugin-camera" source="npm" />
+    <gap:plugin name="org.apache.cordova.media-capture" source="npm" />
+    <gap:plugin name="org.apache.cordova.console" source="npm" />
+    <gap:plugin name="org.apache.cordova.contacts" source="npm" />
+
+
+    <gap:plugin name="org.apache.cordova.device-motion" source="npm" />
+    <gap:plugin name="org.apache.cordova.device-orientation" source="npm" />
+    <gap:plugin name="org.apache.cordova.dialogs" source="npm" />
+    <gap:plugin name="org.apache.cordova.file" source="npm" />
+    <gap:plugin name="org.apache.cordova.file-transfer" source="npm" />
+
+    <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" />
+    <gap:plugin name="org.apache.cordova.media" source="npm" />
+    <gap:plugin name="org.apache.cordova.network-information" source="npm" />
+    <gap:plugin name="org.apache.cordova.splashscreen" source="npm" />
+    <gap:plugin name="org.apache.cordova.vibration" source="npm" />
+
+    <!-- <icon src="icon.png" /> -->
+
+    <gap:splash src="splash.png" gap:platform="android" gap:qualifier="port-ldpi" />
+    <gap:splash src="splash.png" gap:platform="android" gap:qualifier="port-mdpi" />
+    <gap:splash src="splash.png" gap:platform="android" gap:qualifier="port-hdpi" />
+    <gap:splash src="splash.png" gap:platform="android" gap:qualifier="port-xhdpi" />
+    <gap:splash src="splash.png" gap:platform="blackberry" />
+    <gap:splash src="splash.png" gap:platform="ios" width="320" height="480" />
+    <gap:splash src="splash.png" gap:platform="ios" width="640" height="960" />
+    <gap:splash src="splash.png" gap:platform="ios" width="640" height="1136" />
+    <gap:splash src="splash.png" gap:platform="ios" width="768" height="1024" />
+    <gap:splash src="splash.png" gap:platform="ios" width="1024" height="768" />
+    <gap:splash src="splash.png" gap:platform="winphone" />
+    <!-- <access origin="*" /> -->
+
+    <gap:plugin name=" phonegap-plugin-barcodescanner" source="npm" />
+
+
+    <gap:plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" />
+    <gap:plugin name="cordova-plugin-directions" source="npm" />
+
+
+    <gap:config-file platform="ios" parent="NSCameraUsageDescription" overwrite="true">
+        <string>We are using the Camera to scan barcodes</string>
+    </gap:config-file>
+
+    <gap:config-file platform="ios" parent="NSPhotoLibraryUsageDescription" overwrite="true">
+        <string>We are using the photo library to scan barcodes</string>
+    </gap:config-file>
+
+
+
+
+    <!-- iPhone / iPod Touch  - lower 4s -->
+    <icon src="icon-57.png" gap:platform="ios" width="57" height="57" />
+    <icon src="icon.png" gap:platform="ios" width="114" height="114" />
+    <icon src="icon-72.png" gap:platform="ios" width="72" height="72" />
+    <icon src="152.png" gap:platform="ios" width="152" height="152" />
+    <icon src="icon-120.png" gap:platform="ios" width="120" height="120" />
+    <icon src="76.png" gap:platform="ios" width="76" height="76" />
+    <icon src="icon-40.png" gap:platform="ios" width="40" height="40" />
+
+    <!-- iPhone / iPod Touch - 5-5s -->
+    <icon src="icon.png" gap:platform="ios" width="60" height="60" />
+    <icon src="icon.png" gap:platform="ios" width="120" height="120" />
+    <!-- iPhone6-6+ -->
+    <icon src="icon.png" gap:platform="ios" width="180" height="180" />
+
+    <!-- Settings Icon -->
+    <icon src="icon-29.png" gap:platform="ios" width="29" height="29" />
+    <icon src="icon.png" gap:platform="ios" width="58" height="58" />
+
+    <!-- Spotlight Icon -->
+    <icon src="icon.png" gap:platform="ios" width="40" height="40" />
+    <icon src="icon.png" gap:platform="ios" width="80" height="80" />
+
+    <plugin name="cordova-plugin-whitelist" version="1" source="npm" />
+
+    <gap:plugin name="cordova-plugin-geolocation" source="npm" />
+
+    <feature name="http://api.phonegap.com/1.0/battery" />
+    <feature name="http://api.phonegap.com/1.0/camera" />
+    <feature name="http://api.phonegap.com/1.0/network" />
+    <feature name="http://api.phonegap.com/1.0/notification" />
+
+    <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
 </widget>
