@@ -52,7 +52,7 @@
     <!-- <gap:plugin name="org.apache.cordova.contacts" source="npm" /> -->
 
 
-    <gap:plugin name="org.apache.cordova.device-motion" source="npm" />
+    <!-- <gap:plugin name="org.apache.cordova.device-motion" source="npm" /> -->
     <gap:plugin name="org.apache.cordova.device-orientation" source="npm" />
     <gap:plugin name="org.apache.cordova.dialogs" source="npm" />
     <gap:plugin name="org.apache.cordova.file" source="npm" />
