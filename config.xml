@@ -59,6 +59,7 @@
     <!-- <gap:plugin name="org.apache.cordova.file-transfer" source="npm" /> -->
 
 		<!-- <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" source="npm"/> -->
+		<plugin name="cordova-plugin-media" source="npm"/>
 		<plugin name="cordova-plugin-file" spec="4.3.3" source="npm"/>
 		<plugin name="cordova-plugin-file-transfer" spec="1.6.3" source="npm"/>
 		
