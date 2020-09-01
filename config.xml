@@ -46,8 +46,8 @@
     <preference name="android-minSdkVersion" value="10" />
     <preference name="android-installLocation" value="auto" />
     <!-- <gap:plugin name="org.apache.cordova.battery-status" source="npm" /> -->
-    <gap:plugin name="cordova-plugin-camera" source="npm" />
-    <gap:plugin name="org.apache.cordova.media-capture" source="npm" />
+    <!-- <gap:plugin name="cordova-plugin-camera" source="npm" /> -->
+    <!-- <gap:plugin name="org.apache.cordova.media-capture" source="npm" /> -->
     <gap:plugin name="org.apache.cordova.console" source="npm" />
     <gap:plugin name="org.apache.cordova.contacts" source="npm" />
 
@@ -93,9 +93,6 @@
     <gap:config-file platform="ios" parent="NSPhotoLibraryUsageDescription" overwrite="true">
         <string>We are using the photo library to scan barcodes</string>
     </gap:config-file>
-
-
-
 
     <!-- iPhone / iPod Touch  - lower 4s -->
     <icon src="icon-57.png" gap:platform="ios" width="57" height="57" />
