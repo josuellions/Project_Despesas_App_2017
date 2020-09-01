@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "cordova-plugin-splashscreen": "^4.0.3"
   },
   "devDependencies": {}
 }
