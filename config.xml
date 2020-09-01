@@ -9,11 +9,11 @@
 				<description>
 								Controle despesas mensais.
 				</description>
-				<author	href="https://github.com/josuellions/Project_Despesas_App_2017.git"	
+				<author	href="https://github.com/josuellions/Project_Despesas_App_2017.git"
 								email="josuel_lions@hotmail.com">
 								Josuel A. Lopes
 				</author>
-				
+
 				<preference name="phonegap-version" value="cli-6.5.0" />
 				<preference name="premissions" value="none" />
 				<preference name="orientation" value="portrait" />
@@ -43,7 +43,7 @@
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
-    <preference name="android-minSdkVersion" value="28" />
+    <!-- <preference name="android-minSdkVersion" value="28" /> -->
     <preference name="android-installLocation" value="auto" />
     <!-- <gap:plugin name="org.apache.cordova.battery-status" source="npm" /> -->
     <!-- <gap:plugin name="cordova-plugin-camera" source="npm" /> -->
