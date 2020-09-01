@@ -12,8 +12,7 @@
     "bootstrap": "^3.3.7",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-file-transfer": "^1.7.1",
-    "cordova-plugin-splashscreen": "^4.0.3",
-    "file-api": "^0.10.4"
+    "cordova-plugin-splashscreen": "^4.0.3"
   },
   "devDependencies": {}
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config-file target="AndroidManifest.xml" parent="/manifest/application">
+    <activity android:name="com.foo.Foo" android:label="@string/app_name">
+        <intent-filter>
+        </intent-filter>
+    </activity>
+</config-file>
