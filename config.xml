@@ -63,6 +63,9 @@
 		<plugin name="cordova-plugin-file" spec="4.3.3" source="npm"/>
 		<plugin name="cordova-plugin-file-transfer" spec="1.6.3" source="npm"/>
 		
+		<preference name="AndroidPersistentFileLocation" value="Internal" />
+
+		<preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <!-- <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" /> -->
     <!-- <gap:plugin name="org.apache.cordova.media" source="npm" />
     <gap:plugin name="org.apache.cordova.network-information" source="npm" />
