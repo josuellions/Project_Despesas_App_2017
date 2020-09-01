@@ -1346,4 +1346,5 @@ const ConfirmBackup = () => {
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
   alert(String(cordova.file));
+  alert(device.cordova);
 }
