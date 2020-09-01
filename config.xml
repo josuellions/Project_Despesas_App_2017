@@ -58,9 +58,9 @@
     <!-- <gap:plugin name="org.apache.cordova.file" source="npm" /> -->
     <!-- <gap:plugin name="org.apache.cordova.file-transfer" source="npm" /> -->
 
-		<!-- <gap:plugin name="org.apache.cordova.FileUtils" source="npm"/>
-		<gap:plugin name="org.apache.cordova.FileTransfer" source="npm"/> -->
-
+		<gap:plugin name="cordova-plugin.FileUtils" source="npm"/>
+		<gap:plugin name="cordova-plugin.FileTransfer" source="npm"/> 
+		<gap:plugin name="cordova-plugin.media" source="npm" />
     <!-- <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" /> -->
     <!-- <gap:plugin name="org.apache.cordova.media" source="npm" />
     <gap:plugin name="org.apache.cordova.network-information" source="npm" />
@@ -82,7 +82,7 @@
     <gap:splash src="splash.png" gap:platform="winphone" />
     <!-- <access origin="*" /> -->
 
-    <gap:plugin name=" phonegap-plugin-barcodescanner" source="npm" />
+    <gap:plugin name="phonegap-plugin-barcodescanner" source="npm" />
 
 
     <gap:plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" />
