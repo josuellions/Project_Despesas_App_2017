@@ -6,7 +6,7 @@ angular
     "depesasDirectives",
   ])
   .config(function ($routeProvider) {
-    var producao = true;
+    var producao = false;
     //var urlApp;
 
     //producao ? urlApp = window.location.pathname : urlApp = '';
@@ -78,6 +78,10 @@ angular
         .when("/sobre", {
           templateUrl: "/public/sobre.html",
           controller: "NavegarController",
+        })
+        .when("/backup", {
+          templateUrl: "/public/backup.html",
+          controller: "BackupController",
         })
         .otherwise({
           redirectTo: "/",

@@ -22,8 +22,9 @@ angular
       } else if ($page == "relatorio") {
         $location.path("/relatorio");
       } else if ($page == "backup") {
-        //$location.path("/backup");
-        ConfirmBackup();
+        $location.path("/backup");
+        //controller: 'BackupController';
+        //ConfirmBackup();
       } else if ($page == "informacoes") {
         $location.path("/informacoes");
       } else if ($page == "sobre") {

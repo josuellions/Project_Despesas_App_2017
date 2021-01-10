@@ -3,6 +3,7 @@ angular
   .controller("NavegarController", function ($scope, $location) {
     $scope.mensagem = "";
     $scope.passmes = false;
+  
     const dtCustom = {
       0: "JAN",
       1: "FEV",
@@ -67,6 +68,15 @@ angular
         page: "/informacoes",
         titulo: "Controle Despesas",
         subtitulo: "Informações",
+        passmes: false,
+        dtFormat: null,
+        IdCampo: null,
+        IdInit: null,
+      },
+      {
+        page: "/backup",
+        titulo: "Controle Despesas",
+        subtitulo: "Backup",
         passmes: false,
         dtFormat: null,
         IdCampo: null,
@@ -200,4 +210,5 @@ angular
     };
 
     carregarPage();
+    
   });

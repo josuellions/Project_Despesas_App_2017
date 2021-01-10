@@ -1,4 +1,5 @@
 /*VARIÁVEIS GLOBAIS*/
+
 /*CONSTANTS QUERY */
 const queryAll = {
   selecDesp: "SELECT * FROM TbDespesas;",
@@ -1302,32 +1303,47 @@ const PercorrerResult = () => {
       a.download = filename;
       a.href = window.URL.createObjectURL(arq);
       a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
-      uploadFile(a.href, filename);
-      //a.dispatchEvent(e);
+      //uploadFile(a.href, filename);
+      a.dispatchEvent(e);
     }
   } catch (error) {
     alert(`Error: Falha ao realizar backup dos dados! \nMensagem: ${error}`);
   }
 };
 
-const PercorrerBancoDados = () => {
+const PercorrerBancoDados = (check) => {
   const tablesBdDespesas = ["TbDespesas", "TbDespesasStatus", "TbEntradas"];
+  console.log("precorrer")
+  if(check == true){
+    console.log("precorrer")
+    tablesBdDespesas.forEach((table) => {
+      console.log(table)
+      
+      let initDB = () => {
+        const shortName = "bdDespesas";
+        const version = "1.0";
+        const displayName = "BdGestorDespesas";
+        const maxSize = 65536; // Em bytes
+      
+        localDB = window.openDatabase(shortName, version, displayName, maxSize);
+      };
 
-  tablesBdDespesas.forEach((table) => {
-    localDB.transaction(function (transaction) {
-      transaction.executeSql(
-        `SELECT * FROM  ${table}`,
-        [],
-        function (transaction, results) {
-          executarConsulta = true;
-          ResultBackup(String(table), results.rows);
-        },
-        function (transaction, error) {
-          alert("Erro: " + error.code + "\nMensagem: " + error.message);
-        }
-      );
+      localDB.transaction(function (transaction) {
+        transaction.executeSql(
+          `SELECT * FROM  ${table}`,
+          [],
+          function (transaction, results) {
+            executarConsulta = true;
+            //ResultBackup(String(table), results.rows);
+          },
+          function (transaction, error) {
+            alert("Erro: " + error.code + "\nMensagem: " + error.message);
+          }
+        );
+      });
+      
     });
-  });
+  }
 };
 
 const ConfirmBackup = () => {
