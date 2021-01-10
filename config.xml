@@ -142,8 +142,4 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <application>
-         <meta-data android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyCty408XnzxumLy39HfV1BKFy20cuF8Ngs"/>
-    </application>
 </widget>
