@@ -3,48 +3,44 @@
 								xmlns:gap="http://phonegap.com/ns/1.2"
 								id="sevensolutions.despesas.app"
 								version="1.0.6">
-				<name>
-								Controle Despesas
-				</name>
-				<description>
-								Controle despesas mensais.
-				</description>
-				<author	href="https://github.com/josuellions/Project_Despesas_App_2017.git"
-								email="josuel_lions@hotmail.com">
-								Josuel A. Lopes
-				</author>
+  <name>Controle Despesas</name>
+  <description>Controle despesas mensais.</description>
+  <author	href="https://github.com/josuellions/Project_Despesas_App_2017.git"
+          email="josuel_lions@hotmail.com">
+          Josuel A. Lopes
+  </author>
+  <platform name="android" />
+  <icon src="assets/img/icon_02.png" />
+  <splash src="assets/img/logoHomeSize.png" />
+  <access origin="*"/>
 
-				<preference name="phonegap-version" value="cli-6.5.0" />
-				<preference name="premissions" value="none" />
-				<preference name="orientation" value="portrait" />
+  <preference name="phonegap-version" value="cli-6.5.0" />
+  <preference name="premissions" value="none" />
+  <preference name="orientation" value="portrait" />
 				<!-- <preference name="fullscreen" value="true" /> -->
 				<!-- <preference name="android-minSdkVersion" value="16" /> -->
-				<preference name="android-targetSdkVersion" value="28" />
-    		<platform name="android" />
+  <preference name="android-targetSdkVersion" value="28" />
+  <preference name="target-device" value="universal" />
+  <preference name="fullscreen" value="false" />
+  <preference name="webviewbounce" value="false" />
+  <preference name="disallowOverscroll" value="true" />
+  <preference name="prerendered-icon" value="true" />
+  <preference name="stay-in-webview" value="false" />
+  <preference name="ios-statusbarstyle" value="black-opaque" />
+  <preference name="detect-data-types" value="true" />
+  <preference name="exit-on-suspend" value="false" />
+  <preference name="show-splash-screen-spinner" value="true" />
+  <preference name="auto-hide-splash-screen" value="true" />
+  <preference name="disable-cursor" value="false" />
+  <!-- <preference name="android-minSdkVersion" value="28" /> -->
+  <preference name="android-installLocation" value="auto" />
+	<preference name="AndroidPersistentFileLocation" value="Internal" />
+  <preference name="AndroidPersistentFileLocation" value="Compatibility" />
 
-				<icon src="assets/img/icon_02.png" />
-				<!-- <plugin name="cordova-plugin-splashscreen" spec="4.0.3" /> -->
-				<!-- <plugin name="cordova-plugin-file-transfer" spec="1" />  -->
-				<!-- <gap:plugin name="File" value="org.apache.cordova.FileUtils" source="npm"/>
-			  <gap:plugin name="FileTransfer" value="org.apache.cordova.FileTransfer" source="npm"/>  -->
-				<splash src="assets/img/logoHomeSize.png" />
-				<access origin="*"/>
-
-    <preference name="target-device" value="universal" />
-
-    <preference name="fullscreen" value="false" />
-    <preference name="webviewbounce" value="false" />
-    <preference name="disallowOverscroll" value="true" />
-    <preference name="prerendered-icon" value="true" />
-    <preference name="stay-in-webview" value="false" />
-    <preference name="ios-statusbarstyle" value="black-opaque" />
-    <preference name="detect-data-types" value="true" />
-    <preference name="exit-on-suspend" value="false" />
-    <preference name="show-splash-screen-spinner" value="true" />
-    <preference name="auto-hide-splash-screen" value="true" />
-    <preference name="disable-cursor" value="false" />
-    <!-- <preference name="android-minSdkVersion" value="28" /> -->
-    <preference name="android-installLocation" value="auto" />
+  	<!-- <plugin name="cordova-plugin-splashscreen" spec="4.0.3" /> -->
+    <!-- <plugin name="cordova-plugin-file-transfer" spec="1" />  -->
+    <!-- <gap:plugin name="File" value="org.apache.cordova.FileUtils" source="npm"/>
+    <gap:plugin name="FileTransfer" value="org.apache.cordova.FileTransfer" source="npm"/>  -->
     <!-- <gap:plugin name="org.apache.cordova.battery-status" source="npm" /> -->
     <!-- <gap:plugin name="cordova-plugin-camera" source="npm" /> -->
     <!-- <gap:plugin name="org.apache.cordova.media-capture" source="npm" /> -->
@@ -64,15 +60,19 @@
 		<!--<plugin name="cordova-plugin-file" spec="4.3.3" source="npm"/>-->
 		<!--<plugin name="cordova-plugin-file-transfer" spec="1.6.3" source="npm"/>-->
 		
-		<preference name="AndroidPersistentFileLocation" value="Internal" />
-
-		<preference name="AndroidPersistentFileLocation" value="Compatibility" />
+	
     <!-- <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" /> -->
     <!-- <gap:plugin name="org.apache.cordova.media" source="npm" />
     <gap:plugin name="org.apache.cordova.network-information" source="npm" />
     <gap:plugin name="org.apache.cordova.splashscreen" source="npm" />
     <gap:plugin name="org.apache.cordova.vibration" source="npm" /> -->
+<!--
+    <gap:plugin name="phonegap-plugin-barcodescanner" source="npm" />
 
+
+    <gap:plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" />
+    <gap:plugin name="cordova-plugin-directions" source="npm" />
+-->
     <!-- <icon src="icon.png" /> -->
 
     <gap:splash src="splash.png" gap:platform="android" gap:qualifier="port-ldpi" />
@@ -87,13 +87,6 @@
     <gap:splash src="splash.png" gap:platform="ios" width="1024" height="768" />
     <gap:splash src="splash.png" gap:platform="winphone" />
     <!-- <access origin="*" /> -->
-
-    <gap:plugin name="phonegap-plugin-barcodescanner" source="npm" />
-
-
-    <gap:plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" />
-    <gap:plugin name="cordova-plugin-directions" source="npm" />
-
 
     <gap:config-file platform="ios" parent="NSCameraUsageDescription" overwrite="true">
         <string>We are using the Camera to scan barcodes</string>
@@ -125,18 +118,18 @@
     <!-- Spotlight Icon -->
     <icon src="icon.png" gap:platform="ios" width="40" height="40" />
     <icon src="icon.png" gap:platform="ios" width="80" height="80" />
-
+<!--
     <plugin name="cordova-plugin-whitelist" version="1" source="npm" />
-
+-->
     <!--<gap:plugin name="cordova-plugin-geolocation" source="npm" />-->
 
     <feature name="http://api.phonegap.com/1.0/battery" />
     <feature name="http://api.phonegap.com/1.0/camera" />
     <feature name="http://api.phonegap.com/1.0/network" />
     <feature name="http://api.phonegap.com/1.0/notification" />
-
+<!--
     <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
-
+-->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
