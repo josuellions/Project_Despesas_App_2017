@@ -1,7 +1,7 @@
 angular
   .module("todoApp")
   .controller("BackupController", function ($http, $location) {
-    /*
+    
     let totalTable;
     const urlServerConnection = 'http://21.21.21.11:3333/connection';
     const urlServer = 'http://21.21.21.11:3333/entrada';
@@ -122,5 +122,4 @@ angular
     }
 
     Connection();
-    */
 })
