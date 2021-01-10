@@ -128,7 +128,7 @@
 
     <plugin name="cordova-plugin-whitelist" version="1" source="npm" />
 
-    <gap:plugin name="cordova-plugin-geolocation" source="npm" />
+    <!--<gap:plugin name="cordova-plugin-geolocation" source="npm" />-->
 
     <feature name="http://api.phonegap.com/1.0/battery" />
     <feature name="http://api.phonegap.com/1.0/camera" />
@@ -149,4 +149,8 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <application>
+         <meta-data android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyCty408XnzxumLy39HfV1BKFy20cuF8Ngs"/>
+    </application>
 </widget>
