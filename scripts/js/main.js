@@ -6,89 +6,64 @@ angular
     "depesasDirectives",
   ])
   .config(function ($routeProvider) {
-    var producao = true;
-    //var urlApp;
 
-    //producao ? urlApp = window.location.pathname : urlApp = '';
+    const ambientType = 'prod';
 
-    //var url = window.location.pathname;
-    //alert(window.location.pathname);
+    const ambient = {
+        prod() {
+          return 'producao';
+        },
+        dev() {
+          return 'developer'
+        }
+      }
 
-    if (producao) {
-      /* PRODUÇÂO */
-      $routeProvider
-        .when("/", {
-          templateUrl: "/android_asset/www/public/home.html",
-          controller: "NavegarController",
-        })
-        .when("/despesas", {
-          templateUrl: "/android_asset/www/public/despesas.html",
-          controller: "NavegarController",
-        })
-        .when("/entrada", {
-          templateUrl: "/android_asset/www/public/entrada.html",
-          controller: "NavegarController",
-        })
-        .when("/visualizar", {
-          templateUrl: "/android_asset/www/public/visualiza.html",
-          controller: "NavegarController",
-        })
-        .when("/relatorio", {
-          templateUrl: "/android_asset/www/public/relatorio.html",
-          controller: "NavegarController",
-        })
-        .when("/informacoes", {
-          templateUrl: "/android_asset/www/public/informacoes.html",
-          controller: "NavegarController",
-        })
-        .when("/backup", {
-          templateUrl: "/android_asset/www/public/backup.html",
-          controller: "BackupController",
-        })
-        .when("/sobre", {
-          templateUrl: "/android_asset/www/public/sobre.html",
-          controller: "NavegarController",
-        })
-        .otherwise({
-          redirectTo: "/",
-        });
-    } else {
-      /* Desenvolvimento */
-      $routeProvider
-        .when("/", {
-          templateUrl: "/public/home.html",
-          controller: "NavegarController",
-        })
-        .when("/despesas", {
-          templateUrl: "/public/despesas.html",
-          controller: "NavegarController",
-        })
-        .when("/entrada", {
-          templateUrl: "/public/entrada.html",
-          controller: "NavegarController",
-        })
-        .when("/visualizar", {
-          templateUrl: "/public/visualiza.html",
-          controller: "NavegarController",
-        })
-        .when("/relatorio", {
-          templateUrl: "/public/relatorio.html",
-          controller: "NavegarController",
-        })
-        .when("/informacoes", {
-          templateUrl: "/public/informacoes.html",
-          controller: "NavegarController",
-        })
-        .when("/sobre", {
-          templateUrl: "/public/sobre.html",
-          controller: "NavegarController",
-        })
-        .when("/backup", {
-          templateUrl: "/public/backup.html",
-          controller: "BackupController",
-        })
-        .otherwise({
-          redirectTo: "/",
-        });
+    const Directiory = { 
+      producao(path) {
+        return `/android_asset/www/public/${path}.html`
+      },
+      developer(path) {
+        return `/public/${path}.html`
+      }
     }
+    const AmbientSelect = ambient[ambientType];
+
+    const AmbientPath = Directiory[AmbientSelect()];
+
+    $routeProvider
+      .when("/", {
+        templateUrl: AmbientPath('home'),
+        controller: "NavegarController",
+      })
+      .when("/despesas", {
+        templateUrl: AmbientPath('despesas'),
+        controller: "NavegarController",
+      })
+      .when("/entrada", {
+        templateUrl: AmbientPath('entrada'),
+        controller: "NavegarController",
+      })
+      .when("/visualizar", {
+        templateUrl: AmbientPath('visualizar'),
+        controller: "NavegarController",
+      })
+      .when("/relatorio", {
+        templateUrl: AmbientPath('relatorio'),
+        controller: "NavegarController",
+      })
+      .when("/informacoes", {
+        templateUrl: AmbientPath('informacoes'),
+        controller: "NavegarController",
+      })
+      .when("/backup", {
+        templateUrl: AmbientPath('backup'),
+        controller: "BackupController",
+      })
+      .when("/sobre", {
+        templateUrl: AmbientPath('sobre'),
+        controller: "NavegarController",
+      })
+      .otherwise({
+        redirectTo: "/",
+      });
   });

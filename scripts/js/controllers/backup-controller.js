@@ -3,19 +3,17 @@ angular
   .controller("BackupController", function ($http, $location) {
     
     let totalTable;
-    const urlServerConnection = 'http://21.21.21.11:3333/connection';
-    const urlServer = 'http://21.21.21.11:3333/entrada';
-
+    const urlbase = 'http://21.21.21.11:3333';
 
     function Connection () {
       const conect = () => {   
-        return $http.post(urlServerConnection);
+        return $http.get(`${urlbase}/connection`);
       }
 
       conect().then((res)=>{
         if(res.status == 201){
           ResponseConnection(true); 
-          console.log(res.data)
+          //console.log(res.data)
         }
       }).catch((err) => {
        //alert("Error: Falha na conexão server!")
@@ -25,25 +23,27 @@ angular
     }
 
     const ResponseConnection = (conn) => {
-      console.log(conn);
+      //console.log(conn);
       if(!conn){
         alert("Error: Falha na conexão server!")
         $location.path('/home')
         return;
       }
+      const urlEntrada = `${urlbase}/entrada`;
+
       const Components = {
         TbDespesas(data) { 
-          return $http.post(urlServer, {
+          return $http.post(urlEntrada, {
             Despesas: data
           });
         },
         TbDespesasStatus(data) {
-          return $http.post(urlServer, {
+          return $http.post(urlEntrada, {
             DespesasStatus: data
           })
         },
         TbEntradas(data) {
-          return $http.post(urlServer, {
+          return $http.post(urlEntrada, {
             Entrada: data
           })
         }
