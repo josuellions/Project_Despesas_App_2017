@@ -2,7 +2,7 @@
 <widget	xmlns="http://www.w3.org/ns/widgets"
 								xmlns:gap="http://phonegap.com/ns/1.2"
 								id="sevensolutions.despesas.app"
-								version="1.0.6">
+								version="1.0.7">
   <name>Controle Despesas</name>
   <description>Controle despesas mensais.</description>
   <author	href="https://github.com/josuellions/Project_Despesas_App_2017.git"
