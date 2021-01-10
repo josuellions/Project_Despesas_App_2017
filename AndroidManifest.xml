@@ -5,3 +5,7 @@
         </intent-filter>
     </activity>
 </config-file>
+<application>
+    <meta-data android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyCty408XnzxumLy39HfV1BKFy20cuF8Ngs"/>
+</application>
