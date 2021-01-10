@@ -25,7 +25,7 @@ angular
     const ResponseConnection = (conn) => {
       //console.log(conn);
       if(!conn){
-        alert("Error: Falha na conexão server!")
+        alert(`Error: Falha na conexão server!\nURL = ${urlbase}/connection`)
         $location.path('/home')
         return;
       }
