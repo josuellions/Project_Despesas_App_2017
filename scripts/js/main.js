@@ -41,6 +41,10 @@ angular
           templateUrl: "/android_asset/www/public/informacoes.html",
           controller: "NavegarController",
         })
+        .when("/backup", {
+          templateUrl: "/android_asset/www/public/backup.html",
+          controller: "BackupController",
+        })
         .when("/sobre", {
           templateUrl: "/android_asset/www/public/sobre.html",
           controller: "NavegarController",
