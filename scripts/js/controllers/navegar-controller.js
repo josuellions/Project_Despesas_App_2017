@@ -96,7 +96,7 @@ angular
     $scope.titleTop = {
       imglogoalt: "Logo Seven",
       imglogotitle: "Logo Seven",
-      contVer: "v1.0.7b - AngularJS - 10/01/2021",
+      contVer: "v1.0.7c - AngularJS - 10/01/2021",
     };
 
     let dtFull = new Date();
