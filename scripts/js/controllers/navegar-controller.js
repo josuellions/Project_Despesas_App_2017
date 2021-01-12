@@ -62,7 +62,7 @@ angular
     $scope.titleTop = {
       imglogoalt: "Logo Seven",
       imglogotitle: "Logo Seven",
-      contVer: "v1.0.7g - AngularJS - 10/01/2021",
+      contVer: "v1.0.7h - AngularJS - 10/01/2021",
     };
 
     /* Formata data top */
