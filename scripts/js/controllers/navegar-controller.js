@@ -62,7 +62,7 @@ angular
     $scope.titleTop = {
       imglogoalt: "Logo Seven",
       imglogotitle: "Logo Seven",
-      contVer: "v1.0.7f - AngularJS - 10/01/2021",
+      contVer: "v1.0.7g - AngularJS - 10/01/2021",
     };
 
     /* Formata data top */
@@ -77,10 +77,13 @@ angular
       let recebDia = dtDia < 10 ? `0${dtDia}` : dtDia;
       recebMes = recebMes < 10 ? `0${recebMes}` : recebMes;
       */
-     
+
       let pageSelect = String(pageAtual)
-     
+      
+      //pageSelect = pageSelect == '/' ? 'home' : pageSelect;
+
       pageSelect = pageSelect.replace('/',' ').trim();
+
       const camposPage =  localPage[pageSelect];
        
       const itensCamposPage = camposPage();
@@ -149,7 +152,7 @@ angular
    const carregarPage = () => {
     let pageSelect = String($location.$$path); 
 
-    if(pageSelect == '/'){
+    if(pageSelect == '/' || pageSelect.length == 0){
       pageSelect = 'home';
     }
 
