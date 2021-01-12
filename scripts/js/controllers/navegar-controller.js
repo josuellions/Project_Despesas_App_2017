@@ -4,6 +4,11 @@ angular
     $scope.mensagem = "";
     $scope.passmes = false;
   
+    const dtFull = new Date();
+    let dtMes = dtFull.getMonth();
+    let dtAno = dtFull.getFullYear();
+    let dtDia = dtFull.getDate();
+
     const dtCustom = {
       0: "JAN",
       1: "FEV",
@@ -18,125 +23,87 @@ angular
       10: "NOV",
       11: "DEZ",
     };
-    const localPage = [
-      {
-        page: "/",
-        titulo: "Controle Despesas",
-        subtitulo: "MENU",
-        passmes: false,
-        dtFormat: null,
-        IdCampo: null,
-        IdInit: null,
+
+    const Campos = (page, titulo, subtitulo, passmes, dtFormat, IdCampo, IdInit) =>{
+      return {page,titulo, subtitulo, passmes, dtFormat, IdCampo, IdInit}
+    }
+
+    const localPage = {
+      home ()  {
+        return Campos('/home', 'Controle Despesas', 'MENU', false, null, null,null)
       },
-      {
-        page: "/entrada",
-        titulo: "Adicionar Entrada",
-        subtitulo: null,
-        passmes: true,
-        dtFormat: 1,
-        IdCampo: "dtEntrada",
-        IdInit: "entradaInit",
+      entrada () {
+        return Campos('/entrada', 'Adicionar Entrada', null, true, 1, 'dtEntrada', 'entradaInit')
       },
-      {
-        page: "/despesas",
-        titulo: "Adicionar Despesas",
-        subtitulo: null,
-        passmes: true,
-        dtFormat: 2,
-        IdCampo: "dtDespesa",
-        IdInit: "despesaInt",
+      despesas(){
+        return Campos('/despesas', 'Adicionar Despesas', null, true, 2, 'dtDespesa', 'despesaInt')
       },
-      {
-        page: "/visualizar",
-        titulo: "Visualizar Despesas",
-        subtitulo: null,
-        passmes: true,
-        dtFormat: 3,
-        IdCampo: null,
-        IdInit: "visualizarInit",
+      visualizar(){
+          return Campos('/visualizar', 'Visualizar Despesas', null, true, 3, null, 'visualizarInit')
       },
+      relatorio()
       {
-        page: "/relatorio",
-        titulo: "Relatório Mensal",
-        subtitulo: null,
-        passmes: true,
-        dtFormat: 3,
-        IdCampo: null,
-        IdInit: "relatorioInit",
+        return Campos('/relatorio', 'Relatório Mensal', null, true, 3, null, 'relatorioInit')
       },
+      informacoes()
       {
-        page: "/informacoes",
-        titulo: "Controle Despesas",
-        subtitulo: "Informações",
-        passmes: false,
-        dtFormat: null,
-        IdCampo: null,
-        IdInit: null,
+        return Campos('/informacoes', 'Controle Despesas', 'Informações', false, null, null, null)
       },
+      backup()
       {
-        page: "/backup",
-        titulo: "Controle Despesas",
-        subtitulo: "Backup",
-        passmes: false,
-        dtFormat: null,
-        IdCampo: null,
-        IdInit: null,
+        return Campos('/backup', 'Controle Despesas', 'Backup', false, null, null,null)
       },
+      sobre()
       {
-        page: "/sobre",
-        titulo: "Controle Despesas",
-        subtitulo: "Sobre",
-        passmes: false,
-        dtFormat: null,
-        IdCampo: null,
-        IdInit: null,
+        return Campos('/sobre', 'Controle Despesas', 'Sobre', false, null, null, null)
       },
-    ];
+    }
 
     $scope.titleTop = {
       imglogoalt: "Logo Seven",
       imglogotitle: "Logo Seven",
-      contVer: "v1.0.7e - AngularJS - 10/01/2021",
+      contVer: "v1.0.7f - AngularJS - 10/01/2021",
     };
 
-    let dtFull = new Date();
-    let dtMes = dtFull.getMonth();
-    let dtAno = dtFull.getFullYear();
-    let dtDia = dtFull.getDate();
-
     /* Formata data top */
-    let dtFormat = (passMes, pageAtual, passAno) => {
-      let recebDia = dtDia;
-      let recebMes = dtMes;
-      let dtFormatMes = null;
+    const dtFormat = (passMes, pageAtual, passAno) => {
 
-      dtFormatMes = dtCustom[dtMes] + "/" + passAno;
+
+      const dtFormatMes = dtCustom[dtMes] + "/" + passAno;
       $scope.subtitulo = dtFormatMes;
-      recebMes = dtMes + 1;
+      /*
+      let recebMes = dtMes + 1;
 
-      dtDia < 10 ? (recebDia = "0" + dtDia) : false;
-      recebMes < 10 ? (recebMes = "0" + recebMes) : false;
+      let recebDia = dtDia < 10 ? `0${dtDia}` : dtDia;
+      recebMes = recebMes < 10 ? `0${recebMes}` : recebMes;
+      */
+     
+      let pageSelect = String(pageAtual)
+     
+      pageSelect = pageSelect.replace('/',' ').trim();
+      const camposPage =  localPage[pageSelect];
+       
+      const itensCamposPage = camposPage();
 
-      localPage.forEach((item) => {
-        if (pageAtual == item.page) {
-          onInit(item.IdInit);
-          $("#" + item.IdCampo).val(dtAno + "-" + recebMes + "-" + recebDia);
-        }
-      });
+      $("#comparaDt").html(dtFormatMes);
 
-      setTimeout(() => {
-        $("#comparaDt").html(dtFormatMes);
-      }, 25);
+      $("#" + itensCamposPage.IdCampo).val();
+
+      if(itensCamposPage.dtFormat) {
+        onInit(itensCamposPage.IdInit);
+      }
     };
 
     /* Recebe o mês de referencia page */
     $scope.submit = function ($page) {
-      $page == 0 && dtMes >= 0 && dtMes <= 11 ? --dtMes : false;
-      $page == 1 && dtMes >= 0 && dtMes <= 11 ? ++dtMes : false;
-      $page == 0 && dtMes == -1 ? ((dtMes = 11), --dtAno) : false;
-      $page == 1 && dtMes == 12 ? ((dtMes = 0), ++dtAno) : false;
+      
+      $page == 0 && dtMes >= 0 && dtMes <= 11 ? --dtMes : null;
+      $page == 1 && dtMes >= 0 && dtMes <= 11 ? ++dtMes : null;
+      $page == 0 && dtMes == -1 ? ((dtMes = 11), --dtAno) : null;
+      $page == 1 && dtMes == 12 ? ((dtMes = 0), ++dtAno) : null;
 
       dtFormat(dtMes, $location.$$path, dtAno);
+
     };
 
     /* ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA */
@@ -179,36 +146,46 @@ angular
       }, 25);
     };
 
-    /* Carregar Views */
-    let carregarPage = () => {
-      localPage.forEach((item) => {
-        if ($location.$$path == item.page) {
-          $scope.titulo = item.titulo;
-          menuTop();
+   const carregarPage = () => {
+    let pageSelect = String($location.$$path); 
 
-          if (item.passmes) {
-            $scope.passmes = item.passmes;
-            dtFormat(null, item.page, dtAno);
-            selectCampoValor();
-            formatValor();
-            return;
-          } else {
-            $scope.subtitulo = item.subtitulo;
+    if(pageSelect == '/'){
+      pageSelect = 'home';
+    }
 
-            setTimeout(() => {
-              $("#dtReference").css("margin-left", "31%");
-            }, 25);
-          }
-          return;
-        }
-      });
-    };
+    pageSelect = pageSelect.replace('/',' ').trim();
 
-    $scope.dadosApp = {
-      nomeDeveloper: " 2017 - Josuel A. Lopes",
-      nomeEmpresa: " Seven Solutions Tecnologic",
-    };
+    const camposPage =  localPage[pageSelect];
+     
+    const itensCamposPage = camposPage();
 
-    carregarPage();
+    menuTop();
+    $scope.titulo = itensCamposPage.titulo;
     
-  });
+    if (itensCamposPage.passmes) {
+      $scope.passmes = itensCamposPage.passmes;
+      dtFormat("home", itensCamposPage.page, dtAno);
+      selectCampoValor();
+      formatValor();
+      //onInit(item.IdInit);
+      return;
+    } 
+
+    $scope.subtitulo = itensCamposPage.subtitulo;
+
+    setTimeout(() => {
+      const dtRerenceElement = $("#dtReference");
+      dtRerenceElement.css("margin-left", "31%");
+    }, 45);
+    
+    return;
+  }
+
+  $scope.dadosApp = {
+    nomeDeveloper: " 2017 - Josuel A. Lopes",
+    nomeEmpresa: " Seven Solutions Tecnologic",
+  };
+
+  carregarPage();
+    
+});

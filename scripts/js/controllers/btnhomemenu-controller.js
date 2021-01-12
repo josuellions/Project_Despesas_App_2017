@@ -3,34 +3,47 @@ angular
   .controller("BtnhomemenuController", function($scope, $location) {
     $scope.mensagem = "";
 
-    $scope.submit = function($page) {
-      if ($page == "entrada") {
+    const MenuPages = {
+      home() {
+        onInit(0)
+        $location.path("/")
+      },
+      entrada() {
+        //onInit('entradaInit')
         $location.path("/entrada");
-        setTimeout(() => {
-          onInit(2);
-        }, 110);
-      } else if ($page == "despesas") {
+      },
+      despesas() {
+        //onInit('despesaInt')
         $location.path("/despesas");
-        setTimeout(() => {
-          onInit(1);
-        }, 110);
-      } else if ($page == "visualizar") {
+      },
+      visualizar() {
+        //onInit('visualizarInit')
         $location.path("/visualizar");
-        setTimeout(() => {
-          onInit(3);
-        }, 110);
-      } else if ($page == "relatorio") {
+      },
+      relatorio() {
+        //onInit('relatorioInit')
         $location.path("/relatorio");
-      } else if ($page == "backup") {
+      },
+      backup() {
+        onInit(0)
         $location.path("/backup");
-        //controller: 'BackupController';
-        //ConfirmBackup();
-      } else if ($page == "informacoes") {
+      },
+      informacoes() {
+        onInit(0)
         $location.path("/informacoes");
-      } else if ($page == "sobre") {
+      },
+      sobre() {
+        onInit(0)
         $location.path("/sobre");
-      } else {
-        $location.path("/");
       }
+    }
+
+
+    $scope.submit = function($page) {
+
+      const selectView = MenuPages[$page]
+
+      selectView();
+
     };
   });

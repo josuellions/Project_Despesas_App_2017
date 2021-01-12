@@ -110,7 +110,7 @@ angular
 
         const action = Components[table]
 
-       return action(data);
+        return action(data);
 
       }
 

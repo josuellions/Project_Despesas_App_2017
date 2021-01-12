@@ -36,7 +36,7 @@ let transfId = null;
 let executarConsulta = true;
 
 /*OBJECT DADOS DA VIEW*/
-let postItens = {
+let postItens =  {
   id: 0,
   dtID: "",
   itemID: "",
@@ -52,7 +52,7 @@ let postItens = {
 let postDados = [];
 let postMensagem = "";
 let postQuery = "";
-let resultRowsQuery;
+let resultRowsQuery = null;
 
 /*OBJECT VIEW BD*/
 const baseOnInit = {
@@ -65,7 +65,7 @@ const baseOnInit = {
 
 //BANCO DADOS
 /*CRIAR PARAMETROS BANCO DADOS*/
-let initDB = () => {
+const initDB = () => {
   const shortName = "bdDespesas";
   const version = "1.0";
   const displayName = "BdGestorDespesas";
@@ -75,7 +75,7 @@ let initDB = () => {
 };
 
 /*CRIAR TABLES NO BANCO DADOS*/
-let createTables = () => {
+const createTables = () => {
   const criarTb = [
     "CREATE TABLE IF NOT EXISTS TbDespesas(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dtLanc VARCHAR NOT NULL, data VARCHAR NOT NULL, despesa VARCHAR NOT NULL, valor FLOAT NOT NULL);",
     "CREATE TABLE IF NOT EXISTS TbEntradas(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dtLanc VARCHAR NOT NULL, data VARCHAR NOT NULL, entrada VARCHAR NOT NULL, valor FLOAT NOT NULL);",
@@ -99,41 +99,51 @@ let localDB = null;
 let dtMesVerifica = null;
 
 /*CHECK VIEW E BANCO DADOS*/
-let onInit = (recebTipoView) => {
+
+const Views = {
+  entradaInit() {
+    return queryAndUpdateOverviewLancaEntrada(baseOnInit.entradaInit);
+  },
+  despesaInt() {
+    return queryAndUpdateOverviewLancaDespesas(baseOnInit.despesaInit);
+  },
+  visualizarInit () {
+    return queryAndUpdateOverviewVizualizarDespesas(baseOnInit.visualizarInit);
+  },
+  relatorioInit() {
+    return onloadRelatorio();
+  }
+}
+
+const onInit = async (recebTipoView) => {
+  
   const alertErroNavegador = "Erro: Seu navegador não permite banco de dados.";
 
   try {
+    if(parseInt(recebTipoView) == 0){
+      return
+    }
+
     !window.openDatabase
       ? alert(alertErroNavegador)
       : (initDB(), createTables()); //, verifStatus());
 
-    recebTipoView === baseOnInit.entradaInit
-      ? $(document).ready(() => {
-          queryAndUpdateOverviewLancaEntrada(baseOnInit.entradaInit);
-        })
-      : false;
-    recebTipoView === baseOnInit.despesaInit
-      ? $(document).ready(() => {
-          queryAndUpdateOverviewLancaDespesas(baseOnInit.despesaInit);
-        })
-      : false;
-    recebTipoView === baseOnInit.visualizarInit
-      ? $(document).ready(() => {
-          queryAndUpdateOverviewVizualizarDespesas(baseOnInit.visualizarInit);
-        })
-      : false;
-    recebTipoView === baseOnInit.relatorioInit
-      ? $(document).ready(() => {
-          onloadRelatorio();
-        })
-      : false;
+    const selectView = Views[recebTipoView];
+
+    await $(() => {
+      selectView()
+    })
+          
   } catch (tipoErro) {
     const alertErroVersaoBd = "Erro: Versão de banco de dados inválida.";
     const alertErroDesconhecido = "Erro: Erro desconhecido: ";
 
-    tipoErro == 2
-      ? alert(alertErroVersaoBd)
-      : alert(alertErroDesconhecido + tipoErro + ".");
+    if(tipoErro == 2){
+      alert(alertErroVersaoBd)
+      return;
+    }
+    
+    alert(alertErroDesconhecido + tipoErro + ".");
 
     return;
   }
@@ -143,7 +153,7 @@ let onInit = (recebTipoView) => {
 //onInit(this.comp);
 
 /*Executa Query Banco Dados*/
-let executaQueryBD = (getQuery, getDados, getMensagem, getstatus) => {
+const executaQueryBD = (getQuery, getDados, getMensagem, getstatus) => {
   try {
     localDB.transaction((transaction) => {
       transaction.executeSql(
@@ -160,75 +170,145 @@ let executaQueryBD = (getQuery, getDados, getMensagem, getstatus) => {
   }
 };
 
+const SetResultRowsQuery = (data) => {
+  resultRowsQuery =  data;
+}
+
 /*EXECUTA QUERY RETONA RESULT DO BANCO*/
-let executaQueryVisualizarBD = (getQuery, getDados, executarConsulta) => {
+const executaQueryVisualizarBD = async (getQuery, getDados, executarConsulta) => {
+  resultRowsQuery = null;
+
   if (executarConsulta) {
     try {
-      setTimeout(() => {
-        localDB.transaction(function (transaction) {
-          transaction.executeSql(
+      //setTimeout(() => {
+       await localDB.transaction(function (transaction) {
+            transaction.executeSql(
             getQuery,
             getDados,
-            function (transaction, results) {
-              resultRowsQuery = results.rows;
+            function  (_, results) {
               executarConsulta = false;
+              return SetResultRowsQuery(results.rows);
             },
-            function (transaction, error) {
+            function (_, error) {
               alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
             }
           );
+          return
         });
-      }, 15);
+      //}, 15);
     } catch (e) {
       alert("Error: SELECT não realizado " + e + ".");
     }
   }
+  return;
 };
 //END BANCO DADOS
 
 //FUNÇÕES TRATAMENTO DADOS
+
+const mesExtObj = {
+  JAN(){
+    return "01";
+  },
+  FEV(){
+    return "02";
+  },
+  MAR(){
+    return "03";
+  },
+  ABR(){
+    return "04";
+  },
+  MAI(){
+    return "05";
+  },
+  JUN(){
+    return "06";
+  },
+  JUL(){
+    return "07";
+  },
+  AGO(){
+    return "08";
+  },
+  SET(){
+    return "08";
+  },
+  OUT(){
+    return "10";
+  },
+  NOV(){
+    return "11";
+  },
+  DEZ(){
+    return "12";
+  }
+};
+
+const mesExt = [
+  "JAN",
+  "FEV",
+  "MAR",
+  "ABR",
+  "MAI",
+  "JUN",
+  "JUL",
+  "AGO",
+  "SET",
+  "OUT",
+  "NOV",
+  "DEZ",
+];
+
 /* DEFINIR DATA */
-let formataData = () => {
+const formataData = () => {
   let dt = new Date();
   let dia = dt.getDate();
   let mes = dt.getMonth();
   let ano = dt.getFullYear();
 
-  mes.toString().length < 10 ? (mes = +parseInt(mes + 1)) : false;
+  mes = parseInt(mes) < 11 ? `${+parseInt(mes + 1)}` : mes;
 
-  dia.toString().length == 1 ? (dia = "0" + dia) : false;
-  mes.toString().length == 1 ? (mes = "0" + mes) : false;
+  dia = parseInt(dia) < 10 ? `0${dia}` : dia;
+  mes = parseInt(mes) < 10 ? `0${mes}` : mes;
 
   return [ano, mes, dia].join("-");
 };
 
 /*FORMATA DATA CONSULTA BD */
-let dtConsultaBD = () => {
+const dtConsultaBD = () => {
   let dtConsulta = {
     inicio: "",
     fim: "",
   };
 
-  let basemesPag = document.getElementById("comparaDt").innerText.slice(0, 7);
-  let dtBaseAno = basemesPag.slice(0, 4);
-  let dtBaseMes = basemesPag.slice(5);
+  const DtBaseAtual = new Date();
+  const comparaDtbase = document.getElementById("comparaDt");
+  const DtBaseAnoMesAtual = [ DtBaseAtual.getFullYear(),mesExt[DtBaseAtual.getMonth()]].join('-');
 
-  let primeiroDiaMes = new Date(dtBaseAno, dtBaseMes).getDate();
-  let ultimoDiaMes = new Date(dtBaseAno, dtBaseMes, 0).getDate();
+  const basemesPag = comparaDtbase == null ? DtBaseAnoMesAtual : comparaDtbase.innerText.slice(0, 8);
+  const dtBaseAno = basemesPag.split('-')[0];
+  const dtBaseMesStr =  basemesPag.split('-')[1];
+  
+  const formatDtBaseMes = mesExtObj[dtBaseMesStr];
+  const dtBaseMes = formatDtBaseMes();
 
-  dtConsulta.inicio = [dtBaseAno, dtBaseMes, "0" + primeiroDiaMes].join("-");
+  const primeiroDiaMes = new Date(dtBaseAno, dtBaseMes + 1).getDate();
+  const ultimoDiaMes = new Date(dtBaseAno, dtBaseMes, 0).getDate();
+
+  dtConsulta.inicio = [dtBaseAno, dtBaseMes, `0${primeiroDiaMes}`].join("-");
   dtConsulta.fim = [dtBaseAno, dtBaseMes, ultimoDiaMes].join("-");
 
   return dtConsulta;
 };
 
 /*FORMATA DATA VIEWS */
-let fotmatDateView = (dtFull) => {
+const fotmatDateView = (dtFull) => {
   return [dtFull.slice(8, 10), dtFull.slice(5, 7)].join("/");
 };
 
 /*FORMATA VALOR*/
-let formataValor = (valor) => {
+const formataValor = (valor) => {
   let valorFormatado = null;
 
   let cont = valor.length > 6 && valor.length < 9 ? valor.length - 6 : false;
@@ -249,54 +329,45 @@ let formataValor = (valor) => {
 };
 
 /*FORMATA VALOR PARA SOMAR*/
-let convertSomarValor = (valor) => {
+const convertSomarValor = (valor) => {
   return parseFloat(valor.replace(",", "."));
 };
 
 /*FORMATA VALOR PARA VIEW*/
-let convertValorView = (valorView) => {
+const convertValorView = (valorView) => {
   return formataValor(valorView.toFixed(2).replace(".", ","));
 };
 
 /*CONVERTE CAMPO MÊS*/
-let convertMes = () => {
-  let retonardt = null;
-  let dtbasepag = $("#dtReference").text();
-  let dtBasepg = dtbasepag.substr(0, 3);
-  let dtBaseAno = dtbasepag.substr(4);
+const convertMes = () => {
+  let dtbasepag = $("#dtReference").html();
+  
+  if(dtbasepag == null){
+    const retonardt = formataData(); 
+    $("#comparaDt").html(retonardt);
+    return  retonardt; 
+  }
 
-  const mesExt = [
-    "JAN",
-    "FEV",
-    "MAR",
-    "ABR",
-    "MAI",
-    "JUN",
-    "JUL",
-    "AGO",
-    "SET",
-    "OUT",
-    "NOV",
-    "DEZ",
-  ];
+  const dtBaseMes = dtbasepag.split('/')[0];
+  const dtBaseAno = dtbasepag.split('/')[1];
+  
+  const retonardt = [dtBaseAno, mesExtObj[dtBaseMes],'01'].join('-');
+  $("#comparaDt").html(retonardt);
 
-  mesExt.forEach((campo, id) => {
-    id < 9 ? (id = "0" + ++id) : ++id;
-    dtBasepg == campo ? (retonardt = dtBaseAno + "-" + id + "-01") : false;
-  });
-  return $("#comparaDt").html(retonardt);
+  return retonardt;
 };
 
 /*BASE MÊS VIEW*/
-let basemesPag = () => {
+const basemesPag = () => {
   return $("#comparaDt").text();
 };
 
 /*FORMATAR DATA INSERT BASE MÊS ANTERIO*/
-let formatDataInsert = () => {
+const formatDataInsert = () => {
   convertMes();
 
   let dtConsultaAlt = dtConsultaBD();
+  
 
   let dtInicio = dtConsultaAlt.inicio;
   let dtFim = dtConsultaAlt.fim;
@@ -315,21 +386,21 @@ let formatDataInsert = () => {
   dtFim = [dtAno, dtMes, dtDiaFim].join("-");
 
   dtConsultaAlt = { inicio: dtInicio, fim: dtFim };
-
+  
   return dtConsultaAlt;
 };
 //END FUNÇÃO TRATAMENTO DADOS
 
 //FUNÇÕES LIMPAR DADOS VIEW
 /*LIMPAR CAMPOS */
-let limparCampos = (campos) => {
+const limparCampos = (campos) => {
   campos.forEach((campo) => {
     document.getElementById(campo).value = "";
   });
 };
 
 /*LIMPA DADOS DESPESAS*/
-let limparDadosDespesas = () => {
+const limparDadosDespesas = () => {
   const campos = ["dtDespesa", "selectDespesas", "valDespesa"];
   const postCampos = { edit: "btnDespEdit", salve: "btnDesp" }; // , statusPG: true };
 
@@ -338,7 +409,7 @@ let limparDadosDespesas = () => {
 };
 
 /*LIMPA DADOS DESPESAS UPDATE*/
-let limparDadosDespesasUpdate = () => {
+const limparDadosDespesasUpdate = () => {
   const campos = ["selectDespesas", "valDespesa"];
   const postCampos = { edit: "btnDespEdit", salve: "btnDesp" }; // , statusPG: true };
 
@@ -347,7 +418,7 @@ let limparDadosDespesasUpdate = () => {
 };
 
 /*LIMPA DADOS ENTRADA*/
-let limparDadosEntrada = () => {
+const limparDadosEntrada = () => {
   const campos = ["dtEntrada", "textEntrada", "valEntrada"];
   const postCampos = { edit: "btnEntEdit", salve: "btnEntrada" }; //, statusPG: false };
 
@@ -356,7 +427,7 @@ let limparDadosEntrada = () => {
 };
 
 /*LIMPA DADOS ENTRADA UPDATE*/
-let limparDadosEntradaUpdate = () => {
+const limparDadosEntradaUpdate = () => {
   const campos = ["textEntrada", "valEntrada"];
   const postCampos = { edit: "btnEntEdit", salve: "btnEntrada" }; //, statusPG: false };
 
@@ -365,19 +436,19 @@ let limparDadosEntradaUpdate = () => {
 };
 
 /*LIMPAR DADOS TELA VISUALIZAR */
-let limparVisualizarDados = (campos) => {
+const limparVisualizarDados = (campos) => {
   campos.forEach((campo) => {
     document.getElementById(campo).innerText = "0,00";
   });
 };
 
 /*LIMPAR TABLE TELA VISUALIZAR*/
-let limparTableVisualizar = (campoID) => {
-  $("#" + campoID).remove();
+const limparTableVisualizar = (campoID) => {
+  $(`#${campoID}`).remove();
 };
 
 /*LIMPAR DADOS RELATÓRIO*/
-let limparDadosViewRelatorio = () => {
+const limparDadosViewRelatorio = () => {
   $("#valorTotalEnt").html("R$ 0,00").css({ "font-size": "1rem" });
   $("#progressTotal").html("0%").css({ width: "0%" });
   limparTableVisualizar("sectionRelatorioGrupo > br");
@@ -387,7 +458,7 @@ let limparDadosViewRelatorio = () => {
 
 //FUNÇÕES DE RENDERIZAÇÃO DAS VIEWS
 /*FUNÇÃO EXIBIR DADOS TELA VISUALIZAR*/
-let exibirDadosVisualizar = (campoID, dtFormt, rowDados, rowValor) => {
+const exibirDadosVisualizar = (campoID, dtFormt, rowDados, rowValor) => {
   $("#" + campoID).append(
     "<tr>" +
       "<td>" +
@@ -405,21 +476,21 @@ let exibirDadosVisualizar = (campoID, dtFormt, rowDados, rowValor) => {
 };
 
 //SALVAR STATUS DESPESAS
-let onStatusDesp = (id) => {
-  let verif = $("#checkbox" + id).prop("checked");
+const onStatusDesp = (id) => {
+  const verif = $("#checkbox" + id).prop("checked");
   // verif ? verifStatus(id, 1, true) : verifStatus(id, 0, true)
   verif ? onUpdateStatusDesp(id, 1) : onUpdateStatusDesp(id, 0);
 };
 
 /*ALTERAR TEXTO VIEW*/
-let customTextView = (getCampo, getText) => {
+const customTextView = (getCampo, getText) => {
   getCampo.forEach((campo) => {
     $("#" + campo).html(getText);
   });
 };
 
 /*EXIBIR DADOS DO BANCO NA VIEW LANÇAMENTOS */
-let exibirDadosLancamentosView = (
+const exibirDadosLancamentosView = (
   campoID,
   dadosID,
   dtFormat,
@@ -483,7 +554,7 @@ let exibirDadosLancamentosView = (
   }
 };
 
-let exibirDadosRelatorioView = (
+const exibirDadosRelatorioView = (
   getDesp,
   getValor,
   getColor,
@@ -521,8 +592,8 @@ let exibirDadosRelatorioView = (
 
 //FUNÇÕES APLICAR CSS VIEWS
 /*APLICA CSS SELECT CAMPO DADOS PARA UPDATE*/
-let customCssViewUpdate = (getDados, getBtn, getBtnEdit, getBtnRemover) => {
-  getDados.forEach((campo) => {
+const customCssViewUpdate = (getDadosCSS, getBtn, getBtnEdit, getBtnRemover) => {
+  getDadosCSS.forEach((campo) => {
     $("#" + campo.id)
       .val(campo.dado)
       .css({ "border-color": "#337ab7", color: "#337ab7" });
@@ -533,7 +604,7 @@ let customCssViewUpdate = (getDados, getBtn, getBtnEdit, getBtnRemover) => {
 };
 
 //APLICA Css icon REMOVER OU PAGAR
-let customCssViewPgRemover = (getCampoID, getStatus) => {
+const customCssViewPgRemover = (getCampoID, getStatus) => {
   if (getStatus) {
     $(".despPG").html("Del");
     $(".toggle").css({ display: "none" });
@@ -541,17 +612,18 @@ let customCssViewPgRemover = (getCampoID, getStatus) => {
     $("#" + getCampoID.salve).css("display", "none");
     $("#" + getCampoID.edit).css({ display: "inline-block", color: "#337ab7" });
     return;
-  } else {
+  } 
+
     $(".despPG").html("Pago");
     $(".toggle").css({ display: "block" });
     $("#tbDespesas > tbody > tr > td > a").attr("hidden", true);
     $("#" + getCampoID.edit).css({ display: "none" });
     $("#" + getCampoID.salve).css({ display: "inline" });
-  }
+  
 };
 
 /*CUSTOM Css VIEW*/
-let customCssView = (getCampo, getText, getCss, getParam) => {
+const customCssView = (getCampo, getText, getCss, getParam) => {
   getCampo.forEach((campo) => {
     $("#" + campo)
       .html(getText)
@@ -560,15 +632,14 @@ let customCssView = (getCampo, getText, getCss, getParam) => {
 };
 
 /*CUSTOM Css VIEW APPEND*/
-let customCssViewAppend = (getCampo, getParam, removeParam) => {
-  console.log(getCampo);
+const customCssViewAppend = (getCampo, getParam, removeParam) => {
   getCampo.forEach((campo) => {
     $("#" + campo).removeClass(removeParam);
     $("#" + campo).addClass(getParam);
   });
 };
 
-let customCssAddClass = (id, classCss) => {
+const customCssAddClass = (id, classCss) => {
   $("#" + id).addClass(classCss);
 };
 //END FUNÇÕES CSS
@@ -577,7 +648,8 @@ let customCssAddClass = (id, classCss) => {
 
 /*REMOVER DADOS SEM RENDERIZAR VIEW*/
 let somaValorView = 0.0;
-let somarTotalValor = (tipoView) => {
+const somarTotalValor = async (tipoView) => {
+  postQuery = '';
   convertMes();
 
   let dtConsulta = dtConsultaBD();
@@ -587,19 +659,26 @@ let somarTotalValor = (tipoView) => {
     ? (postQuery = queryAll.selectDespStatusDtValor)
     : (postQuery = queryAll.selectEntradaDtValor);
 
-  executaQueryVisualizarBD(postQuery, postDados, true);
-  setTimeout(() => {
+    
+    //setTimeout(() => {
+  const ExibirResultadoConsulta = () => { 
+    
+    executaQueryVisualizarBD(postQuery, postDados, true);
+    
     let resultConsulta = resultRowsQuery;
+    
     if (resultConsulta.length > 0) {
       $.each(resultConsulta, (id, row) => {
         somaValorView += convertSomarValor(row.valor);
       });
     }
-  }, 25);
+  }
+  //}, 25);
+  await ExibirResultadoConsulta();
 };
 
 /*UPDATE STATUS PAGO VIEW DESPESAS SALVA NO DADOS BANCO*/
-let onUpdateStatusDesp = (id, status) => {
+const onUpdateStatusDesp = (id, status) => {
   postDados = [status, id];
   postMensagem = "Erro: UPDATE não realizado. ";
   postQuery = queryAll.updateStatusDesp;
@@ -608,47 +687,47 @@ let onUpdateStatusDesp = (id, status) => {
 };
 
 /*REMOVE DADOS BANCO, TELA ADD DESPESAS*/
-let onDelete = (id) => {
+const onDelete = async (id) => {
   if (confirm("Salvar as alterações realizadas ")) {
-    customCssAddClass(id, "ng-leave-active");
-
+    await customCssAddClass(id, "ng-leave-active");
+    postQuery = '';
     postDados = [id];
     postMensagem = "Erro: Delete não realizado. ";
     postQuery = queryAll.deleteDesp;
 
-    executaQueryBD(postQuery, postDados, postMensagem, false); // onInit(baseOnInit.despesaInit))
-    somarTotalValor(true);
+    await executaQueryBD(postQuery, postDados, postMensagem, false); // onInit(baseOnInit.despesaInit))
+    await somarTotalValor(true);
 
-    setTimeout(() => {
-      limparTableVisualizar(id);
-      customTextView(["somaDespesas"], convertValorView(somaValorView));
-    }, 1600);
+    //setTimeout(() => {
+      await limparTableVisualizar(id);
+      await customTextView(["somaDespesas"], convertValorView(somaValorView));
+    //}, 1600);
   }
-  limparDadosDespesasUpdate();
+  await limparDadosDespesasUpdate();
 };
 
 /*REMOVER DADOS DO BANCO TELA ENTRADA DE CAIXA*/
-let onDeleteEntrada = (id) => {
+const onDeleteEntrada = async (id) => {
   if (confirm("Salvar as alterações realizadas ")) {
-    customCssAddClass(id, "ng-leave-active");
-
+    await customCssAddClass(id, "ng-leave-active");
+    postQuery = '';
     postDados = [id];
     postMensagem = "Erro: Delete não realizado. ";
     postQuery = queryAll.deleteEntrada;
 
-    executaQueryBD(postQuery, postDados, postMensagem, false); //onInit(baseOnInit.entradaInit))
-    somarTotalValor(false);
+    await executaQueryBD(postQuery, postDados, postMensagem, false); //onInit(baseOnInit.entradaInit))
+    await somarTotalValor(false);
 
-    setTimeout(() => {
-      limparTableVisualizar(id);
-      customTextView(["somaEntrada"], convertValorView(somaValorView));
-    }, 1600);
+    //setTimeout(() => {
+     await limparTableVisualizar(id);
+     await customTextView(["somaEntrada"], convertValorView(somaValorView));
+    //}, 1600);
   }
-  limparDadosEntradaUpdate();
+  await limparDadosEntradaUpdate();
 };
 
 /*EXCULTA QUERY BANCO DADOS DADOS RECEBIDO DA VIEW*/
-let executaQueryViewBD = (getItens) => {
+const executaQueryViewBD = async (getItens) => {
   //, getStatus, getMensagem, getMensagemDB, getQuery ) => {
 
   let itens = getItens;
@@ -666,92 +745,98 @@ let executaQueryViewBD = (getItens) => {
     getItens.status ? postDados.push(0) : false;
     getItens.id ? postDados.push(itens.id) : false;
 
-    executaQueryBD(itens.query, postDados, itens.msgBd, false);
+    await executaQueryBD(itens.query, postDados, itens.msgBd, false);
 
-    customCssAddClass(itens.id, "ng-leave-active");
+    await customCssAddClass(itens.id, "ng-leave-active");
 
-    setTimeout(() => {
-      onInit(itens.tipoView);
-      limparTableVisualizar(itens.id);
-      limparCampos([itens.itemID, itens.valID]);
-      $("#" + itens.dtID)
+    //setTimeout(() => {
+     await onInit(itens.tipoView);
+     await limparTableVisualizar(itens.id);
+     await limparCampos([itens.itemID, itens.valID]);
+     await $("#" + itens.dtID)
         .val(formataData())
         .focus();
-    }, 1200);
+    //}, 1200);
   }
 };
 
 /*SALVAR DADOS NO BANCO, TELA ADD DESPESAS */
-let onCreate = () => {
-  postItens.dtID = "dtDespesa";
-  postItens.itemID = "selectDespesas";
-  postItens.valID = "valDespesa";
-  postItens.msgCampo =
-    " Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios! ";
-  postItens.msgBd = "Erro: Inserção não realizada. ";
-  postItens.status = true;
-  postItens.query = queryAll.insertDespStatus;
-  postItens.tipoView = baseOnInit.despesaInit;
+const onCreate = async () => {
+  const postNewItem = postItens;
 
-  executaQueryViewBD(postItens);
+  postNewItem.dtID = "dtDespesa";
+  postNewItem.itemID = "selectDespesas";
+  postNewItem.valID = "valDespesa";
+  postNewItem.msgCampo = " Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios! ";
+  postNewItem.msgBd = "Erro: Inserção não realizada. ";
+  postNewItem.status = true;
+  postNewItem.query = queryAll.insertDespStatus;
+  postNewItem.tipoView = baseOnInit.despesaInit;
+
+  await executaQueryViewBD(postNewItem);
 };
 
 /*SALVA DADOS NO BANCO TELA ENTRADA CAIXA*/
-let onCreateEntrada = () => {
-  postItens.dtID = "dtEntrada";
-  postItens.itemID = "textEntrada";
-  postItens.valID = "valEntrada";
-  postItens.msgCampo =
-    "Erro: 'Data', 'Entrada' e 'Valor' são campos obrigatórios! ";
-  postItens.status = false;
-  postItens.msgBd = "Erro: Inserção não realizada. ";
-  postItens.query = queryAll.insertEntrada;
-  postItens.tipoView = baseOnInit.entradaInit;
+const onCreateEntrada = async () => {
+  const postItensNew = postItens;
 
-  executaQueryViewBD(postItens);
+  postItensNew.dtID = "dtEntrada";
+  postItensNew.itemID = "textEntrada";
+  postItensNew.valID = "valEntrada";
+  postItensNew.msgCampo =
+    "Erro: 'Data', 'Entrada' e 'Valor' são campos obrigatórios! ";
+  postItensNew.status = false;
+  postItensNew.msgBd = "Erro: Inserção não realizada. ";
+  postItensNew.query = queryAll.insertEntrada;
+  postItensNew.tipoView = baseOnInit.entradaInit;
+
+  await executaQueryViewBD(postItensNew);
 };
 
 /*CONSULTA BANCO DADOS TELA VISUALIZAR*/
-let queryAndUpdateOverviewVizualizarDespesas = () => {
+const queryAndUpdateOverviewVizualizarDespesas = () => {
   //CONSULTA BANCO DADOS DESPESAS PARA VIEW VISUALIZAR
   setTimeout(() => {
     convertMes();
+    postQuery = '';
 
     const camposTotal = ["saldoGeral", "simboloMoeda", "calculosomaGeral"];
+
     const camposDesp = [
       "totalDespesas",
       "calculototalDespesas",
       "totalDespesas",
     ];
+
     const camposEntrada = [
       "totalEntrada",
       "calculototalEntrada",
       "calculosomaGeral",
     ];
-
-    let somaEntrada = 0.0;
-    let somaResult = 0.0;
-    let dtConsulta = dtConsultaBD();
-    let somaDespesaVisualizar = 0.0;
-
+    
     limparVisualizarDados(camposDesp);
     limparVisualizarDados(camposEntrada);
 
     limparTableVisualizar("visualizaDesp  > tr");
     limparTableVisualizar("visualizaEntrada > tr");
 
+    let somaDespesaVisualizar = 0.00;
+    const dtConsulta = dtConsultaBD();
     postDados = [dtConsulta.inicio, dtConsulta.fim];
+    
     postQuery = queryAll.selectDespStatusDt;
-
-    /*Consulta e Retorna dados do Banco*/
     executaQueryVisualizarBD(postQuery, postDados, true);
-
+    
     /*Exibir dados Despesas na View*/
     setTimeout(() => {
-      const resultConsultaBD = resultRowsQuery;
+      //const ExibirDespesas = () =>{
+      
+      /*Consulta e Retorna dados do Banco*/
+      const resultConsultaBDDespesas = resultRowsQuery;
 
-      if (resultConsultaBD.length > 0) {
-        $.each(resultConsultaBD, (id, row) => {
+      if ((0) < resultConsultaBDDespesas.length) {
+        const dt = new Date()
+        $.each(resultConsultaBDDespesas, (id, row) => {
           somaDespesaVisualizar += convertSomarValor(row.valor);
           exibirDadosVisualizar(
             "visualizaDesp",
@@ -767,18 +852,23 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
           );
         });
       }
-    }, 50);
+    }, 5); 
 
     //CONSULTA BANCO DADOS ENTRADA PARA VIEW VISUALIZAR
     setTimeout(() => {
+    //const ExibirEntrada = () => {
+      let somaEntrada = 0.00;
+      let somaResult = 0.00;
+
+      postQuery = '';
       postQuery = queryAll.selectEntradaDt;
       executaQueryVisualizarBD(postQuery, postDados, true);
-
+    
       setTimeout(() => {
-        const resultConsultaBD = resultRowsQuery;
+        const resultConsultaEntrada = resultRowsQuery;
 
-        if (resultConsultaBD.length > 0) {
-          $.each(resultConsultaBD, (id, row) => {
+        if ((0) < resultConsultaEntrada.length) {
+          $.each(resultConsultaEntrada, (id, row) => {
             somaEntrada += convertSomarValor(row.valor);
             somaResult = convertValorView(somaEntrada - somaDespesaVisualizar);
 
@@ -815,86 +905,91 @@ let queryAndUpdateOverviewVizualizarDespesas = () => {
             );
           }
         }
-      }, 100);
-    }, 75);
-  }, 25);
+      }, 25);
+    }, 30);
+  }, 60);
 };
 
 /*CONFIRMA COPY MÊS ANTERIOR*/
-let confirmarCopyMesAnterior = (getQuery, getTipoView) => {
-  setTimeout(() => {
+const confirmarCopyMesAnterior = (getQuery, getTipoView) => {
+  //setTimeout(() => {
+    postQuery = '';
     convertMes();
 
-    const dtConsulta = formatDataInsert(); // dtConsultaBD();
+    const dtConsulta =  formatDataInsert(); // dtConsultaBD();
 
     postDados = [dtConsulta.inicio, dtConsulta.fim];
     getTipoView
-      ? (postQuery = postQuery = queryAll.selectDespStatusDt)
+      ? (postQuery = queryAll.selectDespStatusDt) //? (postQuery = postQuery = queryAll.selectDespStatusDt)
       : (postQuery = queryAll.selectEntradaDt);
 
     executaQueryVisualizarBD(postQuery, postDados, true);
 
     setTimeout(() => {
-      const resultConsulta = resultRowsQuery;
-      if (resultConsulta.length > 0) {
-        confirm("Adicionar laçamentos com base no mês anterior?")
-          ? insertMesBaseAnterior(basemesPag(), getQuery, getTipoView)
-          : false;
+      const ExibirResult = () =>{
+        if ((null) != resultRowsQuery && (0) < resultRowsQuery.length ) {
+          confirm(`Adicionar laçamentos com base no mês anterior, "${dtConsulta.inicio}"?`)
+            ? insertMesBaseAnterior(basemesPag(), getQuery, getTipoView)
+            : false;
+        }
       }
-    }, 50);
-  }, 25);
+      ExibirResult();
+    }, 60);
+
+  //}, 25);
 };
 
 /*CONSULTA BANCO DADOS, CRIA NOVAS LINHAS NA TABELA, VIEW ADD DESPESAS.*/
-let queryAndUpdateOverviewLancaDespesas = () => {
-  setTimeout(() => {
-    convertMes();
+const queryAndUpdateOverviewLancaDespesas = async () => {
 
-    let somaDespesa = 0.0;
-    const dtConsulta = dtConsultaBD();
+  postQuery = '';
+  let somaDespesa = 0.00;
 
-    postDados = [dtConsulta.inicio, dtConsulta.fim];
-    postQuery = queryAll.selectDespStatusDt;
+  convertMes()
+  limparTableVisualizar("tbDespesas > tbody > tr");
+  
+  const dtConsulta = dtConsultaBD();
+  
+  postDados = [dtConsulta.inicio, dtConsulta.fim];
+  postQuery = queryAll.selectDespStatusDt;
+  
+  executaQueryVisualizarBD(postQuery, postDados, true)
 
-    executaQueryVisualizarBD(postQuery, postDados, true);
+  setTimeout(()=>{
+    if ((null) == resultRowsQuery || (0) == resultRowsQuery.length) {
+      $("#somaDespesas").html(convertValorView(somaDespesa));
+      confirmarCopyMesAnterior(postQuery, true);
+      return;
+    }
 
-    setTimeout(() => {
-      limparTableVisualizar("tbDespesas > tbody > tr");
-
-      const resulConsulta = resultRowsQuery;
-      if (resulConsulta.length > 0) {
-        $.each(resulConsulta, (id, row) => {
-          exibirDadosLancamentosView(
-            "tbDespesas",
-            row.id,
-            fotmatDateView(row.data),
-            row.despesa,
-            formataValor(row.valor),
-            "onStatusDesp",
-            "onUpdateDesp",
-            "onDelete"
-          );
-          row.statusDesp == 1
-            ? $("#checkbox" + row.id).prop({ checked: true })
-            : $("#checkbox" + row.id).prop("checked", false);
-          somaDespesa += convertSomarValor(row.valor);
-        });
-        $("#somaDespesas").html(convertValorView(somaDespesa));
-
-        return;
-      } else {
-        confirmarCopyMesAnterior(postQuery, true);
-      }
-    }, 50);
-  }, 25);
+    $.each(resultRowsQuery, (id, row) => {
+      exibirDadosLancamentosView(
+        "tbDespesas",
+        row.id,
+        fotmatDateView(row.data),
+        row.despesa,
+        formataValor(row.valor),
+        "onStatusDesp",
+        "onUpdateDesp",
+        "onDelete"
+      );
+      row.statusDesp == 1
+        ? $("#checkbox" + row.id).prop({ checked: true })
+        : $("#checkbox" + row.id).prop("checked", false);
+      somaDespesa += convertSomarValor(row.valor);
+    });
+    $("#somaDespesas").html(convertValorView(somaDespesa));
+    //return resultRowsQuery;
+  }, 50);
 };
 
 /*EXIBIR DADOS NOS CAMPO PARA UPDATE VIEW DESPESAS*/
-let onUpdateDesp = (id) => {
+const onUpdateDesp =  (id) => {
   convertMes();
-
+  postQuery = '';
   postDados = [id];
   postQuery = queryAll.selectDespPorId;
+  
   executaQueryVisualizarBD(postQuery, postDados, true);
 
   setTimeout(() => {
@@ -911,70 +1006,73 @@ let onUpdateDesp = (id) => {
 };
 
 /*UPDATE NO DADOS BANCO, VIEW ADD DESPESAS*/
-let onUpdateDespBd = () => {
+const onUpdateDespBd = () => {
   if (confirm("Salvar as alterações realizadas ")) {
-    postItens.id = transfId;
-    postItens.dtID = "dtDespesa";
-    postItens.itemID = "selectDespesas";
-    postItens.valID = "valDespesa";
-    postItens.msgCampo =
-      " Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios! ";
-    postItens.msgBd = "Erro: Falha ao atualizar dados! ";
-    postItens.status = true;
-    postItens.query = queryAll.updateDespStatus;
-    postItens.tipoView = baseOnInit.despesaInit;
+    const postNewItem = postItens;
 
-    executaQueryViewBD(postItens);
+    postNewItem.id = transfId;
+    postNewItem.dtID = "dtDespesa";
+    postNewItem.itemID = "selectDespesas";
+    postNewItem.valID = "valDespesa";
+    postNewItem.msgCampo =
+      " Erro: 'Data', 'Despesa' e 'Valor' são campos obrigatórios! ";
+    postNewItem.msgBd = "Erro: Falha ao atualizar dados! ";
+    postNewItem.status = true;
+    postNewItem.query = queryAll.updateDespStatus;
+    postNewItem.tipoView = baseOnInit.despesaInit;
+
+    executaQueryViewBD(postNewItem);
     return;
   }
   limparDadosDespesasUpdate();
 };
 /*CONSULTA BANCO DADOS, EXIBI DADOS VIEW ENTRADA CAIXA.*/
-let queryAndUpdateOverviewLancaEntrada = () => {
+const queryAndUpdateOverviewLancaEntrada = async () => {
+
+  postQuery = '';
+  let somaEntrada = 0.00;
+  
+  convertMes();
+  limparTableVisualizar("tbEntrada > tbody > tr");
+
+  const dtConsulta = dtConsultaBD();
+
+  postDados = [dtConsulta.inicio, dtConsulta.fim];
+  postQuery = queryAll.selectEntradaDt;
+
+  executaQueryVisualizarBD(postQuery, postDados, true);
+
   setTimeout(() => {
-    convertMes();
+    if ((null) == resultRowsQuery || (0) == resultRowsQuery.length) {
+      $("#somaEntrada").html(convertValorView(somaEntrada));
+      confirmarCopyMesAnterior(postQuery, true);
+      return;
+    }
+    
+    $.each(resultRowsQuery, (id, row) => {
+      exibirDadosLancamentosView(
+        "tbEntrada",
+        row.id,
+        fotmatDateView(row.data),
+        row.entrada,
+        formataValor(row.valor),
+        "onStatusEntrada",
+        "onUpdateEnt",
+        "onDeleteEntrada"
+      );
+      somaEntrada += convertSomarValor(row.valor);
+    });
 
-    let somaEntrada = 0.0;
-    const dtConsulta = dtConsultaBD();
+    $("#somaEntrada").html(convertValorView(somaEntrada));
 
-    postDados = [dtConsulta.inicio, dtConsulta.fim];
-    postQuery = queryAll.selectEntradaDt;
-
-    executaQueryVisualizarBD(postQuery, postDados, true);
-
-    setTimeout(() => {
-      limparTableVisualizar("tbEntrada > tbody > tr");
-
-      const resultConsultaBD = resultRowsQuery;
-      if (resultConsultaBD.length > 0) {
-        $.each(resultRowsQuery, (id, row) => {
-          exibirDadosLancamentosView(
-            "tbEntrada",
-            row.id,
-            fotmatDateView(row.data),
-            row.entrada,
-            formataValor(row.valor),
-            "onStatusEntrada",
-            "onUpdateEnt",
-            "onDeleteEntrada"
-          );
-          somaEntrada += convertSomarValor(row.valor);
-        });
-
-        $("#somaEntrada").html(convertValorView(somaEntrada));
-
-        return;
-      } else {
-        confirmarCopyMesAnterior(postQuery, false);
-      }
-    }, 50);
-  }, 25);
+  }, 50);
 };
 
 /*EXIBIR DADOS CAMPO PARA UPDATE VIEW ENTRADA DE CAIXA*/
-let onUpdateEnt = (id) => {
+const onUpdateEnt =  (id) => {
   convertMes();
 
+  postQuery = '';
   postDados = [id];
   postQuery = queryAll.selectEntradaPorId;
 
@@ -994,20 +1092,22 @@ let onUpdateEnt = (id) => {
 };
 
 /*UPDATE SALVAR NO DADOS BANCO, TELA ENTRADA RECEITA CAIXA */
-let onUpdateEntBd = () => {
+const onUpdateEntBd = () => {
   if (confirm("Salvar as alterações realizadas ")) {
-    postItens.id = transfId;
-    postItens.dtID = "dtEntrada";
-    postItens.itemID = "textEntrada";
-    postItens.valID = "valEntrada";
-    postItens.msgCampo =
+    const postNewItem = postItens;
+    postNewItem.id = transfId;
+    postNewItem.dtID = "dtEntrada";
+    postNewItem.itemID = "textEntrada";
+    postNewItem.valID = "valEntrada";
+    postNewItem.msgCampo =
       " Erro: 'Data', 'Receita Caixa' e 'Valor' são campos obrigatórios! ";
-    postItens.msgBd = "Erro: Falha ao atualizar dados! ";
-    postItens.status = false;
-    postItens.query = queryAll.updateEntrada;
-    postItens.tipoView = baseOnInit.entradaInit;
+    postNewItem.msgBd = "Erro: Falha ao atualizar dados! ";
+    postNewItem.status = false;
+    postNewItem.query = queryAll.updateEntrada;
+    postNewItem.tipoView = baseOnInit.entradaInit;
 
-    executaQueryViewBD(postItens);
+    executaQueryViewBD(postNewItem);
+
     return;
   }
   limparDadosEntradaUpdate();
@@ -1023,17 +1123,18 @@ errorHandler = function (transaction, error) {
 nullDataHandler = function (transaction, results) {};
 
 /*SELECT E INSERT DADOS NO BANCO COM BASE MÊS ANTERIOR*/
-let insertMesBaseAnterior = (dados, getQuery, getView) => {
+const insertMesBaseAnterior = (dados, getQuery, getView) => {
   setTimeout(() => {
-    convertMes();
+     convertMes();
 
     let dtConsulta = formatDataInsert();
-
+    
+    postQuery = '';
     postMensagem = "Erro: Inserção não realizada. ";
     postDados = [dtConsulta.inicio, dtConsulta.fim];
     postQuery = getQuery;
 
-    executaQueryVisualizarBD(postQuery, postDados, true);
+     executaQueryVisualizarBD(postQuery, postDados, true);
 
     getView
       ? (postQuery = queryAll.insertDespStatus)
@@ -1065,13 +1166,15 @@ let insertMesBaseAnterior = (dados, getQuery, getView) => {
       }
     }, 100);
   }, 25);
-}; //-  REFATORANDO 09 - 12 - 2018 - PAROU AQUI
+}; 
 
-/*RELATÓRIO GRAFICO */ let onloadRelatorio = () => {
+/*RELATÓRIO GRAFICO */
+const onloadRelatorio = () => {
+  
+  convertMes();
   limparDadosViewRelatorio();
 
   setTimeout(() => {
-    convertMes();
 
     let somaValor = 0;
     let porcentagem = 0;
@@ -1102,19 +1205,21 @@ let insertMesBaseAnterior = (dados, getQuery, getView) => {
       }
     };
 
-    let verifProcentagem = (dados) => {
+    const verifProcentagem = (dados) => {
       return dados != 0 ? true : false;
     };
 
-    let calculaPorcentgem = (valor) => {
+    const calculaPorcentgem = (valor) => {
       return parseFloat(valor) * (100 / somaValor);
     };
 
+    postQuery = '';
     postDados = [dtConsulta.inicio, dtConsulta.fim];
     postQuery = {
       queryEntrada: queryAll.selectEntradaDt,
       queryDesp: queryAll.selectDespStatusDt,
     };
+    
     executaQueryVisualizarBD(postQuery.queryEntrada, postDados, true);
 
     setTimeout(() => {
@@ -1126,11 +1231,12 @@ let insertMesBaseAnterior = (dados, getQuery, getView) => {
       }
     }, 50);
 
-    setTimeout(() => {
+    setTimeout(() => { 
       executaQueryVisualizarBD(postQuery.queryDesp, postDados, true);
 
       setTimeout(() => {
-        const resultConsultaBD = resultRowsQuery;
+      const resultConsultaBD = resultRowsQuery;
+
         if (resultConsultaBD.length > 0) {
           $.each(resultConsultaBD, (id, row) => {
             porcentagemDesp = calculaPorcentgem(row.valor);
@@ -1161,208 +1267,6 @@ let insertMesBaseAnterior = (dados, getQuery, getView) => {
           });
         }
       }, 100);
-    }, 75);
+    },75);
   }, 25);
 }; //1222
-
-/*Backup Banco Dados Web-SQL*/
-let resultTables = {
-  TbDespesas: {},
-  TbDespesasStatus: {},
-  TbEntradas: {},
-};
-
-const ResultBackup = (table, dados) => {
-  // setTimeout(() => {
-  resultTables[table] = dados;
-  //resultTables = [...resultTables];
-
-  //console.log(resultTables);
-  // }, 25);
-};
-
-//const fs = require("fs");
-const downloadFile = (dado, filename) => {
-  var fileTransfer = new FileTransfer();
-  var uri = encodeURI(dado); //"http://s14.postimg.org/i8qvaxyup/bitcoin1.jpg");
-  var fileURL = `///storage/emulated/0/DCIM/${filename}`;
-
-  fileTransfer.download(
-    uri,
-    fileURL,
-    function (entry) {
-      alert(`Upload ${(fileURL, filename)}`);
-      console.log("download complete: " + entry.toURL());
-    },
-
-    function (error) {
-      alert(`Error: ${error}`);
-      console.log("download error source " + error.source);
-      console.log("download error target " + error.target);
-      console.log("download error code" + error.code);
-    },
-
-    false,
-    {
-      headers: {
-        Authorization: "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA==",
-      },
-    }
-  );
-};
-
-const uploadFile = (urlUpload, filename) => {
-  var fileURL = `///storage/emulated/0/DCIM/${filename}`;
-  var uri = encodeURI(urlUpload);
-  var options = new FileUploadOptions();
-  options.fileKey = "file";
-  options.fileName = fileURL.substr(fileURL.lastIndexOf("/") + 1);
-  options.mimeType = "text/plain";
-
-  var headers = { headerParam: "headerValue" };
-  options.headers = headers;
-  var ft = new FileTransfer();
-  ft.upload(fileURL, uri, onSuccess, onError, options);
-
-  function onSuccess(r) {
-    alert(`Upload ${(fileURL, filename)}`);
-    console.log("Code = " + r.responseCode);
-    console.log("Response = " + r.response);
-    console.log("Sent = " + r.bytesSent);
-  }
-
-  function onError(error) {
-    alert("An error has occurred: Code = " + error.code);
-    console.log("upload error source " + error.source);
-    console.log("upload error target " + error.target);
-  }
-};
-
-const PercorrerResult = () => {
-  try {
-    // for (let index in resultTables) {
-    //   console.log(resultTables[index]);
-    // }
-
-    localStorage.setItem("bkpBD_Despesas", JSON.stringify(resultTables));
-
-    const filename = "bkpBDDespesasV1.0.6.json";
-    const arq = new Blob([angular.toJson(resultTables, true)], {
-      type: "text/plain",
-    });
-
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(arq, filename);
-      alert("IF SAVE");
-    } else {
-      alert("ELSE SAVE");
-      //var e = document.createEvent("MouseEvents"),
-      /* var e = document.createEvent("Events");
-      a = document.createElement("a");
-      a.download = filename;
-      a.href = window.URL.createObjectURL(arq);
-      a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
-      */
-      /*e.initEvent(
-        "click",
-        //"deviceready",
-        true,
-        false,
-        window,
-        0,
-        0,
-        0,
-        0,
-        0,
-        false,
-        false,
-        false,
-        false,
-        0,
-        null
-      );*/
-      //a.dispatchEvent(e);
-      // window.URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
-      //if(e.path)
-      //alert(`Sucesso: Backup dos dados realizado!`);
-      //return;
-
-      //throw "Não foi possivel encontrar caminho!";
-      //console.log(device);
-      // let menuMesSpanElement = document.querySelector("#menuMes span");
-      let menuMesH2Element = document.querySelector("#menuliBackup");
-      menuMesH2Element.setAttribute("hidden", "hidden");
-
-      let menuLiSalvar = document.getElementById("menuLiSalvar");
-      menuLiSalvar.removeAttribute("hidden", "hidden");
-      // document.addEventListener("deviceready", onDeviceReady, false);
-      var e = document.createEvent("Events");
-      e.initEvent("deviceready");
-
-      let a = document.querySelector("#menuBackupSalvar");
-      a.download = filename;
-      a.href = window.URL.createObjectURL(arq);
-      a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
-      //uploadFile(a.href, filename);
-      a.dispatchEvent(e);
-    }
-  } catch (error) {
-    alert(`Error: Falha ao realizar backup dos dados! \nMensagem: ${error}`);
-  }
-};
-
-const PercorrerBancoDados = (check) => {
-  const tablesBdDespesas = ["TbDespesas", "TbDespesasStatus", "TbEntradas"];
-  console.log("precorrer")
-  if(check == true){
-    console.log("precorrer")
-    tablesBdDespesas.forEach((table) => {
-      console.log(table)
-      
-      let initDB = () => {
-        const shortName = "bdDespesas";
-        const version = "1.0";
-        const displayName = "BdGestorDespesas";
-        const maxSize = 65536; // Em bytes
-      
-        localDB = window.openDatabase(shortName, version, displayName, maxSize);
-      };
-
-      localDB.transaction(function (transaction) {
-        transaction.executeSql(
-          `SELECT * FROM  ${table}`,
-          [],
-          function (transaction, results) {
-            executarConsulta = true;
-            //ResultBackup(String(table), results.rows);
-          },
-          function (transaction, error) {
-            alert("Erro: " + error.code + "\nMensagem: " + error.message);
-          }
-        );
-      });
-      
-    });
-  }
-};
-
-const ConfirmBackup = () => {
-  let getConfirm = confirm("Confirme, para realizar BACKUP Banco Dados.");
-
-  if (getConfirm) {
-    try {
-      PercorrerBancoDados();
-      setTimeout(() => {
-        PercorrerResult();
-      }, 900);
-    } catch (e) {
-      alert("Error: SELECT não realizado " + e + ".");
-    }
-  }
-};
-
-// document.addEventListener("deviceready", onDeviceReady, false);
-// function onDeviceReady() {
-//   alert();
-//   alert();
-// }
