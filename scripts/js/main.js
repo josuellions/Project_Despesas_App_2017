@@ -7,7 +7,7 @@ angular
   ])
   .config(function ($routeProvider) {
 
-    const ambientType = 'dev';
+    const ambientType = 'prod';
 
     const ambient = {
         prod() {
