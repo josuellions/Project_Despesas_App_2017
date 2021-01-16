@@ -34,6 +34,8 @@ angular
 
     const AmbientPath = Directiory[AmbientSelect()];
     
+    alert(`INICIO MAIN \n ${AmbientPath}`)
+    
     $routeProvider
       .when("/", {
         templateUrl: AmbientPath('home'),
