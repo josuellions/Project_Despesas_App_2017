@@ -18,6 +18,8 @@ scripts/js/libs/angularjs/angular.min.js
 scripts/js/libs/angularjs/angular.min.js.map
 scripts/js/libs/angularjs/angular-route.min.js
 scripts/js/libs/angularjs/angular-route.min.js.map
+scripts/js/libs/angularjs/angular-animate.min.js
+scripts/js/libs/angularjs/angular-resource.min.js
 assets/css/libs/bootstrap-3.3.7/dist/js/bootstrap.min.js
 
 

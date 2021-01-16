@@ -49,7 +49,7 @@ angular
       comparaDt:'',
       imglogoalt: 'Logo Seven',
       imglogotitle: 'Logo Seven',
-      contVer: 'v1.0.7h - AngularJS - 10/01/2021',
+      contVer: 'v1.0.7j - AngularJS - 10/01/2021',
       dtLancamento: String(GetDateFormat.anoFullMesDiaAtual(dtDia))
     };
 
