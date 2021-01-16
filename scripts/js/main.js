@@ -4,10 +4,10 @@ angular
     "ngAnimate",
     "ngResource",
     "depesasDirectives",
-    "dataBase",
-    "apiApp",
-    "routesApp",
-    "despesaServices"
+    //"dataBase",
+    //"apiApp",
+    //"routesApp",
+    //"despesaServices"
   ])
   .config(function ($routeProvider) {
     
