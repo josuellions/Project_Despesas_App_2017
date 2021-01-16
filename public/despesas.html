@@ -1,6 +1,37 @@
 
 <!--</section>-->
 <panel-views>
+	
+	<table class="table table-hover" style="color: #fff;">
+		<thead>
+			<tr>
+				<td class="text-center" width="20%">Data</td>
+				<td class="text-center" width="60%">Despesa</td>
+				<td class="text-center" colspan="2">Valor</td>
+				<td class="text-center">PG</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="d in despesas">
+				<td class="text-center" width="20%">{{d.date}}</td>
+				<td width="60%">{{d.nome}}</td>
+				<th class="text-center" width="1%">R$</th>
+				<td class="text-right">{{d.valor}}</td>
+				<td class="text-center">
+					<input type="checkbox" name="despesa{{d.id}}" checked="{{d.status}}" id="despesa-{{d.id}}">
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th class="text-right" colspan="2">TOTAL</th>
+				<th class="text-right">R$</th>
+				<th class="text-right">{{despesaValorTotal}}</th>
+				<th></th>
+			</tr>
+		</tfoot>
+	</table>
+
 				<table class="table table-striped table-hader table-responsive tbmenuDesp" id="tbDespesas">
 					<thead>
 						<tr>
@@ -17,7 +48,7 @@
 				</table>
 				<span class="btn-group btn-group-justified" role="group" aria-label="...">
 					<span class="col-xs-3 col-lg-3 alingBtn" role="group">
-						<input class="form-control dtDespesa" type="date" id="dtDespesa" name="dtDespesa">
+						<input class="form-control dtDespesa" type="date" id="dtDespesa" name="dtDespesa" value="{{dtLancamento}}">
 					</span>
 					<span class="col-xs-4 col-lg-4" role="group">
 						<input class="form-control listDespesa" list="dataListDespesa" name="textDespesa" id="selectDespesas" placeholder="Despesa">

@@ -4,10 +4,14 @@ angular
     "ngAnimate",
     "ngResource",
     "depesasDirectives",
+    "despesaServices",
+    "routesApp",
+    "apiApp",
+    "dataBase"
   ])
   .config(function ($routeProvider) {
-
-    const ambientType = 'dev';
+    
+    const ambientType = 'prod';
 
     const ambient = {
         prod() {
@@ -29,7 +33,7 @@ angular
     const AmbientSelect = ambient[ambientType];
 
     const AmbientPath = Directiory[AmbientSelect()];
-
+    
     $routeProvider
       .when("/", {
         templateUrl: AmbientPath('home'),
@@ -37,7 +41,8 @@ angular
       })
       .when("/despesas", {
         templateUrl: AmbientPath('despesas'),
-        controller: "NavegarController",
+        controller: 'DespesasController'
+        //controller: "NavegarController",
       })
       .when("/entrada", {
         templateUrl: AmbientPath('entrada'),

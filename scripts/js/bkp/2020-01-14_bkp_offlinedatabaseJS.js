@@ -73,14 +73,9 @@ const initDB = () => {
 
   localDB = window.openDatabase(shortName, version, displayName, maxSize);
 };
-/* CRIAR BANCO LOCAL WEB*/
-let localDB = null;
-let dtMesVerifica = null;
 
 /*CRIAR TABLES NO BANCO DADOS*/
-
 const createTables = () => {
-  console.log('CRIAR TABLE ANTIGO')
   const criarTb = [
     "CREATE TABLE IF NOT EXISTS TbDespesas(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dtLanc VARCHAR NOT NULL, data VARCHAR NOT NULL, despesa VARCHAR NOT NULL, valor FLOAT NOT NULL);",
     "CREATE TABLE IF NOT EXISTS TbEntradas(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dtLanc VARCHAR NOT NULL, data VARCHAR NOT NULL, entrada VARCHAR NOT NULL, valor FLOAT NOT NULL);",
@@ -99,7 +94,9 @@ const createTables = () => {
   });
 };
 
-
+/* CRIAR BANCO LOCAL WEB*/
+let localDB = null;
+let dtMesVerifica = null;
 
 /*CHECK VIEW E BANCO DADOS*/
 
@@ -162,11 +159,11 @@ const onInit = async (recebTipoView) => {
 
 /*Executa Query Banco Dados*/
 const executaQueryBD = (getQuery, getDados, getMensagem, getstatus) => {
-  /*console.log(getQuery)
+  console.log(getQuery)
   console.log(getDados)
   console.log(getMensagem)
   console.log(getstatus)
-  */
+  
   try {
     localDB.transaction((transaction) => {
       transaction.executeSql(
@@ -181,6 +178,7 @@ const executaQueryBD = (getQuery, getDados, getMensagem, getstatus) => {
   } catch (e) {
     alert(getMensagem + e + ".");
   }
+  
 };
 
 /*
@@ -196,9 +194,7 @@ const SetResultRowsQuery = (data) => { //remover deixar só na query com ref = R
 */
 /*EXECUTA QUERY RETONA RESULT DO BANCO*/
 const executaQueryVisualizarBD = async (getQuery, getDados, executarConsulta) => {
-  
-  //console.log(getDados)
-  
+  console.log(getDados)
   if (executarConsulta) 
   {
     resultRowsQuery = null;
@@ -213,9 +209,7 @@ const executaQueryVisualizarBD = async (getQuery, getDados, executarConsulta) =>
             //SetResultRowsQuery(results.rows);
             contReloadPage = 1;
             resultRowsQuery = results.rows //REF = RESULT
-            
             console.log(resultRowsQuery)
-          
           },
           function (_, error) {
             alert("Erro: " + error.code + "<br>Mensagem: " + error.message);
@@ -230,6 +224,162 @@ const executaQueryVisualizarBD = async (getQuery, getDados, executarConsulta) =>
 //END BANCO DADOS
 
 //FUNÇÕES TRATAMENTO DADOS
+
+/*Funções DATA ou Format DATA */
+const mesExtObj = {
+  JAN(){
+    return "01";
+  },
+  FEV(){
+    return "02";
+  },
+  MAR(){
+    return "03";
+  },
+  ABR(){
+    return "04";
+  },
+  MAI(){
+    return "05";
+  },
+  JUN(){
+    return "06";
+  },
+  JUL(){
+    return "07";
+  },
+  AGO(){
+    return "08";
+  },
+  SET(){
+    return "08";
+  },
+  OUT(){
+    return "10";
+  },
+  NOV(){
+    return "11";
+  },
+  DEZ(){
+    return "12";
+  }
+};
+
+const mesExt = ["JAN","FEV","MAR", "ABR", "MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"];
+
+/* DEFINIR DATA */
+const formataData = () => {
+  let dt = new Date();
+  let dia = dt.getDate();
+  let mes = dt.getMonth();
+  let ano = dt.getFullYear();
+
+  mes = parseInt(mes) < 11 ? `${parseInt(mes + 1)}` : mes;
+
+  dia = parseInt(dia) < 10 ? `0${dia}` : dia;
+  mes = parseInt(mes) < 10 ? `0${mes}` : mes;
+
+  return [ano, mes, dia].join("-");
+};
+
+
+/*CONVERTE CAMPO MÊS*/
+const convertMes = () => {
+  let dtbasepag = $("#dtReference").html();
+  let retonardt = '';
+
+  if(dtbasepag == null){
+    retonardt = formataData(); 
+    $("#comparaDt").html(retonardt);
+    
+    return  retonardt; 
+  }
+  
+  const dtBaseMes = dtbasepag.split('/')[0];
+  const dtBaseAno = dtbasepag.split('/')[1];
+  
+  const mesExtStr = mesExtObj[dtBaseMes];
+  retonardt = [dtBaseAno, mesExtStr(),'01'].join('-');
+  
+  console.log('>> DATA REFERENCE')
+  console.log(retonardt)
+
+  $("#comparaDt").html(retonardt);
+  
+  return retonardt;
+};
+
+/*BASE MÊS VIEW*/
+const basemesPag = () => {
+  return $("#comparaDt").text();
+};
+
+/*FORMATAR DATA INSERT BASE MÊS ANTERIO*/
+const formatDataInsert = () => {
+  //FOMATINSERT
+  convertMes();
+
+  let dtConsultaAlt = dtConsultaBD();
+  
+
+  let dtInicio = dtConsultaAlt.inicio;
+  let dtFim = dtConsultaAlt.fim;
+
+  let dtDiaInicio = dtInicio.slice(8, 10);
+  let dtDiaFim = dtFim.slice(8);
+  let dtMes =
+    parseInt(dtInicio.slice(5, 7)) < 11
+      ? "0" + (parseInt(dtInicio.slice(5, 7)) - 1)
+      : dtInicio.slice(5, 7) - 1;
+  let dtAno = dtInicio.slice(0, 4);
+
+  dtMes == 00 ? ((dtMes = 12), (dtAno = dtAno - 1)) : false;
+
+  dtInicio = [dtAno, dtMes, dtDiaInicio].join("-");
+  dtFim = [dtAno, dtMes, dtDiaFim].join("-");
+
+  dtConsultaAlt = { inicio: dtInicio, fim: dtFim };
+  
+console.log('>> FORMAT INSERT')
+console.log(dtConsultaAlt)
+
+  return dtConsultaAlt;
+};
+
+/*FORMATA DATA CONSULTA BD */
+const dtConsultaBD = () => {
+  const dtConsulta = {
+    inicio: "",
+    fim: "",
+  };
+
+  const dtBaseAtual = new Date();
+  
+  const comparaDtbase = document.getElementById("comparaDt");
+  
+  const anoMes = comparaDtbase == null
+                  ? [dtBaseAtual.getFullYear(), dtBaseAtual.getMonth() + 1]
+                  : comparaDtbase.innerText.split('-');
+
+  const ano = anoMes[0];
+  let mes = parseInt(anoMes[1]) < 10 ? `0${parseInt(anoMes[1])}` : '09' //anoMes[1];
+  
+  console.log(`MES DB CONSULTA`) 
+  console.log(`${anoMes}`)
+  
+  const primeiroDiaMes = new Date(ano, mes, 1).getDate();
+  const ultimoDiaMes = new Date(ano, mes, 0).getDate();
+
+  dtConsulta.inicio = [ano, mes, `0${primeiroDiaMes}`].join("-");
+  dtConsulta.fim = [ano, mes, ultimoDiaMes].join("-");
+
+  return dtConsulta;
+};
+
+/*FORMATA DATA VIEWS */
+const fotmatDateView = (dtFull) => {
+  return [dtFull.slice(8, 10), dtFull.slice(5, 7)].join("/");
+};
 
 /*FORMATA VALOR*/
 const formataValor = (valor) => {
@@ -251,7 +401,6 @@ const formataValor = (valor) => {
 
   return valorFormatado ? valorFormatado : valor;
 };
-
 
 /*FORMATA VALOR PARA SOMAR*/
 const convertSomarValor = (valor) => {
@@ -359,7 +508,6 @@ const onStatusDesp = (id) => {
 /*ALTERAR TEXTO VIEW*/
 const customTextView = (getCampo, getText) => {
   getCampo.forEach((campo) => {
-    //console.log(getText)
     $("#" + campo).html(getText);
   });
 };
@@ -520,53 +668,36 @@ const customCssAddClass = (id, classCss) => {
 //END FUNÇÕES CSS
 
 //FUNÇÕES MANIPULAÇÃO DADOS BANCO DADOS E VIEW
-/*Query para realizar insert com base no mẽs anterior */
-const SelectQueryInsertEntradaDespesa = {
-  true(){
-    return queryAll.insertDespStatus
-  },
-  false() {
-    return queryAll.insertEntrada
-  }
-}
-
-const SelectQueryRemoveEntradaDespesa = {
-  true(){
-    return queryAll.selectDespStatusDtValor
-  },
-  false() {
-    return queryAll.selectEntradaDtValor
-  }
-}
 
 /*REMOVER DADOS SEM RENDERIZAR VIEW*/
 let somaValorView = 0.0;
-const somarTotalValor = (tipoView) => {
-  //DEVREMOVE
+const somarTotalValor = async (tipoView) => {
+  postQuery = '';
   convertMes();
 
-  const dtConsulta = dtConsultaBD();
-  
-  const SelectQueryRemoveEntradaDespesaDB = SelectQueryRemoveEntradaDespesa[tipoView]
-  
-  const promiseLoad = new Promise( (resolve) => { 
-    executaQueryVisualizarBD(
-      SelectQueryRemoveEntradaDespesaDB(), [dtConsulta.inicio, dtConsulta.fim], true
-      );
-    
-    setTimeout(() => {
-      resolve(resultRowsQuery != null)
-    }, 600);
-  })
+  let dtConsulta = dtConsultaBD();
+  postDados = [dtConsulta.inicio, dtConsulta.fim];
+  postMensagem = "Erro: Select não realizado. ";
+  tipoView
+    ? (postQuery = queryAll.selectDespStatusDtValor)
+    : (postQuery = queryAll.selectEntradaDtValor);
 
-  promiseLoad.then(() => {
-    if (resultRowsQuery.length > 0) {
-      $.each(resultRowsQuery, (id, row) => {
+    
+    //setTimeout(() => {
+  const ExibirResultadoConsulta = () => { 
+    
+    executaQueryVisualizarBD(postQuery, postDados, true);
+    
+    let resultConsulta = resultRowsQuery;
+    
+    if (resultConsulta.length > 0) {
+      $.each(resultConsulta, (id, row) => {
         somaValorView += convertSomarValor(row.valor);
       });
-      console.log(`ROW ${somaValorView}` )
     }
-  })
+  }
+  //}, 25);
+  await ExibirResultadoConsulta();
 };
 
 /*UPDATE STATUS PAGO VIEW DESPESAS SALVA NO DADOS BANCO*/
@@ -578,40 +709,24 @@ const onUpdateStatusDesp = (id, status) => {
   executaQueryBD(postQuery, postDados, postMensagem, false); //onInit(baseOnInit.despesaInit))
 };
 
-const OnDeleteConfirm = {
-  true(id){
-    postDados = [id];
-    customCssAddClass(id, "ng-leave-active");
-    postMensagem = "Erro: Delete não realizado. ";
-
-    const promiseLoad = new Promise((resolve) => {
-      executaQueryBD(queryAll.deleteDesp, postDados, postMensagem, false); 
-
-      setTimeout(() => {
-        //console.log(somarTotalValor(true))
-        resolve(somarTotalValor(true))
-      }, 900);
-    });
-
-    promiseLoad.then(() => {
-      limparTableVisualizar(id);
-      customTextView(["somaDespesas"], convertValorView(somaValorView));
-    });
-
-  },
-  false(){
-    return;
-  }
-  
-}
-
 /*REMOVE DADOS BANCO, TELA ADD DESPESAS*/
-const onDelete = (id) => {
-  const OnDeleteConfirmAction = OnDeleteConfirm[(confirm("Salvar as alterações realizadas "))]
-  
-  OnDeleteConfirmAction(id);
-  limparDadosDespesasUpdate();
-  
+const onDelete = async (id) => {
+  if (confirm("Salvar as alterações realizadas ")) {
+    await customCssAddClass(id, "ng-leave-active");
+    postQuery = '';
+    postDados = [id];
+    postMensagem = "Erro: Delete não realizado. ";
+    postQuery = queryAll.deleteDesp;
+
+    await executaQueryBD(postQuery, postDados, postMensagem, false); // onInit(baseOnInit.despesaInit))
+    await somarTotalValor(true);
+
+    //setTimeout(() => {
+      await limparTableVisualizar(id);
+      await customTextView(["somaDespesas"], convertValorView(somaValorView));
+    //}, 1600);
+  }
+  await limparDadosDespesasUpdate();
 };
 
 /*REMOVER DADOS DO BANCO TELA ENTRADA DE CAIXA*/
@@ -841,15 +956,13 @@ const insertRowsMesAnteriorParaMesSeguinte ={
 const ConfirmarCopyMesAnterior = (getQuery, getTipoView) => {
   //DEV
   convertMes();
-  const dtConsulta =  formatDataInsert(); //dtConsultaBD();
+  const dtConsulta =  formatDataInsert(); // dtConsultaBD();
   const postQuery = SelectQueryEntradaDespesa[getTipoView]
   
   const executaQuery = executaQueryVisualizarBD; //['action'];
   
   const promiseLoad = new Promise(function(resolve, _){
     executaQuery(postQuery(), [dtConsulta.inicio, dtConsulta.fim], true);
-    console.warn(`>> CONFIRMA COPY VERIFICA MES ANTERIOR`)
-    console.log([dtConsulta.inicio, dtConsulta.fim])
     setTimeout(() => {
       resolve(resultRowsQuery != null);
     }, 60);
@@ -891,6 +1004,7 @@ const DadosDespesasView = async (resultRows, somaDespesa) => {
   $("#somaDespesas").html(convertValorView(somaDespesa));
 }
 
+
 /*CONSULTA BANCO DADOS, CRIA NOVAS LINHAS NA TABELA, VIEW ADD DESPESAS.*/
 const queryAndUpdateOverviewLancaDespesas = async () => {
   //DEV
@@ -903,10 +1017,8 @@ const queryAndUpdateOverviewLancaDespesas = async () => {
   const executaQuery = executaQueryVisualizarBD //['action'];
   
   const promiseLoad = new Promise(function (resolve, reject) { 
-    
-    //console.log("LOAD")
-    //console.log([dtConsulta.inicio, dtConsulta.fim])
-    
+    console.log("LOAD")
+    console.log([dtConsulta.inicio, dtConsulta.fim])
     executaQuery(queryAll.selectDespStatusDt, [dtConsulta.inicio, dtConsulta.fim], true)
 
     setTimeout(() => {
@@ -1084,27 +1196,31 @@ const TipoViewExibirDados = {
   }
 }
 
+/*Query para realizar insert com base no mẽs anterior */
+const SelectQueryInsertEntradaDespesa = {
+  true(){
+    return queryAll.insertDespStatus
+  },
+  false() {
+    return queryAll.insertEntrada
+  }
+}
+
 const ProximoMesCopy = (dados ) => {
   if(contReloadPage = 1) {
     const DtMesDados = dados.split('-');
     let anoCopy = parseInt(DtMesDados[0])
     let mesCopy = parseInt(DtMesDados[1])
     const diaCopy = DtMesDados[2]
-    
-    //console.log(dados)
-    
+    console.log(dados)
     if(mesCopy == 12) {
-      
-      //console.log('IGUAl 12')
-      
+      console.log('IGUAl 12')
       mesCopy = mesCopy < 10 ? `0${++mesCopy}` : mesCopy;
     return [++anoCopy, mesCopy - 11, diaCopy].join('-'); 
     }
 
     if(mesCopy >=1 && mesCopy <=11) {
-      
-      //console.log('DIFETEN 12')
-      
+      console.log('DIFETEN 12')
       mesCopy = mesCopy < 10 ? `0${++mesCopy}` : mesCopy;
       return [anoCopy, mesCopy, diaCopy].join('-'); 
     } 
@@ -1112,10 +1228,11 @@ const ProximoMesCopy = (dados ) => {
 }
 /*SELECT E INSERT DADOS NO BANCO COM BASE MÊS ANTERIOR*/
 const InsertMesBaseAnterior = (dados, getQuery, getView) => {
+  //DEVINSERT
   convertMes();
 
   const dtConsulta = formatDataInsert();
-
+  
   const promiseLoad = new Promise(function(resolve) {
     
     executaQueryVisualizarBD(getQuery, [dtConsulta.inicio, dtConsulta.fim], true);
@@ -1128,7 +1245,7 @@ const InsertMesBaseAnterior = (dados, getQuery, getView) => {
   
   promiseLoad.then(() =>{
     const SelectQueryInsertEntradaDespesaBD = SelectQueryInsertEntradaDespesa[getView]
-    
+    console.log(SelectQueryInsertEntradaDespesaBD())
     $.each(resultRowsQuery,(_, row) => {
       executaQueryBD(
         SelectQueryInsertEntradaDespesaBD(),
@@ -1136,6 +1253,7 @@ const InsertMesBaseAnterior = (dados, getQuery, getView) => {
         "Erro: Inserção não realizada. ",
         false //onInit(baseOnInit.despesaInit)
       );
+      
     });
     onInit(baseOnInit.despesaInit);
   })
@@ -1157,48 +1275,29 @@ const onloadRelatorio = () => {
     const dtConsulta = dtConsultaBD();
 
     const colorProgressBar = {
-      'sucess' : "progress-bar-success",
-      'info': "progress-bar-info",
-      'primary': "progress-bar-primary",
-      'warnig': "progress-bar-warning",
-      'danger': "progress-bar-danger",
+      1: "progress-bar-success",
+      2: "progress-bar-info",
+      3: "progress-bar-primary",
+      4: "progress-bar-warning",
+      5: "progress-bar-danger",
     };
 
-    const NivelAvaliacaoDespesas = {
-      'Excelente': 2,
-      'Bom': 5,
-      'Moderado': 10,
-      'Medio': 15,
-      'Alto': 20
-    }
-
-    const CalclulaPorcentagem = (porcentagem) => {
-      return parseInt(porcentagem / 2);
-    }
-
     let defineColorProgressBar = (porcentagemDesp) => {
-
-      if (CalclulaPorcentagem(porcentagemDesp) > NivelAvaliacaoDespesas.Alto) {
-        return colorProgressBar.danger;
-       }
-
-       if (CalclulaPorcentagem(porcentagemDesp) > NivelAvaliacaoDespesas.Medio) {
-        return colorProgressBar.warnig;
+      if (porcentagemDesp <= 5) {
+        return colorProgressBar[1];
+      } else if (porcentagemDesp > 5 && porcentagemDesp <= 10) {
+        return colorProgressBar[2];
+      } else if (porcentagemDesp > 10 && porcentagemDesp <= 20) {
+        return colorProgressBar[3];
+      } else if (porcentagemDesp > 20 && porcentagemDesp <= 30) {
+        return colorProgressBar[4];
+      } else if (porcentagemDesp >= 30) {
+        return colorProgressBar[5];
       }
-      
-      if (CalclulaPorcentagem(porcentagemDesp) > NivelAvaliacaoDespesas.Moderado ) {
-        return colorProgressBar.primary;
-      } 
-
-      if (CalclulaPorcentagem(porcentagemDesp) > NivelAvaliacaoDespesas.Bom) {
-        return colorProgressBar.info;
-      } 
-        //NivelAvaliacaoDespesas.Excelente
-        return colorProgressBar.sucess;
     };
 
     const verifProcentagem = (dados) => {
-      return parseInt(dados) > 0 ? true : false;
+      return dados != 0 ? true : false;
     };
 
     const calculaPorcentgem = (valor) => {
@@ -1236,11 +1335,10 @@ const onloadRelatorio = () => {
 
             verifProcentagem(porcentagem % 2)
               ? (porcentagemEnt = porcentagem.toFixed(2))
-              : (porcentagemEnt = (0.00).toFixed(2));
-
+              : (porcentagemEnt = porcentagem);
             verifProcentagem(porcentagemDesp % 2)
               ? (porcentagemDesp = porcentagemDesp.toFixed(2))
-              : porcentagemDesp = (0.00).toFixed(2);
+              : false;
 
             convertValor = convertValorView(somaValor);
 

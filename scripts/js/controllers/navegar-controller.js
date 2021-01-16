@@ -9,20 +9,6 @@ angular
     let dtAno = dtFull.getFullYear();
     let dtDia = dtFull.getDate();
 
-    const dtCustom = {
-      0: "JAN",
-      1: "FEV",
-      2: "MAR",
-      3: "ABR",
-      4: "MAI",
-      5: "JUN",
-      6: "JUL",
-      7: "AGO",
-      8: "SET",
-      9: "OUT",
-      10: "NOV",
-      11: "DEZ",
-    };
 
     const Campos = (page, titulo, subtitulo, passmes, dtFormat, IdCampo, IdInit) =>{
       return {page,titulo, subtitulo, passmes, dtFormat, IdCampo, IdInit}
@@ -60,43 +46,33 @@ angular
     }
 
     $scope.titleTop = {
-      imglogoalt: "Logo Seven",
-      imglogotitle: "Logo Seven",
-      contVer: "v1.0.7h - AngularJS - 10/01/2021",
+      comparaDt:'',
+      imglogoalt: 'Logo Seven',
+      imglogotitle: 'Logo Seven',
+      contVer: 'v1.0.7h - AngularJS - 10/01/2021',
+      dtLancamento: String(GetDateFormat.anoFullMesDiaAtual(dtDia))
     };
 
-    /* Formata data top */
-    const dtFormat = (passMes, pageAtual, passAno) => {
 
-
-      const dtFormatMes = dtCustom[dtMes] + "/" + passAno;
-      $scope.subtitulo = dtFormatMes;
-      /*
-      let recebMes = dtMes + 1;
-
-      let recebDia = dtDia < 10 ? `0${dtDia}` : dtDia;
-      recebMes = recebMes < 10 ? `0${recebMes}` : recebMes;
-      */
-
-      let pageSelect = String(pageAtual)
-      
-      //pageSelect = pageSelect == '/' ? 'home' : pageSelect;
-
-      pageSelect = pageSelect.replace('/',' ').trim();
-
-      const camposPage =  localPage[pageSelect];
-       
+    /* Formata data top menu top
+    @passMes = nome da view que estava anteriormente
+    @pageAtual = view que estiver exibindo
+    @passAno = ano exibido na view
+    */
+    const DtFormatView = (passMes, pageAtual, passAno) => {
+      const camposPage =  localPage[pageAtual.split('/')[1]];
       const itensCamposPage = camposPage();
 
-      $("#comparaDt").html(dtFormatMes);
+      $scope.subtitulo = GetDateFormat.mesExtAnoParams(mesExt[dtMes],passAno);
+      $scope.comparaDt = GetDateFormat.anoFullMesExtDiaParams(mesExt[dtMes],passAno);
+      $scope.dtLancamento = String(GetDateFormat.anoFullMesExtDiaAtualParams(dtDia, mesExt[dtMes], passAno));
 
-      $("#" + itensCamposPage.IdCampo).val();
-
-      if(itensCamposPage.dtFormat) {
-        onInit(itensCamposPage.IdInit);
-      }
+      //REMOVER QUANDO ALTERAR PARA FACTORY TUDO QUE ESTA EM offilinedatab
+      $("#dtReference").text($scope.subtitulo);
+      
+      onInit(itensCamposPage.IdInit);
     };
-
+    
     /* Recebe o mês de referencia page */
     $scope.submit = function ($page) {
       
@@ -105,7 +81,7 @@ angular
       $page == 0 && dtMes == -1 ? ((dtMes = 11), --dtAno) : null;
       $page == 1 && dtMes == 12 ? ((dtMes = 0), ++dtAno) : null;
 
-      dtFormat(dtMes, $location.$$path, dtAno);
+      DtFormatView(dtMes, $location.$$path, dtAno);
 
     };
 
@@ -167,7 +143,7 @@ angular
     
     if (itensCamposPage.passmes) {
       $scope.passmes = itensCamposPage.passmes;
-      dtFormat("home", itensCamposPage.page, dtAno);
+      DtFormatView("home", itensCamposPage.page, dtAno);
       selectCampoValor();
       formatValor();
       //onInit(item.IdInit);
