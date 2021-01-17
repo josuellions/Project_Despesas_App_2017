@@ -5,6 +5,11 @@
 	margin: 0;
 }
 
+body{
+	font-size: 67%;
+	-webkit-font-smoothing: antialiased;
+}
+
 /*DEFINIR COR DE FUNDO - 01 - Superio*/
 
 .bg-01 {
@@ -93,6 +98,16 @@
 	margin: 0;
 	padding: 0;
 	padding-top: .7%;
+}
+
+.subtitulo-menu{
+	margin: 0;
+	width: 93vw !important;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
 }
 
 /* Cor ao passar mouse */
@@ -377,40 +392,73 @@ section {
 	z-index: 1;
 }
 
-.btnDesp {
-	float: left;
+.formCoustom{
+	margin: 0 !important;
 	padding: 0 !important;
-	padding-top: 1.6rem !important;
-	padding-bottom: 1.6rem !important;
-	font-size: 2.7rem;
-	text-align: center;
-	/*color: #337ab7;*/
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.formCoustom input{
+	height: 25px;
+	font-size: 1.6rem;
+	padding: 2rem .5rem 2rem .5rem;
+	background-color: #fff;
+	border: .1rem solid #fff;
+	box-shadow: 0px 0px 10p #337ab7;
+	border-radius: 4px;
+}
+
+.formCoustom input.dtDespesa{
+	width: 20vw;
+}
+
+.formCoustom input.listDespesa{
+	width: 33vw;
+}
+.formCoustom input.valDespesa{
+	width: 24vw;
+}
+
+.btnGroup, .btnDespSalve{
+	float: right;
+	height: 44px;
+	width: 44px;
 	color: #fff;
+	text-align: center;
+	padding: 0 !important;
 	background: transparent;
 	border: .1rem solid #fff;
 	box-shadow: 0px 0px 10p #337ab7;
 	text-shadow: 0px 0px 10px white;
-	/* #337ab7;*/
-	/*border-color: 1px solid #c5cad5 ;*/
-	border-radius: 50%;
+	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: .5;
+}
+
+.btnGroup:hover, .btnDespSalve:hover{
+	cursor: pointer;
+	box-shadow: 0px 0px 10p #fff;
+	border: .1rem solid #337ab7;
+	opacity: 1;
+}
+
+.btnDesp {
+	padding: 1rem;
+	font-size: 1.6rem;
 }
 
 .btnDespSalve {
-	float: right;
-	padding: 0 !important;
-	padding-top: 1.4rem !important;
-	padding-bottom: 1.5rem !important;
-	font-size: 2.7rem;
-	text-align: center;
-	color: white;
-	/*  #337ab7;*/
-	background: transparent;
-	border: .1rem solid #fff;
-	box-shadow: 0px 0px 10px #337ab7;
-	text-shadow: 0px 0px 10px white;
-	/* #337ab7;*/
-	border-radius: 50%;
+	padding: 0 ;
+	padding-top: .9rem !important;
+	padding-bottom: 1rem !important;
+	font-size: 2.4rem;
 }
+
 
 /*Container View */
 
@@ -446,12 +494,13 @@ h5 {
 	.container-fluid>div>.btn {
 		height: 20vh !important;
 	}
+	/*
 	span.btnDesp {
 		padding-top: 1.2rem !important;
 		padding-bottom: 1.2rem !important;
 		font-size: 1.2rem !important;
 		margin-top: -.5vh !important;
-		/*margin-right: 1.8% ;*/
+		margin-right: 1.8% ;
 		margin-left: -.5vw !important;
 	}
 	span.btnDespSalve {
@@ -460,9 +509,10 @@ h5 {
 		padding-bottom: 1.2rem !important;
 		font-size: 1.2rem !important;
 		margin-top: -.5vh !important;
-		/*margin-right: 1.8% ;*/
+		margin-right: 1.8% ;
 		margin-left: .5vw !important;
 	}
+	*/
 	span .col-xs-2 {
 		padding: 0;
 		margin: 1vw;
@@ -523,14 +573,14 @@ h5 {
 		width: 35vw;
 		margin-top: .4vh;
 	}
-	.btnDesp {
+	/*.btnDesp {
 		margin-top: -1.2vh !important;
 		margin-left: -.2vw !important;
 	}
 	.btnDespSalve {
 		margin-top: -1.4vh !important;
 		margin-left: -.2vw !important;
-	}
+	}*/
 	/*BOTÃO VISUALIZAR - Tela Visualizar Despesas*/
 	.container-fluid>button {
 		margin-top: 10%;
@@ -538,7 +588,7 @@ h5 {
 	}
 	.tbDespfoot {
 		float: left;
-		margin-top: 0%;
+		margin-top: 2vh;
 	}
 	html {
 		background-size: 412px 650px;

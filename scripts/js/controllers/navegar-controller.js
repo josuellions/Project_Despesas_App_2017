@@ -9,11 +9,11 @@ angular
     let dtAno = dtFull.getFullYear();
     let dtDia = dtFull.getDate();
 
-
+    //VERIFICAR SE NECESSARIO - quando refatorar tudo para ANGULARJS
     const Campos = (page, titulo, subtitulo, passmes, dtFormat, IdCampo, IdInit) =>{
       return {page,titulo, subtitulo, passmes, dtFormat, IdCampo, IdInit}
     }
-
+    //VERIFICAR SE NECESSARIO - quando refatorar tudo para ANGULARJS
     const localPage = {
       home ()  {
         return Campos('/home', 'Controle Despesas', 'MENU', false, null, null,null)
@@ -49,53 +49,12 @@ angular
       comparaDt:'',
       imglogoalt: 'Logo Seven',
       imglogotitle: 'Logo Seven',
-      contVer: 'v1.0.7j - AngularJS - 10/01/2021',
+      contVer: 'v1.0.7l - AngularJS - 10/01/2021', //MOVE FACTOY VERSÂO
       dtLancamento: String(GetDateFormat.anoFullMesDiaAtual(dtDia))
     };
 
-
-    /* Formata data top menu top
-    @passMes = nome da view que estava anteriormente
-    @pageAtual = view que estiver exibindo
-    @passAno = ano exibido na view
-    */
-    const DtFormatView = (passMes, pageAtual, passAno) => {
-      const camposPage =  localPage[pageAtual.split('/')[1]];
-      const itensCamposPage = camposPage();
-
-      $scope.subtitulo = GetDateFormat.mesExtAnoParams(mesExt[dtMes],passAno);
-      $scope.comparaDt = GetDateFormat.anoFullMesExtDiaParams(mesExt[dtMes],passAno);
-      $scope.dtLancamento = String(GetDateFormat.anoFullMesExtDiaAtualParams(dtDia, mesExt[dtMes], passAno));
-
-      //REMOVER QUANDO ALTERAR PARA FACTORY TUDO QUE ESTA EM offilinedatab
-      $("#dtReference").text($scope.subtitulo);
-      
-      onInit(itensCamposPage.IdInit);
-    };
-    
-    /* Recebe o mês de referencia page */
-    $scope.submit = function ($page) {
-      
-      $page == 0 && dtMes >= 0 && dtMes <= 11 ? --dtMes : null;
-      $page == 1 && dtMes >= 0 && dtMes <= 11 ? ++dtMes : null;
-      $page == 0 && dtMes == -1 ? ((dtMes = 11), --dtAno) : null;
-      $page == 1 && dtMes == 12 ? ((dtMes = 0), ++dtAno) : null;
-
-      DtFormatView(dtMes, $location.$$path, dtAno);
-
-    };
-
-    /* ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA */
-    let formatValor = () => {
-      $(document).ready(function () {
-        setTimeout(() => {
-          $(".money").mask("000.000.000.000,00", { reverse: true });
-        }, 100);
-      });
-    };
-
-    // EFEITO MENU SUPERIOR
-    let menuTop = () => {
+    // EFEITO MENU SUPERIOR - MOVE FACTORY
+    const menuTop = () => {
       setTimeout(() => {
         $("#btnMenu").click(() => {
           $("#liMenu").slideToggle(() => {
@@ -113,53 +72,53 @@ angular
       }, 25);
     };
 
-    //Select campo number
-    let selectCampoValor = () => {
-      setTimeout(() => {
-        $("#valDespesa").click(() => {
-          $("#valDespesa").select();
-        });
-        $("#valEntrada").click(() => {
-          $("#valEntrada").select();
-        });
-      }, 25);
+    /* Formata data top menu top
+    @passMes = nome da view que estava anteriormente
+    @pageAtual = view que estiver exibindo
+    @passAno = ano exibido na view
+    */
+    const DtFormatView = (passMes, pageAtual, passAno) => {
+      const camposPage =  localPage[pageAtual.split('/')[1]];
+      const itensCamposPage = camposPage();
+
+      $scope.subtitulo = GetDateFormat.mesExtAnoParams(mesExt[dtMes],passAno);
+      $scope.comparaDt = GetDateFormat.anoFullMesExtDiaParams(mesExt[dtMes],passAno);
+      $scope.dtLancamento = String(GetDateFormat.anoFullMesExtDiaAtualParams(dtDia, mesExt[dtMes], passAno));
+
+      //REMOVER QUANDO ALTERAR PARA FACTORY TUDO QUE ESTA EM offilinedatab
+      $("#dtReference").text($scope.subtitulo);
+      
+      //REMOVER QUANDO REFATORAR PARA ANGUARJS
+      onInit(itensCamposPage.IdInit); 
+    };
+
+    /* Recebe o mês de referencia page */
+    $scope.submit = function ($page) {
+
+      $page == 0 && dtMes >= 0 && dtMes <= 11 ? --dtMes : null;
+      $page == 1 && dtMes >= 0 && dtMes <= 11 ? ++dtMes : null;
+      $page == 0 && dtMes == -1 ? ((dtMes = 11), --dtAno) : null;
+      $page == 1 && dtMes == 12 ? ((dtMes = 0), ++dtAno) : null;
+
+      DtFormatView(dtMes, $location.$$path, dtAno);
+
     };
 
    const carregarPage = () => {
-    let pageSelect = String($location.$$path); 
 
-    if(pageSelect == '/' || pageSelect.length == 0){
-      pageSelect = 'home';
-    }
-
-    pageSelect = pageSelect.replace('/',' ').trim();
-
-    const camposPage =  localPage[pageSelect];
-     
+    const camposPage =  localPage['home'];
     const itensCamposPage = camposPage();
 
     menuTop();
     $scope.titulo = itensCamposPage.titulo;
-    
-    if (itensCamposPage.passmes) {
-      $scope.passmes = itensCamposPage.passmes;
-      DtFormatView("home", itensCamposPage.page, dtAno);
-      selectCampoValor();
-      formatValor();
-      //onInit(item.IdInit);
-      return;
-    } 
-
     $scope.subtitulo = itensCamposPage.subtitulo;
 
     setTimeout(() => {
-      const dtRerenceElement = $("#dtReference");
-      dtRerenceElement.css("margin-left", "31%");
-    }, 45);
-    
-    return;
+      $("#dtReference").addClass('subtitulo-menu');
+    }, 60);
   }
 
+  ////MOVE FACTOY VERSÂO
   $scope.dadosApp = {
     nomeDeveloper: " 2017 - Josuel A. Lopes",
     nomeEmpresa: " Seven Solutions Tecnologic",
