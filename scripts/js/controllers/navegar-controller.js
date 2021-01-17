@@ -4,7 +4,6 @@ angular
     $scope.mensagem = "";
     $scope.passmes = false;
   
-    alert('INICIO NAVEGARCONTROLLER')
     const dtFull = new Date();
     let dtMes = dtFull.getMonth();
     let dtAno = dtFull.getFullYear();

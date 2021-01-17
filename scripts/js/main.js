@@ -4,10 +4,10 @@ angular
     "ngAnimate",
     "ngResource",
     "depesasDirectives",
-    //"dataBase",
-    //"apiApp",
-    //"routesApp",
-    //"despesaServices"
+    "dataBase",
+    "apiApp",
+    "routesApp",
+    "despesaServices"
   ])
   .config(function ($routeProvider) {
     
@@ -33,8 +33,6 @@ angular
     const AmbientSelect = ambient[ambientType];
 
     const AmbientPath = Directiory[AmbientSelect()];
-    
-    alert(`INICIO MAIN \n ${AmbientPath}`)
     
     $routeProvider
       .when("/", {
