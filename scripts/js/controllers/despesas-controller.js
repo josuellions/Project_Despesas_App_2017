@@ -2,7 +2,12 @@ angular
 .module('todoApp')
 .controller('DespesasController', 
 function($scope, $http, despesaAction){
-
+  $scope.titleOptions = 'PG';
+  $scope.optionpg = false,
+  $scope.optiondel = true,
+  $scope.passmes = true;
+  $scope.classSubTitulo = 'alinharMes';
+  $scope.formDespesa = {};
   $scope.despesas = {};
   $scope.despesaValorTotal = {};
   $scope.listaDespesas = [{
@@ -108,4 +113,30 @@ function($scope, $http, despesaAction){
   }).catch((err)=> {
     console.log(err)
   })
+
+  //Submit Checkbox Status
+  $scope.checkedStatus = (id) => {
+    console.log(">>CHECKBOX")
+    console.log(id)
+  }
+
+  //Submit Update Despesas
+  $scope.onUpdateDesp = (id) => {
+    console.log(id)
+    $scope.titleOptions = 'DEL';
+    $scope.optionpg = true,
+    $scope.optiondel = false
+      
+
+    console.log($scope.optionpg)
+  }
+
+  //Submit Form Despesa
+$scope.submeter = () =>{
+  console.log('>> SUBMIT FORM DESPESA')
+  const date = new Date($scope.formDespesa.date)
+  const dtFormat = GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear())
+  
+  console.log(dtFormat)
+}
 });

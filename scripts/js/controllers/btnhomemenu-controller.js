@@ -5,35 +5,35 @@ angular
 
     const MenuPages = {
       home() {
-        onInit(0)
+        //onInit(0)
         $location.path("/")
       },
       entrada() {
-        //onInit('entradaInit')
+        ////onInit('entradaInit')
         $location.path("/entrada");
       },
       despesas() {
-        //onInit('despesaInt')
+        ////onInit('despesaInt')
         $location.path("/despesas");
       },
       visualizar() {
-        //onInit('visualizarInit')
+        ////onInit('visualizarInit')
         $location.path("/visualizar");
       },
       relatorio() {
-        //onInit('relatorioInit')
+        ////onInit('relatorioInit')
         $location.path("/relatorio");
       },
       backup() {
-        onInit(0)
+        //onInit(0)
         $location.path("/backup");
       },
       informacoes() {
-        onInit(0)
+        //onInit(0)
         $location.path("/informacoes");
       },
       sobre() {
-        onInit(0)
+        //onInit(0)
         $location.path("/sobre");
       }
     }

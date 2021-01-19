@@ -1,6 +1,6 @@
 angular
   .module("todoApp")
-  .controller("NavegarController", function ($scope, $location) {
+  .controller("MenuController", function ($scope, $location) {
     $scope.mensagem = "";
     $scope.passmes = false;
   
@@ -49,7 +49,7 @@ angular
       comparaDt:'',
       imglogoalt: 'Logo Seven',
       imglogotitle: 'Logo Seven',
-      contVer: 'v1.0.7l - AngularJS - 10/01/2021', //MOVE FACTOY VERSÂO
+      contVer: 'v1.0.7m - AngularJS - 10/01/2021', //MOVE FACTOY VERSÂO
       dtLancamento: String(GetDateFormat.anoFullMesDiaAtual(dtDia))
     };
 
@@ -79,7 +79,7 @@ angular
     */
     const DtFormatView = (passMes, pageAtual, passAno) => {
       const camposPage =  localPage[pageAtual.split('/')[1]];
-      const itensCamposPage = camposPage();
+      //const itensCamposPage = camposPage();
 
       $scope.subtitulo = GetDateFormat.mesExtAnoParams(mesExt[dtMes],passAno);
       $scope.comparaDt = GetDateFormat.anoFullMesExtDiaParams(mesExt[dtMes],passAno);
@@ -89,7 +89,7 @@ angular
       $("#dtReference").text($scope.subtitulo);
       
       //REMOVER QUANDO REFATORAR PARA ANGUARJS
-      onInit(itensCamposPage.IdInit); 
+      //onInit(itensCamposPage.IdInit); //USAR SOMENTE COM JSPURO SEM ANGULAR
     };
 
     /* Recebe o mês de referencia page */
@@ -113,9 +113,12 @@ angular
     $scope.titulo = itensCamposPage.titulo;
     $scope.subtitulo = itensCamposPage.subtitulo;
 
-    setTimeout(() => {
-      $("#dtReference").addClass('subtitulo-menu');
-    }, 60);
+    //setTimeout(() => {
+    //  $("#dtReference").addClass('subtitulo-menu'); //alinharMes
+    $scope.classSubTitulo = 'subtitulo-menu';
+    $scope.passmes = false;
+    //}, 60);
+    console.log('HOME')
   }
 
   ////MOVE FACTOY VERSÂO

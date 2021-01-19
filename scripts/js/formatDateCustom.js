@@ -72,6 +72,12 @@ const GetDateFormat =  {
 
     return [ano, mesFormat, diaFormat].join('-');
   },
+  anoFullMesDiaFormatBDParamsFull: (dia, mes, ano) =>{
+    const diaFormat = String(`0${dia}`).slice(-2);
+    const mesFormat = String(`0${mes + 1}`).slice(-2);
+
+    return [ano, mesFormat, diaFormat].join('-');
+  },
   mesExtAnoParams: (mes, ano) =>{
     return [mes,ano].join('/');
   }
@@ -102,8 +108,8 @@ const SubtituloMenuNull = () => {
  
   setTimeout(() => {
     $("#dtReference").text(GetDateFormat.mesExtAnoParams(mesExt[dtBaseMes], dtBaseAno))
-    $("#OpcaoMesEsquerdo").removeClass('ng-hide');
-    $("#OpcaoMesDireito").removeClass('ng-hide');
+    //$("#OpcaoMesEsquerdo").removeClass('ng-hide');
+    //$("#OpcaoMesDireito").removeClass('ng-hide');
     $("#comparaDt").text(retonardt);
   }, 60);
 

@@ -55,16 +55,19 @@ let postQuery = "";
 let resultRowsQuery = null;
 
 /*OBJECT VIEW BD*/
+/* SOMENTE USAR QUANDO ESTIVER SEM USO DE FACTORY ANGULAR
 const baseOnInit = {
   entradaInit: "entradaInit",
   despesaInit: "despesaInt",
   visualizarInit: "visualizarInit",
   relatorioInit: "relatorioInit",
 };
+*/
 //FIM VARIÁVEIS GLOBAIS
 
 //BANCO DADOS
 /*CRIAR PARAMETROS BANCO DADOS*/
+/* MOVIDO PARA FACTORY AGULAR - config/database
 const initDB = () => {
   const shortName = "bdDespesas";
   const version = "1.0";
@@ -73,12 +76,13 @@ const initDB = () => {
 
   localDB = window.openDatabase(shortName, version, displayName, maxSize);
 };
+*/
 /* CRIAR BANCO LOCAL WEB*/
 let localDB = null;
 let dtMesVerifica = null;
 
 /*CRIAR TABLES NO BANCO DADOS*/
-
+/* MOVIDO PARA FACTORY ANGULAR - config/database
 const createTables = () => {
   console.log('CRIAR TABLE ANTIGO')
   const criarTb = [
@@ -98,6 +102,7 @@ const createTables = () => {
     }
   });
 };
+*/
 
 
 
@@ -120,6 +125,7 @@ const Views = {
 
 let contReloadPage = 1;
 
+/*
 const onInit = async (recebTipoView) => {
   
   const alertErroNavegador = "Erro: Seu navegador não permite banco de dados.";
@@ -156,6 +162,7 @@ const onInit = async (recebTipoView) => {
     alert(alertErroDesconhecido + tipoErro + ".");
   }
 };
+*/
 
 //CHECK POSSUI DADOS NO BANCO
 //onInit(this.comp);

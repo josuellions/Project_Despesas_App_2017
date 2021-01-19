@@ -37,28 +37,28 @@ angular
     $routeProvider
       .when("/", {
         templateUrl: AmbientPath('home'),
-        controller: "NavegarController",
+        controller: "MenuController",
       })
       .when("/despesas", {
         templateUrl: AmbientPath('despesas'),
         controller: 'DespesasController'
-        //controller: "NavegarController",
+        //controller: "MenuController",
       })
       .when("/entrada", {
         templateUrl: AmbientPath('entrada'),
-        controller: "NavegarController",
+        controller: "MenuController",
       })
       .when("/visualizar", {
         templateUrl: AmbientPath('visualizar'),
-        controller: "NavegarController",
+        controller: "MenuController",
       })
       .when("/relatorio", {
         templateUrl: AmbientPath('relatorio'),
-        controller: "NavegarController",
+        controller: "MenuController",
       })
       .when("/informacoes", {
         templateUrl: AmbientPath('informacoes'),
-        controller: "NavegarController",
+        controller: "MenuController",
       })
       .when("/backup", {
         templateUrl: AmbientPath('backup'),
@@ -66,7 +66,7 @@ angular
       })
       .when("/sobre", {
         templateUrl: AmbientPath('sobre'),
-        controller: "NavegarController",
+        controller: "MenuController",
       })
       .otherwise({
         redirectTo: "/",
