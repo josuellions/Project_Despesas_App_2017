@@ -162,6 +162,37 @@ table thead, tfoot {
 	color: #c5cad5;
 }
 
+table thead tr th.edit-cancel {
+	cursor: pointer;
+	padding: .3rem 3rem .3rem 3rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-right: -7vw;
+	bottom: 0;
+	margin-bottom: 0;
+}
+
+table thead tr th.edit-cancel span {
+	font-size: 2.9rem;
+	border: none;
+	opacity: .9;
+	color: yellow;
+	box-shadow: 0px 0px 15px #fff !important;
+	text-shadow: 0px 0px 15px #fff !important;
+	border-radius: 50%;
+}
+
+table thead tr th.edit-cancel span:hover{
+	opacity: 1;
+}
+
+table tbody tr td, th{
+vertical-align:middle !important;
+}
+
+
 /*BOTÃO ADICIONAR LINHA TABELA*/
 
 section {
@@ -240,12 +271,31 @@ section {
 }
 
 /*ICONE REMOVER*/
-
-span.glyphicon.glyphicon-trash {
-	font-size: 1.7rem;
-	color: red;
+.remover-animado button {
+	padding: 0 !important;
+	margin: 0 !important;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	justify-items: center;
+	background-color: transparent;
+	border: none;
+	margin-left: .8rem !important;
+	margin-right: 2.5vw !important;
+	box-shadow: 0 0 0 0;
+	outline: 0;
 	opacity: .3;
-	margin-right: 1vh;
+}
+
+.remover-animado button:hover {
+	opacity: .9 !important;
+}
+
+.remover-animado button span.glyphicon.glyphicon-trash {
+	font-size: 1.9rem;
+	padding: .3rem;
+	color: red;
 	z-index: 0;
 }
 
@@ -437,7 +487,7 @@ section {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	opacity: .5;
+	opacity: .9;
 }
 
 .btnGroup:hover, .btnDespSalve:hover{

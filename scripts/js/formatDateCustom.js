@@ -107,10 +107,10 @@ const SubtituloMenuNull = () => {
   const dtBaseAno = retonardt.split('-')[0];
  
   setTimeout(() => {
-    $("#dtReference").text(GetDateFormat.mesExtAnoParams(mesExt[dtBaseMes], dtBaseAno))
+    //$("#dtReference").text(GetDateFormat.mesExtAnoParams(mesExt[dtBaseMes], dtBaseAno))
     //$("#OpcaoMesEsquerdo").removeClass('ng-hide');
     //$("#OpcaoMesDireito").removeClass('ng-hide');
-    $("#comparaDt").text(retonardt);
+    //$("#comparaDt").text(retonardt);
   }, 60);
 
   return  retonardt;
@@ -123,7 +123,7 @@ const SubtituloMenuMesAno = (dtbasepag) => {
   const mesExtStr = mesExtObj[dtBaseMes];
   retonardt = [dtBaseAno, mesExtStr(),'01'].join('-');
   
-  $("#comparaDt").text(GetDateFormat.anoFullMesExtDiaParams(dtBaseMes, dtBaseAno));
+  //$("#comparaDt").text(GetDateFormat.anoFullMesExtDiaParams(dtBaseMes, dtBaseAno));
   
   return retonardt;
 }

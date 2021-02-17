@@ -1,6 +1,7 @@
 /*VARIÁVEIS GLOBAIS*/
 
 /*CONSTANTS QUERY */
+/*MOVIDO PARA FACTORY
 const queryAll = {
   selecDesp: "SELECT * FROM TbDespesas;",
   selectDespStatus: "SELECT * FROM  TbDespesasStatus",
@@ -16,11 +17,11 @@ const queryAll = {
     "SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;",
   selectEntradaDtValor:
     "SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;",
-  insertDespeStatus:
-    "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?);",
-  updateStatusDesp: "UPDATE TbDespesasStatus SET statusDesp = ? WHERE id = ?;",
-  deleteDesp: "DELETE FROM TbDespesasStatus WHERE id=?;",
-  deleteEntrada: "DELETE FROM TbEntradas WHERE id=?;",
+    updateStatusDesp: "UPDATE TbDespesasStatus SET statusDesp = ? WHERE id = ?;",
+    deleteDesp: "DELETE FROM TbDespesasStatus WHERE id=?;",
+    deleteEntrada: "DELETE FROM TbEntradas WHERE id=?;",
+    insertDespeStatus:
+      "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?); SELECT * FROM TbDespesasStatus WHERE id = SCOPE_IDENTITY();",
   insertDespStatus:
     "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?);",
   insertEntrada:
@@ -30,7 +31,7 @@ const queryAll = {
   updateEntrada:
     "UPDATE TbEntradas SET dtLanc = ?, data = ?, entrada = ?, valor = ? WHERE id=?;",
 };
-
+*/
 // SELECT CAMPO DESPESA PARA UPDATE, TELA ADD DESPESAS
 let transfId = null;
 let executarConsulta = true;
@@ -174,6 +175,7 @@ const executaQueryBD = (getQuery, getDados, getMensagem, getstatus) => {
   console.log(getMensagem)
   console.log(getstatus)
   */
+ //QUERYINSERT
   try {
     localDB.transaction((transaction) => {
       transaction.executeSql(
@@ -239,6 +241,7 @@ const executaQueryVisualizarBD = async (getQuery, getDados, executarConsulta) =>
 //FUNÇÕES TRATAMENTO DADOS
 
 /*FORMATA VALOR*/
+/*MOVIDO PARA FACTORY
 const formataValor = (valor) => {
   let valorFormatado = null;
 
@@ -258,18 +261,21 @@ const formataValor = (valor) => {
 
   return valorFormatado ? valorFormatado : valor;
 };
+*/
 
 
 /*FORMATA VALOR PARA SOMAR*/
+/* MOVIDO PARA CONTROLLER DESPESA
 const convertSomarValor = (valor) => {
   return parseFloat(valor.replace(",", "."));
 };
-
+*/
 /*FORMATA VALOR PARA VIEW*/
+/* MOVIDO PARA CONTROLLER DESPESA
 const convertValorView = (valorView) => {
   return formataValor(valorView.toFixed(2).replace(".", ","));
 };
-
+*/
 //END FUNÇÃO TRATAMENTO DADOS
 
 //FUNÇÕES LIMPAR DADOS VIEW

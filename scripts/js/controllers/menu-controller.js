@@ -1,8 +1,13 @@
 angular
   .module("todoApp")
-  .controller("MenuController", function ($scope, $location) {
-    $scope.mensagem = "";
+  .controller("MenuController", function ($scope, $location, formatDate) {
+    
     $scope.passmes = false;
+    $scope.comparaDt ='';
+    $scope.subtitulo = '';
+    $scope.comparaDt = '';
+    $scope.dtLancamento =''; 
+    $scope.classSubTitulo = '';
   
     const dtFull = new Date();
     let dtMes = dtFull.getMonth();
@@ -49,7 +54,7 @@ angular
       comparaDt:'',
       imglogoalt: 'Logo Seven',
       imglogotitle: 'Logo Seven',
-      contVer: 'v1.0.7m - AngularJS - 10/01/2021', //MOVE FACTOY VERSÂO
+      contVer: 'v1.0.7n - AngularJS - 10/01/2021', //MOVE FACTOY VERSÂO
       dtLancamento: String(GetDateFormat.anoFullMesDiaAtual(dtDia))
     };
 
@@ -80,43 +85,61 @@ angular
     const DtFormatView = (passMes, pageAtual, passAno) => {
       const camposPage =  localPage[pageAtual.split('/')[1]];
       //const itensCamposPage = camposPage();
-
+  
+      
+      $scope.passmes = true;
+      $scope.classSubTitulo = '';
       $scope.subtitulo = GetDateFormat.mesExtAnoParams(mesExt[dtMes],passAno);
       $scope.comparaDt = GetDateFormat.anoFullMesExtDiaParams(mesExt[dtMes],passAno);
       $scope.dtLancamento = String(GetDateFormat.anoFullMesExtDiaAtualParams(dtDia, mesExt[dtMes], passAno));
-
-      //REMOVER QUANDO ALTERAR PARA FACTORY TUDO QUE ESTA EM offilinedatab
-      $("#dtReference").text($scope.subtitulo);
       
+      //REMOVER QUANDO ALTERAR PARA FACTORY TUDO QUE ESTA EM offilinedatab
+      //  $("#dtReference").addClass('subtitulo-menu'); //alinharMes
+      //$("#dtReference").text($scope.subtitulo);
+      //$("#comparaDt").text($scope.comparaDt)
+      //formatDate.dtConsultaDB();
+
       //REMOVER QUANDO REFATORAR PARA ANGUARJS
       //onInit(itensCamposPage.IdInit); //USAR SOMENTE COM JSPURO SEM ANGULAR
+    
+      
     };
 
     /* Recebe o mês de referencia page */
-    $scope.submit = function ($page) {
-
-      $page == 0 && dtMes >= 0 && dtMes <= 11 ? --dtMes : null;
-      $page == 1 && dtMes >= 0 && dtMes <= 11 ? ++dtMes : null;
-      $page == 0 && dtMes == -1 ? ((dtMes = 11), --dtAno) : null;
-      $page == 1 && dtMes == 12 ? ((dtMes = 0), ++dtAno) : null;
-
+    /* MOVIDO PARA FACTORY PASSMONTH
+    $scope.submitPassames = function ($returnNext) {
+      const nextPage = 1;
+      const returnPage = 0;
+      $returnNext == returnPage && dtMes >= 0 && dtMes <= 11 ? --dtMes : null;
+      $returnNext == nextPage && dtMes >= 0 && dtMes <= 11 ? ++dtMes : null;
+      $returnNext == returnPage && dtMes == -1 ? ((dtMes = 11), --dtAno) : null;
+      $returnNext == nextPage && dtMes == 12 ? ((dtMes = 0), ++dtAno) : null;
+      
+      $scope.subtitulo = '';
+      console.log("PASSA MES")
+      
       DtFormatView(dtMes, $location.$$path, dtAno);
 
     };
-
+    */
    const carregarPage = () => {
-
-    const camposPage =  localPage['home'];
-    const itensCamposPage = camposPage();
-
+    let page = ($location.$$path).replace('/','').trim();
+    
+    if(page.length == 0){
+      page = 'home'
+      $scope.passmes = false;
+      $scope.classSubTitulo = 'subtitulo-menu';
+    } 
+    
     menuTop();
+    const camposPage =  localPage[page];
+    const itensCamposPage = camposPage();
+    
     $scope.titulo = itensCamposPage.titulo;
     $scope.subtitulo = itensCamposPage.subtitulo;
 
     //setTimeout(() => {
     //  $("#dtReference").addClass('subtitulo-menu'); //alinharMes
-    $scope.classSubTitulo = 'subtitulo-menu';
-    $scope.passmes = false;
     //}, 60);
     console.log('HOME')
   }

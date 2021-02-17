@@ -3,7 +3,7 @@ angular
   .factory('configDataBase', function (){
     /*CRIAR TABLES NO BANCO DADOS*/
     const createTables = (localDB) => {
-      console.log('CRIAR TABLE NEW')
+      //console.log('CRIAR TABLE NEW')
       const criarTb = [
         "CREATE TABLE IF NOT EXISTS TbDespesas(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dtLanc VARCHAR NOT NULL, data VARCHAR NOT NULL, despesa VARCHAR NOT NULL, valor FLOAT NOT NULL);",
         "CREATE TABLE IF NOT EXISTS TbEntradas(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dtLanc VARCHAR NOT NULL, data VARCHAR NOT NULL, entrada VARCHAR NOT NULL, valor FLOAT NOT NULL);",
@@ -13,7 +13,7 @@ angular
       criarTb.forEach((query) => {
         try {
           localDB.transaction((transaction) => {
-            transaction.executeSql(query, [], nullDataHandler, errorHandler);
+            transaction.executeSql(query, []) //, nullDataHandler, errorHandler);
           });
         } catch (e) {
           alert("Erro: Data base Tabelas não criada " + e + ".");

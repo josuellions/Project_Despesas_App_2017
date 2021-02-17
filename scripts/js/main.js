@@ -5,13 +5,18 @@ angular
     "ngResource",
     "depesasDirectives",
     "dataBase",
+    "dataApp",
     "apiApp",
+    "querysApp",
     "routesApp",
+    "formatValorServices",
+    "formatDateServices",
+    "passMonthServices",
     "despesaServices"
   ])
   .config(function ($routeProvider) {
     
-    const ambientType = 'prod';
+    const ambientType = 'dev';
 
     const ambient = {
         prod() {

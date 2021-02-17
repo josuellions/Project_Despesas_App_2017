@@ -17,8 +17,7 @@
   <preference name="phonegap-version" value="cli-6.5.0" />
   <preference name="premissions" value="none" />
   <preference name="orientation" value="portrait" />
-				<!-- <preference name="fullscreen" value="true" /> -->
-				<!-- <preference name="android-minSdkVersion" value="16" /> -->
+<!-- <preference name="android-minSdkVersion" value="16" /> -->
   <preference name="android-targetSdkVersion" value="28" />
   <preference name="target-device" value="universal" />
   <preference name="fullscreen" value="false" />
@@ -32,9 +31,8 @@
   <preference name="show-splash-screen-spinner" value="true" />
   <preference name="auto-hide-splash-screen" value="true" />
   <preference name="disable-cursor" value="false" />
-  <!-- <preference name="android-minSdkVersion" value="28" /> -->
   <preference name="android-installLocation" value="auto" />
-	<preference name="AndroidPersistentFileLocation" value="Internal" />
+  <preference name="AndroidPersistentFileLocation" value="Internal" />
   <preference name="AndroidPersistentFileLocation" value="Compatibility" />
 
   	<!-- <plugin name="cordova-plugin-splashscreen" spec="4.0.3" /> -->

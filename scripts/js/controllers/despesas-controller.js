@@ -1,12 +1,12 @@
 angular
 .module('todoApp')
-.controller('DespesasController', 
-function($scope, $http, despesaAction){
-  $scope.titleOptions = 'PG';
-  $scope.optionpg = false,
-  $scope.optiondel = true,
-  $scope.passmes = true;
-  $scope.classSubTitulo = 'alinharMes';
+.controller('DespesasController',
+function($scope, $http, despesaAction, formatDate, formatValor, pass){
+  $scope.id = 0;
+  $scope.titleOptions = 'Pago';
+  $scope.option = '',
+  $scope.optiondel = 'hidden',
+
   $scope.formDespesa = {};
   $scope.despesas = {};
   $scope.despesaValorTotal = {};
@@ -60,6 +60,14 @@ function($scope, $http, despesaAction){
     }
   ]
 
+  $scope.update = true;
+  $scope.btnSave = '';
+  $scope.btnUpdate = 'hidden';
+  $scope.formDespesa.date = new Date();
+
+  $scope.passmes = true;
+  $scope.classSubTitulo = 'alinharMes';
+
   //Select campo number - MOVE FACTORY
   const selectCampoValor = () => {
     setTimeout(() => {
@@ -74,69 +82,219 @@ function($scope, $http, despesaAction){
 
   //MOVE FACTORY
   /* ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA */
-  const formatValor = () => {
+  const formatValorMoney = () => {
     setTimeout(() => {
-      console.log('formatValor')
+      //console.log('formatValor')
       $(".money").mask("000.000.000.000,00", { reverse: true });
     }, 120);
   };
 
-  convertMes();
-  formatValor();
-  selectCampoValor();
+  //convertMes();
+  formatValorMoney();
+  //selectCampoValor();
   
-  const dtConsulta = dtConsultaBD();
+  //let dtConsulta =dtConsultaBD();  
+  
+  /*FORMATA VALOR PARA SOMAR*/
+    const convertSomarValor = (valor) => {
+      return parseFloat(valor.replace(",", "."));
+    };
+
+    /*FORMATA VALOR PARA VIEW*/
+    const convertValorView = (valorView) => {
+      return formatValor.ptBr(valorView.toFixed(2).replace(".", ","));
+    };
 
   //MOVER PARA MODULO PROPRIO
   const ExibirListaView = (dados) => {
     let despesasFormat = [];
     let somaDespesa = 0.00;
+
+    const ConvertStatus = (status) => {
+      const Convert = {
+        1: () => {
+          return true;
+        },
+        0: () => {
+          return false
+        },
+      }
+      
+      const convert = Convert[status]
+      return convert();
+    }
+
     $.each(dados, (id, row) => {
+      //console.log(row.statusDesp)
+
       despesasFormat.push({
         id: row.id,
         nome: row.despesa,
-        date: fotmatDateView(row.data),
-        valor: formataValor(row.valor),
-        status: row.statusDesp //> 0 ? true : false
+        dateBd:  row.data,
+        dateView: fotmatDateView(row.data),
+        valor: formatValor.ptBr(row.valor),
+        status: ConvertStatus(row.statusDesp)
       })
       somaDespesa += convertSomarValor(row.valor);
     })
-    $scope.despesas = despesasFormat;
-    $scope.despesaValorTotal = convertValorView(somaDespesa);
-  }
-  //limparTableVisualizar("tbDespesas > tbody > tr");
 
-  despesaAction.index(queryAll.selectDespStatusDt, [dtConsulta.inicio, dtConsulta.fim])
-  .then((res) => {
-    console.log('SUCESSS RETURN API')
-    ExibirListaView(res)
-  }).catch((err)=> {
-    console.log(err)
-  })
+    return {despesas: despesasFormat, total: convertValorView(somaDespesa)}
+  }
+
+  const ListaDespesas = () => {
+    formatDate.dtConsultaDB().then((response) =>{
+      //console.log("CONTROLLER RETURN")
+      //console.log(response)
+      despesaAction.index([response.inicio, response.fim])
+        .then((res) => {
+          //console.log('SUCESSS RETURN API')
+          const respose = ExibirListaView(res)
+          $scope.despesas =  respose.despesas
+          $scope.despesaValorTotal = respose.total;
+        }).catch((err)=> {
+          alert(err.message)
+        })
+    })
+  }
+  
+  ListaDespesas();
 
   //Submit Checkbox Status
   $scope.checkedStatus = (id) => {
-    console.log(">>CHECKBOX")
-    console.log(id)
+    //console.log(">>CHECKBOX")
+    //console.log(id)
+    
+    const dados = {
+      id,
+      status: document.querySelector(`#checkbox${id}`).checked
+    }
+
+    despesaAction.updateStatus(dados)
+    .then((res) => {
+      return
+    }).catch((err) => {
+      alert(err.message)
+    })
+  }
+
+  const OptionActionEdit = (despesa) => {
+    $scope.titleOptions = '';
+    $scope.option = 'hidden',
+    $scope.optiondel = '',
+    $scope.btnSave = 'hidden';
+    $scope.btnUpdate = '';
+    $scope.editCancel = 'edit-cancel'
+
+    console.log('>> SUBMIT UPDATE DESPESA TRUE')
+    console.log(despesa)
+    //console.log({id, dateBd, nome, valor})
+    //$scope.id = id;
+    //$scope.dtLancamento = dateBd
+    $scope.formDespesa.nome = despesa.nome;
+    $scope.formDespesa.date = new Date(`${despesa.dateBd} 00:00:00`);
+    //const dtFormat = GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear())
+    $scope.formDespesa.valor = despesa.valor;
+  }
+
+  const OptionActionCancel = () => {
+    //console.log('>> SUBMIT UPDATE DESPESA FALSE')
+    $scope.titleOptions = 'Pago';
+    $scope.option = '',
+    $scope.optiondel = 'hidden',
+    $scope.btnSave = '';
+    $scope.btnUpdate = 'hidden';
+    $scope.formDespesa = {}
+    $scope.editCancel = ''
+
+    $scope.formDespesa.date = new Date();
   }
 
   //Submit Update Despesas
-  $scope.onUpdateDesp = (id) => {
-    console.log(id)
-    $scope.titleOptions = 'DEL';
-    $scope.optionpg = true,
-    $scope.optiondel = false
-      
-
-    console.log($scope.optionpg)
+  $scope.onUpdateDesp = (update, despesa) => { //id, dateBd, nome, valor) => {
+    
+    console.log('>> SUBMIT UPDATE DESPESA SELECT')
+    
+    $scope.update = !update;
+    OptionActionEdit(despesa);
   }
 
-  //Submit Form Despesa
-$scope.submeter = () =>{
-  console.log('>> SUBMIT FORM DESPESA')
-  const date = new Date($scope.formDespesa.date)
-  const dtFormat = GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear())
-  
-  console.log(dtFormat)
-}
+  $scope.onUpdateDespCancel = (update) => {
+    $scope.update = !update;
+    OptionActionCancel();
+  }
+
+  const RenderizarViewDespesaDelete = (despesa) => {
+    const buscadespesa = $scope.despesas.indexOf(despesa)
+    $scope.despesas.splice(buscadespesa, 1) //PARA REMOVER SOMENTE O SELECIONADO
+
+    $scope.btnSave = '';
+    $scope.btnUpdate = 'hidden';
+    $scope.formDespesa = {}
+
+    $scope.formDespesa.date = new Date();
+
+    $scope.despesas.length == 0 ? OptionActionCancel() : false;
+  }
+
+  $scope.submitDelete = (despesa) => {
+//**DELETE
+    //const buscadespesa = $scope.despesas.find(despesa) // $scope.despesas.indexOf(despesa))
+    
+    despesaAction.delete(despesa)
+    .then((res) => {
+      alert(`${res.message} Despesa: ${despesa.nome}` )
+      RenderizarViewDespesaDelete(despesa)
+    })
+    .catch((err) => {
+      alert(err.message)
+    })
+    
+    
+  }
+
+    //Submit Form Despesa
+  $scope.submeter = () =>{
+    //console.log('>> SUBMIT FORM DESPESA')
+    //const despesa = $scope.formDespesa;
+    //const buscadespesa = $scope.despesas.indexOf(despesa)
+    //$scope.despesas.splice(buscadespesa, 1) //PARA REMOVER SOMENTE O SELECIONADO
+
+    //console.log('>> SUBMIT FORM DESPESA FULL')
+    despesaAction.create($scope.formDespesa)//queryAll.selectDespStatusDt, [dtConsulta.inicio, dtConsulta.fim])
+    .then((res) => {
+      $scope.despesas = {};
+      $scope.formDespesa = {};
+      $scope.formDespesa.date = new Date();
+      setTimeout(() => {
+        ListaDespesas();
+        //alert("Message: Foi salvo com sucesso!")
+      }, 5)
+    })
+    .catch((err)=> {
+      alert(err.message)
+    })
+  }
+
+  const dtFull = new Date();
+  const dtMes = dtFull.getMonth();
+  const  dtAno = dtFull.getFullYear();
+
+  $scope.subtitulo = GetDateFormat.mesExtAnoParams(mesExt[dtMes], dtAno);
+  $scope.comparaDt = GetDateFormat.anoFullMesExtDiaParams(mesExt[dtMes], dtAno);
+
+  $scope.submitPassames = async ($returnNext) => {
+    pass.Month($returnNext)
+    .then((res, rej) => {
+      $scope.subtitulo = res.mesExt;
+      $scope.comparaDt = res.anoMesDia;
+      
+      setTimeout(() => {
+          $scope.despesas = {};
+          ListaDespesas();
+        }, 60);
+      })
+      .catch((err) => {
+        alert(err.message)
+      })
+    }
 });
