@@ -5,14 +5,14 @@ angular.module('dataApp', ['ngResource', 'dataBase'])
 
   bdquery.index = (getQuery, getDados) => {
     //console.log(">> FACTORY QUERY")
-    console.log('>> LIST BD')
-    console.log(getQuery)
-    console.log(getDados)
+    //console.log('>> LIST BD')
+    //console.log(getQuery)
+    //console.log(getDados)
     return $q((res, rej) => {
       try{
         dataBase.transaction((transaction) => {
           transaction.executeSql(getQuery, getDados, (transaction, results) =>{
-            console.log((results.rows))
+            //console.log((results.rows))
             res(results.rows)
           })
         })
@@ -55,9 +55,9 @@ angular.module('dataApp', ['ngResource', 'dataBase'])
   },
   bdquery.delete = (getQuery, getDados) =>{
     return $q((res, rej) => {
-      console.log('>> DELETE BD')
-      console.log(getQuery)
-      console.log(getDados)
+      //console.log('>> DELETE BD')
+      //console.log(getQuery)
+      //console.log(getDados)
       try{
         dataBase.transaction((transaction) => {
           transaction.executeSql(getQuery, getDados, (transaction, results) => {

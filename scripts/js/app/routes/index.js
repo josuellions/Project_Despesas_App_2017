@@ -4,16 +4,16 @@ angular.module('routesApp', ['ngResource', 'apiApp'])
   let app = {};
   //let evento = 'despesasServices';
 
-  console.log("FACTORY ROUTES/QUERY")
-  console.log(query.selectDespStatusDt())
+  //console.log("FACTORY ROUTES/QUERY")
+  //console.log(query.selectDespStatusDt())
 
-  app.despesaindex = (getDados ) =>{
+  app.despesaIndex = (getDados ) =>{
     return $q((res, rej) => {
       res(api.index(query.selectDespStatusDt(), getDados))
       rej({message: 'Error: FACTORY ROUTE, falha ao lista as despesas'})
     })
   },
-  app.despesacreate = (getDados) => {
+  app.despesaCreate = (getDados) => {
     return $q((res, rej) =>{
       //console.warn(">>CREATE FACTORY ROUTE")
       //console.log(res)
@@ -21,6 +21,12 @@ angular.module('routesApp', ['ngResource', 'apiApp'])
       rej({message: 'Error: FACTORY ROUTE, falha ao adicionar despesa'})
 
       //customCssAddClass(itens.id, "ng-leave-active");
+    })
+  },
+  app.despesaUpdate = (getDados) => {
+    return $q((res,rej) => {
+      res(api.update(query.updateDespStatus(), getDados))
+      rej({message: 'Error: FACTORY ROUTE, falha ao atualizar despesa'})
     })
   },
   app.despesaStatus = (getDados) => {

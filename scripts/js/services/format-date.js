@@ -31,7 +31,7 @@ angular.module('formatDateServices', ['ngResource'])
       //console.log(dtConsulta);
 
       res(dtConsulta)
-      rej({'message': 'Error: FACTORY FORMAT DATE, falha ao formatar data!'})
+      rej({message: 'Error: FACTORY FORMAT DATE, falha ao formatar data!'})
 
     })
   }

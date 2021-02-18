@@ -20,7 +20,7 @@
 <!-- <preference name="android-minSdkVersion" value="16" /> -->
   <preference name="android-targetSdkVersion" value="28" />
   <preference name="target-device" value="universal" />
-  <preference name="fullscreen" value="false" />
+  <preference name="fullscreen" value="true" />
   <preference name="webviewbounce" value="false" />
   <preference name="disallowOverscroll" value="true" />
   <preference name="prerendered-icon" value="true" />
