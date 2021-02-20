@@ -2,17 +2,12 @@
   .factory('despesaAction', function ($q, $rootScope, routesAction ) {
 
     let service = {};
-    //let evento = 'despesasServices';
-    //const dataBase = configDataBase();
-
-    //console.warn('DATA BASE')
-    //console.log(dataBase)
 
     service.index = (getDados ) =>{
       return $q((res, rej) => {
         //console.log('SERVICE')
           res(routesAction.despesaIndex(getDados))
-          rej({mesagem: 'Error: FACTORY SERVICES, falha ao buscar dados'})
+          rej({message: 'Error: FACTORY SERVICES, falha ao buscar dados'})
       })
     },
     service.indexMesAnterior = (getDados) => {
@@ -28,23 +23,20 @@
     },
     service.copy = (getDados) => {
       return $q((res, rej) => {
-        /*const date = new Date(getDados)
-        const dadosFormat = [
-          GetDateFormat.anoFullMesDiaFormatBDParamsFull(1, date.getMonth(), date.getFullYear()),
-          GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
-        ]*/
-        let response = {}
+
         let dadosFormat = [];
         $.each(getDados, (id, row) =>{
           const date = row.dtLanc.split('-')
+
           const formtDate = GetDateFormat.anoFullMesDiaFormatBDParamsFull(date[2], parseInt(date[1]), date[0])
-          
+          console.log(">> FACTORY DESPESA COPY")
+          console.log(formtDate)
           dadosFormat = [
             formtDate,
             formtDate,
             row.despesa,
             row.valor,
-            0
+            row.status = 0,
           ]
           routesAction.despesaCreate(dadosFormat)
         })
@@ -73,21 +65,24 @@
       })
     },
     service.update = (getDados) => {
-      console.log(">>FACTORY CADASTRO DESPESA")
-      console.log(getDados)
+      //console.log(">>FACTORY UPDATE DESPESA")
+      //console.log(getDados)
       return $q((res, rej) => {
-        const date = new Date(getDados.date)
+        try{
+          const date = new Date(getDados.date)
 
-        const dadosFormat = [
-          GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
-          GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
-          getDados.nome,
-          getDados.valor,
-          getDados.status = 0,
-          getDados.id,
-        ]
-        res(routesAction.despesaUpdate(dadosFormat));
-        rej({message: 'Error: FACTORY SERVICES, falha ao atualizar despesa'});
+          const dadosFormat = [
+            GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
+            GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
+            getDados.nome,
+            getDados.valor,
+            getDados.status = 0,
+            getDados.id,
+          ]
+          res(routesAction.despesaUpdate(dadosFormat));
+        }catch{
+          rej({message: 'Error: FACTORY SERVICES, falha ao atualizar despesa'});
+        }
       })
     },
     service.updateStatus = (getDados) => {
@@ -115,5 +110,6 @@
         rej({message: 'Error: FACTORY SERVICES, falha ao excluir despesa'});
       })
     }
+
     return service
   })

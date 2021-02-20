@@ -74,9 +74,9 @@ const GetDateFormat =  {
   },
   anoFullMesDiaFormatBDParamsFull: (dia, mes, ano) =>{
     const diaFormat = String(`0${dia}`).slice(-2);
-    const mesFormat = String(`0${mes + 1}`).slice(-2);
-
-    return [ano, mesFormat, diaFormat].join('-');
+    const mesFormat = mes == 12 ? String(`0${1}`).slice(-2) : String(`0${parseInt(mes) + 1}`).slice(-2);
+    const anoFormat = mes == 12 ? String(parseInt(ano) + 1) : ano
+    return [anoFormat, mesFormat, diaFormat].join('-');
   },
   mesExtAnoParams: (mes, ano) =>{
     return [mes,ano].join('/');

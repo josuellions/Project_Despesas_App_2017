@@ -156,10 +156,13 @@ body{
 	height: 71.5vh;
 	max-height: 71.5vh;
 }
-
 table thead, tfoot {
 	background-color: #474e5d;
 	color: #c5cad5;
+}
+
+table.table-responsive {
+	margin-bottom: 1px !important;
 }
 
 table thead tr th.edit-cancel {
@@ -449,6 +452,7 @@ section {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	margin-top: 15px !important;
 }
 
 .formCoustom input{
@@ -461,18 +465,18 @@ section {
 	border-radius: 4px;
 }
 
-.formCoustom input.dtDespesa{
+.formCoustom input.dtDespesa, input.dtEntrada{
 	width: 20vw;
 }
 
-.formCoustom input.listDespesa{
+.formCoustom input.listDespesa, input.listEntrada{
 	width: 33vw;
 }
-.formCoustom input.valDespesa{
+.formCoustom input.valDespesa, input.valEntrada{
 	width: 24vw;
 }
 
-.btnGroup, .btnDespSalve{
+.btnGroup, .btn-update-custom {
 	float: right;
 	height: 44px;
 	width: 44px;
@@ -490,19 +494,19 @@ section {
 	opacity: .9;
 }
 
-.btnGroup:hover, .btnDespSalve:hover{
+.btnGroup:hover, .btn-update-custom:hover{
 	cursor: pointer;
 	box-shadow: 0px 0px 10p #fff;
 	border: .1rem solid #337ab7;
 	opacity: 1;
 }
 
-.btnDesp {
+.btn-save-custom {
 	padding: 1rem;
 	font-size: 1.6rem;
 }
 
-.btnDespSalve {
+.btn-update-custom  {
 	padding: 0 ;
 	padding-top: .9rem !important;
 	padding-bottom: 1rem !important;
@@ -544,25 +548,7 @@ h5 {
 	.container-fluid>div>.btn {
 		height: 20vh !important;
 	}
-	/*
-	span.btnDesp {
-		padding-top: 1.2rem !important;
-		padding-bottom: 1.2rem !important;
-		font-size: 1.2rem !important;
-		margin-top: -.5vh !important;
-		margin-right: 1.8% ;
-		margin-left: -.5vw !important;
-	}
-	span.btnDespSalve {
-		padding: 0 !important;
-		padding-top: 1.2rem !important;
-		padding-bottom: 1.2rem !important;
-		font-size: 1.2rem !important;
-		margin-top: -.5vh !important;
-		margin-right: 1.8% ;
-		margin-left: .5vw !important;
-	}
-	*/
+	
 	span .col-xs-2 {
 		padding: 0;
 		margin: 1vw;
@@ -623,14 +609,7 @@ h5 {
 		width: 35vw;
 		margin-top: .4vh;
 	}
-	/*.btnDesp {
-		margin-top: -1.2vh !important;
-		margin-left: -.2vw !important;
-	}
-	.btnDespSalve {
-		margin-top: -1.4vh !important;
-		margin-left: -.2vw !important;
-	}*/
+
 	/*BOTÃO VISUALIZAR - Tela Visualizar Despesas*/
 	.container-fluid>button {
 		margin-top: 10%;
@@ -823,3 +802,102 @@ tbody.listEntrada tr td {
 	background-color: lightgray;
 	opacity: .7;
 }
+
+.modal .panel-custom {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: none;
+}
+.modal .panel-custom .panel-icon {
+	width: 50px; height: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	padding: 4rem;
+	border: 2px solid #ddd;
+	margin-bottom: 2rem;
+}
+
+.modal .panel-custom  p {
+	text-align: center;
+	font-size:1em;
+}
+
+#ModalQuestion .panel-custom .panel-icon i {
+	padding: 1em;
+	color: #f0ad4e;
+	font-size: 5.8em;
+	opacity: .7;
+}
+
+.modal .btn.btn-primary {
+	opacity: .9;
+	border: none !important;
+}
+
+/*MODAL SUCESSO*/
+#ModalSuccess .modal-header {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	border: none;
+}
+#ModalSuccess .panel-custom {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	border: none;
+}
+#ModalSuccess .panel-custom .panel-icon {
+	width: 25px; height: 25px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	padding: 2rem;
+	border: 2px solid #ddd;
+	margin-bottom: .5rem;
+}
+
+#ModalSuccess .panel-custom  p {
+	text-align: center;
+	font-size:1em;
+}
+
+#ModalSuccess .panel-custom .panel-icon i {
+	padding: 1em;
+	color: #5cb85c;
+	font-size: 1.8em;
+	opacity: .7;
+}
+
+#ModalError .panel-custom .panel-icon i {
+	padding: 1em;
+	color: #d9534f;
+	font-size: 5.6em;
+	opacity: .7;
+	
+}
+
+#ModalInfo .panel-custom .panel-icon i {
+	padding: 1em;
+	color: #5bc0de;
+	font-size: 5.6em;
+	opacity: .7;
+	
+}
+
+.modal button.btn {
+	opacity: .7!important;
+}
+

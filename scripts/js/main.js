@@ -12,7 +12,8 @@ angular
     "formatValorServices",
     "formatDateServices",
     "passMonthServices",
-    "despesaServices"
+    "despesaServices",
+    "alertServices"
   ])
   .config(function ($routeProvider) {
     
@@ -46,24 +47,24 @@ angular
       })
       .when("/despesas", {
         templateUrl: AmbientPath('despesas'),
-        controller: 'DespesasController'
+        controller: 'DespesaController'
         //controller: "MenuController",
       })
       .when("/entrada", {
         templateUrl: AmbientPath('entrada'),
-        controller: "MenuController",
+        controller: "EntradaController",
       })
       .when("/visualizar", {
         templateUrl: AmbientPath('visualizar'),
-        controller: "MenuController",
+        controller: "VisualizarController",
       })
       .when("/relatorio", {
         templateUrl: AmbientPath('relatorio'),
-        controller: "MenuController",
+        controller: "RelatorioController",
       })
       .when("/informacoes", {
         templateUrl: AmbientPath('informacoes'),
-        controller: "MenuController",
+        controller: "InformacoesController",
       })
       .when("/backup", {
         templateUrl: AmbientPath('backup'),
@@ -71,7 +72,7 @@ angular
       })
       .when("/sobre", {
         templateUrl: AmbientPath('sobre'),
-        controller: "MenuController",
+        controller: "SobreController",
       })
       .otherwise({
         redirectTo: "/",

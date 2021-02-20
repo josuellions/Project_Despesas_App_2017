@@ -1,7 +1,18 @@
 angular
   .module("todoApp")
-  .controller("BackupController", function ($http, $location) {
+  .controller("BackupController", function ($scope, $http, $location, pass) {
 
+    pass.MonthInitial()
+    .then((res) => {
+      $scope.titulo = 'Controle Despesas';
+      $scope.classSubTitulo = 'subtitulo-menu alinharMes';
+      $scope.subtitulo = 'Backup'
+      $scope.passmes = false;
+    })
+    .catch((err) => {
+      alert(err)
+    })
+/*FUNCIONADO COMENTADO PARA ESTIVIZAÇÂO DA VIEW
     let totalTable;
     let urlbase = ''; //'http://21.21.21.11:3333';
 
@@ -130,4 +141,5 @@ angular
     }
 
     Connection();
+    */
 })

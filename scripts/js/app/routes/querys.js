@@ -17,7 +17,7 @@ angular.module('querysApp', ['ngResource'])
        return "SELECT * FROM TbDespesasStatus WHERE data >= ? and data <= ? ORDER BY data ASC ;"
     },
     query.selectDespStatusDtValor = () => {
-       return "SELECT valor FROM TbDespesasStatus WHERE data >= ? and data <= ? ;"
+       //return "SELECT valor FROM TbDespesasStatus WHERE data >= ? and data <= ? ;"
     },
     query.dropDesp = () => {
        return "DROP TABLE TbDespesas;"
@@ -32,7 +32,7 @@ angular.module('querysApp', ['ngResource'])
        return "SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;"
     },
     query.selectEntradaDtValor = () => {
-       return "SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;"
+       //return "SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;"
     },
     query.updateStatusDesp = () => {
        return "UPDATE TbDespesasStatus SET statusDesp = ? WHERE id = ?;"
@@ -44,7 +44,7 @@ angular.module('querysApp', ['ngResource'])
        return "DELETE FROM TbEntradas WHERE id=?;"
     },
     query.insertDespeStatus = () => {
-       return "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?); SELECT * FROM TbDespesasStatus WHERE id = SCOPE_IDENTITY();"
+       //return "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?); SELECT * FROM TbDespesasStatus WHERE id = SCOPE_IDENTITY();"
     },
     query.insertDespStatus = () => {
        return "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?);"

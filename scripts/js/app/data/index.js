@@ -16,8 +16,7 @@ angular.module('dataApp', ['ngResource', 'dataBase'])
             res(results.rows)
           })
         })
-      }
-      catch{
+      }catch{
         rej({message: "Error: FACTORY QUERY INDEX, falha ao buscar dados no banco dados"})
       }
     })
@@ -25,32 +24,40 @@ angular.module('dataApp', ['ngResource', 'dataBase'])
   bdquery.insert = (getQuery, getDados) => {
     
     return $q((res, rej) => {
-      dataBase.transaction((transaction) => {
-        transaction.executeSql(getQuery, getDados, (transaction, results) =>{
-          !results.rowsAffected ? 
-            rej({message: 'Error: FACTORY QUERY INSERT, falha ao adicionar dados'})
-          :
-          //console.log(">> FACTORY QUERY INSERT")
-          //console.log(results.rows)
-          res(results.rows) //{"message": "Sucesso, informações salvas!"})
+      try{
+        dataBase.transaction((transaction) => {
+          transaction.executeSql(getQuery, getDados, (transaction, results) =>{
+            if(!results.rowsAffected){ 
+              throw 'Erro';
+            }
+            //console.log(">> FACTORY QUERY INSERT")
+            //console.log(results.rows)
+            res(results.rows) //{"message": "Sucesso, informações salvas!"})
+          })
         })
-      })
+      }catch{
+        rej({message: 'Error: FACTORY QUERY INSERT, falha ao adicionar dados'})
+      }
     })
   },
   bdquery.update = (getQuery, getDados) =>{
     return $q((res, rej) => {
-      console.log('>> UPDATE STATUS BD')
-      console.log(getQuery)
-      console.log(getDados)
-      dataBase.transaction((transaction) => {
-        transaction.executeSql(getQuery, getDados, (transaction, results) => {
-          !results.rowsAffected ?
-            rej({message: 'Error: FACTORY QUERY UPDATE, falha ao atualizar dados'})
-          :
-            res(results.rows)
+      try{
+        //console.log('>> UPDATE STATUS BD')
+        //console.log(getQuery)
+        //console.log(getDados)
+        dataBase.transaction((transaction) => {
+          transaction.executeSql(getQuery, getDados, (transaction, results) => {
+            if(!results.rowsAffected) {
+              //rej({message: 'Error: FACTORY QUERY UPDATE, falha ao atualizar dados'})
+              throw 'Error';
+            }
+              res(results.rows)
+          })
         })
-      })
-      //rej({'Error': 'FACTORY QUERY UPDATE, falha ao atualizar dados'})
+      }catch{
+        rej({'Error': 'FACTORY QUERY UPDATE, falha ao atualizar dados'})
+      }
     })
   },
   bdquery.delete = (getQuery, getDados) =>{
@@ -61,9 +68,9 @@ angular.module('dataApp', ['ngResource', 'dataBase'])
       try{
         dataBase.transaction((transaction) => {
           transaction.executeSql(getQuery, getDados, (transaction, results) => {
-            !results.rowsAffected ?
-              rej({message: 'Error: FACTORY QUERY DELETE, falha ao excluir dados'})
-            :
+            if(!results.rowsAffected){
+             throw 'Error'
+            }
               res({message: 'Success: dados excluidos.'})//results.rows)
           })
         })

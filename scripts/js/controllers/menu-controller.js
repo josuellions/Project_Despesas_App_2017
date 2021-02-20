@@ -1,11 +1,10 @@
 angular
   .module("todoApp")
-  .controller("MenuController", function ($scope, $location, formatDate) {
+  .controller("MenuController", function ($scope, $location, formatDate, pass) {
     
     $scope.passmes = false;
     $scope.comparaDt ='';
     $scope.subtitulo = '';
-    $scope.comparaDt = '';
     $scope.dtLancamento =''; 
     $scope.classSubTitulo = '';
   
@@ -15,26 +14,26 @@ angular
     let dtDia = dtFull.getDate();
 
     //VERIFICAR SE NECESSARIO - quando refatorar tudo para ANGULARJS
-    const Campos = (page, titulo, subtitulo, passmes, dtFormat, IdCampo, IdInit) =>{
+   /* const Campos = (page, titulo, subtitulo, passmes, dtFormat, IdCampo, IdInit) =>{
       return {page,titulo, subtitulo, passmes, dtFormat, IdCampo, IdInit}
-    }
+    }*/
     //VERIFICAR SE NECESSARIO - quando refatorar tudo para ANGULARJS
-    const localPage = {
+    /*const localPage = {
       home ()  {
         return Campos('/home', 'Controle Despesas', 'MENU', false, null, null,null)
       },
       entrada () {
-        return Campos('/entrada', 'Adicionar Entrada', null, true, 1, 'dtEntrada', 'entradaInit')
+        return Campos('/entrada', 'Adicionar Entrada', null, true, 1, 'dtEntrada', null) //'entradaInit')
       },
       despesas(){
-        return Campos('/despesas', 'Adicionar Despesas', null, true, 2, 'dtDespesa', 'despesaInt')
+        return Campos('/despesas', '', null, true, 2, 'dtDespesa', null) //'despesaInt')
       },
       visualizar(){
-          return Campos('/visualizar', 'Visualizar Despesas', null, true, 3, null, 'visualizarInit')
+          return Campos('/visualizar', 'Visualizar Despesas', null, true, 3, null, null) //'visualizarInit')
       },
       relatorio()
       {
-        return Campos('/relatorio', 'Relatório Mensal', null, true, 3, null, 'relatorioInit')
+        return Campos('/relatorio', 'Relatório Mensal', null, true, 3, null, null) //'relatorioInit')
       },
       informacoes()
       {
@@ -49,39 +48,14 @@ angular
         return Campos('/sobre', 'Controle Despesas', 'Sobre', false, null, null, null)
       },
     }
-
-    $scope.titleTop = {
-      comparaDt:'',
-      imglogoalt: 'Logo Seven',
-      imglogotitle: 'Logo Seven',
-      contVer: 'v1.0.7n - AngularJS - 10/01/2021', //MOVE FACTOY VERSÂO
-      dtLancamento: String(GetDateFormat.anoFullMesDiaAtual(dtDia))
-    };
-
-    // EFEITO MENU SUPERIOR - MOVE FACTORY
-    const menuTop = () => {
-      setTimeout(() => {
-        $("#btnMenu").click(() => {
-          $("#liMenu").slideToggle(() => {
-            $(this).click(() => {
-              $("#liMenu").animate().slideDown(700);
-              $(this).ready(() => {
-                $("#liMenu").animate().slideUp(700);
-              });
-            });
-          });
-          $("body").mousedown(() => {
-            $("#liMenu").animate().slideUp(700);
-          });
-        });
-      }, 25);
-    };
+*/
 
     /* Formata data top menu top
     @passMes = nome da view que estava anteriormente
     @pageAtual = view que estiver exibindo
     @passAno = ano exibido na view
     */
+    /* MOVIDO PARA FACTORY PASS-MONTH
     const DtFormatView = (passMes, pageAtual, passAno) => {
       const camposPage =  localPage[pageAtual.split('/')[1]];
       //const itensCamposPage = camposPage();
@@ -103,7 +77,7 @@ angular
       //onInit(itensCamposPage.IdInit); //USAR SOMENTE COM JSPURO SEM ANGULAR
     
       
-    };
+    };*/
 
     /* Recebe o mês de referencia page */
     /* MOVIDO PARA FACTORY PASSMONTH
@@ -122,34 +96,73 @@ angular
 
     };
     */
-   const carregarPage = () => {
-    let page = ($location.$$path).replace('/','').trim();
+
+    // EFEITO MENU HANBURG SUPERIOR - MOVE FACTORY
+    const menuTop = () => {
+      setTimeout(() => {
+        $("#btnMenu").click(() => {
+          $("#liMenu").slideToggle(() => {
+            $(this).click(() => {
+              $("#liMenu").animate().slideDown(700);
+              $(this).ready(() => {
+                $("#liMenu").animate().slideUp(700);
+              });
+            });
+          });
+          $("body").mousedown(() => {
+            $("#liMenu").animate().slideUp(700);
+          });
+        });
+      }, 25);
+    };
+
+    const CarregarPage = () => {
+      $scope.subtitulo = '';
+      let page = ($location.$$path).replace('/','').trim();
+      
+      
+      if(page.length == 0){
+        page = 'home'
+        $scope.passmes = false;
+        $scope.classSubTitulo = 'subtitulo-menu';
     
-    if(page.length == 0){
-      page = 'home'
-      $scope.passmes = false;
-      $scope.classSubTitulo = 'subtitulo-menu';
-    } 
+        $scope.titulo = 'Controle Despesas' //itensCamposPage.titulo;
+        $scope.subtitulo = 'MENU'; //itensCamposPage.subtitulo;
+        $scope.comparaDt = '';
+        return
+     } 
+    
+    //$scope.titulo = 'Controle Despesas' //itensCamposPage.titulo;
+    //$scope.subtitulo = 'MENU'; //itensCamposPage.subtitulo;
+    //$scope.comparaDt = '';
     
     menuTop();
-    const camposPage =  localPage[page];
-    const itensCamposPage = camposPage();
     
-    $scope.titulo = itensCamposPage.titulo;
-    $scope.subtitulo = itensCamposPage.subtitulo;
-
+    //const camposPage =  localPage[page];
+    //const itensCamposPage = camposPage();
     //setTimeout(() => {
     //  $("#dtReference").addClass('subtitulo-menu'); //alinharMes
     //}, 60);
-    console.log('HOME')
+    //console.log('HOME')
   }
 
   ////MOVE FACTOY VERSÂO
+  //Dados footer
   $scope.dadosApp = {
     nomeDeveloper: " 2017 - Josuel A. Lopes",
     nomeEmpresa: " Seven Solutions Tecnologic",
   };
 
-  carregarPage();
+  //Dados Menu Top e controle versão
+  $scope.titleTop = {
+    comparaDt:'',
+    imglogoalt: 'Logo Seven',
+    imglogotitle: 'Logo Seven',
+    contVer: 'v1.0.7n - AngularJS - 10/01/2021', //MOVE FACTOY VERSÂO
+    dtLancamento: String(GetDateFormat.anoFullMesDiaAtual(dtDia))
+  };
+
+
+  CarregarPage();
     
 });

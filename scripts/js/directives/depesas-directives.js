@@ -1,6 +1,34 @@
 angular.module('depesasDirectives', [])
 
   /* Define barra superior página */
+  .directive('alertsCustom', function () {
+    var ddo = {};
+
+    ddo.restric = 'AE';
+
+    ddo.transclude = true;
+
+    ddo.templateUrl = 'public/partials/alerts-custom.html';
+
+    return ddo;
+
+  })
+
+  .directive('alertsTeste', function () {
+    var ddo = {};
+
+    ddo.restric = 'AE';
+
+    ddo.transclude = true;
+
+    ddo.templateUrl = 'public/partials/alerts-teste.html';
+
+    return ddo;
+
+  })
+
+
+  /* Define barra superior página */
   .directive('barraTop', function () {
     var ddo = {};
 

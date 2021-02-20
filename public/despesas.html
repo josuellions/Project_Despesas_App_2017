@@ -1,5 +1,6 @@
 <panel-top></panel-top>
 <panel-views>
+
 	<table class="table table-striped table-hader table-responsive tbmenuDesp">
 		<thead>
 			<tr>
@@ -23,7 +24,7 @@
 					<!--<td width="55%" ng-click="onUpdateDesp(d.id, d.dateBd, d.nome, d.valor)">{{d.nome}}</td>-->
 					<td width="55%" ng-click="onUpdateDesp(update, d)">{{d.nome}}</td>
 					<td class="text-center" width="1%">R$</td>
-					<td class="text-right">{{d.valor}}</td>
+					<td class="text-right money">{{d.valor}}</td>
 				</span>
 				<td class="text-center" width="6%">
 					<div class="toggle {{option}}"  id="acaoStatus" ng-switch="{{d.status}}">
@@ -53,20 +54,23 @@
 	<form class="formCoustom row" role="group" aria-label="..."name="formulario" ng-submit="submeter()" novalidate>
 		
 		<div class="alingBtn" role="group">
-			<input class="dtDespesa" ng-model="formDespesa.date"  type="date" id="dtDespesa" name="dtDespesa">
+			<input type="date" class="dtDespesa" ng-model="formDespesa.date"   id="dtDespesa" name="dtDespesa">
 		</div>
+
 		<div role="group">
-			<input class="listDespesa"  ng-model="formDespesa.nome" list="dataListDespesa" name="textDespesa" id="selectDespesas" placeholder="Despesa">
-			<datalist name="dataListDespesa" class="dataListDespesa" id="dataListDespesa" ng-repeat="despesa in listaDespesas">
+			<input class="listDespesa"  ng-model="formDespesa.nome" list="dataListDespesa" name="textDespesa" id="dataDespesas" placeholder="Despesa">
+			<datalist name="dataListDespesa" id="dataListDespesa" ng-repeat="despesa in listaDespesas">
 			
 			</datalist>
 		</div>
+
 		<div role="group">
-			<input class="valDespesa money" ng-model="formDespesa.valor"  type="text" name="valDespesa" id="valDespesa" min="0" placeholder="R$ 0,00" required value="" />
+			<input class="valDespesa money" type="text" ng-model="formDespesa.valor" name="valDespesa" id="valDespesa" min="0" placeholder="R$ 0,00" value="" required/>
 		</div>
+
 		<button class="btnGroup" role="group" >
-			<span class="glyphicon glyphicon-plus btnDesp {{btnSave}}"  name="create"></span>
-			<span class="glyphicon glyphicon-floppy-saved btnDespSalve {{btnUpdate}}" name="update"></span>
+			<i class="glyphicon glyphicon-plus btn-save-custom {{btnSave}}"  name="create"></i>
+			<i class="glyphicon glyphicon-floppy-saved btn-update-custom {{btnUpdate}}" name="update"></i>
 		</button>
 		
 	</form>
@@ -81,4 +85,5 @@
 			</tr>
 		</tfoot>
 	</table>
+	
 </panel-views>
