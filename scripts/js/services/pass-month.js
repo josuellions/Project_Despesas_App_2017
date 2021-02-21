@@ -36,7 +36,7 @@ angular.module('passMonthServices', ['ngResource'])
       try{
         dtMes = dtFull.getMonth();
         dtAno = dtFull.getFullYear();
-        dtDia = dtFull.getDate();
+        dtDia = dtFull.getDate();       
 
         res({
           'mesExt': GetDateFormat.mesExtAnoParams(mesExt[dtMes], dtAno),

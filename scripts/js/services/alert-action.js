@@ -33,6 +33,7 @@ angular.module('alertServices', ['ngResource'])
   service.question = (message, action, getDados) => {
    return $q((res, rej) => {
       try{
+        
         let questionAction = action;
         
         $('#ModalQuestion').modal('toggle');
@@ -89,7 +90,6 @@ angular.module('alertServices', ['ngResource'])
   service.error = (message) => {
     return $q((res, rej) => {
       try{
-        console.log(message)
         $('#ModalError').modal('toggle');
         $("#errorAvisos").html(`${message}`);
         

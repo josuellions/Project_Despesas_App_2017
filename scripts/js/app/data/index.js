@@ -22,7 +22,8 @@ angular.module('dataApp', ['ngResource', 'dataBase'])
     })
   },
   bdquery.insert = (getQuery, getDados) => {
-    
+    console.log(">> FACTORY QUERY INSERT")
+    console.log(getQuery)
     return $q((res, rej) => {
       try{
         dataBase.transaction((transaction) => {
@@ -30,8 +31,8 @@ angular.module('dataApp', ['ngResource', 'dataBase'])
             if(!results.rowsAffected){ 
               throw 'Erro';
             }
-            //console.log(">> FACTORY QUERY INSERT")
-            //console.log(results.rows)
+            console.log(">> FACTORY QUERY INSERT")
+            console.log(results.rows)
             res(results.rows) //{"message": "Sucesso, informações salvas!"})
           })
         })

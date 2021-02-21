@@ -11,4 +11,13 @@ function($scope, pass){
     alert(err)
   })
 
+  //Dados Sobre Top e controle versão
+  $scope.titleTop = {
+    comparaDt:'',
+    imglogoalt: 'Logo Seven',
+    imglogotitle: 'Logo Seven',
+    contVer: 'v1.0.7n - AngularJS - 20/02/2021',
+    dtLancamento: String(GetDateFormat.anoFullMesDiaAtual(dtDia))
+  };
+
 })

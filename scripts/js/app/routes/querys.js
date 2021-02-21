@@ -1,62 +1,28 @@
 angular.module('querysApp', ['ngResource'])
-    .factory('query', function ($q) {
+	.factory('query', function ($q) {
 
-    let query = {};
-//console.log(">> FACTORY QUERY")
-  
-  query.selecDesp = () => { 
-      return "SELECT * FROM TbDespesas;"
-    },
-    query.selectDespStatus = () => {
-      return "SELECT * FROM  TbDespesasStatus;"
-    },
-    query.selectDespPorId = () => {
-       return "SELECT * FROM TbDespesasStatus WHERE id=?;"
-    },
-    query.selectDespStatusDt = () => {
-       return "SELECT * FROM TbDespesasStatus WHERE data >= ? and data <= ? ORDER BY data ASC ;"
-    },
-    query.selectDespStatusDtValor = () => {
-       //return "SELECT valor FROM TbDespesasStatus WHERE data >= ? and data <= ? ;"
-    },
-    query.dropDesp = () => {
-       return "DROP TABLE TbDespesas;"
-    },
-    query.selectEntrada = () => {
-       return "SELECT * FROM TbEntradas;"
-    },
-    query.selectEntradaPorId = () => {
-       return "SELECT * FROM TbEntradas WHERE id=?;"
-    },
-    query.selectEntradaDt = () => {
-       return "SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;"
-    },
-    query.selectEntradaDtValor = () => {
-       //return "SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;"
-    },
-    query.updateStatusDesp = () => {
-       return "UPDATE TbDespesasStatus SET statusDesp = ? WHERE id = ?;"
-    },
-    query.deleteDesp = () => {
-       return "DELETE FROM TbDespesasStatus WHERE id=?;"
-    },
-    query.deleteEntrada = () => {
-       return "DELETE FROM TbEntradas WHERE id=?;"
-    },
-    query.insertDespeStatus = () => {
-       //return "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?); SELECT * FROM TbDespesasStatus WHERE id = SCOPE_IDENTITY();"
-    },
-    query.insertDespStatus = () => {
-       return "INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?);"
-    },
-    query.insertEntrada = () => {
-       return "INSERT INTO TbEntradas (dtLanc, data, entrada, valor) VALUES (?, ?, ?, ?);"
-    },
-    query.updateDespStatus = () => {
-       return "UPDATE TbDespesasStatus SET dtLanc = ?, data = ?, despesa = ?, valor = ?, statusDesp = ? WHERE id=?;"
-    },
-    query.updateEntrada = () => {
-       return "UPDATE TbEntradas SET dtLanc = ?, data = ?, entrada = ?, valor = ? WHERE id=?;"
-    }
-    return query;
-  })
+		const query = {
+			selectDespesaStatusDate: 'SELECT * FROM TbDespesasStatus WHERE data >= ? and data <= ? ORDER BY data ASC ;',
+			insertDespesaStatus: 'INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?);',
+			updateDespesaStatus: 'UPDATE TbDespesasStatus SET dtLanc = ?, data = ?, despesa = ?, valor = ?, statusDesp = ? WHERE id=?;',
+			updateStatusDespesa: 'UPDATE TbDespesasStatus SET statusDesp = ? WHERE id = ?;',
+			deleteDespesa: 'DELETE FROM TbDespesasStatus WHERE id=?;',
+			selectEntradaDate: 'SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;',
+			insertEntrada: 'INSERT INTO TbEntradas (dtLanc, data, entrada, valor) VALUES (?, ?, ?, ?);',
+			deleteEntrada: 'DELETE FROM TbEntradas WHERE id=?;',
+
+			/*selecDespesa : 'SELECT * FROM TbDespesas;',
+			selectDespesaStatus: 'SELECT * FROM  TbDespesasStatus;',
+			selectDespesaPorId: 'SELECT * FROM TbDespesasStatus WHERE id=?;',
+			selectDespesaStatusDateValor: 'SELECT valor FROM TbDespesasStatus WHERE data >= ? and data <= ? ;',//EXCLUIR
+			dropDespesa: 'DROP TABLE TbDespesas;',
+			selectEntrada: 'SELECT * FROM TbEntradas;',
+			selectEntradaPorId: 'SELECT * FROM TbEntradas WHERE id=?;',
+			selectEntradaDateValor: 'SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;', //ESCLUIR
+			insertDespesaStatus_old: 'INSERT INTO TbDespesasStatus (dtLanc, data, despesa, valor, statusDesp) VALUES (?, ?, ?, ?, ?); SELECT * FROM TbDespesasStatus WHERE id = SCOPE_IDENTITY();', //EXCLUIR DUPLICADO
+			updateEntrada: 'UPDATE TbEntradas SET dtLanc = ?, data = ?, entrada = ?, valor = ? WHERE id=?;',
+			*/
+		}
+
+	return query;
+})

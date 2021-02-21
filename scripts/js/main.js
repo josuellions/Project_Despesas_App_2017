@@ -1,19 +1,20 @@
 angular
-  .module("todoApp", [
-    "ngRoute",
-    "ngAnimate",
-    "ngResource",
-    "depesasDirectives",
-    "dataBase",
-    "dataApp",
-    "apiApp",
-    "querysApp",
-    "routesApp",
-    "formatValorServices",
-    "formatDateServices",
-    "passMonthServices",
-    "despesaServices",
-    "alertServices"
+  .module('todoApp', [
+    'ngRoute',
+    'ngAnimate',
+    'ngResource',
+    'depesasDirectives',
+    'dataBase',
+    'dataApp',
+    'apiApp',
+    'querysApp',
+    'routesApp',
+    'formatValorServices',
+    'formatDateServices',
+    'passMonthServices',
+    'despesaServices',
+    'entradaServices',
+    'alertServices'
   ])
   .config(function ($routeProvider) {
     
@@ -41,40 +42,40 @@ angular
     const AmbientPath = Directiory[AmbientSelect()];
     
     $routeProvider
-      .when("/", {
+      .when('/', {
         templateUrl: AmbientPath('home'),
-        controller: "MenuController",
+        controller: 'HeaderController',
       })
-      .when("/despesas", {
+      .when('/despesas', {
         templateUrl: AmbientPath('despesas'),
         controller: 'DespesaController'
-        //controller: "MenuController",
+        //controller: 'MenuController',
       })
-      .when("/entrada", {
+      .when('/entrada', {
         templateUrl: AmbientPath('entrada'),
-        controller: "EntradaController",
+        controller: 'EntradaController',
       })
-      .when("/visualizar", {
+      .when('/visualizar', {
         templateUrl: AmbientPath('visualizar'),
-        controller: "VisualizarController",
+        controller: 'VisualizarController',
       })
-      .when("/relatorio", {
+      .when('/relatorio', {
         templateUrl: AmbientPath('relatorio'),
-        controller: "RelatorioController",
+        controller: 'RelatorioController',
       })
-      .when("/informacoes", {
+      .when('/informacoes', {
         templateUrl: AmbientPath('informacoes'),
-        controller: "InformacoesController",
+        controller: 'InformacoesController',
       })
-      .when("/backup", {
+      .when('/backup', {
         templateUrl: AmbientPath('backup'),
-        controller: "BackupController",
+        controller: 'BackupController',
       })
-      .when("/sobre", {
+      .when('/sobre', {
         templateUrl: AmbientPath('sobre'),
-        controller: "SobreController",
+        controller: 'SobreController',
       })
       .otherwise({
-        redirectTo: "/",
+        redirectTo: '/',
       });
   });

@@ -23,6 +23,10 @@ angular.module('apiApp', ['ngResource', 'dataApp' ])//'dataBase'])
   }
   api.delete = (getQuery, getDados) => {
     return $q((res, rej) => {
+      console.log('>> FACTORY API')
+      console.log(getQuery)
+      console.log(getDados)
+      
       res(bdquery.delete(getQuery, getDados))
       rej({message: 'Error: FACTORY API DELETE, falha ao excluir dados'})
     })

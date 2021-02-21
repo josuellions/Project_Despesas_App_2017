@@ -23,6 +23,20 @@ angular.module('formatValorServices', ['ngResource'])
 
     return valorFormatado ? valorFormatado : valor;
 
+  },
+  format.bancoDados = (valor) => {
+    /* TROCAR PONTO E VIRGULA PARA ENVIAR E SALVAR NO BANCO DADOS */
+    let formatValor = valor.replace('.','').trim();
+    formatValor = formatValor.replace(',','.');
+
+    return formatValor;
+  },
+  format.moneyMask = () => {
+    /* ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA */
+    setTimeout(() => {
+      //console.log('formatValor')
+      $(".money").mask("000.000.000.000,00", { reverse: true });
+    }, 60);
   }
   
 

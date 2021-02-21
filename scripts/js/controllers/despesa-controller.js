@@ -9,7 +9,7 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
   $scope.optiondel = 'hidden',
   $scope.formDespesa = {};
   $scope.despesas = {};
-  $scope.despesaValorTotal = 0;
+  $scope.despesaValorTotal = '0,00';
   $scope.listaDespesas = [{
     'id': 1,
     'nome':'Luz',
@@ -76,33 +76,34 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
 */
 
   /* ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA */
-  const formatValorMoney = () => {
+  /*const formatValorMoney = () => { //MOVIDO PARA FACTORY format-valor
     setTimeout(() => {
       //console.log('formatValor')
       $(".money").mask("000.000.000.000,00", { reverse: true });
     }, 60);
-  };
+  };*/
 
-  const formatValorBD = (valor) => {
+  /*const formatValorBD = (valor) => { //MOVIDO PARA FACTORY format-valor
     let formatValor = valor.replace('.','').trim();
     formatValor = formatValor.replace(',','.');
 
     //console.log("FORMAT VALOR")
     //console.log(formatValor)
     return formatValor//.replace(',','.')
-  }
+  }*/
 
   //convertMes();
   //selectCampoValor();
   
   //formatValorMoney();
-  
-  /*FORMATA VALOR PARA SOMAR*/
-  const convertSomarValor = (valor) => {
-    return parseFloat(valor.replace(",", "."));
-  };
+  //formatValor.moneyMask();
 
-  /*FORMATA VALOR PARA VIEW*/
+  /*FORMATA VALOR PARA SOMAR*/
+  /*const convertSomarValor = (valor) => {
+    return parseFloat(valor.replace(",", "."));
+  };*/
+
+  /*FORMATA VALOR PARA VIEW*/ //MOVIDO PARA FACTORY
   /*const convertValorView = (valorView) => {
     return formatValor.ptBr(valorView);
   };*/
@@ -111,24 +112,21 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
   const Actions  = () => {
     /*CREATE - criar despesa */
     const createDespesa = () => {
-      $scope.formDespesa.valor = formatValorBD($scope.formDespesa.valor);
+      //$scope.formDespesa.valor = formatValor.bancoDados($scope.formDespesa.valor); //formatValorBD($scope.formDespesa.valor);
   
       despesaAction.create($scope.formDespesa)
       .then((res) => {
         LimparCamposForm();
       })
       .catch((err)=> {
-        //alert(err.message)
-        alertAction.error(err.message).then((res) =>{
-          return
-        }).catch((err) =>{
+        alertAction.error(err.message).catch((err) =>{
           alert(err.message);
         })
       })
     };
     /*UPDATE, atualizar dados despesa */
-    const updateDespesa = (dados) =>{
-      $scope.formDespesa.valor = dados.valor;
+    const updateDespesa = (getDados) =>{
+      $scope.formDespesa.valor = getDados.valor;
       despesaAction.update($scope.formDespesa)
       .then((res) =>{
         alertAction.success("Despesa atualizada com sucesso");
@@ -209,8 +207,8 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
       despesasFormat.push({
         id: row.id,
         nome: row.despesa,
-        dateBd:  row.data,
-        dateView: fotmatDateView(row.data),
+        dateBd:  row.dtLanc,
+        dateView: formatDate.dtView(row.data),
         valor: row.valor.toFixed(2),
         status: ConvertStatus(row.statusDesp)
       })
@@ -224,24 +222,22 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
   /*Lista despesas */
   const ListaDespesas = () => {
     formatDate.dtConsultaDB().then((response) =>{
-      despesaAction.index([response.inicio, response.fim])
-        .then((res) => {
+      despesaAction.index([response.inicio, response.fim]).then((res) => {
 
-          if(res.length == 0){
+          if(res.length === 0){
             BuscaDadosMesAnterior(response.inicio);
+            $scope.despesaValorTotal = '0,00';
             return;
           }
 
           const respose = ExibirListaView(res)
           $scope.despesas =  respose.despesas
           $scope.despesaValorTotal = respose.total;
-          formatValorMoney();
+          //formatValorMoney();
+          formatValor.moneyMask();
 
         }).catch((err)=> {
-          //alert(err.message)
-          alertAction.error(err.message).then((res) =>{
-            return;
-          }).catch((err) =>{
+          alertAction.error(err.message).catch((err) =>{
             alert(err.message);
           })
         })
@@ -375,7 +371,7 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     $scope.despesaValorTotal = formatValor.ptBr(parseFloat(recalcularTotal).toFixed(2).replace('.', ','))
 
     setTimeout(() => {
-      alertAction.success("Despesa excluida com sucesso");
+      alertAction.success(`Sucesso: "${despesa.nome}" foi excuido!`);
     }, 60);
 
   }
@@ -461,6 +457,19 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     })
   }
 
+  const AlertUpdateDespesa = () => {
+    dados = {
+      message:`Deseja atualizar despesa "${$scope.formDespesa.nome}"?`,
+      valor: formatValor.bancoDados($scope.formDespesa.valor), //formatValorBD($scope.formDespesa.valor),
+      action: action.updateDespesa,
+    }
+    alertAction.question(dados.message, dados.action,{valor: dados.valor }).catch((err) =>{
+      alertAction.error(err.message).catch((err) =>{
+        alert(err.message);
+      })
+    })
+  }
+
   //Submit Form Despesa
   $scope.submeter = () =>{
     
@@ -469,25 +478,10 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     }
 
     if($scope.formDespesa.id > 0) {
-      dados = {
-        message:`Deseja atualizar despesa "${$scope.formDespesa.nome}"?`,
-        valor: formatValorBD($scope.formDespesa.valor),
-        action: action.updateDespesa,
-      }
-      alertAction.question(dados.message, dados.action,{valor: dados.valor })
-      .then((res)=>{
-        return;
-      }).catch((err) =>{
-        //alert(err.message)
-        alertAction.error(err.message).then((res) =>{
-          return;
-        }).catch((err) =>{
-          alert(err.message);
-        })
-        return;
-      })
+      AlertUpdateDespesa();
       return;
     } 
+
     action.createDespesa();
   }
 

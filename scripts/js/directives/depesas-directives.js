@@ -14,20 +14,6 @@ angular.module('depesasDirectives', [])
 
   })
 
-  .directive('alertsTeste', function () {
-    var ddo = {};
-
-    ddo.restric = 'AE';
-
-    ddo.transclude = true;
-
-    ddo.templateUrl = 'public/partials/alerts-teste.html';
-
-    return ddo;
-
-  })
-
-
   /* Define barra superior página */
   .directive('barraTop', function () {
     var ddo = {};
@@ -73,15 +59,15 @@ angular.module('depesasDirectives', [])
 
   })
 
-  /* Define painel título e subtitulo superior */
-  .directive('panelTop', function () {
+    /* Define Titulo e Subtitulo Header Views */
+    .directive('headerTitule', function () {
     var ddo = {};
 
     ddo.restric = 'AE';
 
     ddo.transclude = true;
 
-    ddo.templateUrl = 'public/partials/panel-top.html';
+    ddo.templateUrl = 'public/partials/header-titule.html';
 
     return ddo;
   })

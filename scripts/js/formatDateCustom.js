@@ -214,10 +214,28 @@ const dtConsultaBD = () => { //6x em uso
   return dtConsulta;
 };
 
-/*FORMATA DATA VIEWS FORMATO dd/MM */
-const fotmatDateView = (dtAnoMesDia) => { //4x uso
+/*FORMATA DATA VIEWS FORMATO dd/MM */ //MOVIDO PARA FACTORY
+/*const fotmatDateView = (dtAnoMesDia) => { //4x uso
   const dt = dtAnoMesDia.split('-');
   const dtFormatView = [dt[2].slice(-2), dt[1].slice(-2)].join("/");
   
   return dtFormatView;
-};
+};*/
+
+/*FORMAT BUSCA MÊS ANTERIOR */
+const FormatDataBuscaMesAnterior = (getDate) =>{
+  const date = new Date(getDate)
+  const dateFormat = [
+    GetDateFormat.anoFullMesDiaFormatBDParamsFull(1, date.getMonth(), date.getFullYear()),
+    GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
+  ]
+
+  return dateFormat;
+}
+
+/*FORMAT DATA PARA BANCO DADOS */
+const FormatDateParaBancoDados = (getDate) => {
+  const date = new Date(getDate);
+
+  return GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear());
+}

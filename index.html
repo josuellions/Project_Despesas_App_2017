@@ -10,6 +10,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <link rel="icon" type ="image/x-icon" href="assets/img/icon.png "/>
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/stylesMenu.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/libs/css/bootstrap.min.css"/>
@@ -28,16 +29,7 @@
 
     <title>Controle Despesas</title>
   </head>
- <!-- <body
-    class="backgroundSeven"
-    ng-controller="NavegarController"
-    onload="onLoad()"
-  >
- -->
-  <body
-    class="backgroundSeven"
-    ng-controller="MenuController"
-  >
+  <body class="backgroundSeven">
     <alerts-custom></alerts-custom>
 
     <barra-top></barra-top>
@@ -61,22 +53,24 @@
 <script type="text/javascript" src="scripts/js/app/api/index.js"></script>
 
 <script type="text/javascript" src="scripts/js/services/pass-month.js"></script>
+<script type="text/javascript" src="scripts/js/services/alert-action.js"></script>
 <script type="text/javascript" src="scripts/js/services/format-date.js"></script>
 <script type="text/javascript" src="scripts/js/services/format-valor.js"></script>
 <script type="text/javascript" src="scripts/js/services/despesa-action.js"></script>
-<script type="text/javascript" src="scripts/js/services/alert-action.js"></script>
-<script type="text/javascript" src="scripts/js/controllers/menu-controller.js"></script>
+<script type="text/javascript" src="scripts/js/services/entrada-action.js"></script>
 
+<script type="text/javascript" src="scripts/js/controllers/header-controller.js"></script>
+<script type="text/javascript" src="scripts/js/controllers/btnhomemenu-controller.js"></script>
 <script type="text/javascript" src="scripts/js/controllers/despesa-controller.js"></script>
 <script type="text/javascript" src="scripts/js/controllers/entrada-controller.js"></script>
 <script type="text/javascript" src="scripts/js/controllers/visualizar-controller.js"></script>
 <script type="text/javascript" src="scripts/js/controllers/relatorio-controller.js"></script>
 <script type="text/javascript" src="scripts/js/controllers/informacoes-controller.js"></script>
 <script type="text/javascript" src="scripts/js/controllers/sobre-controller.js"></script>
-<script type="text/javascript" src="scripts/js/controllers/btnhomemenu-controller.js"></script>
+<script type="text/javascript" src="scripts/js/controllers/footer-controller.js"></script>
 
 <script type="text/javascript" src="scripts/js/directives/depesas-directives.js"></script>
 
 <script type="text/javascript" src="scripts/js/formatDateCustom.js"></script>
-<!--<script type="text/javascript" src="scripts/js/offlinedatabaseJS.js"></script>-->
 <script type="text/javascript" src="scripts/js/controllers/backup-controller.js"></script>
+<!--<script type="text/javascript" src="scripts/js/offlinedatabaseJS.js"></script>-->

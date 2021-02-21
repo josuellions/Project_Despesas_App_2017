@@ -1,5 +1,5 @@
   angular.module('despesaServices', ['ngResource', 'routesApp'])
-  .factory('despesaAction', function ($q, $rootScope, routesAction ) {
+  .factory('despesaAction', function ($q, $rootScope, routesAction, formatValor ) {
 
     let service = {};
 
@@ -7,18 +7,19 @@
       return $q((res, rej) => {
         //console.log('SERVICE')
           res(routesAction.despesaIndex(getDados))
-          rej({message: 'Error: FACTORY SERVICES, falha ao buscar dados'})
+          rej({message: 'Error: FACTORY DESPESA SERVICES, falha ao buscar dados'})
       })
     },
     service.indexMesAnterior = (getDados) => {
       return $q((res, rej) => {
-        const date = new Date(getDados)
+        /*const date = new Date(getDados)
         const dadosFormat = [
           GetDateFormat.anoFullMesDiaFormatBDParamsFull(1, date.getMonth(), date.getFullYear()),
           GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
-        ]
-        res(routesAction.despesaIndex(dadosFormat))
-        rej({message: 'Error: FACTORY SERVICES, falha ao buscar dados mês anterior'})
+        ]*/
+        //res(routesAction.despesaIndex(dadosFormat))
+        res(routesAction.despesaIndex(FormatDataBuscaMesAnterior(getDados)))
+        rej({message: 'Error: FACTORY DESPESA SERVICES, falha ao buscar dados mês anterior'})
       })
     },
     service.copy = (getDados) => {
@@ -29,8 +30,6 @@
           const date = row.dtLanc.split('-')
 
           const formtDate = GetDateFormat.anoFullMesDiaFormatBDParamsFull(date[2], parseInt(date[1]), date[0])
-          console.log(">> FACTORY DESPESA COPY")
-          console.log(formtDate)
           dadosFormat = [
             formtDate,
             formtDate,
@@ -42,18 +41,21 @@
         })
         
         res({message: 'Success: Despesas adicionadas com base no mês anterior'});
-        rej({message: 'Error: FACTORY SERVICES, falha ao copiar dados mês anterior'})
+        rej({message: 'Error: FACTORY DESPESA SERVICES, falha ao copiar dados mês anterior'})
       })
     },
     service.create = (getDados) => {
       return $q((res, rej) =>{
-        const date = new Date(getDados.date)
-        
+        //const date = new Date(getDados.date)
+        const dateFormat = FormatDateParaBancoDados(getDados.date); 
+
         const dadosFormat = [
-          GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
-          GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
+          //GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
+          //GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
+          dateFormat,
+          dateFormat,
           getDados.nome,
-          getDados.valor,
+          formatValor.bancoDados(getDados.valor),
           0,
         ]
         //console.log(">>FACTORY CADASTRO DESPESA")
@@ -61,7 +63,7 @@
         //console.log(dadosFormat)
 
         res(routesAction.despesaCreate(dadosFormat));
-        rej({message: 'Error: FACTORY SERVICES, falha ao cadastra despesa'});
+        rej({message: 'Error: FACTORY DESPESA SERVICES, falha ao cadastra despesa'});
       })
     },
     service.update = (getDados) => {
@@ -69,11 +71,13 @@
       //console.log(getDados)
       return $q((res, rej) => {
         try{
-          const date = new Date(getDados.date)
-
-          const dadosFormat = [
-            GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
-            GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
+         //const date = new Date(getDados.date)
+        const dateFormat = FormatDateParaBancoDados(getDados.date); 
+        const dadosFormat = [
+            //GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
+            //GetDateFormat.anoFullMesDiaFormatBDParamsFull(date.getDate(), date.getMonth(), date.getFullYear()),
+            dateFormat,
+            dateFormat,
             getDados.nome,
             getDados.valor,
             getDados.status = 0,
@@ -81,7 +85,7 @@
           ]
           res(routesAction.despesaUpdate(dadosFormat));
         }catch{
-          rej({message: 'Error: FACTORY SERVICES, falha ao atualizar despesa'});
+          rej({message: 'Error: FACTORY DESPESA SERVICES, falha ao atualizar despesa'});
         }
       })
     },
@@ -101,13 +105,13 @@
         }
         
         res(routesAction.despesaStatus([ConvertStatus(getDados.status), getDados.id]));
-        rej({message: 'Error: FACTORY SERVICES, falha ao atualizar despesa'});
+        rej({message: 'Error: FACTORY DESPESA SERVICES, falha ao atualizar despesa'});
       })
     },
     service.delete = (getDados) => {
       return $q((res, rej) => {
         res(routesAction.despesaDelete([getDados.id]))
-        rej({message: 'Error: FACTORY SERVICES, falha ao excluir despesa'});
+        rej({message: 'Error: FACTORY DESPESA SERVICES, falha ao excluir despesa'});
       })
     }
 

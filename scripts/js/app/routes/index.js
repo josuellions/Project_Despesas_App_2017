@@ -5,11 +5,11 @@ angular.module('routesApp', ['ngResource', 'apiApp'])
   //let evento = 'despesasServices';
 
   //console.log("FACTORY ROUTES/QUERY")
-  //console.log(query.selectDespStatusDt())
+  //console.log(query.selectDespStatusDt)
 
   app.despesaIndex = (getDados ) =>{
     return $q((res, rej) => {
-      res(api.index(query.selectDespStatusDt(), getDados))
+      res(api.index(query.selectDespesaStatusDate, getDados))
       rej({message: 'Error: FACTORY ROUTE, falha ao lista as despesas'})
     })
   },
@@ -17,7 +17,7 @@ angular.module('routesApp', ['ngResource', 'apiApp'])
     return $q((res, rej) =>{
       //console.warn(">>CREATE FACTORY ROUTE")
       //console.log(res)
-      res(api.create(query.insertDespStatus(), getDados))
+      res(api.create(query.insertDespesaStatus, getDados))
       rej({message: 'Error: FACTORY ROUTE, falha ao adicionar despesa'})
 
       //customCssAddClass(itens.id, "ng-leave-active");
@@ -25,20 +25,50 @@ angular.module('routesApp', ['ngResource', 'apiApp'])
   },
   app.despesaUpdate = (getDados) => {
     return $q((res,rej) => {
-      res(api.update(query.updateDespStatus(), getDados))
+      res(api.update(query.updateDespesaStatus, getDados))
       rej({message: 'Error: FACTORY ROUTE, falha ao atualizar despesa'})
     })
   },
   app.despesaStatus = (getDados) => {
     return $q((res, rej) => {
-      res(api.update(query.updateStatusDesp(), getDados))
+      res(api.update(query.updateStatusDespesa, getDados))
       rej({message: 'Error: FACTORY ROUTE, falha ao atualizar status'})
     })
   },
   app.despesaDelete = (getDados) => {
     return $q((res, rej) => {
-      res(api.delete(query.deleteDesp(), getDados))
-      rej({message: 'Error: FACTORY ROUTE, falha ao excluir despesa'})
+      res(api.delete(query.deleteDespesa, getDados))
+      rej({message: 'Error: FACTORY ROUTE, falha ao excluir dados despesa'})
+    })
+  },
+  app.entradaCreate = (getDados) => {
+    console.log('>> FACTORY ROUTE')
+    console.log(getDados)
+    return $q((res, rej) => {
+      try{
+        res(api.create(query.insertEntrada, getDados))
+      }catch{
+        rej({message:'Error: FACTORY ROUTE, falha ao cadastrar entrada caixa'})
+      }
+    })
+  },
+  app.entradaIndex = (getDados) => {
+    
+    return $q((res, rej) => {
+      try{
+        res(api.index(query.selectEntradaDate, getDados))
+      }catch{
+        rej({message: 'Error: FACTORY ROUTE, falha ao lista as entradas caixa'})
+      }
+    })
+  },
+  app.entradaDelete = (getDados) => {
+    return $q((res, rej) => {
+      try{
+        res(api.delete(query.deleteEntrada, getDados))
+      }catch{
+        rej({message: 'Error: FACTORY ROUTE, falha ao excluir dados entrada caixa'})
+      }
     })
   }
 
