@@ -15,8 +15,34 @@ angular.module('entradaServices', ['ngResource', 'routesApp'])
   },
   service.indexMesAnterior = (getDados) => {
     return $q((res, rej) => {
-      //res(routesAction.entradaIndex(FormatDataBuscaMesAnterior(getDados)))
-      rej({message: 'Error: FACTORY ENTRADA SERVICE, falha ao buscar dados do mês anterior'})
+      try{
+        res(routesAction.entradaIndex(FormatDataBuscaMesAnterior(getDados)))
+      }catch{
+        rej({message: 'Error: FACTORY ENTRADA SERVICE, falha ao buscar dados do mês anterior'})
+      }
+    })
+  },
+  service.copy = (getDados) => {
+    return $q((res, rej) => {
+      try{
+
+        let dadosFormat = [];
+        for(let row of getDados) {
+          const date = row.dtLanc.split('-')
+
+          const formtDate = GetDateFormat.anoFullMesDiaFormatBDParamsFull(date[2], parseInt(date[1]), date[0])
+          dadosFormat = [
+            formtDate,
+            formtDate,
+            row.entrada,
+            row.valor,
+          ]
+          routesAction.entradaCreate(dadosFormat)
+        }
+        res({message: 'Success: Entrada Caixa adicionadas com base no mês anterior'});
+      }catch{
+        rej({message: 'Error: FACTORY ENTRADA SERVICE, falha ao copiar dados do mês anterior'})
+      }
     })
   },
   service.create = (getDados) => {
@@ -49,8 +75,8 @@ angular.module('entradaServices', ['ngResource', 'routesApp'])
           formatValor.bancoDados(getDados.valor),
           getDados.id
         ]
-        //res(routesAction.entradaUpdate(dadosFormat));
-        rej({message: 'Error: FACTORY ENTRADA SERVICE, falha ao atualizar entrada'});
+        
+        res(routesAction.entradaUpdate(dadosFormat));
       }catch{
         rej({message: 'Error: FACTORY ENTRADA SERVICE, falha ao atualizar entrada'});
       }

@@ -79,7 +79,7 @@
             dateFormat,
             dateFormat,
             getDados.nome,
-            getDados.valor,
+            formatValor.bancoDados(getDados.valor),//getDados.valor,
             getDados.status = 0,
             getDados.id,
           ]

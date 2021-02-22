@@ -26,7 +26,7 @@ angular.module('routesApp', ['ngResource', 'apiApp'])
   app.despesaUpdate = (getDados) => {
     return $q((res,rej) => {
       res(api.update(query.updateDespesaStatus, getDados))
-      rej({message: 'Error: FACTORY ROUTE, falha ao atualizar despesa'})
+      rej({message: 'Error: FACTORY ROUTE, falha ao atualizar dados despesa'})
     })
   },
   app.despesaStatus = (getDados) => {
@@ -42,8 +42,6 @@ angular.module('routesApp', ['ngResource', 'apiApp'])
     })
   },
   app.entradaCreate = (getDados) => {
-    console.log('>> FACTORY ROUTE')
-    console.log(getDados)
     return $q((res, rej) => {
       try{
         res(api.create(query.insertEntrada, getDados))
@@ -53,12 +51,20 @@ angular.module('routesApp', ['ngResource', 'apiApp'])
     })
   },
   app.entradaIndex = (getDados) => {
-    
     return $q((res, rej) => {
       try{
         res(api.index(query.selectEntradaDate, getDados))
       }catch{
-        rej({message: 'Error: FACTORY ROUTE, falha ao lista as entradas caixa'})
+        rej({message: 'Error: FACTORY ROUTE, falha ao lista as entradas caixa'});
+      }
+    })
+  },
+  app.entradaUpdate = (getDados) => {
+    return $q((res, rej) => {
+      try{
+        res(api.update(query.updateEntrada, getDados));
+      }catch{
+        rej({message: 'Error: FACTORY ROUTE, falha ao atualizar os dados entrada caixa'})
       }
     })
   },

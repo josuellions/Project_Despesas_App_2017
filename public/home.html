@@ -2,7 +2,7 @@
 
 <header-titule></header-titule>
 
-<div class="container-fluid col-xs-12 col-lg-12" ng-controller="BtnhomemenuController">
+<div class="container-fluid col-xs-12 col-lg-12" ng-controller="MenuController" ><!--ng-controller="BtnhomemenuController">-->
 	<div class="btnAlingDesp from-group  col-lg-4 col-lg-offset-4">
 		<button type="submit" class="col-xs-5 col-sm-11 col-lg-12 btn btn-primary" id="btnAddEntra" ng-click="submit('entrada')">
 			<i class="glyphicon glyphicon-usd"></i>
@@ -29,4 +29,8 @@
 			<br />Sobre
 		</button>
 	</div>
+</div>
+
+<div ng-repeat="link in linksJavaSripts" > 
+	<script type="text/javascript" src="{{link}}"></script>
 </div>

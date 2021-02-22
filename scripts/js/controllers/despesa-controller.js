@@ -69,12 +69,6 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
   $scope.passmes = true;
   $scope.classSubTitulo = 'alinharMes';
 
-  /*
-      $("#valEntrada").click(() => {
-        $("#valEntrada").select();
-      });
-*/
-
   /* ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA */
   /*const formatValorMoney = () => { //MOVIDO PARA FACTORY format-valor
     setTimeout(() => {
@@ -108,83 +102,15 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     return formatValor.ptBr(valorView);
   };*/
 
-  /* Action Despesas CRUD */
-  const Actions  = () => {
-    /*CREATE - criar despesa */
-    const createDespesa = () => {
-      //$scope.formDespesa.valor = formatValor.bancoDados($scope.formDespesa.valor); //formatValorBD($scope.formDespesa.valor);
-  
-      despesaAction.create($scope.formDespesa)
-      .then((res) => {
-        LimparCamposForm();
-      })
-      .catch((err)=> {
-        alertAction.error(err.message).catch((err) =>{
-          alert(err.message);
-        })
-      })
-    };
-    /*UPDATE, atualizar dados despesa */
-    const updateDespesa = (getDados) =>{
-      $scope.formDespesa.valor = getDados.valor;
-      despesaAction.update($scope.formDespesa)
-      .then((res) =>{
-        alertAction.success("Despesa atualizada com sucesso");
-        LimparCamposForm();
-      })
-      .catch((err) => {
-        //alert(err.message)
-        alertAction.error(err.message).then((res) =>{
-          return
-        }).catch((err) =>{
-          alert(err.message);
-        })
-      })
-    };
-    const copyDespesa = (getDados)=>{
-      despesaAction.copy(getDados.dados).then((res) => {
-          //alert(`${res.message} \n"${dtMesAnteriorFormat}"`)
-          ListaComTimeOut();
-          alertAction.info(`${res.message} \n"${getDados.date}"`).then((res) => {
-          return
-        }).catch((err)=>{
-          alert(err.message)
-        })
-      }).catch((err) => {
-        //alert(err.message);
-        alertAction.error(err.message).then((res) =>{
-          return;
-        }).catch((err) =>{
-          alert(err.message);
-        })
-      })
-    };
-    const deleteDespesa = (getDados) => {
-      despesaAction.delete(getDados.dados)
-      .then((res) => {
-        //alert(`${res.message} \n Despesa: ${despesa.nome}` )
-        RenderizarViewDespesaDelete(getDados.dados)
-      })
-      .catch((err) => {
-        //alert(err.message)
-        alertAction.error(err.message).then((res) =>{
-          return;
-        }).catch((err) =>{
-          alert(err.message);
-        })
-      })
-    }
-
-    return {
-      copyDespesa,
-      createDespesa,
-      deleteDespesa,
-      updateDespesa
-    }
+  /*Limpar formulário despesa */
+  const LimparCamposForm = () => {
+    $scope.despesas = {};
+    $scope.formDespesa = {};
+    $scope.formDespesa.date = new Date();
+    ListaDespesas();
   }
-  const action = Actions();
 
-  //MOVER PARA MODULO PROPRIO
+  /*INDEX - Formatar dados para exibir na table view */
   const ExibirListaView = (dados) => {
     let despesasFormat = [];
     let somaDespesa = 0;
@@ -203,7 +129,7 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
       return convert();
     }
 
-    $.each(dados, (id, row) => {
+    for(let row of dados) {
       despesasFormat.push({
         id: row.id,
         nome: row.despesa,
@@ -214,62 +140,25 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
       })
 
       somaDespesa += parseFloat(row.valor);
-    })
+    }
 
-    return {despesas: despesasFormat, total: formatValor.ptBr(somaDespesa.toFixed(2).replace('.', ','))}
+    $scope.despesas =  despesasFormat;
+    $scope.despesaValorTotal = formatValor.ptBr(somaDespesa.toFixed(2).replace('.', ','));
+    formatValor.moneyMask();
+
+    //return {despesas: despesasFormat, total: formatValor.ptBr(somaDespesa.toFixed(2).replace('.', ','))}
   }
 
-  /*Lista despesas */
-  const ListaDespesas = () => {
-    formatDate.dtConsultaDB().then((response) =>{
-      despesaAction.index([response.inicio, response.fim]).then((res) => {
-
-          if(res.length === 0){
-            BuscaDadosMesAnterior(response.inicio);
-            $scope.despesaValorTotal = '0,00';
-            return;
-          }
-
-          const respose = ExibirListaView(res)
-          $scope.despesas =  respose.despesas
-          $scope.despesaValorTotal = respose.total;
-          //formatValorMoney();
-          formatValor.moneyMask();
-
-        }).catch((err)=> {
-          alertAction.error(err.message).catch((err) =>{
-            alert(err.message);
-          })
-        })
-    }).catch((err) => {
-      //console.log(err);
-      //alert(err.message)
-      alertAction.error(err.message).then((res) =>{
-        return;
-      }).catch((err) =>{
-        alert(err.message);
-      })
-    })
-  }
-  
-  const ListaComTimeOut = () => {
-    setTimeout(() => {
-      ListaDespesas();
-    }, 5);
-  }
-
-  /*Copiar despesas mẽs anterior, se o mês atual não possuir lançamentos */
+  /*COPY - Copiar despesas mẽs anterior, se o mês atual não possuir lançamentos */
   const CopyMesAnterior = (dataInicio, response) =>{
 
     const date = new Date(dataInicio)
     const dtMesAnteriorFormat = GetDateFormat.mesExtAnoParams(mesExt[date.getMonth()], date.getFullYear())
 
-    alertAction.question(`Adicionar despesas com base no mês anterior,\n "${dtMesAnteriorFormat}"?`, action.copyDespesa, {dados: response, date: dtMesAnteriorFormat})
+    alertAction.question(`Adicionar despesas com base no mês anterior,\n "${dtMesAnteriorFormat}"?`, 
+    action.copyDespesa, {dados: response, date: dtMesAnteriorFormat})
     .catch((err) =>{
-      //alert(err.message)
-      alertAction.error(err.message).then((res) =>{
-        return;
-      }).catch((err) =>{
+      alertAction.error(err.message).catch((err) =>{
         alert(err.message);
       })
     })
@@ -293,10 +182,9 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     */
   }
 
-  /*Busca despesas mẽs anterior, se o mês atual não possuir lançamentos para copiar */
-  const BuscaDadosMesAnterior = (dataInicio) =>{
-    
-    //console.log('SUCESSS RETURN API')
+  /*COPY - Busca despesas mẽs anterior, se o mês atual não possuir lançamentos para copiar */
+  const BuscarDadosMesAnterior = (dataInicio) =>{
+        
     despesaAction.indexMesAnterior(dataInicio).then((res) => {
 
       if(res.length === 0){
@@ -306,51 +194,13 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
       CopyMesAnterior(dataInicio, res)
 
     }).catch((err) => {
-      //alert(err.message);
-      alertAction.error(err.message).then((res) =>{
-        return;
-      }).catch((err) =>{
+      alertAction.error(err.message).catch((err) =>{
         alert(err.message);
       })
     })
   }
 
-  /*Opção para editar despesas - clicando sobre nome despesa */
-  const OptionActionEdit = (despesa) => {
-    $scope.formDespesa = {};
-
-    $scope.money = '';
-    $scope.titleOptions = '';
-    $scope.option = 'hidden',
-    $scope.optiondel = '',
-    $scope.btnSave = 'hidden';
-    $scope.btnUpdate = '';
-    $scope.editCancel = 'edit-cancel'
-
-    $scope.formDespesa.id = despesa.id;
-    $scope.formDespesa.nome = despesa.nome;
-    $scope.formDespesa.valor = formatValor.ptBr(parseFloat(despesa.valor).toFixed(2).replace('.', ','));
-    $scope.formDespesa.date = new Date(`${despesa.dateBd} 00:00:00`);
-    
-    $("#valDespesa").click(() => {
-      $("#valDespesa").select();
-    });
-  }
-  
-  /*Cancelar opção de editar despesa - Botão header tabela */
-  const OptionActionCancel = () => {
-   $scope.titleOptions = 'Pago';
-    $scope.option = '',
-    $scope.optiondel = 'hidden',
-    $scope.btnSave = '';
-    $scope.btnUpdate = 'hidden';
-    $scope.formDespesa = {}
-    $scope.editCancel = ''
-
-    $scope.formDespesa.date = new Date();
-  }
-
-  /*Recarrega a lista ao deletar uma despesa*/
+  /*DELETE - Recarrega a lista ao deletar uma despesa*/
   const RenderizarViewDespesaDelete = (despesa) => {
 
     let totalValor = $scope.despesaValorTotal.replace('.','').trim();
@@ -370,26 +220,176 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     
     $scope.despesaValorTotal = formatValor.ptBr(parseFloat(recalcularTotal).toFixed(2).replace('.', ','))
 
-    setTimeout(() => {
+    //setTimeout(() => {
       alertAction.success(`Sucesso: "${despesa.nome}" foi excuido!`);
-    }, 60);
+    //}, 60);
 
   }
 
-  /*Limpar formulário despesa */
-  const LimparCamposForm = () => {
-    $scope.despesas = {};
+  /* Action Despesas CRUD */
+  const Actions  = () => {
+    /*CREATE - criar despesa */
+    const createDespesa = () => {
+      //$scope.formDespesa.valor = formatValor.bancoDados($scope.formDespesa.valor); //formatValorBD($scope.formDespesa.valor);
+      formatDate
+      despesaAction.create($scope.formDespesa)
+      .then((res) => {
+        LimparCamposForm();
+      })
+      .catch((err)=> {
+        alertAction.error(err.message).catch((err) =>{
+          alert(err.message);
+        })
+      })
+    };
+    /*UPDATE, atualizar dados despesa */
+    const updateDespesa = () =>{
+      //$scope.formDespesa.valor = getDados.valor;
+      despesaAction.update($scope.formDespesa)
+      .then((res) =>{
+        alertAction.success("Despesa atualizada com sucesso");
+        LimparCamposForm();
+      })
+      .catch((err) => {
+        //alert(err.message)
+        alertAction.error(err.message).catch((err) =>{
+          alert(err.message);
+        })
+      })
+    };
+    /*COPY - create copiando dados do mês anterio das Despesas*/
+    const copyDespesa = (getDados)=>{
+      despesaAction.copy(getDados.dados).then((res) => {
+        ListaComTimeOut();
+        alertAction.info(`${res.message} \n"${getDados.date}"`).catch((err) => {
+          alertAction.error(err.message).catch((err) =>{
+            alert(err.message);
+          })
+        })
+      }).catch((err) => {
+        alertAction.error(err.message).catch((err) =>{
+        alert(err.message);
+        })
+      })
+    };
+    /*DELETE - excluir dados Despesa */
+    const deleteDespesa = (getDados) => {
+      despesaAction.delete(getDados.dados)
+      .then((res) => {
+        //alert(`${res.message} \n Despesa: ${despesa.nome}` )
+        RenderizarViewDespesaDelete(getDados.dados)
+      })
+      .catch((err) => {
+        alertAction.error(err.message).catch((err) =>{
+          alert(err.message);
+        })
+      })
+    }
+
+    return {
+      copyDespesa,
+      createDespesa,
+      deleteDespesa,
+      updateDespesa
+    }
+  }
+
+  const action = Actions();
+
+  /*INDEX - Lista despesas */
+  const ListaDespesas = () => {
+    formatDate.dtConsultaDB().then((response) =>{
+      despesaAction.index([response.inicio, response.fim]).then((res) => {
+
+          if(res.length === 0){
+            BuscarDadosMesAnterior(response.inicio);
+            $scope.despesaValorTotal = '0,00';
+            return;
+          }
+
+          /*const respose = ExibirListaView(res)
+          $scope.despesas =  respose.despesas
+          $scope.despesaValorTotal = respose.total;
+          //formatValorMoney();
+          formatValor.moneyMask();*/
+          ExibirListaView(res)
+
+        }).catch((err)=> {
+          alertAction.error(err.message).catch((err) =>{
+            alert(err.message);
+          })
+        })
+    }).catch((err) => {
+      //console.log(err);
+      //alert(err.message)
+      alertAction.error(err.message).catch((err) =>{
+        alert(err.message);
+      })
+    })
+  }
+  /*INDEX - Exibir Lista Despesas com Delay*/
+  const ListaComTimeOut = () => {
+    setTimeout(() => {
+      ListaDespesas();
+    }, 5);
+  }
+
+  /*UPDATE - Opção para editar despesas - clicando sobre nome despesa */
+  const OptionActionEdit = (despesa) => {
     $scope.formDespesa = {};
-    $scope.formDespesa.date = new Date();
-    ListaDespesas();
+
+    $scope.money = ''; //Verificar se está em uso excluir
+    $scope.titleOptions = '';
+    $scope.option = 'hidden',
+    $scope.optiondel = '',
+    $scope.btnSave = 'hidden';
+    $scope.btnUpdate = '';
+    $scope.editCancel = 'edit-cancel'
+
+    $scope.formDespesa.id = despesa.id;
+    $scope.formDespesa.nome = despesa.nome;
+    $scope.formDespesa.valor = formatValor.ptBr(parseFloat(despesa.valor).toFixed(2).replace('.', ','));
+    $scope.formDespesa.date = new Date(`${despesa.dateBd} 00:00:00`);
+    
+    $("#valDespesa").click(() => {
+      $("#valDespesa").select();
+    });
   }
   
-  const ValidCampos = () =>{
-      despesa = String($scope.formDespesa.nome).length;
-      valor = String($scope.formDespesa.valor);
-      date = String($scope.formDespesa.date);
+  /*UPDATE - Cancelar opção de editar despesa - Botão header tabela */
+  const OptionActionCancel = () => {
+   $scope.titleOptions = 'Pago';
+    $scope.option = '',
+    $scope.optiondel = 'hidden',
+    $scope.btnSave = '';
+    $scope.btnUpdate = 'hidden';
+    $scope.formDespesa = {}
+    $scope.editCancel = ''
 
-    if(valor === 'undefined' || valor.length === 0 || despesa === 0 ||   date.length === 0 || date === 'undefined') {
+    $scope.formDespesa.date = new Date();
+  }
+
+  /*UPDATE - Exibir alert confimação para atualizar dados Despesa */
+  const AlertUpdateDespesa = () => {
+    dados = {
+      message:`Deseja atualizar despesa "${$scope.formDespesa.nome}"?`,
+      //valor: formatValor.bancoDados($scope.formDespesa.valor), //formatValorBD($scope.formDespesa.valor),
+      action: action.updateDespesa,
+    }
+    alertAction.question(dados.message, dados.action,'').catch((err) =>{
+      alertAction.error(err.message).catch((err) =>{
+        alert(err.message);
+      })
+    })
+  }
+
+  /*Validar campos do FORM */
+  const ValidCampos = () =>{
+    let despesa = String($scope.formDespesa.nome).length;
+    let valor = String($scope.formDespesa.valor);
+    let date = String($scope.formDespesa.date);
+
+    if(valor === 'undefined' || valor.length === 0 || despesa === 0 || $scope.formDespesa.nome === undefined ||   date.length === 0 || date === 'undefined') {
       alertAction.info('Vefique, Todos os Campos são Obrigatórios').then((res)=>{
         return false;
       }).catch((err) =>{
@@ -401,7 +401,7 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     return true;
   }
 
-  //Submit Checkbox Status
+  //UPDATE - Submit Checkbox Status
   $scope.checkedStatus = (id) => {
   
     const dados = {
@@ -422,20 +422,20 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     })
   }
 
-  //Ação submit Update Despesas
-  $scope.onUpdateDesp = (update, despesa) => { 
+  //UPDATE - Ação submit Update Despesas
+  $scope.onUpdateDespesa = (update, despesa) => { 
     
     $scope.update = !update;
     OptionActionEdit(despesa);
   }
 
-  //Açao cancelar Updade Despesas
+  //UPDATE - Açao cancelar Updade Despesas
   $scope.onUpdateDespCancel = (update) => {
     $scope.update = !update;
     OptionActionCancel();
   }
 
-  /*DELETE despesas */
+  /*DELETE - Ação para deletar despesas */
   $scope.submitDelete = (despesa) => {
     //const buscadespesa = $scope.despesas.find(despesa) // $scope.despesas.indexOf(despesa))
     
@@ -444,31 +444,15 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     }*/
     
     //alertAction.question(`Deseja excluir despesa? \n ${$scope.formDespesa.nome}`, Despesa['delete'], {dados: despesa})
-    alertAction.question(`Deseja excluir despesa? \n ${$scope.formDespesa.nome}`, action.deleteDespesa, {dados: despesa})
-    .then((res)=>{
-      return
-    }).catch((err) =>{
-      //alert(err.message)
-      alertAction.error(err.message).then((res) =>{
-        return;
-      }).catch((err) =>{
-        alert(err.message);
-      })
-    })
-  }
-
-  const AlertUpdateDespesa = () => {
-    dados = {
-      message:`Deseja atualizar despesa "${$scope.formDespesa.nome}"?`,
-      valor: formatValor.bancoDados($scope.formDespesa.valor), //formatValorBD($scope.formDespesa.valor),
-      action: action.updateDespesa,
-    }
-    alertAction.question(dados.message, dados.action,{valor: dados.valor }).catch((err) =>{
+    alertAction.question(`Deseja excluir despesa? "${$scope.formDespesa.nome}"?`, action.deleteDespesa, {dados: despesa})
+    .catch((err) =>{
       alertAction.error(err.message).catch((err) =>{
         alert(err.message);
       })
     })
   }
+
+
 
   //Submit Form Despesa
   $scope.submeter = () =>{

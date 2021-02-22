@@ -8,7 +8,11 @@
 				<th class="text-center" width="60%">Receita Caixa</th>
 				<th class="text-center" width="1%"></th>
 				<th class="text-center" width="18%">Valor</th>
-				<th class="text-center" width="2%">Del</th>
+				<!--<th class="text-center" width="2%">Del</th>-->
+				<th class="text-center despPG {{editCancel}}" ng-click="onUpdateEntradaCancel(false)" width="17%">
+					<span class="glyphicon glyphicon-remove-circle {{optiondel}}" title="Cancelar Editar"></span>
+					{{titleOptions}}
+				</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -16,7 +20,7 @@
 				<span>
 					<td class="text-center" width="20%">{{e.dateView}}</td>
 					<!--<td width="55%" ng-click="onUpdateDesp(d.id, d.dateBd, d.nome, d.valor)">{{d.nome}}</td>-->
-					<td width="55%" ng-click="onUpdateDesp(update, d)">{{e.nome}}</td>
+					<td width="55%" ng-click="onUpdateEntrada(update, e)">{{e.nome}}</td>
 					<td class="text-center" width="1%">R$</td>
 					<td class="text-right money">{{e.valor}}</td>
 				</span>

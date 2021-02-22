@@ -44,12 +44,11 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: AmbientPath('home'),
-        controller: 'HeaderController',
+        controller: 'HomeController',
       })
       .when('/despesas', {
         templateUrl: AmbientPath('despesas'),
         controller: 'DespesaController'
-        //controller: 'MenuController',
       })
       .when('/entrada', {
         templateUrl: AmbientPath('entrada'),

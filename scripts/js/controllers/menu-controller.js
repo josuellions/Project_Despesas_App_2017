@@ -1,6 +1,6 @@
 angular
   .module("todoApp")
-  .controller("BtnhomemenuController", function($scope, $location) {
+  .controller("MenuController", function($scope, $location) {
     $scope.mensagem = "";
 
     const MenuPages = {

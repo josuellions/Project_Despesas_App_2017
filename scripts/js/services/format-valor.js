@@ -37,8 +37,16 @@ angular.module('formatValorServices', ['ngResource'])
       //console.log('formatValor')
       $(".money").mask("000.000.000.000,00", { reverse: true });
     }, 60);
+  },
+  format.subtrair = (getTotal, getValor) => {
+    let total = getTotal.replace('.','').trim();
+    total = parseFloat(total.replace(',', '.')).toFixed(2);
+    let valor = parseFloat(getValor.replace(',', '.')).toFixed(2);
+
+    const response = (total - valor).toFixed(2)
+    
+    return response;
   }
-  
 
   return format;
 })

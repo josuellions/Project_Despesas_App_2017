@@ -20,13 +20,11 @@
 	<table class="table table-striped table-hader table-responsive tbmenuDesp" id="tbDespesas">
 		<tbody name="itemTbody" id="itemTbody">
 			<tr class="remover-animado" ng-repeat="d in despesas">
-				<span>
-					<td class="text-center" width="20%">{{d.dateView}}</td>
-					<!--<td width="55%" ng-click="onUpdateDesp(d.id, d.dateBd, d.nome, d.valor)">{{d.nome}}</td>-->
-					<td width="55%" ng-click="onUpdateDesp(update, d)">{{d.nome}}</td>
-					<td class="text-center" width="1%">R$</td>
-					<td class="text-right money">{{d.valor}}</td>
-				</span>
+				<td class="text-center" width="20%">{{d.dateView}}</td>
+				<!--<td width="55%" ng-click="onUpdateDesp(d.id, d.dateBd, d.nome, d.valor)">{{d.nome}}</td>-->
+				<td width="55%" ng-click="onUpdateDespesa(update, d)">{{d.nome}}</td>
+				<td class="text-center" width="1%">R$</td>
+				<td class="text-right money">{{d.valor}}</td>
 				<td class="text-center" width="6%">
 					<div class="toggle {{option}}"  id="acaoStatus" ng-switch="{{d.status}}">
 						<input type="checkbox" ng-switch-when="true"

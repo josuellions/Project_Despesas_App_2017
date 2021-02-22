@@ -9,6 +9,7 @@ angular.module('querysApp', ['ngResource'])
 			deleteDespesa: 'DELETE FROM TbDespesasStatus WHERE id=?;',
 			selectEntradaDate: 'SELECT * FROM TbEntradas WHERE data >= ? and data <= ? ORDER BY data ASC;',
 			insertEntrada: 'INSERT INTO TbEntradas (dtLanc, data, entrada, valor) VALUES (?, ?, ?, ?);',
+			updateEntrada: 'UPDATE TbEntradas SET dtLanc = ?, data = ?, entrada = ?, valor = ? WHERE id=?;',
 			deleteEntrada: 'DELETE FROM TbEntradas WHERE id=?;',
 
 			/*selecDespesa : 'SELECT * FROM TbDespesas;',
