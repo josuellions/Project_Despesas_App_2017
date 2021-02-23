@@ -1,6 +1,6 @@
 angular
   .module("todoApp")
-  .controller("HomeController", function ($scope, $location, formatDate, pass) {
+  .controller("HomeController", function ($scope) {
     
     $scope.passmes = false;
     $scope.subtitulo = '';

@@ -7,10 +7,9 @@ angular.module('passMonthServices', ['ngResource'])
   let dtAno = dtFull.getFullYear();
 
   pass.Month = ($returnNext) => {
-    
     const nextPage = 1;
     const returnPage = 0;
-
+    
     return $q((res, rej) => {
       try { 
         $returnNext == returnPage && dtMes >= 0 && dtMes <= 11 ? --dtMes : null;

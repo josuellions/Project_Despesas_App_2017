@@ -401,6 +401,21 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     return true;
   }
 
+  //CREATE | UPDATE - Submit Form Despesa
+  $scope.submeter = () =>{
+  
+    if(!ValidCampos()){
+      return
+    }
+
+    if($scope.formDespesa.id > 0) {
+      AlertUpdateDespesa();
+      return;
+    } 
+
+    action.createDespesa();
+  }
+
   //UPDATE - Submit Checkbox Status
   $scope.checkedStatus = (id) => {
   
@@ -450,23 +465,6 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
         alert(err.message);
       })
     })
-  }
-
-
-
-  //Submit Form Despesa
-  $scope.submeter = () =>{
-    
-    if(!ValidCampos()){
-      return
-    }
-
-    if($scope.formDespesa.id > 0) {
-      AlertUpdateDespesa();
-      return;
-    } 
-
-    action.createDespesa();
   }
 
   /*Adicionar data inicial no Submenu - passar mês | MES/ANO => JAN/2020 */

@@ -8,6 +8,7 @@
 body{
 	font-size: 67%;
 	-webkit-font-smoothing: antialiased;
+	background-color: transparent !important;
 }
 
 /*DEFINIR COR DE FUNDO - 01 - Superio*/
@@ -331,16 +332,40 @@ section {
 }
 
 /*ALINHA BOTÕES PAGINA INICIAL*/
-
-.container-fluid>.btnAlingDesp {
+.container-custom {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 74vh;
+	padding: 2rem;
+	margin: 0;
+}
+.container-custom .btnAlingDesp {
 	margin: 0 auto;
-	margin-left: 2.2vw !important;
+	/*margin-left: 2.2vw !important;
 	position: absolute;
 	padding: 0;
-	padding-bottom: .5% !important;
+	padding-bottom: .5% !important;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
-.container-fluid>.btnAlingDesp i {
+.container-custom .btnAlingDesp > div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+	padding: 0;
+	margin-top: 2vh;
+}
+
+.container-custom .btnAlingDesp > div i {
 	font-size: 3.5rem;
 	color: #fff;
 	/* #337ab7;*/
@@ -348,12 +373,14 @@ section {
 
 /*BOTÕES DA PAGINA INICIAL*/
 
-.container-fluid>div>.btn {
+.container-custom .btnAlingDesp div .btn {
+	min-width: 45vw ;
+	min-height: 21vh;
 	text-align: center;
 	color: #5486ac;
 	font-size: 1.5rem !important;
 	border: none !important;
-	border-radius: .5rem !important;
+	border-radius: 4px !important;
 	/*background: #337ab7 !important;*/
 	background: transparent !important;
 	color: white !important;
@@ -361,11 +388,15 @@ section {
 	opacity: .4rem !important;
 	box-shadow: 0px 0px 15px whitesmoke !important;
 	text-shadow: 0px 0px 15px #337ab7 !important;
-	padding-top: 7% !important;
-	padding-bottom: 7% !important;
+	/*padding-top: 7% !important;
+	padding-bottom: 7% !important;*/
 }
 
-.container-fluid>div>.btn>i {
+.container-custom .btnAlingDesp div .btn:first-child{
+	margin-right: 4vw;
+}
+
+.container-custom>div>div>.btn>i {
 	padding-bottom: 2rem;
 }
 
@@ -538,14 +569,14 @@ h5 {
 	.html {
 		background-size: 200px 200px !important;
 	}
-	.container-fluid>.btnAlingDesp {
+	.container-custom>.btnAlingDesp {
 		clear: both;
 		float: left;
 		padding: 0;
 		margin: 0 auto;
-		margin-top: 3vh !important;
+		/*margin-top: 3vh !important;*/
 	}
-	.container-fluid>div>.btn {
+	.container-custom>div>.btn {
 		height: 20vh !important;
 	}
 	
@@ -573,7 +604,7 @@ h5 {
 		font-size: .9rem;
 	}
 	/*BOTÕES DA PAGINA INICIAL*/
-	.container-fluid>div>.btn {
+	.container-custom>div>.btn {
 		/*font-weight: bolder;*/
 		margin-bottom: 2.5vh;
 		/*margin-left: 2vw;*/
@@ -627,9 +658,9 @@ h5 {
 		font-size: 1rem;
 	}
 	/*ALINHA BOTÕES PAGINA INICIAL*/
-	.container-fluid>.btnAlingDesp {
+	.container-custom>.btnAlingDesp {
 		margin: 0 auto;
-		margin-top: 7vh;
+		/*margin-top: 7vh;*/
 	}
 	/*BOTÕES DA PAGINA INICIAL*/
 	.container-fluid>div>.btn {
