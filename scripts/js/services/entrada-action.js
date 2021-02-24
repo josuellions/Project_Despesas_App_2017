@@ -1,6 +1,5 @@
 angular.module('entradaServices', ['ngResource', 'routesApp'])
 .factory('entradaAction', function ($q, routesAction, formatValor) {
-  console.log('>> FACTORY ENTRADA SERVICE')
 
   let service = {}
 

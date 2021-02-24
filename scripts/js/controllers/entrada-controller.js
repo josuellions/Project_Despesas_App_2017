@@ -125,9 +125,7 @@ function($scope, entradaAction, alertAction, formatDate, formatValor, pass){
     const createEntrada = () => {
       entradaAction.create($scope.formEntrada).then((res) => {
         LimparCamposForm();
-        //action.indexEntrada(); //verificar para carregar automaticamente sem declarar aqui
       }).catch((err) => {
-        console.log(err.message)
         alertAction.error(err.message).catch((err) =>{
           alert(err.message)
         })
@@ -235,10 +233,6 @@ function($scope, entradaAction, alertAction, formatDate, formatValor, pass){
     $("#valEntrada").click(() => {
       $("#valEntrada").select();
     });
-
-    console.log('>> UPDATE ENTRADA')
-    console.log(getEntrada)
-    console.log($scope.formEntrada)
   }
 
   /*UPDATE - Cancelar opção de editar Entrada Caixa - Botão header table */

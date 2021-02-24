@@ -1,0 +1,224 @@
+
+.viewExib .panel-relatorio {
+  overflow: scroll;
+  position: absolute;
+  height: 60vh !important;
+  max-height: 60vh !important;
+  overflow: hidden;
+}
+
+.panel-relatorio .panel-relatorio-graficos {
+  width: 100%;
+  overflow-x: auto !important;
+  margin-bottom: 5vh;
+}
+
+.panel-relatorio .panel-relatorio-graficos fieldset:nth-child(1){
+  position: relative;
+  margin-top: .5vh;
+  margin-bottom: 15vh;
+}
+
+
+.panel-relatorio .panel-relatorio-graficos fieldset section {
+  width: 85vw;
+  position: relative;
+  display: block;
+  padding: 0"
+}
+
+.panel-relatorio .panel-relatorio-graficos fieldset section div  {
+  margin-bottom: .5vh;
+  width: 84.5vw;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.panel-relatorio .panel-relatorio-graficos fieldset section .panel-relatorio-graficos-label{
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  width: 20vw;
+  height: 4vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 0;
+  padding: 0;
+  padding-top: .5rem;
+  font-size: .8rem;
+  background-color: #999;
+}
+
+.panel-relatorio .panel-relatorio-graficos fieldset section .panel-relatorio-graficos-progress-bar {
+  width: 65vw;
+  height: 4vh;
+  margin: 0;
+  padding: 0;
+}
+
+.panel-relatorio .panel-relatorio-graficos fieldset section .panel-relatorio-graficos-progress-bar .progress {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  height: 4vh;
+
+}
+
+.panel-relatorio .panel-relatorio-graficos fieldset section .panel-relatorio-graficos-progress-bar .progress .progress-bar {
+  padding-left: 1rem !important;
+  border-top-right-radius: 25px !important;
+  border-bottom-right-radius: 4px !important;
+  opacity: .8;
+}
+
+.dashboard-graphical-panel {
+  background: transparent;
+  text-align: center; 
+  padding: 2rem 0;
+  transform: background 3s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  max-height: 40vh;
+  position: fixed;
+  margin-top: -2vh;
+}
+
+.dashboard-graphical-panel .wrapper {
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-graphical-panel .wrapper .item {
+  width: 100%;
+  max-height: 100%;
+  display: block;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: transform .5s, box-shadow .5s;
+}
+
+.dashboard-graphical-panel .wrapper .item .graphical {
+  min-height: 25vh;
+  min-width: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.dashboard-graphical-panel .wrapper .item .graphical .graph {
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  line-height: 60px;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  text-decoration: none;
+  font-size: 1.4rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-graphical-panel .wrapper .item .graphical .graph svg.cor {
+  stroke: #3aa8cb;
+  stroke-dasharray: 255; 
+  stroke-dashoffset: calc(var(--size) - 1.0);
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: 3s;
+  stroke-width: 5px;
+}
+
+.dashboard-graphical-panel .wrapper .item .graph .c-circular-progress:before  {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 100%;
+  display: inline-flex;
+  font-size: 500%;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: scale(0.8);
+  width: 100%;
+}
+.dashboard-graphical-panel .wrapper .item .graph span {
+  color: #2a3454;
+}
+
+.dashboard-graphical-panel .wrapper .item .graphical svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  fill: transparent;
+  stroke-width: 3px;
+  stroke: #ddd;
+}
+
+.dashboard-graphical-panel .wrapper .item h4 {
+  align-items: center;
+  color: #2a3454;
+  padding: 1.5rem 1.5rem .8rem;
+  width: 100%;
+}
+.dashboard-graphical-panel .wrapper .item p {
+  text-align: center;
+  color: #888;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-graphical-panel .wrapper .info {
+  border-radius: 1px solid #ddd;
+  margin-top: 1.5rem;
+  display: flex;
+  min-width: 85vw;
+}
+
+.dashboard-graphical-panel .wrapper .info div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  /*border-top: 1px solid #ddd;*/
+}
+
+.dashboard-graphical-panel .wrapper .info div+div{
+  border-left: 1px solid #ddd;
+}
+
+.dashboard-graphical-panel .wrapper .info div i {
+  font-size: 14px;
+  color: #0fcac6;
+  padding-bottom: .5rem;
+}
+
+
+:root {
+  --size: 255;
+}

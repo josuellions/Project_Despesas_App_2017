@@ -14,6 +14,7 @@ angular
     'passMonthServices',
     'despesaServices',
     'entradaServices',
+    'visualizarServices',
     'alertServices'
   ])
   .config(function ($routeProvider) {

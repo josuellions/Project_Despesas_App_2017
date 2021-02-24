@@ -4,5 +4,19 @@ function($scope){
   $scope.classSubTitulo = 'subtitulo-menu alinharMes';
   $scope.subtitulo = 'Sobre'
   $scope.passmes = false;
-
+  $scope.comparaDt = '';
+  
+  $scope.abouts = {
+   version: 'v1.0.7n - AngularJS - 10/01/2021',
+   developer: 'Josuel A. Lopes',
+   contact: {
+    email: 'josuel_lions@hotmail.com',
+    phone: '11 98273 8274'
+   },
+   profile: {
+      tech:'Aplicativos Mobile App, Web Sites, API e Desktops',
+      descriptions: `React, React Native, NodeJs, PHP, Laravel, Eloquent, Blade, C#, ASP.NET,
+      ADO.NET, Angular, AngularJS, PhoneGap, Cordova, SQL, MySQL, WebSQL, NoSQL`
+   }
+  }
 })

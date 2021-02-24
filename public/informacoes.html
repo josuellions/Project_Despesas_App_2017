@@ -2,18 +2,20 @@
 
 <panel-views>
   <div class="col-xs-12  col-lg-12 viewExib">
-    <fieldset style=" margin-top: 0vh;">
-      <legend class="text-left" style="font-size: 1.5rem; color: #ffc; padding: 1rem">APLICATIVO CONTROLE DESPESAS</legend>
-      <h4 style="margin-top: -1%;">Controle despesas diárias ou mensais</h4>
+    <fieldset>
+      <legend class="text-left">APLICATIVO CONTROLE DESPESAS</legend>
+      <h4>Controle despesas diárias ou mensais</h4>
+      <div ng-repeat="i in information">
+        <h5 class="text-left">{{i.title}}</h5>
+        <p class="text-left">
+          <strong>{{i.caption}}</strong>
+        </p>
+        <p class="text-left">{{i.text}}</p>
 
-      <h5 class="text-left">Entrada Caixa</h5>
-      <p class="text-left">
-        <strong>Lançamentos entrada de caixa</strong>
-      </p>
-      <p class="text-left">Exemplo: salário, comissão, vale alimentação, vale transporte e outros.</p>
-
-      <hr style="width: 50%; margin: 0 auto;" />
-
+        <hr ng-show={{i.visible}} style="width: 50%; margin: 0 auto; margin-top: 3vh;"/>
+        <br/>
+      </div>
+<!--
       <h5 class="text-left">Despesas</h5>
       <p class="text-left">
         <strong>Lançamentos gastos com despesas</strong>
@@ -53,6 +55,7 @@
         <strong>Informações da versão, desenvolvedor e desenvolvimento</strong>
       </p>
       <p class="text-justify">Versão atual do aplicativo, Informações desenvolvedor, contato, linguagens de programação e desenvolvimento.</p>
+  -->
     </fieldset>
 
   </div>

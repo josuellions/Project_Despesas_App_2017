@@ -1,109 +1,162 @@
 <header-titule></header-titule>
 
 <panel-views>
-  <div class="col-xs-12  col-lg-12 viewExib">
+  <div class="col-xs-12  col-lg-12 viewExib panel-relatorio">
 
     <h4 class="text-center">GRÁFICOS</h4>
-   
-    <fieldset style=" margin-top: 2.5vh;">
-      <legend class="text-left">Geral</legend>
-      <div class="col-xs-3 col-xs-offset-9">
-        <label for="">Entrada</label>
+    <div class="panel-relatorio-graficos">
+      <fieldset>
+        <legend class="text-left">Geral</legend>
+        <section class="dashboard-graphical-panel">
+          <div class="center">
+            <div class="wrapper">
+              <div class="item">
+                <div class="graphical">
+                  <div class="graph">
+                    <svg>
+                      <circle cx="50" cy="50" r="40"/>
+                    </svg>
+                    <svg class="cor">
+                      <circle cx="50" cy="50" r="40"/>
+                    </svg>
+                    <span class="counter">{{entrada.porcentagem.valor}}<span>%</span></span>
+                  </div>
+                </div>
+                <h4 class="text-center text-capitalize">Controle Despesas</h4>
+                <div class="info">
+                  <div>
+                    <i class="glyphicon glyphicon-usd" arial-hidden="true"></i>
+                    <p title="Entrada Caixa">Entrada Caixa <strong>R$ {{entrada.valor}}</strong></p>
+                  </div>
+                  <div>
+                    <i class="glyphicon glyphicon-shopping-cart" arial-hidden="true"></i>
+                    <p title="Entrada Caixa">Despesas <strong>R$ {{despesatotal}}</strong></p>
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </section>
+
+        
+        
+        <!--<div class="col-xs-3 col-xs-offset-9">
+          
+          <label >Entrada</label>
+          <br/>
+          <label id="valorTotalEnt" >{{entrada.valor}}</label>
+        </div>
         <br/>
-        <label for="" id="valorTotalEnt" ></label>
-      </div>
-      <br/>
-      <div class="col-xs-12">
-        <div class="progress">
-          <div class="progress-bar" id="progressTotal" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" ></div>
-        </div>
-      </div>
-    </fieldset>
-
-    <fieldset style=" margin-top: 2.5vh;">
-      <legend class="text-left">Despesas</legend>
-      <section class="col-xs-12" style="padding: 0" id="sectionRelatorioGrupo">
-
-      </section>
+        <div class="col-xs-12">
+          <div class="progress">
+            <div class="progress-bar {{entrada.color}}" 
+            role="progressbar" aria-valuenow="{{procertagem.valor}}"
+            aria-valuemin="0" aria-valuemax="100" ng-style="entrada.porcentagem.style" >
+            <strong>{{entrada.porcentagem.valor}}%</strong>
+          </div>
+          </div>
+        </div>-->
+      </fieldset>
       
-      
-    <!--  
-      <legend class="text-left">Grupo</legend>
-
-      <div class="col-xs-6 text-left">
-        <label for="">Alimentação</label>
-      </div>
-      <div class="col-xs-6 text-right">
-        <label for="">R$ 2.500,00</label>
-      </div>
-      <br/>
-      <div class="col-xs-12">
-        <div class="progress">
-          <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">30%</div>
+      <fieldset>
+        <legend class="text-left">Despesas</legend>
+        <section id="sectionRelatorioGrupo" >
+          <div ng-repeat="despesa in despesas">
+            <div class="panel-relatorio-graficos-label">
+              <label>{{despesa.nome}}</label>
+              <label>R$ {{despesa.valor}}</label>
+            </div>
+            <div class="panel-relatorio-graficos-progress-bar">
+              <div class="progress">
+                <div class="progress-bar {{despesa.color}}" 
+                    role="progressbar" aria-valuenow="{{despesa.porcentagem.valor}}" 
+                    
+                    aria-valuemin="0" aria-valuemax="100" ng-style="despesa.porcentagem.style"><!--; color: gray;">-->
+                      <strong>{{despesa.porcentagem.valor}}%</strong>
+                </div>
+              </div>
+            </div>
         </div>
-      </div>
-      <br />
+          <br />
+        </section>
+      <!--  
+        <legend class="text-left">Grupo</legend>
 
-      <div class="col-xs-6 text-left">
-        <label for="">Lazer</label>
-      </div>
-      <div class="col-xs-6 text-right">
-        <label for="">R$ 2.500,00</label>
-      </div>
-      <br/>
-      <div class="col-xs-12">
-        <div class="progress">
-          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"
-            style="width: 10%;">10%</div>
+        <div class="col-xs-6 text-left">
+          <label for="">Alimentação</label>
         </div>
-      </div>
+        <div class="col-xs-6 text-right">
+          <label for="">R$ 2.500,00</label>
+        </div>
+        <br/>
+        <div class="col-xs-12">
+          <div class="progress">
+            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">30%</div>
+          </div>
+        </div>
+        <br />
 
-      <br />
-      
-      <div class="col-xs-6 text-left">
-        <label for="">Transporte</label>
-      </div>
-      <div class="col-xs-6 text-right">
-        <label for="">R$ 2.500,00</label>
-      </div>
-      <br/>
-      <div class="col-xs-12">
-        <div class="progress">
-          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%;">15%</div>
+        <div class="col-xs-6 text-left">
+          <label for="">Lazer</label>
         </div>
-      </div>
+        <div class="col-xs-6 text-right">
+          <label for="">R$ 2.500,00</label>
+        </div>
+        <br/>
+        <div class="col-xs-12">
+          <div class="progress">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"
+              style="width: 10%;">10%</div>
+          </div>
+        </div>
 
-      <br />
-      
-      <div class="col-xs-6 text-left">
-        <label for="">Vestuario</label>
-      </div>
-      <div class="col-xs-6 text-right">
-        <label for="">R$ 2.500,00</label>
-      </div>
-      <br/>
-      <div class="col-xs-12">
-        <div class="progress">
-          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">40%</div>
+        <br />
+        
+        <div class="col-xs-6 text-left">
+          <label for="">Transporte</label>
         </div>
-      </div>
+        <div class="col-xs-6 text-right">
+          <label for="">R$ 2.500,00</label>
+        </div>
+        <br/>
+        <div class="col-xs-12">
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%;">15%</div>
+          </div>
+        </div>
 
-      <br />
-      
-      <div class="col-xs-6 text-left">
-        <label for="">Diversos</label>
-      </div>
-      <div class="col-xs-6 text-right">
-        <label for="">R$ 2.500,00</label>
-      </div>
-      <br/>
-      <div class="col-xs-12">
-        <div class="progress">
-          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">5%</div>
+        <br />
+        
+        <div class="col-xs-6 text-left">
+          <label for="">Vestuario</label>
         </div>
-      </div>
-    -->
-    </fieldset>
+        <div class="col-xs-6 text-right">
+          <label for="">R$ 2.500,00</label>
+        </div>
+        <br/>
+        <div class="col-xs-12">
+          <div class="progress">
+            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">40%</div>
+          </div>
+        </div>
+
+        <br />
+        
+        <div class="col-xs-6 text-left">
+          <label for="">Diversos</label>
+        </div>
+        <div class="col-xs-6 text-right">
+          <label for="">R$ 2.500,00</label>
+        </div>
+        <br/>
+        <div class="col-xs-12">
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">5%</div>
+          </div>
+        </div>
+      -->
+      </fieldset>
+    </div>
   </div>
 
 </panel-views>

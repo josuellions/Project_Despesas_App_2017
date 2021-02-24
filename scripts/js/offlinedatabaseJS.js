@@ -1155,7 +1155,7 @@ const InsertMesBaseAnterior = (dados, getQuery, getView) => {
 }; 
 
 /*RELATÓRIO GRAFICO */
-const onloadRelatorio = () => {
+const onloadRelatorio = () => { //JLDEV
   
   convertMes();
   limparDadosViewRelatorio();

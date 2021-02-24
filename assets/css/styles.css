@@ -561,8 +561,48 @@ section {
 	opacity: .90 !important;
 }
 
+.viewExib fieldset {
+	margin-top: 0;
+}
+
+.viewExib fieldset legend {
+	font-size: 1.5rem;
+	color: #ffc;
+	padding: 1rem;
+}
+
+.viewExib fieldset h4 {
+	margin-top: -.5vh;
+	margin-bottom: 3vh;
+}
+
+.viewExib fieldset p:nth-child(1n+1) {
+	font-size: 1rem;
+}
+
+.viewExib fieldset p:nth-child(2n+1) {
+	font-size: .9rem;
+}
+
 h5 {
 	margin-top: 1.5vh !important;
+}
+
+.viewExib div.img-responsive-custom {
+	height: 15vh;
+	width: 85vw;
+	margin-top: -5vh;
+	margin-bottom: 2.5vh;
+	display: flex;
+	flex-direction: column ;
+	justify-content: center ;
+	align-items: center ;
+}
+
+.viewExib img {
+	height: 100%;
+	width: 100%;
+	margin-left: .5vw;
 }
 
 @media screen and (max-width:410px) {
