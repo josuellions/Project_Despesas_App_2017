@@ -1,13 +1,12 @@
-angular
-  .module("todoApp")
-  .controller("BackupController", function ($scope, $http, $location, pass) {
+angular.module("todoApp").controller("BackupController",
+ function ($scope, $http, $location) {
 
   $scope.titulo = 'Controle Despesas';
   $scope.classSubTitulo = 'subtitulo-menu alinharMes';
   $scope.subtitulo = 'Backup'
   $scope.passmes = false;
 
-/*FUNCIONADO COMENTADO PARA ESTIVIZAÇÂO DA VIEW
+/*FUNCIONADO COMENTADO PARA ESTILIZAÇÂO DA VIEW
     let totalTable;
     let urlbase = ''; //'http://21.21.21.11:3333';
 

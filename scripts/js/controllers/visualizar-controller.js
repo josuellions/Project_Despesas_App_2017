@@ -19,8 +19,9 @@ function($scope, alertAction, pass, formatValor, formatDate, despesaAction, entr
       despesaAction.index([response.inicio, response.fim]).then((res) => {
         responseDespesas = res;
       }).catch((err) => {
-        alertAction.error(err.message);
-        throw 'Error'
+        alertAction.error(err.message).catch((errs) => {
+          alert(err.message)
+        });
       });
       
       entradaAction.index([response.inicio, response.fim]).then((res) => {
@@ -29,13 +30,15 @@ function($scope, alertAction, pass, formatValor, formatDate, despesaAction, entr
           $scope.visualizar = res;
           formatValor.moneyMask();
         }).catch((err) => {
-          alertAction.error(err.message)
-            throw 'Error'
+          alertAction.error(err.message).catch((errs) => {
+            alert(err.message)
+          });
         })
 
       }).catch((err) => {
-        alertAction.error(err.message);
-        throw 'Error'
+        alertAction.error(err.message).catch((errs) => {
+          alert(err.message)
+        });
       });
 
     }).catch((err) => {

@@ -5,30 +5,38 @@ angular.module('apiApp', ['ngResource', 'dataApp' ])//'dataBase'])
 
   api.index = (getQuery, getDados ) =>{
     return $q((res, rej) => {
-     res(bdquery.index(getQuery, getDados))
-     rej({message: 'Error: FACTORY API INDEX, falha ao lista dados'})
+      try{
+        res(bdquery.index(getQuery, getDados))
+      } catch {
+        rej({message: 'Error: FACTORY API INDEX, falha ao lista dados'})
+      }
     })
   },
   api.create = (getQuery, getDados) => {
     return $q((res, rej) => {
-      res(bdquery.insert(getQuery, getDados))
-      rej({message: 'Error: FACTORY API CREATE, falha ao salvar dados'})
+      try{
+        res(bdquery.insert(getQuery, getDados))
+      } catch {
+        rej({message: 'Error: FACTORY API CREATE, falha ao salvar dados'})
+      }
     })
   },
   api.update = (getQuery, getDados) => {
     return $q((res, rej) =>{
-      res(bdquery.update(getQuery, getDados))
-      rej({message: 'Error: FACTORY API UPDATE, falha ao atualizar dados'})
+      try{
+        res(bdquery.update(getQuery, getDados))
+      } catch {
+        rej({message: 'Error: FACTORY API UPDATE, falha ao atualizar dados'})
+      }
     })
   }
   api.delete = (getQuery, getDados) => {
     return $q((res, rej) => {
-      console.log('>> FACTORY API')
-      console.log(getQuery)
-      console.log(getDados)
-      
-      res(bdquery.delete(getQuery, getDados))
-      rej({message: 'Error: FACTORY API DELETE, falha ao excluir dados'})
+      try{
+        res(bdquery.delete(getQuery, getDados))
+      } catch {
+        rej({message: 'Error: FACTORY API DELETE, falha ao excluir dados'})
+      }
     })
   }
 

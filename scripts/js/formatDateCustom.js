@@ -1,6 +1,5 @@
 /*BASE MÊS VIEW FORMATO YYYY-MM-dd */
 const basemesPag = () => { //1x usado InsertMesBaseAnterior
-  //console.warn($("#comparaDt").text())
   return $("#comparaDt").text();
 };
 
@@ -106,12 +105,12 @@ const SubtituloMenuNull = () => {
   const dtBaseMes = parseInt(retonardt.split('-')[1] -1);
   const dtBaseAno = retonardt.split('-')[0];
  
-  setTimeout(() => {
+  /*setTimeout(() => {
     //$("#dtReference").text(GetDateFormat.mesExtAnoParams(mesExt[dtBaseMes], dtBaseAno))
     //$("#OpcaoMesEsquerdo").removeClass('ng-hide');
     //$("#OpcaoMesDireito").removeClass('ng-hide');
     //$("#comparaDt").text(retonardt);
-  }, 60);
+  }, 60);*/
 
   return  retonardt;
 }

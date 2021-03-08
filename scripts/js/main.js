@@ -9,17 +9,20 @@ angular
     'apiApp',
     'querysApp',
     'routesApp',
+    'getDadosServices',
+    'formatDadosServices',
     'formatValorServices',
     'formatDateServices',
     'passMonthServices',
     'despesaServices',
     'entradaServices',
     'visualizarServices',
+    'relatorioServices',
     'alertServices'
   ])
   .config(function ($routeProvider) {
     
-    const ambientType = 'dev';
+    const ambientType = 'prod';
 
     const ambient = {
         prod() {

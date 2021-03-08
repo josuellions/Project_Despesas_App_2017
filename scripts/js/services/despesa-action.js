@@ -27,7 +27,7 @@
 
         let dadosFormat = [];
         $.each(getDados, (id, row) =>{
-          const date = row.dtLanc.split('-')
+          const date = row.data.split('-')
 
           const formtDate = GetDateFormat.anoFullMesDiaFormatBDParamsFull(date[2], parseInt(date[1]), date[0])
           dadosFormat = [

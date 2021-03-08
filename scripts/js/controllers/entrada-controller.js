@@ -79,7 +79,7 @@ function($scope, entradaAction, alertAction, formatDate, formatValor, pass){
   const  CopyMesAnterior = (getDataInicio, response) => {
     const date = new Date(getDataInicio);
     const dtMesAnteriorFormat = GetDateFormat.mesExtAnoParams(mesExt[date.getMonth()], date.getFullYear())
-
+    
     alertAction.question(`Adicionar entrada caixa, com base no mês anterior, "${dtMesAnteriorFormat}"?`,
     action.copyEntrada, {dados: response, date: dtMesAnteriorFormat})
     .catch((err) => {
@@ -97,7 +97,7 @@ function($scope, entradaAction, alertAction, formatDate, formatValor, pass){
       if(res.length === 0){
         return
       }
-      
+
       CopyMesAnterior(getDataInicio, res)
 
     }).catch((err) => {

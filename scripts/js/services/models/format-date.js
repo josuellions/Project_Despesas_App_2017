@@ -3,7 +3,7 @@ angular.module('formatDateServices', ['ngResource'])
   
   let service = {};
 
-  service.dtConsultaDB = () => {
+  service.dtConsultaDB = () => { // FORMAT = yyyy-MM-dd
     const dtConsulta = {
       inicio: "",
       fim: "",

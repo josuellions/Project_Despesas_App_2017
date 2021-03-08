@@ -79,7 +79,7 @@ angular.module('alertServices', ['ngResource'])
         $('#ModalInfo').modal('toggle');
         $("#infoAvisos").html(`${message}`);
 
-        return true
+        res(true)
         
       }catch{
         rej({message: 'Erro: FACTORY SERVICES ALERT, falha ao exibir o alert info!'})

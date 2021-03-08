@@ -1,33 +1,52 @@
-
-.viewExib .panel-relatorio {
+.panel-relatorio {
   overflow: scroll;
   position: absolute;
-  height: 60vh !important;
-  max-height: 60vh !important;
+  height: 68vh !important;
+  max-height: 68vh !important;
   overflow: hidden;
+  padding: 1rem;
 }
 
 .panel-relatorio .panel-relatorio-graficos {
   width: 100%;
-  overflow-x: auto !important;
+  overflow-x: hidden;
+  overflow-y: auto !important;
   margin-bottom: 5vh;
+  height: 90%;
 }
 
-.panel-relatorio .panel-relatorio-graficos fieldset:nth-child(1){
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral{
   position: relative;
   margin-top: .5vh;
-  margin-bottom: 15vh;
+  margin-bottom: 0;
+  height: 40vh;
+  min-height: 40vh;
 }
 
 
-.panel-relatorio .panel-relatorio-graficos fieldset section {
-  width: 85vw;
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel {
   position: relative;
-  display: block;
-  padding: 0"
+  /*display: block;*/
+  padding: 0;
+  width: 85vw;
+  height: 100%;
+  margin-top: .5vh;
+ 
+  background: transparent;
+  text-align: center; 
+  /*padding: 2rem 0;*/
+  transform: background 3s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /*border-radius: 4px;*/
+  /*max-height: 40vh;*/
+  /*position: fixed;*/
+  /*margin-top: -2vh;*/
 }
 
-.panel-relatorio .panel-relatorio-graficos fieldset section div  {
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center  {
   margin-bottom: .5vh;
   width: 84.5vw;
   display: flex;
@@ -37,62 +56,7 @@
   padding: 0;
 }
 
-.panel-relatorio .panel-relatorio-graficos fieldset section .panel-relatorio-graficos-label{
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  width: 20vw;
-  height: 4vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  margin: 0;
-  padding: 0;
-  padding-top: .5rem;
-  font-size: .8rem;
-  background-color: #999;
-}
-
-.panel-relatorio .panel-relatorio-graficos fieldset section .panel-relatorio-graficos-progress-bar {
-  width: 65vw;
-  height: 4vh;
-  margin: 0;
-  padding: 0;
-}
-
-.panel-relatorio .panel-relatorio-graficos fieldset section .panel-relatorio-graficos-progress-bar .progress {
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
-  border-top-right-radius: 4px !important;
-  border-bottom-right-radius: 4px !important;
-  height: 4vh;
-
-}
-
-.panel-relatorio .panel-relatorio-graficos fieldset section .panel-relatorio-graficos-progress-bar .progress .progress-bar {
-  padding-left: 1rem !important;
-  border-top-right-radius: 25px !important;
-  border-bottom-right-radius: 4px !important;
-  opacity: .8;
-}
-
-.dashboard-graphical-panel {
-  background: transparent;
-  text-align: center; 
-  padding: 2rem 0;
-  transform: background 3s;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 4px;
-  max-height: 40vh;
-  position: fixed;
-  margin-top: -2vh;
-}
-
-.dashboard-graphical-panel .wrapper {
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper {
   width: 100%;
   max-height: 100%;
   max-width: 100%;
@@ -100,7 +64,7 @@
   justify-content: center;
 }
 
-.dashboard-graphical-panel .wrapper .item {
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item {
   width: 100%;
   max-height: 100%;
   display: block;
@@ -110,8 +74,9 @@
   transition: transform .5s, box-shadow .5s;
 }
 
-.dashboard-graphical-panel .wrapper .item .graphical {
-  min-height: 25vh;
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .graphical {
+  min-height: 15vh;
+  max-height: 15vh;
   min-width: 25vh;
   display: flex;
   flex-direction: column;
@@ -121,7 +86,7 @@
   padding-top: 1rem;
 }
 
-.dashboard-graphical-panel .wrapper .item .graphical .graph {
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .graphical .graph {
   text-align: center;
   width: 100px;
   height: 100px;
@@ -136,7 +101,7 @@
   align-items: center;
 }
 
-.dashboard-graphical-panel .wrapper .item .graphical .graph svg.cor {
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .graphical .graph svg.cor {
   stroke: #3aa8cb;
   stroke-dasharray: 255; 
   stroke-dashoffset: calc(var(--size) - 1.0);
@@ -146,25 +111,26 @@
   stroke-width: 5px;
 }
 
-.dashboard-graphical-panel .wrapper .item .graph .c-circular-progress:before  {
-  align-items: center;
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .graphical .graph .c-circular-progress:before  {
   background-color: #fff;
-  border-radius: 100%;
+  justify-content: center;
+  transform: scale(0.8);
   display: inline-flex;
+  align-items: center;
+  border-radius: 100%;
+  position: absolute;
   font-size: 500%;
   height: 100%;
-  justify-content: center;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transform: scale(0.8);
   width: 100%;
+  left: 0;
+  top: 0;
 }
-.dashboard-graphical-panel .wrapper .item .graph span {
+
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .graphical .graph span {
   color: #2a3454;
 }
 
-.dashboard-graphical-panel .wrapper .item .graphical svg {
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .graphical .graph svg {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -175,13 +141,54 @@
   stroke: #ddd;
 }
 
-.dashboard-graphical-panel .wrapper .item h4 {
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item h4 {
   align-items: center;
   color: #2a3454;
   padding: 1.5rem 1.5rem .8rem;
   width: 100%;
 }
-.dashboard-graphical-panel .wrapper .item p {
+
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .info {
+  border-radius: 1px solid #ddd;
+  margin-top: 1.5rem;
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-height: 10vh;
+  height: 10vh;
+}
+
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .info .info-entrada, .info-despesa  {
+  display: flex;
+  width: 50%;
+  max-width: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .info .info-entrada {
+  border-radius: 5px;
+  border-top: 5px solid #ddd;
+  background-color: transparent;
+}
+
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .info .info-despesa {
+  border-radius: 5px;
+  border-left: 1px solid #eee;
+  border-top: 5px solid #3aa8cb;
+}
+
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .info .info-entrada i, .info-despesa i {
+  font-size: 14px;
+  color: #0fcac6;
+  padding-bottom: .5rem;
+}
+
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-geral .dashboard-graphical-panel .center .wrapper .item .info .info-entrada p, .info-despesa p {
   text-align: center;
   color: #888;
   padding: 0 1.5rem;
@@ -191,33 +198,79 @@
   align-items: center;
 }
 
-.dashboard-graphical-panel .wrapper .info {
-  border-radius: 1px solid #ddd;
-  margin-top: 1.5rem;
-  display: flex;
-  min-width: 85vw;
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-despesas {
+  position: relative;
+  margin-top: 5vh;
+  margin-bottom: 0;
+  height: auto;
+  min-height: auto;
+  padding-bottom: .5vh;
+
 }
 
-.dashboard-graphical-panel .wrapper .info div {
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-despesas .dashboard-graphical-despesas-panel {
+  width: 100%;
+  position: relative;
+}
+
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-despesas .dashboard-graphical-despesas-panel div {
   flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 .1rem 0;
+}
+
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-despesas .dashboard-graphical-despesas-panel .panel-relatorio-graficos-label {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  width: 20vw;
+  height: 4vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
-  /*border-top: 1px solid #ddd;*/
+  align-content: center;
+  margin: 0;
+  padding: 0;
+  padding-top: .5rem;
+  font-size: .8rem;
+  background-color: #999;
+  max-width: 20ch;
+
 }
 
-.dashboard-graphical-panel .wrapper .info div+div{
-  border-left: 1px solid #ddd;
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-despesas .dashboard-graphical-despesas-panel .panel-relatorio-graficos-label label {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 20ch;
+  padding: 0 .5rem 0 .5rem;
 }
 
-.dashboard-graphical-panel .wrapper .info div i {
-  font-size: 14px;
-  color: #0fcac6;
-  padding-bottom: .5rem;
+/*
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-despesas .panel-relatorio-graficos-progress-bar {
+  width: 65vw;
+  height: 4vh;
+  margin: 0;
+  padding: 0;
+}
+*/
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-despesas .dashboard-graphical-despesas-panel .panel-relatorio-graficos-progress-bar .progress {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  height: 4vh;
 }
 
+
+.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-despesas .dashboard-graphical-despesas-panel .panel-relatorio-graficos-progress-bar .progress .progress-bar {
+  padding-left: 1rem !important;
+  border-top-right-radius: 25px !important;
+  border-bottom-right-radius: 4px !important;
+  opacity: .8;
+}
 
 :root {
   --size: 255;
