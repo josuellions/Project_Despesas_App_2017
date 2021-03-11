@@ -1,5 +1,5 @@
 angular.module('entradaServices', ['ngResource', 'routesApp'])
-.factory('entradaAction', function ($q, routesAction, formatValor) {
+.factory('entradaAction', function ($q, routesAction, formatValor, formatDate) {
 
   let service = {}
 
@@ -26,9 +26,15 @@ angular.module('entradaServices', ['ngResource', 'routesApp'])
       try{
 
         let dadosFormat = [];
+
+        //const dtbase = formatDate.dtConsultaDB()
+        //const ultimoDiaMes = dtbase.fim.split('-')[2];
+
+        
+        
         for(let row of getDados) {
           const date = row.data.split('-')
-
+          
           const formtDate = GetDateFormat.anoFullMesDiaFormatBDParamsFull(date[2], parseInt(date[1]), date[0])
           dadosFormat = [
             formtDate,
@@ -36,11 +42,12 @@ angular.module('entradaServices', ['ngResource', 'routesApp'])
             row.entrada,
             row.valor,
           ]
-          
           routesAction.entradaCreate(dadosFormat)
         }
         res({message: 'Success: Entrada Caixa adicionadas com base no mês anterior'});
+    
       }catch{
+    
         rej({message: 'Error: FACTORY ENTRADA SERVICE, falha ao copiar dados do mês anterior'})
       }
     })

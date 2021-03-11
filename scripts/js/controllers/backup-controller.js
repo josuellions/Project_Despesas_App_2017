@@ -1,10 +1,54 @@
 angular.module("todoApp").controller("BackupController",
- function ($scope, $http, $location) {
+ function ($scope, $http, $location, alertAction) {
 
   $scope.titulo = 'Controle Despesas';
   $scope.classSubTitulo = 'subtitulo-menu alinharMes';
   $scope.subtitulo = 'Backup'
   $scope.passmes = false;
+  $scope.formBackup = {};
+
+  $scope.formBackup = '21.21.21.11:3333'
+
+  const ResponseConnection = (conn) => {
+    console.log('SUCESS CONECTION')
+  }
+
+
+  const Connection = (getConextion) => {
+    
+    urlbase = `http://${getConextion}`;
+
+    $http.get(`${urlbase}/connection`).then((res)=>{
+      if(res.status == 201){
+        ResponseConnection();
+      }
+    }).catch((err) => {
+      alertAction.error(`Error: Falha na conexão com server!
+        Contate o administrador server backup, ou verifique o endereço de conexão do servidor
+        e tente novamente.
+        ${urlbase}`).catch((errs) => {
+        alert(errs.message)
+      })
+    })
+  }
+  
+
+
+  $scope.upload = () => {
+    Connection($scope.formBackup);
+    //console.log($scope.formBackup)
+  }
+
+  $scope.download = () => {
+    //Connection($scope.formBackup);
+    //console.log($scope.formBackup)
+    alertAction.info(`Informação: Restaure/upload do backup em desenvolvimento!`).catch((errs) => {
+      alert(errs.message)
+    })
+  }
+
+
+
 
 /*FUNCIONADO COMENTADO PARA ESTILIZAÇÂO DA VIEW
     let totalTable;

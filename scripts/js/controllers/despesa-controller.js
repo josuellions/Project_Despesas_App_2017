@@ -69,39 +69,6 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
   $scope.passmes = true;
   $scope.classSubTitulo = 'alinharMes';
 
-  /* ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA */
-  /*const formatValorMoney = () => { //MOVIDO PARA FACTORY format-valor
-    setTimeout(() => {
-      //console.log('formatValor')
-      $(".money").mask("000.000.000.000,00", { reverse: true });
-    }, 60);
-  };*/
-
-  /*const formatValorBD = (valor) => { //MOVIDO PARA FACTORY format-valor
-    let formatValor = valor.replace('.','').trim();
-    formatValor = formatValor.replace(',','.');
-
-    //console.log("FORMAT VALOR")
-    //console.log(formatValor)
-    return formatValor//.replace(',','.')
-  }*/
-
-  //convertMes();
-  //selectCampoValor();
-  
-  //formatValorMoney();
-  //formatValor.moneyMask();
-
-  /*FORMATA VALOR PARA SOMAR*/
-  /*const convertSomarValor = (valor) => {
-    return parseFloat(valor.replace(",", "."));
-  };*/
-
-  /*FORMATA VALOR PARA VIEW*/ //MOVIDO PARA FACTORY
-  /*const convertValorView = (valorView) => {
-    return formatValor.ptBr(valorView);
-  };*/
-
   /*Limpar formulário despesa */
   const LimparCamposForm = () => {
     $scope.despesas = {};
@@ -146,7 +113,6 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     $scope.despesaValorTotal = formatValor.ptBr(somaDespesa.toFixed(2).replace('.', ','));
     formatValor.moneyMask();
 
-    //return {despesas: despesasFormat, total: formatValor.ptBr(somaDespesa.toFixed(2).replace('.', ','))}
   }
 
   /*COPY - Copiar despesas mẽs anterior, se o mês atual não possuir lançamentos */
@@ -160,26 +126,8 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     .catch((err) =>{
       alertAction.error(err.message).catch((err) =>{
         alert(err.message);
-      })
-    })
-  /*
-
-    if( !confirm(`Adicionar despesas com base no mês anterior,\n "${dtMesAnteriorFormat}"?`) ){
-      return;
-    }
-
-    despesaAction.copy(response).then((res) => {
-      alert(`${res.message} \n"${dtMesAnteriorFormat}"`)
-      ListaComTimeOut();
-    }).catch((err) => {
-      //alert(err.message);
-      alertAction.error(err.message).then((res) =>{
-        return;
-      }).catch((err) =>{
-        alert(err.message);
-      })
-    })
-    */
+      });
+    });
   }
 
   /*COPY - Busca despesas mẽs anterior, se o mês atual não possuir lançamentos para copiar */
@@ -220,9 +168,7 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
     
     $scope.despesaValorTotal = formatValor.ptBr(parseFloat(recalcularTotal).toFixed(2).replace('.', ','))
 
-    //setTimeout(() => {
-      alertAction.success(`Sucesso: "${despesa.nome}" foi excuido!`);
-    //}, 60);
+    alertAction.success(`Sucesso: "${despesa.nome}" foi excuido!`);
 
   }
 
@@ -307,11 +253,6 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
             return;
           }
 
-          /*const respose = ExibirListaView(res)
-          $scope.despesas =  respose.despesas
-          $scope.despesaValorTotal = respose.total;
-          //formatValorMoney();
-          formatValor.moneyMask();*/
           ExibirListaView(res)
 
         }).catch((err)=> {
@@ -320,8 +261,6 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
           })
         })
     }).catch((err) => {
-      //console.log(err);
-      //alert(err.message)
       alertAction.error(err.message).catch((err) =>{
         alert(err.message);
       })
@@ -331,14 +270,13 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
   const ListaComTimeOut = () => {
     setTimeout(() => {
       ListaDespesas();
+      formatValor.moneyMask();
     }, 5);
   }
 
   /*UPDATE - Opção para editar despesas - clicando sobre nome despesa */
   const OptionActionEdit = (despesa) => {
     $scope.formDespesa = {};
-
-    $scope.money = ''; //Verificar se está em uso excluir
     $scope.titleOptions = '';
     $scope.option = 'hidden',
     $scope.optiondel = '',
@@ -373,7 +311,6 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
   const AlertUpdateDespesa = () => {
     dados = {
       message:`Deseja atualizar despesa "${$scope.formDespesa.nome}"?`,
-      //valor: formatValor.bancoDados($scope.formDespesa.valor), //formatValorBD($scope.formDespesa.valor),
       action: action.updateDespesa,
     }
     alertAction.question(dados.message, dados.action,'').catch((err) =>{
@@ -452,14 +389,7 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
 
   /*DELETE - Ação para deletar despesas */
   $scope.submitDelete = (despesa) => {
-    //const buscadespesa = $scope.despesas.find(despesa) // $scope.despesas.indexOf(despesa))
-    
-   /* if( !confirm(`Deseja excluir despesa? \n ${$scope.formDespesa.nome}`) ){
-      return
-    }*/
-    
-    //alertAction.question(`Deseja excluir despesa? \n ${$scope.formDespesa.nome}`, Despesa['delete'], {dados: despesa})
-    alertAction.question(`Deseja excluir despesa? "${$scope.formDespesa.nome}"?`, action.deleteDespesa, {dados: despesa})
+    alertAction.question(`Deseja excluir despesa? "${despesa.nome}"?`, action.deleteDespesa, {dados: despesa})
     .catch((err) =>{
       alertAction.error(err.message).catch((err) =>{
         alert(err.message);
@@ -471,11 +401,10 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
   pass.MonthInitial()
   .then((res) => {
     $scope.subtitulo = res.mesExt;
-    $scope.comparaDt = res.anoMesDia; //VERIFICAR SE ESTÁ USANDO
+    $scope.comparaDt = res.anoMesDia; 
     ListaComTimeOut();
   })
   .catch((err) => {
-    //alert(err.message)
     alertAction.error(err.message).then((res) =>{
       return;
     }).catch((err) =>{
@@ -495,7 +424,6 @@ function($scope, $http, despesaAction, alertAction, formatDate, formatValor, pas
       ListaComTimeOut();
     })
     .catch((err) => {
-      //alert(err.message)
       alertAction.error(err.message).then((res) =>{
         return
       }).catch((err) =>{

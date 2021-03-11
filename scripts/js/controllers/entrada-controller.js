@@ -79,7 +79,7 @@ function($scope, entradaAction, alertAction, formatDate, formatValor, pass){
   const  CopyMesAnterior = (getDataInicio, response) => {
     const date = new Date(getDataInicio);
     const dtMesAnteriorFormat = GetDateFormat.mesExtAnoParams(mesExt[date.getMonth()], date.getFullYear())
-    
+
     alertAction.question(`Adicionar entrada caixa, com base no mês anterior, "${dtMesAnteriorFormat}"?`,
     action.copyEntrada, {dados: response, date: dtMesAnteriorFormat})
     .catch((err) => {
@@ -93,7 +93,6 @@ function($scope, entradaAction, alertAction, formatDate, formatValor, pass){
   const BuscarDadosMesAnterior = (getDataInicio) => {
     
     entradaAction.indexMesAnterior(getDataInicio).then((res) => {
-      
       if(res.length === 0){
         return
       }
@@ -137,8 +136,9 @@ function($scope, entradaAction, alertAction, formatDate, formatValor, pass){
         entradaAction.index([response.inicio, response.fim]).then((res) => {
 
           if(res.length === 0){
+            
+            $scope.entradaValorTotal = '0,00';
             BuscarDadosMesAnterior(response.inicio);
-            $scope.despesaValorTotal = '0,00';
             return;
           }
           ExibirListaView(res)
@@ -211,7 +211,7 @@ function($scope, entradaAction, alertAction, formatDate, formatValor, pass){
   }
 
   //action.indexEntrada();
-  ListaComTimeOut();
+  //ListaComTimeOut();
 
   /*UPDATE - Opção para editar Entrada Caixa - clicando sobre nome Entrada Caixa */
   const OptionActionEdit = (getEntrada) =>{
@@ -253,7 +253,6 @@ function($scope, entradaAction, alertAction, formatDate, formatValor, pass){
   const AlertUpdateEntrada = () => {
     dados = {
       message: `Deseja atualizar Entrada Caixa "${$scope.formEntrada.nome}"?`,
-      //valor: formatValor.bancoDados($scope.formEntrada.valor),
       action: action.updateEntrada
     }
 

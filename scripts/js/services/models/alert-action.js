@@ -32,40 +32,33 @@ angular.module('alertServices', ['ngResource'])
   },
   service.question = (message, action, getDados) => {
    return $q((res, rej) => {
-      try{
-        let questionAction = action;
-        
+     try{
+        const LimparDadosQuestion = () => {
+            action = null;
+            getDados = null;
+            message = null;
+        }
+
         $('#ModalQuestion').modal('toggle');
         $("#questionAviso").html(`${message}`);
-        
-        const LimparDadosQuestion = () => {
-          questionAction = null;
-          action = null;
-          getDados = null;
-          message = null;
-        }
       
         XmodalQuestionCancelaElement.addEventListener('click', (event) => { 
           event.preventDefault();
-          
-          //console.log("X")
           LimparDadosQuestion ();
           return false
         });
       
         ModalQuestionCancelaElement.addEventListener('click', (event) => {
           event.preventDefault();
-          //console.log("CANCEL")
           LimparDadosQuestion ();
           return false
         }) 
 
         ModalQuestionConfirmaElemtent.addEventListener('click', (event) => {
           event.preventDefault();
-          //console.log("CONFIRME")
-          //action(getDados);
-          questionAction(getDados);
+          action(getDados);
           LimparDadosQuestion ();
+
           return true
         }) 
       }catch{

@@ -18,64 +18,60 @@ angular
     'entradaServices',
     'visualizarServices',
     'relatorioServices',
+    'backupServices',
     'alertServices'
   ])
   .config(function ($routeProvider) {
     
-    const ambientType = 'prod';
+    const ambientType = 'dev';
 
-    const ambient = {
-        prod() {
-          return 'producao';
-        },
-        dev() {
-          return 'developer'
+    const SelectEnvironment = (getPath) => {
+      const ambient = {
+          prod() { //produção
+            return `/android_asset/www/public/${getPath}.html`;
+          },
+          dev() { //developer
+            return `public/${getPath}.html`
         }
       }
 
-    const Directiory = { 
-      producao(path) {
-        return `/android_asset/www/public/${path}.html`
-      },
-      developer(path) {
-        return `/public/${path}.html`
-      }
-    }
-    const AmbientSelect = ambient[ambientType];
+      const selectEnvironment = ambient[ambientType];
 
-    const AmbientPath = Directiory[AmbientSelect()];
-    
+      return selectEnvironment();
+
+    }
+   
     $routeProvider
       .when('/', {
-        templateUrl: AmbientPath('home'),
+        templateUrl: SelectEnvironment('home'),
         controller: 'HomeController',
       })
       .when('/despesas', {
-        templateUrl: AmbientPath('despesas'),
+        templateUrl: SelectEnvironment('despesas'),
         controller: 'DespesaController'
       })
       .when('/entrada', {
-        templateUrl: AmbientPath('entrada'),
+        templateUrl: SelectEnvironment('entrada'),
         controller: 'EntradaController',
       })
       .when('/visualizar', {
-        templateUrl: AmbientPath('visualizar'),
+        templateUrl: SelectEnvironment('visualizar'),
         controller: 'VisualizarController',
       })
       .when('/relatorio', {
-        templateUrl: AmbientPath('relatorio'),
+        templateUrl: SelectEnvironment('relatorio'),
         controller: 'RelatorioController',
       })
       .when('/informacoes', {
-        templateUrl: AmbientPath('informacoes'),
+        templateUrl: SelectEnvironment('informacoes'),
         controller: 'InformacoesController',
       })
       .when('/backup', {
-        templateUrl: AmbientPath('backup'),
+        templateUrl: SelectEnvironment('backup'),
         controller: 'BackupController',
       })
       .when('/sobre', {
-        templateUrl: AmbientPath('sobre'),
+        templateUrl: SelectEnvironment('sobre'),
         controller: 'SobreController',
       })
       .otherwise({

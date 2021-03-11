@@ -149,7 +149,6 @@ body{
 }
 
 /*ALINHAR FORMULARIO DE DADOS*/
-
 .container-fluid>div>div>.alinharFormDesp {
 	margin-top: 5vh;
 	border: 382px 604px solid 2px #337ab7;
@@ -339,21 +338,21 @@ section {
 
 /*ALINHA BOTÕES PAGINA INICIAL*/
 .container-custom {
+	flex: 1;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	align-items: center;
+	align-self: center;	
 	width: 100%;
-	height: 74vh;
+	height: 100%;
 	padding: 2rem;
 	margin: 0;
+	top: 1.5vh;
+	position:relative;
 }
+
 .container-custom .btnAlingDesp {
 	margin: 0 auto;
-	/*margin-left: 2.2vw !important;
-	position: absolute;
-	padding: 0;
-	padding-bottom: .5% !important;*/
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -387,15 +386,11 @@ section {
 	font-size: 1.5rem !important;
 	border: none !important;
 	border-radius: 4px !important;
-	/*background: #337ab7 !important;*/
 	background: transparent !important;
 	color: white !important;
-	/* orange !important;*/
 	opacity: .4rem !important;
 	box-shadow: 0px 0px 15px whitesmoke !important;
 	text-shadow: 0px 0px 15px #337ab7 !important;
-	/*padding-top: 7% !important;
-	padding-bottom: 7% !important;*/
 }
 
 .container-custom .btnAlingDesp div .btn:first-child{
@@ -476,11 +471,10 @@ html {
 	border-radius: 50%;
 }
 
-section {
-	/*	margin-bottom: 20%;*/
+/*section {
 	position: fixed;
 	z-index: 1;
-}
+}*/
 
 .formCoustom{
 	margin: 0 !important;
@@ -565,10 +559,21 @@ section {
 	border: 2px solid lightgray;
 	background-color: #474e5d;
 	opacity: .90 !important;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	height: 92.5%;
+	max-height: 92.5%;
+
 }
 
 .viewExib fieldset {
 	margin-top: 0;
+	height: 100%;
+	max-height: 100%;
 }
 
 .viewExib fieldset legend {
@@ -611,8 +616,46 @@ h5 {
 	margin-left: .5vw;
 }
 
+/*.viewExib fieldset.fieldsetViewBkp {
+	padding-bottom: 2.5vh;
+}*/
+
 @media screen and (max-width:410px) {
-	.html {
+	.container-custom {
+		top: -2.5vh !important;
+	}
+
+	/*.viewExib {
+		max-height: 92.5%;
+	}
+	.viewExib fieldset.fieldsetViewBkp {
+		margin-top: 11.5vh;
+	}*/
+
+	.tbDespfoot {
+		margin-top: 2.5vh;
+	}
+
+	.from-inline {
+		margin-top: -2.5vh;
+	}
+
+	.btnGroup.btnBkp {
+		margin-left: 0 !important;
+		width: 48.5% !important;
+		margin-bottom: 2.5vh;
+		
+	}
+
+
+	button.btnGroup.btnBkp:nth-of-type(2) {
+		margin: 0vh !important;
+	}
+	button.btnGroup.btnBkp:nth-of-type(1) {
+		margin-left: 1vh !important;
+	}
+
+	/*.html {
 		background-size: 200px 200px !important;
 	}
 	.container-custom>.btnAlingDesp {
@@ -620,7 +663,6 @@ h5 {
 		float: left;
 		padding: 0;
 		margin: 0 auto;
-		/*margin-top: 3vh !important;*/
 	}
 	.container-custom>div>.btn {
 		height: 20vh !important;
@@ -648,12 +690,10 @@ h5 {
 	}
 	.container-fluid>.contVer {
 		font-size: .9rem;
-	}
+	}*/
 	/*BOTÕES DA PAGINA INICIAL*/
-	.container-custom>div>.btn {
-		/*font-weight: bolder;*/
+	/*.container-custom>div>.btn {
 		margin-bottom: 2.5vh;
-		/*margin-left: 2vw;*/
 	}
 	.alinharFormDesp {
 		margin-top: .7vh !important;
@@ -666,7 +706,7 @@ h5 {
 		margin-top: 1vh;
 		height: 67.5vh;
 		max-height: 67.5vh;
-	}
+	}*/
 }
 
 @media screen and ( min-width: 412px) and (max-width: 1020px) {
@@ -720,6 +760,7 @@ h5 {
 		max-height: 69vh !important;
 	}
 	.viewExib {
+		
 		height: 68.5vh;
 		max-height: 68.5vh;
 	}

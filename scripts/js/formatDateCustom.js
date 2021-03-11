@@ -72,9 +72,14 @@ const GetDateFormat =  {
     return [ano, mesFormat, diaFormat].join('-');
   },
   anoFullMesDiaFormatBDParamsFull: (dia, mes, ano) =>{
-    const diaFormat = String(`0${dia}`).slice(-2);
-    const mesFormat = mes == 12 ? String(`0${1}`).slice(-2) : String(`0${parseInt(mes) + 1}`).slice(-2);
+    let diaFormat = String(`0${dia}`).slice(-2);
+    const mesFormat = mes == 12 ? String(`0${1}`).slice(-2) : String(`0${(parseInt(mes) + 1)}`).slice(-2);
     const anoFormat = mes == 12 ? String(parseInt(ano) + 1) : ano
+    
+    const ultimoDiaMesSeguinte = new Date(anoFormat, mesFormat, 0).getDate();
+    
+    diaFormat = dia > ultimoDiaMesSeguinte ? ultimoDiaMesSeguinte : dia
+
     return [anoFormat, mesFormat, diaFormat].join('-');
   },
   mesExtAnoParams: (mes, ano) =>{
