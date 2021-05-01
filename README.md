@@ -3,4 +3,4 @@ Controle Despesas Versão 2021 - APP Mobile versão: v.1.0.7, desenvolvimento e 
 
 Telas da Aplicação
 
-<img src="https://media-exp1.licdn.com/dms/image/C5622AQHCc0LYOSPp6w/feedshare-shrink_2048_1536/0/1615541878275?e=1618444800&v=beta&t=oVOUW9C2xI1EgTZ3JvEQ5mUGaE28fBg0Cgx4VbPkPw4" alt="Telas da aplicação Controle Despesas APP"/>
+<img src="https://media-exp1.licdn.com/dms/image/C5622AQHCc0LYOSPp6w/feedshare-shrink_800/0/1615541878322?e=1622678400&v=beta&t=3B-z0xq5VrJoo76v9LysKyN6AoCRZb7-IOYDybZM-wM" alt="Telas da aplicação Controle Despesas APP"/>
