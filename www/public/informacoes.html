@@ -1,0 +1,22 @@
+<header-titule></header-titule>
+
+<panel-views>
+  <div class="col-xs-12  col-lg-12 viewExib">
+    <fieldset>
+      <legend class="text-left">APLICATIVO CONTROLE DESPESAS</legend>
+      <h4>Controle despesas diárias ou mensais</h4>
+      <div ng-repeat="i in information">
+        <h5 class="text-left">{{i.title}}</h5>
+        <p class="text-left">
+          <strong>{{i.caption}}</strong>
+        </p>
+        <p class="text-left">{{i.text}}</p>
+
+        <hr ng-show={{i.visible}} style="width: 50%; margin: 0 auto; margin-top: 3vh;"/>
+        <br/>
+      </div>
+    </fieldset>
+
+  </div>
+
+</panel-views>
