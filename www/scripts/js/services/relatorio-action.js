@@ -119,7 +119,6 @@ angular.module('relatorioServices', ['ngResource'])
       try{
         getDadosAction.index().then((response) => {
           formatDadosAction.index(response).then((responseFormat) => {
-            console.log(responseFormat)
             const porcentagemInvest = services.CalculaPorcentagem(responseFormat.resultValorTotal.entradaValorTotal, responseFormat.resultValorTotal.investimetosValorTotal)
             const porcentagemInvestStyle = services.PorcentagemInvestimentoSelectColor(porcentagemInvest)
 

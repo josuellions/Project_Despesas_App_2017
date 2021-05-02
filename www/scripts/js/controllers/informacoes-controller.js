@@ -20,6 +20,13 @@ function($scope){
 				visible: true,
 			},
 			{
+				title: 'Investimentos',
+				caption: 'Lançamentos investimento',
+				text: `Lancamento é realizado na tela despesa, para identificar o investimento, adiciona a sigla "IN-nome investimento".
+				Exemplo: IN-Aplicações, IN-Poupança, IN-CDB, IN-CDI, IN-Poupança"`,
+				visible: true,
+			},
+			{
 				title: 'Visualizar',
 				caption: 'Vizualização laçamentos entrada e despesas',
 				text: `Exibe os lançamentos já adicionados, para conferência, 

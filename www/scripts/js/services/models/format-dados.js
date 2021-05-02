@@ -15,8 +15,8 @@ angular.module('formatDadosServices', ['ngResource'])
     let splitStr = [];
 
     for(let row of getDados) {
-      splitStr = undefined !== row.despesa && row.despesa.split(' ');
-      isInvestimento = splitStr && splitStr[0] === 'Investimento';
+      splitStr = undefined !== row.despesa && row.despesa.split('-');
+      isInvestimento = splitStr && splitStr[0] === 'IN';
 
       if(isInvestimento){
         dadosFormatInvestmentos.push({

@@ -57,7 +57,7 @@
         <section class="dashboard-graphical-investimento-panel">
           <div ng-repeat="investimento in relatorio.investimentos">
            
-            <div class="panel-relatorio-graficos-label">
+            <div class="panel-relatorio-investimento-label">
               <label>{{investimento.nome}}</label>
               <label>R$ <span class="money">{{investimento.valor}}</span></label>
             </div>
@@ -72,22 +72,22 @@
             </div>
           </div>
           
-          <div style="background: transparent; display: block; padding: 1rem; border: 1px solid #ddd; border-top: none; border-radius: 4px; padding-bottom: 2.5rem; " ng-repeat="investimento in relatorio.graphicInvestimento">
-            <h4 class="text-center text-captalize" style="margin-top: 2.5rem; margin-bottom: 0; font-weight: 0;">TOTAL</h4>
-            <div style="margin-top: 1rem; display: flex; flex-direction: row; justify-content:space-around">
-              <p class="text-center" style="font-size: 1rem;">
+          <div class="dashboard-graphical-investimento-wrapper" ng-repeat="investimento in relatorio.graphicInvestimento">
+            <h4 class="text-center text-captalize" >TOTAL</h4>
+            <div class="dashboard-graphical-investimento-wrapper-subtitle">
+              <p>
                 <strong>Entrada Caixa</strong> <br/> R$ <span class="money">{{relatorio.total[0].entradas}}</span>
               </p>
-              <p class="text-center" style="font-size: 1rem;">
+              <p>
                 <strong>{{investimento.nome}}</strong> <br/> R$ <span class="money">{{investimento.valor}}</span>
               </p>
             </div>
-            <div style="height: 5vh; align-items: center; max-width: 70%; background-color: #ddd; margin-left: 15%; border-radius: 4px; align-items: center; padding: 0;">
-
-              <div class="panel-relatorio-graficos-progress-bar" style="min-width: 100%;">
+           
+            <div class="panel-investimento-graficos-div-progress-bar">
+              <div class="panel-relatorio-graficos-progress-bar">
                 <div class="progress">
                   <div class="progress-bar {{investimento.color}}" role="progressbar" aria-valuenow="{{investimento.porcentagem.valor}}" 
-                      aria-valuemin="0" aria-valuemax="100" ng-style="investimento.porcentagem.style" style="border-radius: 4px!important; margin-left: .5rem; margin-right: .5rem;" >
+                      aria-valuemin="0" aria-valuemax="100" ng-style="investimento.porcentagem.style">
                         <strong>{{investimento.porcentagem.valor}}%</strong>
                   </div>
                 </div>

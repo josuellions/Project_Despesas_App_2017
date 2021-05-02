@@ -63,12 +63,12 @@ body {
 
 .colorTotalViewPositivo {
   color: #337ab7 !important;
-  text-shadow: 0px 0px 2px lightblue;
+  /*text-shadow: 0px 0px 0.5px #fff; lightblue;*/
 }
 
 .colorTotalViewNegativo {
   color: #f44336 !important;
-  text-shadow: 0px 0px 2px #337ab7;
+  /*text-shadow: 0px 0px 2px #337ab7;*/
 }
 
 /*ICONE AJUDA PAGINA HOME*/
@@ -152,11 +152,13 @@ body {
 .container-fluid > div > div > .alinharFormDesp {
   margin-top: 2.5vh;
   border: 382px 604px solid 2px #337ab7;
-  overflow: auto;
+  overflow: hidden;
+  overflow-y: scroll;
   height: 72.5vh;
   min-height: 72.5vh;
   max-height: 72.5vh;
   position: relative;
+  padding-bottom: 10vh;
 }
 table thead,
 tfoot {
@@ -625,10 +627,6 @@ h5 {
   margin-left: 0.5vw;
 }
 
-/*.viewExib fieldset.fieldsetViewBkp {
-	padding-bottom: 2.5vh;
-}*/
-
 @media screen and (max-width: 410px) {
   .container-custom {
     top: -2.5vh !important;
@@ -661,59 +659,6 @@ h5 {
   button.btnGroup.btnBkp:nth-of-type(1) {
     margin-left: 1vh !important;
   }
-
-  /*.html {
-		background-size: 200px 200px !important;
-	}
-	.container-custom>.btnAlingDesp {
-		clear: both;
-		float: left;
-		padding: 0;
-		margin: 0 auto;
-	}
-	.container-custom>div>.btn {
-		height: 20vh !important;
-	}
-	
-	span .col-xs-2 {
-		padding: 0;
-		margin: 1vw;
-		width: 10vw;
-	}
-	span .col-xs-3 {
-		padding: 0;
-		margin: 1vw;
-		width: 22.5vw;
-	}
-	span .col-xs-4 {
-		padding: 0;
-		margin: 0;
-		width: 30vw;
-		margin-top: .4vh;
-	}
-	html {
-		background-size: 360px 420px;
-		background-position-y: 25vh !important;
-	}
-	.container-fluid>.contVer {
-		font-size: .9rem;
-	}*/
-  /*BOTÕES DA PAGINA INICIAL*/
-  /*.container-custom>div>.btn {
-		margin-bottom: 2.5vh;
-	}
-	.alinharFormDesp {
-		margin-top: .7vh !important;
-	}
-	footer div p {
-		margin-top: 1vh !important;
-		font-size: 1rem !important;
-	}
-	.viewExib {
-		margin-top: 1vh;
-		height: 67.5vh;
-		max-height: 67.5vh;
-	}*/
 }
 
 @media screen and (min-width: 412px) and (max-width: 1020px) {

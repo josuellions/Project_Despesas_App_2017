@@ -1,11 +1,11 @@
 .panel-relatorio {
   overflow: scroll;
   position: absolute;
-  height: 68vh !important;
-  max-height: 68vh !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
   overflow: hidden;
   padding: 1rem;
-  margin-bottom: 0;
+  padding-bottom: 5vh !important;
 }
 
 .panel-relatorio .panel-relatorio-graficos {
@@ -13,6 +13,7 @@
   overflow-x: hidden;
   overflow-y: auto !important;
   margin-bottom: 5vh;
+  height: 100%;
   min-height: 100%;
 }
 
@@ -365,7 +366,7 @@
   .panel-relatorio-graficos-label {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  width: 20vw;
+  width: 30vw;
   height: 4vh;
   display: flex;
   flex-direction: column;
@@ -373,11 +374,10 @@
   align-items: center;
   align-content: center;
   margin: 0;
-  padding: 0;
-  padding-top: 0.5rem;
+  padding: 0.5rem 1rem 0 1rem;
   font-size: 0.8rem;
   background-color: #999;
-  max-width: 20ch;
+  max-width: 30ch;
 }
 
 .panel-relatorio
@@ -389,19 +389,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 20ch;
-  padding: 0 0.5rem 0 0.5rem;
-  font-size: 0.9rem;
+  max-width: 30ch;
+  padding: 0 2.5rem 0 2.5rem;
+  font-size: 1rem;
 }
 
-/*
-.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-despesas .panel-relatorio-graficos-progress-bar {
-  width: 65vw;
-  height: 4vh;
-  margin: 0;
-  padding: 0;
-}
-*/
 .panel-relatorio
   .panel-relatorio-graficos
   .dashboard-graphical-despesas
@@ -427,6 +419,7 @@
   border-bottom-right-radius: 4px !important;
   opacity: 0.8;
 }
+
 /* PANEL INVESTIMENTO */
 .panel-relatorio .panel-relatorio-graficos .dashboard-graphical-investimento {
   margin-top: 5vh;
@@ -461,10 +454,10 @@
   .panel-relatorio-graficos
   .dashboard-graphical-investimento
   .dashboard-graphical-investimento-panel
-  .panel-relatorio-graficos-label {
+  .panel-relatorio-investimento-label {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  width: 20vw;
+  width: 30vw;
   height: 4vh;
   display: flex;
   flex-direction: column;
@@ -472,35 +465,38 @@
   align-items: center;
   align-content: center;
   margin: 0;
-  padding: 0;
-  padding-top: 0.5rem;
+  padding: 0.5rem 1rem 0 1rem;
   font-size: 0.8rem;
   background-color: #999;
-  max-width: 20ch;
+  max-width: 30ch;
 }
 
 .panel-relatorio
   .panel-relatorio-graficos
   .dashboard-graphical-investimento
   .dashboard-graphical-investimento-panel
-  .panel-relatorio-graficos-label
+  .panel-relatorio-investimento-label
   label {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 20ch;
-  padding: 0 0.5rem 0 0.5rem;
-  font-size: 0.9rem;
+  max-width: 30ch;
+  padding: 0 2.5rem 0 2.5rem;
+  font-size: 1rem;
 }
 
-/*
-.panel-relatorio .panel-relatorio-graficos .dashboard-graphical-investimento .panel-relatorio-graficos-progress-bar {
-  width: 65vw;
-  height: 4vh;
-  margin: 0;
-  padding: 0;
+.panel-relatorio
+  .panel-relatorio-graficos
+  .dashboard-graphical-investimento
+  .dashboard-graphical-investimento-panel
+  div {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 0.1rem 0;
 }
-*/
+
 .panel-relatorio
   .panel-relatorio-graficos
   .dashboard-graphical-investimento
@@ -525,6 +521,75 @@
   border-top-right-radius: 25px !important;
   border-bottom-right-radius: 4px !important;
   opacity: 0.8;
+}
+
+.panel-relatorio
+  .panel-relatorio-graficos
+  .dashboard-graphical-investimento
+  .dashboard-graphical-investimento-panel
+  .dashboard-graphical-investimento-wrapper {
+  background: #fff;
+  display: block;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding-bottom: 2.5rem;
+}
+
+.panel-relatorio
+  .panel-relatorio-graficos
+  .dashboard-graphical-investimento
+  .dashboard-graphical-investimento-panel
+  .dashboard-graphical-investimento-wrapper
+  h4 {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+  font-weight: 0;
+  color: #333;
+}
+
+.panel-relatorio
+  .panel-relatorio-graficos
+  .dashboard-graphical-investimento
+  .dashboard-graphical-investimento-panel
+  .dashboard-graphical-investimento-wrapper
+  .dashboard-graphical-investimento-wrapper-subtitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 1rem;
+  color: #666;
+}
+.panel-relatorio
+  .panel-relatorio-graficos
+  .dashboard-graphical-investimento
+  .dashboard-graphical-investimento-panel
+  .dashboard-graphical-investimento-wrapper
+  .dashboard-graphical-investimento-wrapper-subtitle
+  p {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.panel-relatorio
+  .panel-relatorio-graficos
+  .dashboard-graphical-investimento
+  .dashboard-graphical-investimento-panel
+  .dashboard-graphical-investimento-wrapper
+  .panel-investimento-graficos-div-progress-bar {
+  height: 5vh;
+  align-items: center;
+  max-width: 70%;
+  background-color: #ddd;
+  margin-left: 15%;
+  margin-right: 15%;
+  border-left: 4px solid #ddd;
+  border-right: 4px solid #ddd;
+  border-radius: 4px;
+  align-items: center;
+  padding: 0;
 }
 
 .renderizar-graphic {
