@@ -1,0 +1,72 @@
+<header-titule></header-titule>
+
+<panel-views>
+	<table class="table table-striped table-responsive tbmenuDesp" id="tbEntrada">
+		<thead>
+			<tr>
+				<th class="text-center" width="20%">Data</th>
+				<th class="text-center" width="60%">Receita Caixa</th>
+				<th class="text-center" width="1%"></th>
+				<th class="text-center" width="18%">Valor</th>
+				<!--<th class="text-center" width="2%">Del</th>-->
+				<th class="text-center despPG {{editCancel}}" ng-click="onUpdateEntradaCancel(false)" width="17%">
+					<span class="glyphicon glyphicon-remove-circle {{optiondel}}" title="Cancelar Editar"></span>
+					{{titleOptions}}
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="remover-animado" ng-repeat="e in entradas">
+				<span>
+					<td class="text-center" width="20%">{{e.dateView}}</td>
+					<!--<td width="55%" ng-click="onUpdateDesp(d.id, d.dateBd, d.nome, d.valor)">{{d.nome}}</td>-->
+					<td width="55%" ng-click="onUpdateEntrada(update, e)">{{e.nome}}</td>
+					<td class="text-center" width="1%">R$</td>
+					<td class="text-right money">{{e.valor}}</td>
+				</span>
+				<td class="text-center" width="6%">
+					<button type="button" id="excluir{{e.id}}" 
+						ng-click="submitDelete(e)" 
+						>
+						<span class="glyphicon glyphicon-trash text-right"></span>
+				</buton>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+		<!-- Form de cadastro de despesas mover para view partial-->
+	<form class="formCoustom row" role="group" aria-label="..."name="formulario" ng-submit="submeter()" novalidate>
+
+		<div class="alingBtn" role="group">
+			<input type="date" class="dtEntrada" ng-model="formEntrada.date"  id="dtEntrada" name="dtEntrada"/>
+		</div>
+
+		<div role="group">
+			<input class="listEntrada" ng-model="formEntrada.nome" list="dataListEntrada" name="textEntrada" id="dataEntrada" placeholder="Ex. Salario">
+			<datalist name="dataListEntrada" id="dataListEntrada" ng-repeat="entrada in listaEntradas">
+
+			</datalist>
+		</div>
+
+		<div role="group">
+			<input class="valEntrada money" type="text" ng-model="formEntrada.valor" name="valEntrada" id="valEntrada" min="0" placeholder="R$ 0,00" value="" required />
+		</div>
+
+		<button class="btnGroup" role="group" >
+			<i class="glyphicon glyphicon-plus btn-save-custom {{btnSave}}"  name="create"></i>
+			<i class="glyphicon glyphicon-floppy-saved btn-update-custom {{btnUpdate}}" name="update"></i>
+		</button>
+	</form>
+
+	<table class="table table-striped table-responsive tbDespfoot" id="tbfoot">
+		<tfoot>
+			<tr>
+				<th class="text-right" width="59%">TOTAL</th>
+				<th class="text-center" width="1%">R$</th>
+				<th class="text-right">{{entradaValorTotal}}</th>
+				<th width="15%"></th>
+			</tr>
+		</tfoot>
+	</table>
+
+</panel-views>

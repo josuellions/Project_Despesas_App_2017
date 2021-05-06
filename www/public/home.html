@@ -1,0 +1,38 @@
+<menu-info></menu-info>
+
+<header-titule></header-titule>
+
+<div class="container-custom" ng-controller="MenuController" ><!--ng-controller="BtnhomemenuController">-->
+	<div class="btnAlingDesp">
+		<div>
+			<button type="submit" class="btn btn-primary" id="btnAddEntra" ng-click="submit('entrada')">
+				<i class="glyphicon glyphicon-usd"></i>
+				<br />Entrada Caixa
+			</button>
+			<button type="submit" class="btn btn-primary" id="btnAddDesp" ng-click="submit('despesas')">
+				<i class="glyphicon glyphicon-shopping-cart"></i>
+				<br />Despesas
+			</button>
+		</div>
+		<div>
+			<button type="submit" class="btn btn-primary" id="btnVisual" ng-click="submit('visualizar')">
+				<i class="glyphicon glyphicon-zoom-in"></i>
+				<br /> Visualizar
+			</button>
+			<button type="submit" class="btn btn-primary" id="btnRelator" ng-click="submit('relatorio')">
+				<i class="glyphicon glyphicon-list-alt"></i>
+				<br />Relatórios
+			</button>
+		</div>
+		<div>
+			<button type="submit" class="btn btn-primary" id="btnInfoMenu" ng-click="submit('informacoes')">
+				<i class="glyphicon glyphicon-info-sign"></i>
+				<br />Informações
+			</button>
+			<button type="submit" class="btn btn-primary" id="btnSobre" ng-click="submit('sobre')">
+				<i class="glyphicon glyphicon-user"></i>
+				<br />Sobre
+			</button>
+		</div>
+	</div>
+</div>

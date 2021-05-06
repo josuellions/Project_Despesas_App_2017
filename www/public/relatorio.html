@@ -1,0 +1,236 @@
+<header-titule></header-titule>
+
+<panel-views>
+  <div class="viewExib panel-relatorio">
+
+    <h4 class="text-center">GRÁFICOS</h4>
+    <div class="panel-relatorio-graficos">
+    
+      <fieldset class="dashboard-graphical-geral">
+
+        <legend class="text-left">Geral</legend>
+        <section class="dashboard-graphical-panel">
+        
+          <div class="center">
+            <div class="wrapper">
+              <div class="item">
+                <div class="graphical">
+                  <div class="graph">
+                    <svg>
+                      <circle cx="50" cy="50" r="40"/>
+                    </svg>
+                    <svg class="cor">
+                      <circle cx="50" cy="50" r="40"/>
+                    </svg>
+                    <span class="counter">{{relatorio.entrada.porcentagem}}<span>%</span></span>
+                  </div>
+                </div>
+                <h4 class="text-center text-capitalize">Controle Despesas</h4>
+                
+                <div class="info" ng-repeat="t in relatorio.total">
+                  <div class="info-entrada">
+                    <i class="glyphicon glyphicon-usd" arial-hidden="true"></i>
+                    <p>Entrada Caixa 
+                      <strong>R$ 
+                        <small class="money">{{t.entradas}}</small>
+                      </strong>
+                    </p>
+                  </div>
+                  <div class="info-despesa">
+                    <i class="glyphicon glyphicon-shopping-cart" arial-hidden="true"></i>
+                    <p>Despesas 
+                      <strong>R$ 
+                        <small class="money">{{t.despesas}}</small>
+                      </strong>
+                    </p>
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
+  
+        </section>
+      </fieldset>
+  
+      <fieldset class="dashboard-graphical-investimento">
+        <legend class="text-left">Investimentos</legend>
+        <section class="dashboard-graphical-investimento-panel">
+          <div ng-repeat="investimento in relatorio.investimentos">
+           
+            <div class="panel-relatorio-investimento-label">
+              <label>{{investimento.nome}}</label>
+              <label>R$ <span class="money">{{investimento.valor}}</span></label>
+            </div>
+
+            <div class="panel-relatorio-graficos-progress-bar">
+              <div class="progress">
+                <div class="progress-bar {{investimento.color}}" role="progressbar" aria-valuenow="{{investimento.porcentagem.valor}}" 
+                    aria-valuemin="0" aria-valuemax="100" ng-style="investimento.porcentagem.style">
+                      <strong>{{investimento.porcentagem.valor}}%</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="dashboard-graphical-investimento-wrapper" ng-repeat="investimento in relatorio.graphicInvestimento">
+            <h4 class="text-center text-captalize" >TOTAL</h4>
+            <div class="dashboard-graphical-investimento-wrapper-subtitle">
+              <p>
+                <strong>Entrada Caixa</strong> <br/> R$ <span class="money">{{relatorio.total[0].entradas}}</span>
+              </p>
+              <p>
+                <strong>{{investimento.nome}}</strong> <br/> R$ <span class="money">{{investimento.valor}}</span>
+              </p>
+            </div>
+           
+            <div class="panel-investimento-graficos-div-progress-bar">
+              <div class="panel-relatorio-graficos-progress-bar">
+                <div class="progress">
+                  <div class="progress-bar {{investimento.color}}" role="progressbar" aria-valuenow="{{investimento.porcentagem.valor}}" 
+                      aria-valuemin="0" aria-valuemax="100" ng-style="investimento.porcentagem.style">
+                        <strong>{{investimento.porcentagem.valor}}%</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </section>
+      </fieldset>
+     
+      <fieldset class="dashboard-graphical-despesas">
+        <legend class="text-left">Despesas</legend>
+        <section class="dashboard-graphical-despesas-panel">
+          <div ng-repeat="despesa in relatorio.despesas">
+           
+            <div class="panel-relatorio-graficos-label">
+              <label>{{despesa.nome}}</label>
+              <label>R$ <span class="money">{{despesa.valor}}</span></label>
+            </div>
+
+            <div class="panel-relatorio-graficos-progress-bar">
+              <div class="progress">
+                <div class="progress-bar {{despesa.color}}" role="progressbar" aria-valuenow="{{despesa.porcentagem.valor}}" 
+                    aria-valuemin="0" aria-valuemax="100" ng-style="despesa.porcentagem.style">
+                      <strong>{{despesa.porcentagem.valor}}%</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </fieldset>
+       
+    </div>
+  </div>
+
+</panel-views>
+
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+<div></div> 
+

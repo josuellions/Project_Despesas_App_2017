@@ -1,0 +1,113 @@
+<nav
+  class="dropdown alingMenu col-xs-1 col-lg-2"
+  id="menuMobile"
+  ng-controller="MenuController"
+>
+  <button
+    class="btn dropdown-toggle buttonMenu"
+    type="button"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="true"
+    id="btnMenu"
+  >
+    <span class="glyphicon glyphicon-tasks btnMenu" id=""></span>
+  </button>
+  <ul
+    class="dropdown-menu dropdown-menu-right"
+    arial-labellebdy=" dropdownMenu3 dropdownMenuDivider"
+    id="liMenu"
+  >
+    <li>
+      <span
+        class="glyphicon glyphicon-home"
+        id="btnHome"
+        ng-click="submit('home')"
+      >
+        <a id="btnHome">Home</a>
+      </span>
+    </li>
+
+    <li role="separator" class="divider liDivider"></li>
+
+    <li>
+      <span
+        class="glyphicon glyphicon-usd"
+        id="btnMenuEntra"
+        ng-click="submit('entrada')"
+      >
+      
+        <a id="btnMenuEntra">Entrada Caixa</a>
+      </span>
+    </li>
+
+    <li>
+      <span
+        class="glyphicon glyphicon-shopping-cart"
+        id="btnMenuDesp"
+        ng-click="submit('despesas')"
+      >
+        <a id="btnMenuDesp">Despesa</a>
+      </span>
+    </li>
+
+    <li>
+      <span
+        class="glyphicon glyphicon-zoom-in"
+        id="btnMenuVisual"
+        ng-click="submit('visualizar')"
+      >
+        <a id="btnMenuVisual">Visualizar</a>
+      </span>
+    </li>
+
+    <li>
+      <span
+        class="glyphicon glyphicon-list-alt"
+        id="btnMenuRelator"
+        ng-click="submit('relatorio')"
+      >
+        <a id="btnMenuRelator">Relatório</a>
+      </span>
+    </li>
+
+    <li role="separator" class="divider liDivider"></li>
+
+    <li id="menuliBackup">
+      <span
+        class="glyphicon glyphicon-compressed"
+        id="btnBackup"
+        ng-click="submit('backup')"
+      >
+        <a id="btnBackup">Backup</a>
+      </span>
+    </li>
+
+<!--    <li id="menuLiSalvar">
+      <span class="glyphicon glyphicon-save">
+        <a href="#" id="menuBackupSalvar" download>Salvar</a>
+      </span>
+    </li>
+  -->
+    <li role="separator" class="divider liDivider"></li>
+
+    <li>
+      <span
+        class="glyphicon glyphicon-info-sign"
+        id="btnInfoMenu"
+        ng-click="submit('informacoes')"
+      >
+        <a id="btnInfoMenu">Informações</a>
+      </span>
+    </li>
+    <li>
+      <span
+        class="glyphicon glyphicon-user"
+        id="btnSobre"
+        ng-click="submit('sobre')"
+      >
+        <a id="btnSobre">Sobre</a>
+      </span>
+    </li>
+  </ul>
+</nav>

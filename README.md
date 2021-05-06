@@ -1,5 +1,6 @@
 # Project_Despesas_App_2017
-Controle Despesas Mensais JL_2021 - APP Mobile versão: v.1.0.7, desenvolvimento e refatoração com AngularJS, JavaScript, JQuery, HTML, CSS, Bootstrap, Banco Dados offline com WebSQL, compilador APK Cordova e PhoneGap para Android, versão Web. Essa aplicação permite Adicionar Despesas, Entrada Caixa, realizando a gestão do Fluxo Caixa, lista os lançamentos e calculo dos gastos e das receita de entrada caixa, com visualização Entrada de Caixa e Despesa no resumo na mesma tela e gráfico com os lançamentos da Despesas e Entrada de Caixa calculando a porcentagem.
+
+Controle Despesas Versão 2021 - APP Mobile versão: v.1.0.7, desenvolvimento e refatoração com AngularJS, JavaScript, JQuery, HTML, CSS, Bootstrap, Banco Dados offline com WebSQL, compilador APK Cordova e PhoneGap para Android, versão Web. Essa aplicação permite Adicionar Despesas, Entrada Caixa, realizando a gestão do Fluxo Caixa, lista os lançamentos e calculo dos gastos e das receita de entrada caixa, com visualização Entrada de Caixa e Despesa com exibição na mesma tela, gráficos com os lançamentos de Entrada de Caixa e das Despesas, calculando a porcentagem.
 
 Telas da Aplicação
 
