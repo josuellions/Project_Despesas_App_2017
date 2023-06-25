@@ -1,51 +1,83 @@
 angular.module('todoApp').controller('VisualizarController',
 function($scope, alertAction, pass, formatValor, formatDate, despesaAction, entradaAction, visualizarAction){
   
-  $scope.visualizar = {
-    listaDespesas  : [],
-    listaEntradas :  [],
+  /*const objVisualizar = {
+    listaEntradas : [],
+    listaDespesas : [],
+    listaInvestimentos :  [],
     resultValorTotal: [{
-      entradaValorTotal : '0,00',
-      despesaValorTotal : '0,00',
-      saldoGeral : '0,00',
-    }],
-    classColorSaldoGeral : 'colorTotalViewPositivo',
-    }
+      _entrada: {
+        total: '0,00',
+        nome: 'Entradass',
+        classColorSaldoGeral : '',
+      },
+      despesas:{
+        total: '0,00',
+        nome: 'Despesas',
+        classColorSaldoGeral : '',
+      },
+      investimentos:{
+        total: '0,00',
+        nome: 'Investimentos',
+        classColorSaldoGeral : '',
+      },
+      saldo:{
+        total: '0,00',
+        nome: 'Saldo Geral',
+        classColorSaldoGeral : 'colorTotalViewPositivo',
+      }
+    }]
+  };*/
 
-  const BuscarDadosVisualizarNaView  = () => {
-    formatDate.dtConsultaDB().then((response) => {
-      let responseDespesas = {};
-      
-      despesaAction.index([response.inicio, response.fim]).then((res) => {
-        responseDespesas = res;
+  $scope.visualizar = {};
+
+  const BuscarDadosVisualizarNaView  = async () => {
+    $scope.visualizar = {};
+
+    await formatDate.dtConsultaDB().then(async (response) => {
+
+      const responseEntrada = await entradaAction.index([response.inicio, response.fim]).then((res) => {
+        return res;
+      }).catch((err) => {
+        alertAction.error(err.message).catch((errs) => {
+          alert(err.message)
+        });
+      });
+
+      const responseDespesas = await despesaAction.indexSemInvestimentos([response.inicio, response.fim]).then((res) => {
+        return res;
       }).catch((err) => {
         alertAction.error(err.message).catch((errs) => {
           alert(err.message)
         });
       });
       
-      entradaAction.index([response.inicio, response.fim]).then((res) => {
-      
-        visualizarAction.formatLista(responseDespesas, res).then((res) => {
-          $scope.visualizar = res;
-          formatValor.moneyMask();
-        }).catch((err) => {
-          alertAction.error(err.message).catch((errs) => {
-            alert(err.message)
-          });
-        })
-
+      const responseInvestimentos = await despesaAction.indexInvestimentos([response.inicio, response.fim]).then((res) => {
+        return res;
       }).catch((err) => {
         alertAction.error(err.message).catch((errs) => {
           alert(err.message)
         });
       });
 
+      const responseVisualizar = await visualizarAction.formatLista(responseEntrada, responseDespesas, responseInvestimentos).then((res) => {
+        return res;
+      }).catch((err) => {
+        alertAction.error(err.message).catch((errs) => {
+          alert(err.message)
+        });
+      })
+
+      $scope.visualizar = responseVisualizar;
+      formatValor.moneyMask();
+      
     }).catch((err) => {
       alertAction.error(err.message).catch((errs) => {
         alert(errs.message)
       })
     })
+
+    
   }
 
   /*Adicionar data inicial no Submenu - passar mês | MES/ANO => JAN/2020 */

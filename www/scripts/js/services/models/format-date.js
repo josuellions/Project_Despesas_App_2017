@@ -68,7 +68,7 @@ angular.module('formatDateServices', ['ngResource'])
   service.dtAnoMesDiaBD = (getDate) => { // FORMAT = yyyy-MM-dd
     date = getDate.split('/')
     const dt = [date[2], date[1], date[0]].join('-')
-    console.log(dt)
+    //console.log(dt)
     return  dt;
   }
 

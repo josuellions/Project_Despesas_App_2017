@@ -30,15 +30,15 @@
                 <div class="info" ng-repeat="t in relatorio.total">
                   <div class="info-entrada">
                     <i class="glyphicon glyphicon-usd" arial-hidden="true"></i>
-                    <p>Entrada Caixa 
+                    <p>Entrada Caixa {{classColorSaldoGeral}}
                       <strong>R$ 
                         <small class="money">{{t.entradas}}</small>
                       </strong>
                     </p>
                   </div>
                   <div class="info-despesa">
-                    <i class="glyphicon glyphicon-shopping-cart" arial-hidden="true"></i>
-                    <p>Despesas 
+                    <i class="glyphicon glyphicon-shopping-cart {{relatorio.classColorSaldoGeral}}" arial-hidden="true"></i>
+                    <p class="{{relatorio.classColorSaldoGeral}}">Despesas 
                       <strong>R$ 
                         <small class="money">{{t.despesas}}</small>
                       </strong>
@@ -102,7 +102,6 @@
         <legend class="text-left">Despesas</legend>
         <section class="dashboard-graphical-despesas-panel">
           <div ng-repeat="despesa in relatorio.despesas">
-           
             <div class="panel-relatorio-graficos-label">
               <label>{{despesa.nome}}</label>
               <label>R$ <span class="money">{{despesa.valor}}</span></label>
@@ -125,6 +124,7 @@
 
 </panel-views>
 
+<!--
 <div></div> 
 <div></div> 
 <div></div> 
@@ -234,3 +234,4 @@
 <div></div> 
 <div></div> 
 
+-->

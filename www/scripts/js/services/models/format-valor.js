@@ -3,9 +3,10 @@ angular.module('formatValorServices', ['ngResource'])
 
   let format = {};
 
-  format.ptBr = (valor) => {
-    
+  format.ptBr = (getvalor) => {
+
     let valorFormatado = null;
+    let valor = getvalor.toFixed(2).replace('.',',')
 
     let cont = valor.length > 6 && valor.length < 9 ? valor.length - 6 : false;
     valor.length > 6 && valor.length < 9
@@ -44,7 +45,7 @@ angular.module('formatValorServices', ['ngResource'])
     let valor = parseFloat(getValor.replace(',', '.')).toFixed(2);
 
     const response = (total - valor).toFixed(2)
-    
+
     return response;
   }
 

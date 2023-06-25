@@ -7,7 +7,7 @@ function($scope){
   $scope.comparaDt = '';
   
   $scope.abouts = {
-   version: 'v2.0.0 - AngularJS - 27/04/2021',
+   version: 'v2.1.0 - AngularJS - 20/06/2023',
    developer: 'Josuel A. Lopes',
    contact: {
     email: 'josuel_lions@hotmail.com',

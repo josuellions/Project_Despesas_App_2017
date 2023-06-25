@@ -2,11 +2,13 @@
 
 <backup-modal></backup-modal>
 
+<backup-list-modal></backup-list-modal>
+
 <panel-views>
-  <div class="col-xs-12  col-lg-12 viewExib">
+  <div class="col-xs-12  col-lg-12 viewExib viewExibFix">
     <fieldset class="fieldsetViewBkp">
       <legend class="text-left" style="font-size: 1.5rem; color: #ffc; padding: 1rem;">BACKUP BANCO DADOS</legend>
-      <h4 style="margin-top: -1%;">APP local para Banco Dados Server</h4>
+      <h4 style="margin-top: -1%;">APP Local para Servidor</h4>
 
       <h5 class="text-left">Buscar Dados na base local do Controle Desepesa</h5>
       <p class="text-left">
@@ -32,21 +34,21 @@
       <p class="text-justify">Para conectar ao servidor digite o endereço de URL, Dominio ou IP, confirmar se é necessário porta de conexão.</p>
 
       <hr style="width: 50%; margin: 0 auto;" />
-      
+
       <!--<h2 id="textEnviando">Enviando...</h2>
 
-      
+
       <div id="progessEnviando" style="margin: 0; margin-top: 2.5vh; display: flex; justify-content: center; align-items: center; justify-items: center; width: 100vw; width: 85vw;">
         <progress style="height: 5vh; width: 90vw;">
       </div>
     -->
     <br />
-    
+
     <form class="formCoustom row" role="group" aria-label="..."name="formulario" ng-submit="submeter()" novalidate style="display: block;">
       <h4 id="textEnviando" style="margin-bottom: 0 !important;" >Dados Servidor </h4>
       <label for="ipsever" style="width: 100%; text-align: left; padding: .5rem; font-size: 1.6rem;">Conexão Servidor</label>
       <br/>
-      <input type="text" name="ipserver"  ng-model="formBackup.server" placeholder="Ex.: 192.168.0.1:8080 ou nome.dominio:8080" style="color: #333; width: 100%; margin-bottom: 1vh;">
+      <input type="text" name="ipserver"  ng-model="formBackup.server" value="{{$scope.formBackup.server}}" placeholder="Ex.: 192.168.0.1:8080 ou nome.dominio:8080" style="color: #333; width: 100%; margin-bottom: 1vh;">
 
       <button class="btnBkp btnGroup"  ng-click ="upload()" style="width: 40vw; font-size: 1.6rem; margin-left: 4vw; color: #0fcac6" >
         <i class="glyphicon glyphicon-cloud-upload btn-save-custom"  name="upload"></i>

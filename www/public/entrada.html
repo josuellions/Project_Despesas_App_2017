@@ -21,15 +21,18 @@
 					<td class="text-center" width="20%">{{e.dateView}}</td>
 					<!--<td width="55%" ng-click="onUpdateDesp(d.id, d.dateBd, d.nome, d.valor)">{{d.nome}}</td>-->
 					<td width="55%" ng-click="onUpdateEntrada(update, e)">{{e.nome}}</td>
-					<td class="text-center" width="1%">R$</td>
-					<td class="text-right money">{{e.valor}}</td>
+					<td class="text-center {{e.classColor}}" width="1%">R$</td>
+          <td class="text-right {{e.classColor}}">{{e.valor}}</td>
 				</span>
 				<td class="text-center" width="6%">
-					<button type="button" id="excluir{{e.id}}" 
-						ng-click="submitDelete(e)" 
+					<button type="button" id="excluir{{e.id}}" ng-if="e.id > 0"
+						ng-click="submitDelete(e)"
 						>
 						<span class="glyphicon glyphicon-trash text-right"></span>
 				</buton>
+        <button type="button" id="excluir{{e.id}}" ng-if="e.id == 0" disabled>
+          <span class="glyphicon glyphicon-trash text-muted" style="color: #999 !important;"></span>
+      </buton>
 				</td>
 			</tr>
 		</tbody>
@@ -63,7 +66,7 @@
 			<tr>
 				<th class="text-right" width="59%">TOTAL</th>
 				<th class="text-center" width="1%">R$</th>
-				<th class="text-right">{{entradaValorTotal}}</th>
+				<th class="text-right {{entradaValorTotalColor}}">{{entradaValorTotal}}</th>
 				<th width="15%"></th>
 			</tr>
 		</tfoot>

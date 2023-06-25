@@ -1,0 +1,49 @@
+<div data-role="main " class="ui-content">
+  <!-- Modal INFO-->
+	<div class="modal fade" id="ModalBackupList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" id="XModalBackupInfoClose" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title text-captalize" id="myModalLabel">Lista Backup - Controle Despesas</h4>
+				</div>
+
+				<div class="modal-body" style="overflow-y: scroll; max-height: 70vh;">
+					<div class="panel-custom">
+						<h4 class="text-center text-captalize">{{origin}}</h4>
+						<div class="panel-icon">
+							<i class="glyphicon glyphicon-cloud-download text-center" style="font-size: 32px;"></i>
+						</div>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th colspan="4" class="text-center"> Lista </th>
+								</tr>
+								<tr>
+									<th class="text-center">Data</th>
+									<th class="text-center">Arquivo</th>
+									<th class="text-center">Ação</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="row in listaBackups">
+									<td>{{row.date}}</td>
+									<td>{{row.file}}</td>
+									<td>
+										<button class="btn btn-primary"
+										data-dismiss="modal"
+										type="button" id="btnModalBackupInfoClose" ng-click ="selectRestaureDownload(row.file)"
+										>
+											Restaurar
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>

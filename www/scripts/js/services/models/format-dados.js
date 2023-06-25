@@ -1,10 +1,12 @@
-angular.module('formatDadosServices', ['ngResource'])
-.factory('formatDadosAction', function($q, formatDate, formatValor, routesAction, alertAction){
-  
-  let services = {}
+angular
+  .module("formatDadosServices", ["ngResource"])
+  .factory(
+    "formatDadosAction",
+    function ($q, formatDate, formatValor, routesAction, alertAction) {
+      let services = {};
 
-  const FormatDadosView = (getDados) => {
-    
+      /*const FormatDadosView = (getDados, invest) => {
+
     let dadosFormat = [];
     let somaTotal = 0;
 
@@ -15,10 +17,11 @@ angular.module('formatDadosServices', ['ngResource'])
     let splitStr = [];
 
     for(let row of getDados) {
-      splitStr = undefined !== row.despesa && row.despesa.split('-');
-      isInvestimento = splitStr && splitStr[0] === 'IN';
+      //splitStr = undefined !== row.despesa && row.despesa.split('-');
+      //isInvestimento = splitStr && splitStr[0] === 'IN';
 
-      if(isInvestimento){
+      //if(isInvestimento){
+      if(invest){
         dadosFormatInvestmentos.push({
           id: row.id,
           nome: row.despesa || ' ',
@@ -40,37 +43,62 @@ angular.module('formatDadosServices', ['ngResource'])
     }
 
     return {dados: dadosFormat, total: somaTotal, investimentos: dadosFormatInvestmentos, totalInvestimentos: somaTotalInvestimentos};
-  }
+  }*/
 
-  services.index = (getDados) => {
-    return $q((res, rej) => {
-      try{
-        const despesaFormat = FormatDadosView(getDados.despesas);
-        const entradaFormat = FormatDadosView(getDados.entradas);
-   
-        const response = {
-          listaDespesas: despesaFormat.dados,
-          listaEntradas: entradaFormat.dados,
-          listaInvestimentos: despesaFormat.investimentos,
-          graphicInvestimento: {},
-          resultValorTotal:{
-            despesaValorTotal: formatValor.ptBr(despesaFormat.total).toFixed(2),
-            entradaValorTotal: formatValor.ptBr(entradaFormat.total).toFixed(2),
-            investimetosValorTotal: formatValor.ptBr(despesaFormat.totalInvestimentos).toFixed(2),
-            saldoGeral: formatValor.ptBr(entradaFormat.total - despesaFormat.total).toFixed(2),
-            classColorSaldoGeral: 'colorTotalViewPositivo',
-          },
+      const FormatDadosView = (getDados) => {
+        let dadosFormat = [];
+        let total = 0;
+
+        for (let row of getDados) {
+          dadosFormat.push({
+            id: row.id,
+            dateBd: row.dtLanc,
+            nome: row.despesa || row.entrada || "",
+            dateView: formatDate.dtView(row.data),
+            valor: formatValor.ptBr(row.valor),
+          });
+          total += parseFloat(row.valor);
         }
 
-        if( formatValor.ptBr(entradaFormat.total - despesaFormat.total).toFixed(2)<= 0) {
-          //response.resultValorTotal.classColorSaldoGeral = 'colorTotalViewNegativo';
-        }
-        res(response);
-      } catch {
-        rej({message: 'Erro: FACTORY FORMATDADOS SERVICES, falha ao formatar os dados'})
-      }
-    })
-  }
+        return { dados: dadosFormat, total };
+      };
 
-  return services;
-})
+      services.index = (getDados) => {
+        return $q((res, rej) => {
+          try {
+            const despesaFormat = FormatDadosView(getDados.despesas);
+            const entradaFormat = FormatDadosView(getDados.entradas);
+            const investimentosFormat = FormatDadosView(getDados.investimentos);
+            const total =
+              entradaFormat.total -
+              (despesaFormat.total + investimentosFormat.total);
+
+            const response = {
+              listaDespesas: despesaFormat.dados,
+              listaEntradas: entradaFormat.dados,
+              listaInvestimentos: investimentosFormat.dados, //despesaFormat.investimentos,
+              graphicInvestimento: {},
+              resultValorTotal: {
+                despesaValorTotal: formatValor.ptBr(despesaFormat.total),
+                entradaValorTotal: formatValor.ptBr(entradaFormat.total),
+                investimetosValorTotal: formatValor.ptBr(
+                  investimentosFormat.total
+                ), //formatValor.ptBr(despesaFormat.totalInvestimentos).toFixed(2),
+                saldoGeral: formatValor.ptBr(total),
+                classColorSaldoGeral: total < 0 && "colorTotalViewNegativo",
+              },
+            };
+
+            res(response);
+          } catch {
+            rej({
+              message:
+                "Erro: FACTORY FORMAT DADOS SERVICES, falha ao formatar os dados",
+            });
+          }
+        });
+      };
+
+      return services;
+    }
+  );

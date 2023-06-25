@@ -56,7 +56,7 @@ angular.module('alertServices', ['ngResource'])
 
         ModalQuestionConfirmaElemtent.addEventListener('click', (event) => {
           event.preventDefault();
-          action(getDados);
+          action !== null && action(getDados);
           LimparDadosQuestion ();
 
           return true

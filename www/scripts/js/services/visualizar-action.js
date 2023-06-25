@@ -4,7 +4,7 @@ angular.module('visualizarServices', ['ngResource'])
   let services = {};
 
   const FormatDadosView = (getDados) => {
-    
+
     let dadosFormat = [];
     let somaTotal = 0;
 
@@ -14,7 +14,8 @@ angular.module('visualizarServices', ['ngResource'])
         nome: row.despesa || row.entrada,
         dateBd: row.dtLanc,
         dateView: formatDate.dtView(row.data),
-        valor: row.valor.toFixed(2),
+        valor: formatValor.ptBr(row.valor),
+        classColor: row.valor >= 0 ? '': 'colorTotalViewNegativo'
       })
       somaTotal += parseFloat(row.valor);
     }
@@ -22,28 +23,44 @@ angular.module('visualizarServices', ['ngResource'])
     return {dados: dadosFormat, total: somaTotal};
   }
 
-  services.formatLista = (getDespesas, getEntradas) => {
+  services.formatLista = (getEntradas, getDespesas, getInvestimentos) => {
     return $q((res, rej) => {
       try{
         const despesaFormat = FormatDadosView(getDespesas);
         const entradaFormat = FormatDadosView(getEntradas);
-   
+        const investimentoFormat = FormatDadosView(getInvestimentos);
+        const saldoGeral = (entradaFormat.total - (despesaFormat.total + investimentoFormat.total));
+
         const response = {
           listaDespesas: despesaFormat.dados,
           listaEntradas: entradaFormat.dados,
+          listaInvestimentos: investimentoFormat.dados,
           resultValorTotal:[{
-            despesaValorTotal: formatValor.ptBr(despesaFormat.total).toFixed(2),
-            entradaValorTotal: formatValor.ptBr(entradaFormat.total).toFixed(2),
-            saldoGeral: formatValor.ptBr(entradaFormat.total - despesaFormat.total).toFixed(2),
-            classColorSaldoGeral: 'colorTotalViewPositivo',
-          }],
+            _entrada: {
+              nome: 'Entrada',
+              total: formatValor.ptBr(entradaFormat.total),
+              classColorValor: saldoGeral <= 0 ? 'colorTotalViewNegativo' :'colorTotalViewPositivo',
+            },
+            despesas: {
+              nome: 'Despesas',
+              classColorValor: '',
+              total: formatValor.ptBr(despesaFormat.total)
+            },
+            investimentos: {
+              nome: 'Investimentos',
+              classColorValor: '',
+              total: formatValor.ptBr(investimentoFormat.total)
+            },
+            saldo:{
+              nome: 'Saldo Geral',
+              total: formatValor.ptBr(saldoGeral),
+              classColorValor: saldoGeral <= 0 ? 'colorTotalViewNegativo' :'colorTotalViewPositivo',
+            }
+          }]
         }
 
-        if( formatValor.ptBr(entradaFormat.total - despesaFormat.total).toFixed(2)<= 0) {
-          response.resultValorTotal[0].classColorSaldoGeral = 'colorTotalViewNegativo';
-        }
-    
         res(response);
+
       }catch{
         rej({message: 'Erro: FACTORY VISUALIZAR SERVICES, falha ao formatar a lista'})
       }
