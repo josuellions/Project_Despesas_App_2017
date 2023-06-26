@@ -173,15 +173,19 @@ angular
           parseFloat(totalValor).toFixed(2) - parseFloat(valor).toFixed(2);
         const buscadespesa = $scope.despesas.indexOf(despesa);
 
-        $scope.despesas.splice(buscadespesa, 1); //PARA REMOVER SOMENTE O SELECIONADO
+        /*const recalcularTotal = formatValor.subtrair(
+          $scope.despesaValorTotal,
+          despesa.valor
+        );*/
+
         $scope.btnSave = "";
         $scope.btnUpdate = "hidden";
         $scope.formDespesa = {};
-
         $scope.formDespesa.date = new Date();
-        $scope.despesas.length == 0 ? OptionActionCancel() : false;
-
+        $scope.despesas.splice(buscadespesa, 1); //PARA REMOVER SOMENTE O SELECIONADO
         $scope.despesaValorTotal = formatValor.ptBr(recalcularTotal); //parseFloat(recalcularTotal).toFixed(2).replace('.', ','))
+
+        $scope.despesas.length == 0 ? OptionActionCancel() : false;
 
         alertAction.success(`Sucesso: "${despesa.nome}" foi excuido!`);
       };

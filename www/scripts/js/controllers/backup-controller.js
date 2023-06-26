@@ -106,8 +106,6 @@ angular
           despesas: $scope.despesas,
         };
         const conection = $scope.formBackup.server;
-        console.log("BACKUP CONTROLLER");
-        console.log(data);
         backupAction
           .enviarAPI(conection, data)
           .then((res) => {

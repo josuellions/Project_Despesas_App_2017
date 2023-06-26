@@ -1,53 +1,54 @@
-angular.module('formatValorServices', ['ngResource'])
-.factory('formatValor', function($q){
+angular
+  .module("formatValorServices", ["ngResource"])
+  .factory("formatValor", function ($q) {
+    let format = {};
 
-  let format = {};
+    format.ptBr = (getvalor) => {
+      let valorFormatado = null;
+      let valor = getvalor.toFixed(2).replace(".", ",");
 
-  format.ptBr = (getvalor) => {
+      let cont =
+        valor.length > 6 && valor.length < 9 ? valor.length - 6 : false;
+      valor.length > 6 && valor.length < 9
+        ? (valorFormatado = [valor.substr(0, cont), valor.substr(cont++)].join(
+            "."
+          ))
+        : false;
 
-    let valorFormatado = null;
-    let valor = getvalor.toFixed(2).replace('.',',')
+      cont = valor.length > 8 && valor.length < 12 ? valor.length - 9 : false;
+      valor.length > 8 && valor.length < 12
+        ? (valorFormatado = [
+            valor.substr(0, 2),
+            valor.substr(2, 3),
+            valor.substr(5),
+          ].join("."))
+        : false;
 
-    let cont = valor.length > 6 && valor.length < 9 ? valor.length - 6 : false;
-    valor.length > 6 && valor.length < 9
-      ? (valorFormatado = [valor.substr(0, cont), valor.substr(cont++)].join("."))
-      : false;
+      return valorFormatado ? valorFormatado : valor;
+    };
+    format.bancoDados = (valor) => {
+      /* TROCAR PONTO E VIRGULA PARA ENVIAR E SALVAR NO BANCO DADOS */
+      let formatValor = valor.replace(".", "").trim();
+      formatValor = formatValor.replace(",", ".");
 
-    cont = valor.length > 8 && valor.length < 12 ? valor.length - 9 : false;
-    valor.length > 8 && valor.length < 12
-      ? (valorFormatado = [
-          valor.substr(0, 2),
-          valor.substr(2, 3),
-          valor.substr(5),
-        ].join("."))
-      : false;
+      return formatValor;
+    };
+    format.moneyMask = () => {
+      /* ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA */
+      setTimeout(() => {
+        //console.log('formatValor')
+        $(".money").mask("000.000.000.000,00", { reverse: true });
+      }, 60);
+    };
+    format.subtrair = (getTotal, getValor) => {
+      let total = getTotal.replace(".", "").trim();
+      let valor = parseFloat(getValor.replace(",", ".")).toFixed(2);
+      total = parseFloat(total.replace(",", ".")).toFixed(2);
 
-    return valorFormatado ? valorFormatado : valor;
+      const response = total - valor; //.toFixed(2);
 
-  },
-  format.bancoDados = (valor) => {
-    /* TROCAR PONTO E VIRGULA PARA ENVIAR E SALVAR NO BANCO DADOS */
-    let formatValor = valor.replace('.','').trim();
-    formatValor = formatValor.replace(',','.');
+      return response;
+    };
 
-    return formatValor;
-  },
-  format.moneyMask = () => {
-    /* ADICIONA PONTO E VIRGULA AO DIGITAR VALOR TELA DESPESA E ENTRADA */
-    setTimeout(() => {
-      //console.log('formatValor')
-      $(".money").mask("000.000.000.000,00", { reverse: true });
-    }, 60);
-  },
-  format.subtrair = (getTotal, getValor) => {
-    let total = getTotal.replace('.','').trim();
-    total = parseFloat(total.replace(',', '.')).toFixed(2);
-    let valor = parseFloat(getValor.replace(',', '.')).toFixed(2);
-
-    const response = (total - valor).toFixed(2)
-
-    return response;
-  }
-
-  return format;
-})
+    return format;
+  });

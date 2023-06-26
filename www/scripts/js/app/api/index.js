@@ -85,13 +85,17 @@ angular
       });
     };
     api.uploadAPI = (getConextion, getData) => {
+      const dataEncodeBase64 = btoa(JSON.stringify(getData));
+
       return $q((res, rej) => {
         try {
           //res($http.get(`http://${getConextion}/backup/download`))
+          //res("OK");
           const response = accessServerAPI(
             `http://${getConextion}/backup/upload`,
             "POST",
-            getData
+            //getData
+            { data: dataEncodeBase64 }
           );
           res({
             data: response.responseJSON,

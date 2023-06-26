@@ -134,17 +134,24 @@ angular
       };
 
       /*DELETE - Recarrega a lista quando deletar uma entrada caixa*/
-      const RenderizarViewEntradaDelete = (getEntrada) => {
+      const RenderizarViewEntradaDelete = (entrada) => {
+        /*let totalValor = $scope.entradaValorTotal.replace(".", "").trim();
+        let valor = parseFloat(entrada.valor.replace(",", ".")).toFixed(2);
+        totalValor = parseFloat(totalValor.replace(",", ".")).toFixed(2);*/
+
+        const recalcularTotal = formatValor.subtrair(
+          $scope.entradaValorTotal,
+          entrada.valor
+        );
+
         $scope.btnSave = "";
         $scope.btnUpdate = "hidden";
         $scope.formEntrada = {};
         $scope.formEntrada.date = new Date();
-        $scope.entradas.splice($scope.entradas.indexOf(getEntrada), 1);
-        $scope.entradaValorTotal = formatValor.ptBr(
-          $scope.entradaValorTotal - getEntrada.valor
-        ); //formatValor.subtrair($scope.entradaValorTotal, getEntrada.valor));
+        $scope.entradas.splice($scope.entradas.indexOf(entrada), 1);
+        $scope.entradaValorTotal = formatValor.ptBr(recalcularTotal); //formatValor.subtrair($scope.entradaValorTotal, getEntrada.valor));
 
-        alertAction.success(`Sucesso: "${getEntrada.nome}" foi excuido!`);
+        alertAction.success(`Sucesso: "${entrada.nome}" foi excuido!`);
       };
 
       /* Action Entrada - CRUD */
