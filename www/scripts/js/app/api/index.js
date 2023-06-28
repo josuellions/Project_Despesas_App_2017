@@ -1,6 +1,6 @@
 angular
-  .module("apiApp", ["ngResource", "dataApp"]) //'dataBase'])
-  .factory("api", function ($q, bdquery) {
+  .module('apiApp', ['ngResource', 'dataApp']) //'dataBase'])
+  .factory('api', function ($q, bdquery) {
     //, configDataBase ) {
 
     let api = {};
@@ -11,11 +11,11 @@ angular
         crossDomain: false,
         url: url,
         type: method,
-        dataType: "json",
+        dataType: 'json',
         data: JSON.stringify(data), //$(data).serialize()
         headers: {
-          "content-type": "application/json", //'application/x-www-form-urlencoded',
-          "cache-control": "no-cache",
+          'content-type': 'application/json', //'application/x-www-form-urlencoded',
+          'cache-control': 'no-cache',
         },
       };
 
@@ -30,9 +30,9 @@ angular
       return $q((res, rej) => {
         try {
           //res($http.get(`http://${getConextion}/connection`))
-          res(accessServerAPI(`http://${getConextion}/connection`, "GET"));
+          res(accessServerAPI(`http://${getConextion}/connection`, 'GET'));
         } catch {
-          rej({ message: "Error: FACTORY API CONECTION, falha ao conectar" });
+          rej({ message: 'Error: FACTORY API CONECTION, falha ao conectar' });
         }
       });
     };
@@ -42,7 +42,7 @@ angular
           //res($http.get(`http://${getConextion}/backup/download`))
           const response = accessServerAPI(
             `http://${getConextion}/backup/lists`,
-            "GET"
+            'GET'
           );
           res({
             data: response.responseJSON,
@@ -50,7 +50,7 @@ angular
         } catch {
           rej({
             message:
-              "Error: FACTORY API CONECTION, falha ao buscar dados na API",
+              'Error: FACTORY API CONECTION, falha ao buscar dados na API',
           });
         }
       });
@@ -60,7 +60,7 @@ angular
         try {
           res(bdquery.restaureLocal(getQuery));
         } catch {
-          rej({ message: "Error: FACTORY API DOWNLOAD LOCAL, ler dados JSON" });
+          rej({ message: 'Error: FACTORY API DOWNLOAD LOCAL, ler dados JSON' });
         }
       });
     };
@@ -70,7 +70,7 @@ angular
           //res($http.get(`http://${getConextion}/backup/download`))
           const response = accessServerAPI(
             `http://${getConextion}/backup/download`,
-            "POST",
+            'POST',
             { file: getFile }
           );
           res({
@@ -79,7 +79,7 @@ angular
         } catch {
           rej({
             message:
-              "Error: FACTORY API CONECTION, falha ao buscar dados na API",
+              'Error: FACTORY API CONECTION, falha ao buscar dados na API',
           });
         }
       });
@@ -93,7 +93,7 @@ angular
           //res("OK");
           const response = accessServerAPI(
             `http://${getConextion}/backup/upload`,
-            "POST",
+            'POST',
             //getData
             { data: dataEncodeBase64 }
           );
@@ -103,7 +103,7 @@ angular
         } catch {
           rej({
             message:
-              "Error: FACTORY API CONECTION, falha enviar dados para API",
+              'Error: FACTORY API CONECTION, falha enviar dados para API',
           });
         }
       });
@@ -113,7 +113,7 @@ angular
         try {
           res(bdquery.index(getQuery, getDados));
         } catch {
-          rej({ message: "Error: FACTORY API INDEX, falha ao lista dados" });
+          rej({ message: 'Error: FACTORY API INDEX, falha ao lista dados' });
         }
       });
     };
@@ -122,7 +122,7 @@ angular
         try {
           res(bdquery.insert(getQuery, getDados));
         } catch {
-          rej({ message: "Error: FACTORY API CREATE, falha ao salvar dados" });
+          rej({ message: 'Error: FACTORY API CREATE, falha ao salvar dados' });
         }
       });
     };
@@ -132,7 +132,7 @@ angular
           res(bdquery.update(getQuery, getDados));
         } catch {
           rej({
-            message: "Error: FACTORY API UPDATE, falha ao atualizar dados",
+            message: 'Error: FACTORY API UPDATE, falha ao atualizar dados',
           });
         }
       });
@@ -142,7 +142,7 @@ angular
         try {
           res(bdquery.delete(getQuery, getDados));
         } catch {
-          rej({ message: "Error: FACTORY API DELETE, falha ao excluir dados" });
+          rej({ message: 'Error: FACTORY API DELETE, falha ao excluir dados' });
         }
       });
     };

@@ -1,7 +1,7 @@
 angular
-  .module("todoApp")
+  .module('todoApp')
   .controller(
-    "DespesaController",
+    'DespesaController',
     function (
       $scope,
       $http,
@@ -12,72 +12,72 @@ angular
       pass
     ) {
       $scope.id = 0;
-      $scope.titulo = "Adicionar Despesas";
-      $scope.titleOptions = "Pago";
-      ($scope.option = ""),
-        ($scope.optiondel = "hidden"),
+      $scope.titulo = 'Adicionar Despesas';
+      $scope.titleOptions = 'Pago';
+      ($scope.option = ''),
+        ($scope.optiondel = 'hidden'),
         ($scope.formDespesa = {});
       $scope.despesas = {};
-      $scope.despesaValorTotal = "0,00";
+      $scope.despesaValorTotal = '0,00';
       $scope.listaDespesas = [
         {
           id: 1,
-          nome: "Luz",
+          nome: 'Luz',
         },
         {
           id: 2,
-          nome: "Agua",
+          nome: 'Agua',
         },
         {
           id: 3,
-          nome: "Telefone",
+          nome: 'Telefone',
         },
         {
           id: 4,
-          nome: "NET/TV/Internet",
+          nome: 'NET/TV/Internet',
         },
         {
           id: 5,
-          nome: "Mercado",
+          nome: 'Mercado',
         },
         {
           id: 6,
-          nome: "Sacolão",
+          nome: 'Sacolão',
         },
         {
           id: 7,
-          nome: "Açougue",
+          nome: 'Açougue',
         },
         {
           id: 8,
-          nome: "Padaria",
+          nome: 'Padaria',
         },
         {
           id: 9,
-          nome: "Farmacia",
+          nome: 'Farmacia',
         },
         {
           id: 10,
-          nome: "Seguro",
+          nome: 'Seguro',
         },
         {
           id: 11,
-          nome: "Financiamento",
+          nome: 'Financiamento',
         },
         {
           id: 12,
-          nome: "Adicionar Nova Depesa",
+          nome: 'Adicionar Nova Depesa',
         },
       ];
 
-      $editCancel = "hidden";
+      $editCancel = 'hidden';
       $scope.update = true;
-      $scope.btnSave = "";
-      $scope.btnUpdate = "hidden";
+      $scope.btnSave = '';
+      $scope.btnUpdate = 'hidden';
       $scope.formDespesa.date = new Date();
 
       $scope.passmes = true;
-      $scope.classSubTitulo = "alinharMes";
+      $scope.classSubTitulo = 'alinharMes';
 
       /*Limpar formulário despesa */
       const LimparCamposForm = () => {
@@ -165,9 +165,9 @@ angular
 
       /*DELETE - Recarrega a lista ao deletar uma despesa*/
       const RenderizarViewDespesaDelete = (despesa) => {
-        let totalValor = $scope.despesaValorTotal.replace(".", "").trim();
-        let valor = despesa.valor.replace(",", ".");
-        totalValor = totalValor.replace(",", ".");
+        let totalValor = $scope.despesaValorTotal.replace('.', '').trim();
+        let valor = despesa.valor.replace(',', '.');
+        totalValor = totalValor.replace(',', '.');
 
         const recalcularTotal =
           parseFloat(totalValor).toFixed(2) - parseFloat(valor).toFixed(2);
@@ -178,8 +178,8 @@ angular
           despesa.valor
         );*/
 
-        $scope.btnSave = "";
-        $scope.btnUpdate = "hidden";
+        $scope.btnSave = '';
+        $scope.btnUpdate = 'hidden';
         $scope.formDespesa = {};
         $scope.formDespesa.date = new Date();
         $scope.despesas.splice(buscadespesa, 1); //PARA REMOVER SOMENTE O SELECIONADO
@@ -213,7 +213,7 @@ angular
           despesaAction
             .update($scope.formDespesa)
             .then((res) => {
-              alertAction.success("Despesa atualizada com sucesso");
+              alertAction.success('Despesa atualizada com sucesso');
               LimparCamposForm();
             })
             .catch((err) => {
@@ -278,7 +278,7 @@ angular
               .then((res) => {
                 if (res.length === 0) {
                   BuscarDadosMesAnterior(response.inicio);
-                  $scope.despesaValorTotal = "0,00";
+                  $scope.despesaValorTotal = '0,00';
                   return;
                 }
 
@@ -307,34 +307,36 @@ angular
       /*UPDATE - Opção para editar despesas - clicando sobre nome despesa */
       const OptionActionEdit = (despesa) => {
         $scope.formDespesa = {};
-        $scope.titleOptions = "";
-        ($scope.option = "hidden"),
-          ($scope.optiondel = ""),
-          ($scope.btnSave = "hidden");
-        $scope.btnUpdate = "";
-        $scope.editCancel = "edit-cancel";
+        $scope.titleOptions = '';
+        ($scope.option = 'hidden'),
+          ($scope.optiondel = ''),
+          ($scope.btnSave = 'hidden');
+        $scope.btnUpdate = '';
+        $scope.editCancel = 'edit-cancel';
 
         $scope.formDespesa.id = despesa.id;
         $scope.formDespesa.nome = despesa.nome;
         $scope.formDespesa.valor = formatValor.ptBr(parseFloat(despesa.valor)); //parseFloat(despesa.valor).toFixed(2).replace(".", ",")
         $scope.formDespesa.date = new Date(`${despesa.dateBd} 00:00:00`);
 
-        $("#valDespesa").click(() => {
-          $("#valDespesa").select();
+        $('#valDespesa').click(() => {
+          $('#valDespesa').select();
         });
       };
 
       /*UPDATE - Cancelar opção de editar despesa - Botão header tabela */
       const OptionActionCancel = () => {
-        $scope.titleOptions = "Pago";
-        ($scope.option = ""),
-          ($scope.optiondel = "hidden"),
-          ($scope.btnSave = "");
-        $scope.btnUpdate = "hidden";
-        $scope.formDespesa = {};
-        $scope.editCancel = "";
+        $scope.option = '';
+        $scope.editCancel = '';
+        $scope.titleOptions = 'Pago';
+        $scope.optiondel = 'hidden';
 
-        $scope.formDespesa.date = new Date();
+        $scope.btnSave = '';
+        $scope.btnUpdate = 'hidden';
+
+        $scope.formDespesa = {
+          date: new Date(),
+        };
       };
 
       /*UPDATE - Exibir alert confimação para atualizar dados Despesa */
@@ -343,7 +345,7 @@ angular
           message: `Deseja atualizar despesa "${$scope.formDespesa.nome}"?`,
           action: action.updateDespesa,
         };
-        alertAction.question(dados.message, dados.action, "").catch((err) => {
+        alertAction.question(dados.message, dados.action, '').catch((err) => {
           alertAction.error(err.message).catch((err) => {
             alert(err.message);
           });
@@ -357,15 +359,15 @@ angular
         let date = String($scope.formDespesa.date);
 
         if (
-          valor === "undefined" ||
+          valor === 'undefined' ||
           valor.length === 0 ||
           despesa === 0 ||
           $scope.formDespesa.nome === undefined ||
           date.length === 0 ||
-          date === "undefined"
+          date === 'undefined'
         ) {
           alertAction
-            .info("Vefique, Todos os Campos são Obrigatórios")
+            .info('Vefique, Todos os Campos são Obrigatórios')
             .then((res) => {
               return false;
             })

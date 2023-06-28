@@ -1,0 +1,5 @@
+{
+  "timeline.pageOnScroll": false,
+  "editor.stickyScroll.defaultModel": "outlineModel",
+  "outline.collapseItems": "alwaysCollapse"
+}

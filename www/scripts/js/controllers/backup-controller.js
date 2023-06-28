@@ -1,18 +1,18 @@
 angular
-  .module("todoApp")
+  .module('todoApp')
   .controller(
-    "BackupController",
+    'BackupController',
     function ($scope, backupAction, alertAction, formatValor) {
-      $scope.titulo = "Controle Despesas";
-      $scope.classSubTitulo = "subtitulo-menu alinharMes";
-      $scope.subtitulo = "Backup";
+      $scope.titulo = 'Controle Despesas';
+      $scope.classSubTitulo = 'subtitulo-menu alinharMes';
+      $scope.subtitulo = 'Backup';
       $scope.passmes = false;
       $scope.formBackup = {};
-      $scope.origin = "";
-      $scope.tipo = "";
+      $scope.origin = '';
+      $scope.tipo = '';
 
       $scope.listaBackups = [];
-      $scope.formBackup.server = "192.168.7.11:3333";
+      $scope.formBackup.server = '192.168.7.11:3333';
 
       const ResponseConnection = (conn) => {
         alertAction
@@ -41,7 +41,7 @@ angular
         $scope.despesas = getData.despesas;
 
         setTimeout(() => {
-          $("#ModalBackup").modal("toggle");
+          $('#ModalBackup').modal('toggle');
           formatValor.moneyMask();
         }, 900);
       };
@@ -50,18 +50,18 @@ angular
         $scope.listaBackups = getData;
 
         setTimeout(() => {
-          $("#ModalBackupList").modal("toggle");
+          $('#ModalBackupList').modal('toggle');
         }, 900);
       };
 
       const BuscarDataAPI = (getConextion, getFile) => {
         backupAction
           .restaureAPI(getConextion, getFile)
-          .then((res) => {
-            $scope.origin = "Backup Sever Download - API";
-            $scope.tipo = "download";
+          .then(async (res) => {
+            $scope.origin = 'Backup Sever Download - API';
+            $scope.tipo = 'download';
 
-            ExibirDataView(res);
+            await ExibirDataView(res);
           })
           .catch((err) => {
             alertAction.error(err.message).catch((errs) => {
@@ -74,8 +74,8 @@ angular
         backupAction
           .buscarDataLocal()
           .then((res) => {
-            $scope.origin = "Backup Sever Upload - API";
-            $scope.tipo = "upload";
+            $scope.origin = 'Backup Sever Upload - API';
+            $scope.tipo = 'upload';
             ExibirDataView(res);
           })
           .catch((err) => {
@@ -89,8 +89,8 @@ angular
         backupAction
           .listaBaclupsAPI(getConection)
           .then((res) => {
-            $scope.origin = "Backup Sever Download - API";
-            $scope.tipo = "upload";
+            $scope.origin = 'Backup Sever Download - API';
+            $scope.tipo = 'upload';
             ExibirListaBackupsView(res);
           })
           .catch((err) => {
@@ -130,7 +130,7 @@ angular
           return;
         }
 
-        if (String(getConection).trim() === "local") {
+        if (String(getConection).trim() === 'local') {
           tipoAction = getConection;
         }
 
@@ -139,7 +139,7 @@ angular
             backupAction
               .restaureLocal()
               .then((res) => {
-                $scope.origin = "Backup Local - JSON";
+                $scope.origin = 'Backup Local - JSON';
                 ExibirDataView(res);
               })
               .catch((err) => {
@@ -154,7 +154,7 @@ angular
                 BuscarDataLocal();
               })
               .catch((err) => {
-                ResponseError("");
+                ResponseError('');
               });
           },
           download: (conection) => {
@@ -165,7 +165,7 @@ angular
                 ListaBackupsAPI(conection);
               })
               .catch((err) => {
-                ResponseError("");
+                ResponseError('');
               });
           },
         };
@@ -205,11 +205,11 @@ angular
         /*alertAction.info(`Informação: Envio/Upload do backup em desenvolvimento!`).catch((errs) => {
       alert(errs.message)
     })*/
-        Connection($scope.formBackup.server, "upload");
+        Connection($scope.formBackup.server, 'upload');
       };
 
       $scope.download = () => {
-        Connection($scope.formBackup.server, "download");
+        Connection($scope.formBackup.server, 'download');
       };
 
       $scope.selectRestaureDownload = (file) => {

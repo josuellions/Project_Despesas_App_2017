@@ -1,7 +1,7 @@
 angular
-  .module("backupServices", ["ngResource"])
+  .module('backupServices', ['ngResource'])
   .factory(
-    "backupAction",
+    'backupAction',
     function ($q, routesAction, despesaAction, entradaAction) {
       let services = {};
 
@@ -39,54 +39,94 @@ angular
         return getData;
       };
 
-      const FormatDataView = (getData) => {
-        getData.entrada = FormatDateValorView(getData.entrada);
-        getData.despesas = FormatDateValorView(getData.despesas);
+      const FormatDataView = (getType, getData) => {
+        //getData.entrada = FormatDateValorView(getData.entrada);
+        //getData.despesas = FormatDateValorView(getData.despesas);
+        /*console.log('>>BACKUP RESP SERVER');*/
 
-        return getData;
+        //let index = 0;
+        const formatObj = {
+          despesas: getData.despesa?.map((_, index) => {
+            //index++; // = getData.despesa.indexOf(i);
+
+            return {
+              despesa: getData.despesa[index],
+              data: getData.data[index],
+              valor: parseFloat(getData.valor[index]).toFixed(2),
+            };
+          }),
+          entrada: getData.entrada?.map((_, index) => {
+            //index++; //getData.entrada.indexOf(i);
+
+            return {
+              entrada: getData.entrada[index],
+              data: getData.data[index],
+              valor: parseFloat(getData.valor[index]).toFixed(2),
+            };
+          }),
+        };
+        return formatObj[getType];
       };
 
-      const FormatDataInsertBD = async (getData) => {
+      const FormatDataInsertBD = (getData) => {
         const action = Actions();
-        await getData.entrada.map((item) => {
+        getData.entrada.map((item) => {
           action.createEntrada(
             (data = {
               nome: item.entrada,
               date: item.data, //((item.data = item.data)), //formatDate.dtAnoMesDiaBD(item.data),
-              valor: item.valor.replace(".", ","), //((item.valor = item.valor.replace(".", ","))),
+              valor: item.valor.replace('.', ','), //((item.valor = item.valor.replace(".", ","))),
             })
           );
         });
 
-        await getData.despesas.map((item) => {
+        getData.despesas.map((item) => {
           action.createDespesa(
             (data = {
               nome: item.despesa,
               date: item.data, //((item.data = item.data)), //formatDate.dtAnoMesDiaBD(item.data),
-              valor: item.valor.replace(".", ","), //((item.valor = item.valor.replace(".", ","))),
+              valor: item.valor.replace('.', ','), //((item.valor = item.valor.replace(".", ","))),
             })
           );
         });
       };
 
       const formatObjDataBackup = (getType, items) => {
+        const _despesas = [];
+        const _entradas = [];
+        const data = [];
+        const valor = [];
+
         const formatObj = {
-          despesas: items.map((item) => {
+          despesas: () => {
+            items.map((item) => {
+              _despesas.push(item.despesa);
+              data.push(`${item.data} 00:00:01`);
+              valor.push(item.valor);
+            });
+
             return {
-              despesa: item.despesa,
-              data: `${item.data} 00:00:01`,
-              valor: item.valor,
+              despesa: _despesas,
+              data: data,
+              valor: valor,
             };
-          }),
-          entrada: items.map((item) => {
+          },
+          entrada: () => {
+            items.map((item) => {
+              _entradas.push(item.entrada);
+              data.push(`${item.data} 00:00:01`);
+              valor.push(item.valor);
+            });
+
             return {
-              entrada: item.entrada,
-              data: `${item.data} 00:00:01`,
-              valor: item.valor,
+              entrada: _entradas,
+              data: data,
+              valor: valor,
             };
-          }),
+          },
         };
-        return formatObj[getType];
+
+        return formatObj[getType]();
       };
 
       services.restaureLocal = () => {
@@ -100,11 +140,12 @@ angular
           } catch {
             rej({
               message:
-                "Error: FACTORY BACKUP SERVICES, falha ao buscar dados restaure local JSON",
+                'Error: FACTORY BACKUP SERVICES, falha ao buscar dados restaure local JSON',
             });
           }
         });
       };
+
       services.conectionAPI = (getConextion) => {
         return $q((res, rej) => {
           try {
@@ -112,27 +153,43 @@ angular
           } catch {
             rej({
               message:
-                "Error: FACTORY BACKUP SERVICES, falha ao buscar dados restaure local JSON",
+                'Error: FACTORY BACKUP SERVICES, falha ao buscar dados restaure local JSON',
             });
           }
         });
       };
+
       services.restaureAPI = (getConextion, getFile) => {
-        return $q((res, rej) => {
+        return $q(async (res, rej) => {
           try {
-            res(
+            const formatData = {
+              entrada: {},
+              despesas: {},
+            };
+
+            await res(
               routesAction.backupDownAPI(getConextion, getFile).then((resp) => {
-                return FormatDataView(resp.data);
+                for (var type in resp.data) {
+                  formatData[type] = FormatDataView(type, resp.data[type]);
+                }
+                return formatData;
               })
             );
+            /*res(
+              routesAction.backupDownAPI(getConextion, getFile).then((resp) => {
+                //console.log(FormatDataView('tipo', resp.data));
+                return FormatDataView('tipo', resp.data);
+              })
+            );*/
           } catch {
             rej({
               message:
-                "Error: FACTORY BACKUP SERVICES, falha ao buscar dados restaure na API",
+                'Error: FACTORY BACKUP SERVICES, falha ao buscar dados restaure na API',
             });
           }
         });
       };
+
       services.listaBaclupsAPI = (getConextion) => {
         return $q((res, rej) => {
           try {
@@ -144,11 +201,12 @@ angular
           } catch {
             rej({
               message:
-                "Error: FACTORY BACKUP SERVICES, falha ao buscar lista de backups na API",
+                'Error: FACTORY BACKUP SERVICES, falha ao buscar lista de backups na API',
             });
           }
         });
       };
+
       services.buscarDataLocal = () => {
         const data = {
           entrada: [],
@@ -165,7 +223,11 @@ angular
               .index([date.entradainicio, date.entradafim])
               .then((res) => {
                 for (var r of res) {
-                  data.entrada.push(r);
+                  data.entrada.push({
+                    entrada: r.entrada,
+                    data: r.data,
+                    valor: parseFloat(r.valor).toFixed(2),
+                  });
                 }
               });
 
@@ -173,7 +235,11 @@ angular
               .index([date.despesainicio, date.despesafim])
               .then((res) => {
                 for (var r of res) {
-                  data.despesas.push(r);
+                  data.despesas.push({
+                    despesa: r.despesa,
+                    data: r.data,
+                    valor: parseFloat(r.valor).toFixed(2),
+                  });
                 }
               });
 
@@ -181,11 +247,12 @@ angular
           } catch {
             rej({
               message:
-                "Error: FACTORY BACKUP SERVICES, falha ao enviar os dados para API",
+                'Error: FACTORY BACKUP SERVICES, falha ao enviar os dados para API',
             });
           }
         });
       };
+
       services.enviarAPI = (getConextion, data) => {
         return $q(async (res, rej) => {
           try {
@@ -203,17 +270,19 @@ angular
               routesAction
                 .backupUpAPI(getConextion, formatData)
                 .then((resp) => {
-                  return formatData;
+                  return resp;
                 })
             );
+            res('ok');
           } catch {
             rej({
               message:
-                "Error: FACTORY BACKUP SERVICES, falha ao enviar os dados para API",
+                'Error: FACTORY BACKUP SERVICES, falha ao enviar os dados para API',
             });
           }
         });
       };
+
       services.SalveDataBDLocal = (getData) => {
         return $q((res, rej) => {
           try {
@@ -221,7 +290,7 @@ angular
           } catch {
             rej({
               message:
-                "Error: FACTORY BACKUP SERVICES, falha ao salvar no banco dados local.",
+                'Error: FACTORY BACKUP SERVICES, falha ao salvar no banco dados local.',
             });
           }
         });

@@ -1,7 +1,7 @@
 angular
-  .module("todoApp")
+  .module('todoApp')
   .controller(
-    "EntradaController",
+    'EntradaController',
     function (
       $scope,
       entradaAction,
@@ -14,47 +14,47 @@ angular
       $scope.formEntrada = {};
       $scope.formEntrada.date = new Date();
       $scope.entradaValorTotal = 0.0;
-      $scope.entradaValorTotalColor = "";
+      $scope.entradaValorTotalColor = '';
       $scope.listaEntradas = [
         {
           id: 1,
-          nome: "Salario-01",
+          nome: 'Salario-01',
         },
         {
           id: 2,
-          nome: "Salario-02",
+          nome: 'Salario-02',
         },
         {
           id: 3,
-          nome: "Adiantamento-03",
+          nome: 'Adiantamento-03',
         },
         {
           id: 4,
-          nome: "Adiantamento-04",
+          nome: 'Adiantamento-04',
         },
         {
           id: 5,
-          nome: "Poupança",
+          nome: 'Poupança',
         },
         {
           id: 6,
-          nome: "Vendas diversas",
+          nome: 'Vendas diversas',
         },
         {
           id: 7,
-          nome: "Outros recursos",
+          nome: 'Outros recursos',
         },
       ];
 
       $scope.update = true;
-      $scope.btnSave = "";
-      $scope.btnUpdate = "hidden";
-      $scope.optiondel = "hidden";
-      $scope.titleOptions = "Del";
+      $scope.btnSave = '';
+      $scope.btnUpdate = 'hidden';
+      $scope.optiondel = 'hidden';
+      $scope.titleOptions = 'Del';
       $scope.entradas = {};
 
-      $scope.titulo = "Adicionar Entrada";
-      $scope.classSubTitulo = "alinharMes";
+      $scope.titulo = 'Adicionar Entrada';
+      $scope.classSubTitulo = 'alinharMes';
       $scope.passmes = true;
 
       /*Limpar Table e campos Form */
@@ -77,14 +77,14 @@ angular
             dateBd: row.dtLanc,
             dateView: formatDate.dtView(row.data),
             valor: formatValor.ptBr(row.valor),
-            classColor: row.valor >= 0 ? "" : "colorTotalViewNegativo",
+            classColor: row.valor >= 0 ? '' : 'colorTotalViewNegativo',
           });
           somaEntrada += parseFloat(row.valor);
         }
 
         $scope.entradas = entradaFormat;
         $scope.entradaValorTotalColor =
-          somaEntrada < 0 ? "colorTotalViewNegativo" : "";
+          somaEntrada < 0 ? 'colorTotalViewNegativo' : '';
         $scope.entradaValorTotal = formatValor.ptBr(somaEntrada);
         formatValor.moneyMask();
       };
@@ -144,8 +144,8 @@ angular
           entrada.valor
         );
 
-        $scope.btnSave = "";
-        $scope.btnUpdate = "hidden";
+        $scope.btnSave = '';
+        $scope.btnUpdate = 'hidden';
         $scope.formEntrada = {};
         $scope.formEntrada.date = new Date();
         $scope.entradas.splice($scope.entradas.indexOf(entrada), 1);
@@ -183,7 +183,7 @@ angular
                   }
 
                   if (res.length === 0) {
-                    $scope.entradaValorTotal = "0,00";
+                    $scope.entradaValorTotal = '0,00';
                     BuscarDadosMesAnterior(response.inicio);
                     return;
                   }
@@ -206,7 +206,7 @@ angular
           entradaAction
             .update($scope.formEntrada)
             .then((res) => {
-              alertAction.success("Entrada de Caixa atualizada com sucesso");
+              alertAction.success('Entrada de Caixa atualizada com sucesso');
               LimparCamposForm();
               OptionActionCancel();
             })
@@ -274,35 +274,35 @@ angular
 
       /*UPDATE - Opção para editar Entrada Caixa - clicando sobre nome Entrada Caixa */
       const OptionActionEdit = (getEntrada) => {
-        $scope.editCancel = "edit-cancel";
-        $scope.titleOptions = "";
-        $scope.optiondel = "";
+        $scope.editCancel = 'edit-cancel';
+        $scope.titleOptions = '';
+        $scope.optiondel = '';
 
-        $scope.btnSave = "hidden";
-        $scope.btnUpdate = "";
+        $scope.btnSave = 'hidden';
+        $scope.btnUpdate = '';
 
         $scope.formEntrada = {
           id: getEntrada.id,
           nome: getEntrada.nome,
           valor: formatValor.ptBr(
-            parseFloat(getEntrada.valor.replace(".", "").replace(",", "."))
+            parseFloat(getEntrada.valor.replace('.', '').replace(',', '.'))
           ), //parseFloat(getEntrada.valor)),
           date: new Date(`${getEntrada.dateBd} 00:00:00`),
         };
 
-        $("#valEntrada").click(() => {
-          $("#valEntrada").select();
+        $('#valEntrada').click(() => {
+          $('#valEntrada').select();
         });
       };
 
       /*UPDATE - Cancelar opção de editar Entrada Caixa - Botão header table */
       const OptionActionCancel = () => {
-        $scope.editCancel = "";
-        $scope.titleOptions = "Del";
-        $scope.optiondel = "hidden";
+        $scope.editCancel = '';
+        $scope.titleOptions = 'Del';
+        $scope.optiondel = 'hidden';
 
-        $scope.btnSave = "";
-        $scope.btnUpdate = "hidden";
+        $scope.btnSave = '';
+        $scope.btnUpdate = 'hidden';
 
         $scope.formEntrada = {
           date: new Date(),
@@ -316,7 +316,7 @@ angular
           action: action.updateEntrada,
         };
 
-        alertAction.question(dados.message, dados.action, "").catch((err) => {
+        alertAction.question(dados.message, dados.action, '').catch((err) => {
           alertAction.error(err.message).catch((err) => {
             alert(err.message);
           });
@@ -330,15 +330,15 @@ angular
         let date = String($scope.formEntrada.date);
 
         if (
-          valor === "undefined" ||
+          valor === 'undefined' ||
           valor.length === 0 ||
           entrada === 0 ||
           $scope.formEntrada.nome === undefined ||
           date.length === 0 ||
-          date === "undefined"
+          date === 'undefined'
         ) {
           alertAction
-            .info("Vefique, Todos os Campos são Obrigatórios")
+            .info('Vefique, Todos os Campos são Obrigatórios')
             .then((res) => {
               return false;
             })
