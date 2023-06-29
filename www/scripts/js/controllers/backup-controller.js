@@ -12,7 +12,7 @@ angular
       $scope.tipo = '';
 
       $scope.listaBackups = [];
-      $scope.formBackup.server = '192.168.7.11:3333';
+      $scope.formBackup.server = '';
 
       const ResponseConnection = (conn) => {
         alertAction
@@ -130,8 +130,8 @@ angular
           return;
         }
 
-        if (String(getConection).trim() === 'local') {
-          tipoAction = getConection;
+        if (String(getConection).toLowerCase().trim() === 'local') {
+          tipoAction = String(getConection).toLowerCase().trim();
         }
 
         action = {
@@ -140,6 +140,8 @@ angular
               .restaureLocal()
               .then((res) => {
                 $scope.origin = 'Backup Local - JSON';
+                $scope.tipo = 'download';
+
                 ExibirDataView(res);
               })
               .catch((err) => {

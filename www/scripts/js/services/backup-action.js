@@ -40,15 +40,8 @@ angular
       };
 
       const FormatDataView = (getType, getData) => {
-        //getData.entrada = FormatDateValorView(getData.entrada);
-        //getData.despesas = FormatDateValorView(getData.despesas);
-        /*console.log('>>BACKUP RESP SERVER');*/
-
-        //let index = 0;
         const formatObj = {
           despesas: getData.despesa?.map((_, index) => {
-            //index++; // = getData.despesa.indexOf(i);
-
             return {
               despesa: getData.despesa[index],
               data: getData.data[index],
@@ -56,8 +49,6 @@ angular
             };
           }),
           entrada: getData.entrada?.map((_, index) => {
-            //index++; //getData.entrada.indexOf(i);
-
             return {
               entrada: getData.entrada[index],
               data: getData.data[index],
@@ -134,7 +125,9 @@ angular
           try {
             res(
               routesAction.backupLocal().then((resp) => {
-                return FormatDataView(resp);
+                resp.entrada = FormatDateValorView(resp.entrada);
+                resp.despesas = FormatDateValorView(resp.despesas);
+                return resp; //FormatDataView(resp);
               })
             );
           } catch {
@@ -170,14 +163,18 @@ angular
             await res(
               routesAction.backupDownAPI(getConextion, getFile).then((resp) => {
                 for (var type in resp.data) {
-                  formatData[type] = FormatDataView(type, resp.data[type]);
+                  resp.data[type].length > 0
+                    ? (formatData[type] = FormatDateValorView(resp.data[type]))
+                    : (formatData[type] = FormatDataView(
+                        type,
+                        resp.data[type]
+                      ));
                 }
                 return formatData;
               })
             );
             /*res(
               routesAction.backupDownAPI(getConextion, getFile).then((resp) => {
-                //console.log(FormatDataView('tipo', resp.data));
                 return FormatDataView('tipo', resp.data);
               })
             );*/
