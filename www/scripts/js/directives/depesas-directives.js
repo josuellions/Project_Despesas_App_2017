@@ -28,6 +28,20 @@ angular.module('depesasDirectives', [])
 
   })
 
+    /* Define Modal Info Backup Lista Date */
+    .directive('backupListModal', function () {
+      var ddo = {};
+  
+      ddo.restric = 'AE';
+  
+      ddo.transclude = true;
+  
+      ddo.templateUrl = 'public/partials/backup-date-list-modal.html';
+  
+      return ddo;
+  
+    })
+
   /* Define barra superior página */
   .directive('barraTop', function () {
     var ddo = {};

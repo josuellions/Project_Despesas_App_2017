@@ -6,30 +6,39 @@ angular.module('getDadosServices', ['ngResource'])
   services.index = (getDados) => {
     return $q((res, rej) => {
       try{
-        formatDate.dtConsultaDB().then((response) => {
+        formatDate.dtConsultaDB().then(async (response) => {
           const postDate = [response.inicio, response.fim]
-          let responseDespesas = {};
+           
+          let responseEntrada = await  routesAction.entradaIndex(postDate).then((responseEnt) => {
+            return responseEnt;
+          }).catch((err) => {
+            alertAction.error(err.message).catch((errs) => {
+              alert(err.message)
+            });
+          });
           
-          routesAction.despesaIndex(postDate).then((responseDesp) => {
-            responseDespesas = responseDesp;
+          //routesAction.despesaIndex(postDate).then((responseDesp) => {
+          let responseDespesas = await routesAction.despesaIndexSemInvestimentos(postDate).then((responseDesp) => {
+            return responseDesp;
           }).catch((err) => {
             alertAction.error(err.message).catch((errs) => {
               alert(err.message)
             });
           });
 
-          routesAction.entradaIndex(postDate).then((responseEnt) => {
-            let responseEntradas = responseEnt;
-            res({
-              "despesas": responseDespesas,
-              "entradas": responseEntradas
-            })
-
+          let responseInvestimentos = await routesAction.despesaIndexInvestimentos(postDate).then((responseDesp) => {
+            return responseDesp;
           }).catch((err) => {
             alertAction.error(err.message).catch((errs) => {
               alert(err.message)
             });
           });
+
+          res({
+            entradas: responseEntrada,
+            despesas: responseDespesas,
+            investimentos: responseInvestimentos
+          })
 
         }).catch((err) => {
           alertAction.error(err.message).catch((errs) => {

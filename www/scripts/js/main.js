@@ -19,28 +19,28 @@ angular
     'visualizarServices',
     'relatorioServices',
     'backupServices',
-    'alertServices'
+    'alertServices',
   ])
   .config(function ($routeProvider) {
-    
-    const ambientType = 'dev';
+    const ambientType = 'prod';
 
     const SelectEnvironment = (getPath) => {
       const ambient = {
-          prod() { //produção
-            return `/android_asset/www/public/${getPath}.html`;
-          },
-          dev() { //developer
-            return `public/${getPath}.html`
-        }
-      }
+        prod() {
+          //produção
+          return `/android_asset/www/public/${getPath}.html`;
+        },
+        dev() {
+          //developer
+          return `public/${getPath}.html`;
+        },
+      };
 
       const selectEnvironment = ambient[ambientType];
 
       return selectEnvironment();
+    };
 
-    }
-   
     $routeProvider
       .when('/', {
         templateUrl: SelectEnvironment('home'),
@@ -48,7 +48,7 @@ angular
       })
       .when('/despesas', {
         templateUrl: SelectEnvironment('despesas'),
-        controller: 'DespesaController'
+        controller: 'DespesaController',
       })
       .when('/entrada', {
         templateUrl: SelectEnvironment('entrada'),

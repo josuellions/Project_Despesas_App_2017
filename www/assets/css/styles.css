@@ -581,6 +581,14 @@ input.valEntrada {
   min-height: 100%;
 }
 
+.viewExibFix {
+  min-height: 72.5vh !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+}
+
 .viewExib fieldset {
   margin-top: 0;
   height: 100%;

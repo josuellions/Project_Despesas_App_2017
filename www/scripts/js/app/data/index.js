@@ -4,7 +4,6 @@ angular.module('dataApp', ['ngResource', 'dataBase'])
   const dataBase = configDataBase();
 
   bdquery.index = (getQuery, getDados) => {
-
     return $q((res, rej) => {
       try{
         dataBase.transaction((transaction) => {

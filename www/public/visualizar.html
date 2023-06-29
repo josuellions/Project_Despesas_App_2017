@@ -1,101 +1,263 @@
 <header-titule></header-titule>
 
+<style>
+  body {
+    overflow: hidden !important;
+  }
+  .alinharFormDesp {
+    overflow: hidden !important;
+  }
+  .panelVisualizar {
+    margin: 0;
+    bottom: 0;
+    padding: 0;
+    display: flex;
+    height: 680px;
+    overflow: hidden;
+    min-height: 680px;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+</style>
+
 <panel-views>
-	<div class="col-xs-6  col-lg-6 listExibDesp">
-		<table class="col-xs-12 col-lg-12">
-			<thead class="theadDesp">
-				<tr class="textExibir">
-					<th colspan="4">Despesa</th>
-				</tr>
-				<tr>
-					<th width="5%" class="text-center">Data</th>
-					<th width="59%">Tipo</th>
-					<th width="2%"></th>
-					<th width="30%">Valor</th>
-				</tr>
+  <div class="col-xs-12 panelVisualizar">
+    <!-- DIV-DIREITA -->
+    <div style="height: 100%; width: 50%; min-height: 680px">
+      <!-- TABLE DESPESAS -->
+      <div
+        class="col-xs-12 col-lg-12 listExibDesp"
+        style="margin: 0; padding: 0 0.5rem; min-height: 540px"
+      >
+        <table>
+          <thead class="theadDesp">
+            <tr class="textExibir">
+              <th colspan="4">Despesa</th>
+            </tr>
+            <tr>
+              <th
+                width="{{collumns.date}}"
+                class="text-center"
+                style="padding-left: 0.5em"
+              >
+                Data
+              </th>
+              <th width="{{collumns.tipo}}">Tipo</th>
+              <th width="{{collumns.icon}}"></th>
+              <th width="{{collumns.valor}}">Valor</th>
+            </tr>
+          </thead>
+          <tbody id="visualizaDesp" class="listDesp">
+            <tr ng-repeat="despesa in visualizar.listaDespesas">
+              <td
+                width="{{collumns.date}}"
+                class="text-center"
+                style="padding-left: 0.5em"
+              >
+                {{despesa.dateView}}
+              </td>
+              <td width="{{collumns.tipo}}">{{despesa.nome}}</td>
+              <td width="{{collumns.icon}}" class="text-left">R$</td>
+              <td width="{{collumns.valor}}" class="text-right">
+                {{despesa.valor}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- TOTA DESPESAS -->
+      <div
+        class="col-xs-12 col-lg-12 totalDespesas"
+        style="padding-left: 0.5em; padding-right: 0.5em; margin-top: 1rem"
+      >
+        <table class="col-xs-12 col-lg-12">
+          <thead class="theadCalculos">
+            <tr ng-repeat="item in visualizar.resultValorTotal">
+              <th width="{{collumns.total}}%">Total Despesas</th>
+              <th width="{{collumns.icon}}">R$</th>
+              <th
+                width="{{collumns.valor}}"
+                class="text-right money"
+                id="totalDespesas"
+              >
+                {{item.despesas.total}}
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
 
-			</thead>
-			<tbody id="visualizaDesp" class="listDesp">
-				<tr ng-repeat="despesa in visualizar.listaDespesas">
-					<td width="5%" class="text-center" style="padding-left: 0;">{{despesa.dateView}}</td>
-					<td width="59%">{{despesa.nome}}</td>
-					<td width="2%" class="text-left">R$</td>
-					<td width="30%" class="text-right money">{{despesa.valor}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+    <!-- DIV-ESQUEDA -->
+    <div style="height: 100%; width: 50%; min-height: 680px">
+      <!-- TABLE ENTRADA -->
+      <div
+        class="col-xs-12 col-lg-12 listExibEntrada"
+        style="margin: 0; max-height: 30vh; padding: 0 0.5em"
+      >
+        <table>
+          <thead class="theadEntrada">
+            <tr class="textExibir" style="color: #fff">
+              <th colspan="4">Entrada</th>
+            </tr>
+            <tr>
+              <th
+                width="{{collumns.date}}"
+                class="text-center"
+                style="padding-left: 0.5em"
+              >
+                Data
+              </th>
+              <th width="{{collumns.tipo}}">Tipo</th>
+              <th width="{{collumns.icon}}%"></th>
+              <th width="{{collumns.valor}}">Valor</th>
+            </tr>
+          </thead>
+          <tbody id="visualizaEntrada" class="listEntrada">
+            <tr ng-repeat="entrada in visualizar.listaEntradas">
+              <td
+                width="{{collumns.date}}"
+                class="text-center"
+                style="padding-left: 0.5em"
+              >
+                {{entrada.dateView}}
+              </td>
+              <td width="{{collumns.tipo}}%">{{entrada.nome}}</td>
+              <td width="{{collumns.icon}}" class="text-center">R$</td>
+              <td
+                width="{{collumns.valor}}"
+                class="text-right {{entrada.classColor}}"
+              >
+                {{entrada.valor}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- TOTAL ENTRADA -->
+      <div
+        class="col-xs-12 col-lg-12 totalEntrada"
+        style="padding-left: 0.5em; padding-right: 0.5em; margin: 1rem 0 0 0"
+      >
+        <table class="col-xs-12">
+          <thead class="theadCalculos">
+            <tr ng-repeat="item in visualizar.resultValorTotal">
+              <th width="{{collumns.total}}">Total Entrada</th>
+              <th width="{{collumns.icon}}">R$</th>
+              <th
+                width="{{collumns.valor}}"
+                id="totalEntrada"
+                class="text-right {{item._entrada.classColorValor}}"
+              >
+                {{item._entrada.total}}
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
 
-	<div class="col-xs-6 col-lg-6 listExibEntrada">
-		<table class="col-xs-12 col-lg-12">
-			<thead class="theadEntrada">
-				<tr class="textExibir" style="color: #fff">
-					<th colspan="4">Entrada</th>
-				</tr>
-				<tr>
-					<th width="5%" class="text-center">Data</th>
-					<th width="59%">Tipo</th>
-					<th width="2%"></th>
-					<th width="30%">Valor</th>
-				</tr>
+      <!-- TABLE INVESTIMENTOS -->
+      <div
+        class="col-xs-12 col-lg-12 listExibEntrada"
+        style="
+          margin: 2rem 0 0 0;
+          max-height: 30vh;
+          padding: 0 0.5em;
+          max-height: 15vh;
+        "
+      >
+        <table>
+          <thead class="theadEntrada">
+            <tr class="textExibir" style="color: #fff">
+              <th colspan="4">Investimento</th>
+            </tr>
+            <tr>
+              <th
+                width="{{collumns.date}}"
+                class="text-center"
+                style="padding-left: 0.5em"
+              >
+                Data
+              </th>
+              <th width="{{collumns.tipo}}">Tipo</th>
+              <th width="{{collumns.icon}}"></th>
+              <th width="{{collumns.valor}}">Valor</th>
+            </tr>
+          </thead>
+          <tbody id="visualizaInvestimentos" class="listEntrada">
+            <tr ng-repeat="investimento in visualizar.listaInvestimentos">
+              <td
+                width="{{collumns.date}}"
+                class="text-center"
+                style="padding-left: 0"
+              >
+                {{investimento.dateView}}
+              </td>
+              <td width="{{collumns.tipo}}">{{investimento.nome}}</td>
+              <td width="{{collumns.icon}}" class="text-center">R$</td>
+              <td width="{{collumns.valor}}" class="text-right">
+                {{investimento.valor}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- TOTAL INVESTIMENTOS -->
+      <div
+        class="col-xs-12 col-lg-6 totalEntrada"
+        style="padding-left: 0.5em; padding-right: 0.5em; margin: 1rem 0 0 0"
+      >
+        <table class="col-xs-12">
+          <thead class="theadCalculos">
+            <tr ng-repeat="item in visualizar.resultValorTotal">
+              <th width="{{collumns.total}}">Total Investimento</th>
+              <th width="{{collumns.icon}}">R$</th>
+              <th
+                width="{{collumns.valo}}"
+                id="totalEntrada"
+                class="text-right money"
+              >
+                {{item.investimentos.total}}
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
 
-			</thead>
-			<tbody id="visualizaEntrada" class="listEntrada">
-				<tr ng-repeat="entrada in visualizar.listaEntradas">
-					<td width="5%" class="text-center" style="padding-left: 0;">{{entrada.dateView}}</td>
-					<td width="59%">{{entrada.nome}}</td>
-					<td width="2%" class="text-center">R$</td>
-					<td width="30%" class="text-right money">{{entrada.valor}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-<span ng-repeat= "visualizar in visualizar.resultValorTotal">
-	<div class="col-xs-6 col-xs-offset-6 col-lg-6 col-lg-offset-6 totalEntrada">
-		<table class="col-xs-12">
-			<thead class="theadCalculos">
-				<tr>
-					<th width="68%">Total Entrada </th>
-					<th width="2%">R$</th>
-					<th width="30%" id="totalEntrada"class="text-right money">{{visualizar.entradaValorTotal}}</th>
-				</tr>
-			</thead>
-		</table>
-	</div>
+      <!-- TOTAL GERAL -->
+      <div
+        class="col-xs-12 col-lg-6 listExibCalculos"
+        style="
+          padding-top: 1vh;
+          padding-left: 0.5em;
+          padding-right: 0.5em;
+          margin: 1.9rem 0 0 0;
+        "
+      >
+        <table class="col-xs-12">
+          <thead
+            class="theadCalculos"
+            id="visualizaEntrada"
+            class="listEntrada money"
+          >
+            <tr>
+              <th width="64%" class="text-center">Total</th>
 
-	<div class="col-xs-6 col-xs-offset-6 col-lg-6 col-lg-offset-6 listExibCalculos">
-		<table class="col-xs-12">
-		<tbody id="visualizaEntrada" class="listEntrada money">
-			<thead class="theadCalculos">
-				<tr>
-					<th width="68%">Total Despesas </th>
-					<th width="2%">R$</th>
-					<th width="30%" id="calculototalDespesas" class="text-right money">{{visualizar.despesaValorTotal}}</th>
-				</tr>
-				<tr>
-					<th width="68%">Total Entrada </th>
-					<th width="2%">R$</th>
-					<th width="30%" id="calculototalEntrada" class="text-right money">{{visualizar.entradaValorTotal}}</th>
-				</tr>
-				<tr>
-					<th width="68%" id="saldoGeral">Saldo Geral </th>
-					<th width="2%" id="simboloMoeda">R$</th>
-					<th width="20%" id="calculosomaGeral" class="text-right money {{visualizar.classColorSaldoGeral}} ">{{visualizar.saldoGeral}}</th>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-	<div class="col-xs-6 col-lg-6 totalDespesas">
-		<table class="col-xs-12 col-lg-12">
-			<thead class="theadCalculos">
-				<tr>
-					<th width="68%">Total Despesas </th>
-					<th width="2%">R$</th>
-					<th width="30%" class="text-right money" id="totalDespesas">{{visualizar.despesaValorTotal}}</th>
-				</tr>
-			</thead>
-		</table>
-	</div>
-</span>	 
+              <th width="36%" colspan="2" class="text-center">Valor</th>
+            </tr>
+            <tr ng-repeat="item in visualizar.resultValorTotal[0]">
+              <th width="{{collumns.total}}%">{{item.nome}}</th>
+              <th width="{{collumns.icon}}">R$</th>
+              <th
+                width="{{collumns.valor}}"
+                class="text-right  {{item.classColorValor}}"
+              >
+                {{item.total}}
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
 </panel-views>
