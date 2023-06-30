@@ -5,4 +5,3 @@ Controle Despesas Versão 2023 - APP Mobile versão: v.2.1.0, desenvolvimento e 
 Telas da Aplicação
 
 ![image](https://user-images.githubusercontent.com/28610102/196678484-f3775bee-9edc-4f8d-ba4d-2856fae092d3.png)
-
