@@ -1,7 +1,7 @@
 angular
-  .module("todoApp")
+  .module('todoApp')
   .controller(
-    "RelatorioController",
+    'RelatorioController',
     function ($scope, pass, alertAction, relatorioAction, formatValor) {
       $scope.despesas = {};
 
@@ -13,13 +13,13 @@ angular
           getDados.despesaValorTotal
         );
 
-        const root = document.querySelector("html");
+        const root = document.querySelector('html');
 
         while (size < (255 / 100) * porcentagem) {
           size += parseFloat(fixSize);
         }
 
-        root.style.setProperty("--size", 255 + 3.6 - size);
+        root.style.setProperty('--size', 255 + 3.6 - size);
 
         return porcentagem;
       };
@@ -60,8 +60,8 @@ angular
       pass
         .MonthInitial()
         .then((res) => {
-          $scope.titulo = "Relatório Despesas";
-          $scope.classSubTitulo = "alinharMes";
+          $scope.titulo = 'Relatório Despesas';
+          $scope.classSubTitulo = 'alinharMes';
           $scope.passmes = true;
           $scope.subtitulo = res.mesExt;
           $scope.comparaDt = res.anoMesDia;

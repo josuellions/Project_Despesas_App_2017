@@ -170,14 +170,10 @@ angular
                         resp.data[type]
                       ));
                 }
+
                 return formatData;
               })
             );
-            /*res(
-              routesAction.backupDownAPI(getConextion, getFile).then((resp) => {
-                return FormatDataView('tipo', resp.data);
-              })
-            );*/
           } catch {
             rej({
               message:

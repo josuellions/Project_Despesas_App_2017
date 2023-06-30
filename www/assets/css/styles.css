@@ -248,7 +248,7 @@ section {
   background: orangered;
   /* #ff0000e6; #fff;*/
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
-  content: "";
+  content: '';
   transition: all 0.3s ease;
 }
 
@@ -576,9 +576,9 @@ input.valEntrada {
   justify-content: center;
   align-items: center;
 
-  height: 100%;
-  max-height: 100%;
-  min-height: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 100vh;
 }
 
 .viewExibFix {
